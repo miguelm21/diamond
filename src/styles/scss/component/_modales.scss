@@ -1,0 +1,142 @@
+.modal{
+	padding-right: 0 !important;
+}
+
+.modal-base{
+	.modal-content{
+		border-radius: 0;
+		border-bottom: 4px solid $primary;
+		.modal-header{
+			position: relative;
+			display: block;
+			padding: 7px;
+			border-radius: 0;
+			border-bottom: 0;
+			.modal-title{
+				text-align: center;
+				color: $primary;
+				font-size: 22px;
+				 &:after{
+		              content: "";
+		              height: 2px;
+		              width: 35px;
+		              background-color: #18346e;
+		              margin: 0px auto;
+		              display: flex;
+		              justify-content: center;
+		        }	
+			}
+
+			button{
+				position: absolute;
+				top: 5px;
+				right: 5px;
+			}
+		}
+		.modal-body{
+			/* detalles */
+			.show-details{
+				.form-group{
+					
+					label{
+						margin: 0;
+						color: $primary;
+						word-break: break-word;
+						font-size: 16px;
+						padding-left: 20px;
+						text-align: left;
+					}
+					p{
+						word-break: break-word;
+						color: $gray;
+						font-size: 14px;
+						padding-left: 20px;
+						text-align: left;
+					}
+					.status{
+						
+					}
+				  	 .status.green{
+			           color: $red;
+			         }
+			         .status.red{
+			           color: $green;
+			         }
+				}
+			}
+
+
+			/* Modal editar */
+
+			.register-form	{
+		        padding: 15px;
+		          
+		          
+		       .form-control{
+		            background-color: #fff !important;
+		            border: none;
+		            border-bottom: 2px solid #c1c1c1;
+		            outline: none;
+		            border-radius: 0;
+		            transition: .2s;
+		            color: $gray;
+		            &:focus{
+		              border-color: $secondary;
+		              box-shadow: none;
+		            }
+		         }
+
+		         .btn-register{
+		            background-color: $primary;
+		            color: #fff;
+		            margin: 15px 10px;
+		            width: 100%;
+		            max-width: 130px;
+		         } 
+		         .btn-back{
+		          background-color: #fff;
+		          color: $secondary;
+		          border: 1px solid $secondary;
+		          margin: 15px 10px;
+		          width: 100%;
+		          max-width: 130px;
+		        } 
+		      } 
+			}
+
+			.eliminar{
+				p{
+					text-align: center;
+					margin-bottom: 0;
+					color: $gray;
+				}
+			}
+
+
+
+		.modal-footer{
+			border: none;
+			display: flex;
+			justify-content: center;
+			button{
+				background-color: #fff;
+				color: $secondary;
+				border-color: $secondary;
+				max-width: 120px;
+				width: 100%;
+				display: block;
+				margin: auto 5px;
+				float: initial;
+			}
+			button.primary{
+				background-color: $primary;
+				color: #fff;
+				max-width: 120px;
+				width: 100%;
+				display: block;
+				margin: auto 5px;
+				float: initial;	
+			}
+		}
+	}
+}

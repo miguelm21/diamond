@@ -1,0 +1,39 @@
+.primary-btn{
+    text-align: center;
+    padding: 0 1em;
+    line-height: 3;
+    background: $primary;
+    color: #fff;
+    cursor: pointer;
+    transition: all .5s;
+    outline: none;
+    &:hover, &:focus{
+      box-shadow: 100px 0 $press inset,
+        -100px 0 $press inset !important;
+         color: #fff;
+         outline: none;
+    }
+}
+
+.secondary-btn{
+    text-align: center;
+    padding: 0 1em;
+    line-height: 2;
+    background: $secondary;
+    color: #fff;
+    cursor: pointer;
+    transition: all .5s;
+    outline: none;
+    &:hover, &:focus{
+      box-shadow: 100px 0 $press inset,
+        -100px 0 $press inset !important;
+         color: #fff;
+         outline: none;
+    }
+}
+
+
+
+
+
+

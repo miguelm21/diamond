@@ -1,0 +1,70 @@
+@mixin clearfix {
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+@mixin absCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin absCenterCustom($t1, $t2) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate($t1, $t2);
+}
+
+
+// MEDIA QUERY MANAGER
+/*
+0 - 600px:      Phone
+600 - 900px:    Tablet portrait
+900 - 1200px:   Tablet landscape
+[1200 - 1800] is where our normal styles apply
+1800px + :      Big desktop
+
+$breakpoint arguement choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+ORDER: Base + typography > general layout + grid > page layout > components
+
+1em = 16px
+*/
+@mixin respond($breakpoint) {
+     @if $breakpoint == desktop {
+        @media only screen and (min-width:1200px) { @content }; //360px
+    }
+     @if $breakpoint == tablet-lg {
+        @media only screen and (min-width:992px) and (max-width:1199px) { @content }; //360px
+    }
+     @if $breakpoint == tablet {
+        @media only screen and (min-width:768px) and (max-width:991px) { @content }; //360px
+    }
+    @if $breakpoint == tablet-xs {
+        @media only screen and (min-width:568px) and (max-width:767px) { @content }; //360px
+    }
+      @if $breakpoint == max-767 {
+        @media only screen and (max-width:767px) { @content }; //360px
+    }
+    @if $breakpoint == l-phone {
+        @media only screen and (max-width:567px) { @content }; //360px
+    }
+     @if $breakpoint == m-phone {
+        @media only screen and (max-width:480px) { @content }; //360px
+    }
+   
+    @if $breakpoint == s-phone {
+        @media only screen and (max-width:360px) { @content }; //360px
+    }
+   
+}
+
