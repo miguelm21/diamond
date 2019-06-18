@@ -107,7 +107,7 @@ module.exports = {
         filename: 'style.[chunkhash].css'
     }),
     new CopyWebpackPlugin([{
-        from:'./src/assets/images',
+        from:'./src/assets/image',
         to:'assets/images'
         
     }]),
