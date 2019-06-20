@@ -127,7 +127,21 @@ Sidebar Nav
   overflow: hidden;
   -webkit-overflow-scrolling: touch;
   transition: .3s;
- 
+  
+  .price-status{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    p{
+      color: #fff;
+      font-size: 12px;
+      margin-left: -20px;
+    }
+    h5{
+      color: #fff;
+      font-size: 32px;
+    }
+  }
   
   ul{
     list-style:none;
@@ -392,13 +406,13 @@ Chev elements
           font-size: 22px;
           margin: 30px auto;
          &:after{
-              content: "";
-              height: 2px;
-              width: 35px;
-              background-color: #18346e;
-              margin: 5px auto;
-              display: flex;
-              justify-content: center;
+            content: "";
+            height: 2px;
+            width: 35px;
+            background-color: #18346e;
+            margin: 5px auto;
+            display: flex;
+            justify-content: center;
         } 
       }
     }

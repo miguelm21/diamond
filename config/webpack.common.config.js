@@ -12,7 +12,9 @@ module.exports = {
       index: './src/index.js',
       panelEmpresas: './src/pages/panelEmpresas/panelEmpresas.js',
       panelRestaurante: './src/pages/panelEmpresas/panelEmpresas.js',
-      panelRestaurante2: './src/pages/panelRestaurante2/panelRestaurante2.js'
+      panelRestaurante2: './src/pages/panelRestaurante2/panelRestaurante2.js',
+      panelClientes: './src/pages/panelClientes/panelClientes.js',
+      loginEmpresas: './src/pages/loginEmpresas/loginEmpresas.js'
   },
   output: {
     filename: 'main.[chunkhash].js',
@@ -97,6 +99,29 @@ module.exports = {
         template: './src/pages/panelRestaurante2/panelRestaurante2.html',
         filename: 'panelRestaurante2.html',
         chunks: ['panelRestaurante2'],
+        inject: true,
+        minify: {
+            removeComments: true,
+            collapseWhitespace: false
+        }
+    }),
+    new
+    new HtmlWebpackPlugin({
+        title: 'EmetLife',
+        template: './src/pages/panelClientes/panelClientes.html',
+        filename: 'panelClientes.html',
+        chunks: ['panelClientes'],
+        inject: true,
+        minify: {
+            removeComments: true,
+            collapseWhitespace: false
+        }
+    }),
+    new HtmlWebpackPlugin({
+        title: 'EmetLife',
+        template: './src/pages/loginEmpresas/loginEmpresas.html',
+        filename: 'loginEmpresas.html',
+        chunks: ['loginEmpresas'],
         inject: true,
         minify: {
             removeComments: true,
