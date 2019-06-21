@@ -17,7 +17,7 @@ module.exports = {
       loginEmpresas: './src/pages/loginEmpresas/loginEmpresas.js'
   },
   output: {
-    filename: 'main.[name].js',
+    filename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, '../dist')
   },
   resolve: {
@@ -77,7 +77,7 @@ module.exports = {
         template: './src/pages/panelEmpresas/panelEmpresas.html',
         filename: 'panelEmpresas.html',
         chunks: ['panelEmpresas'],
-        inject: true,
+        inject: 'body',
         minify: {
             removeComments: true,
             collapseWhitespace: false
@@ -129,7 +129,7 @@ module.exports = {
         }
     }),
     new MiniCssExtractPlugin({
-        filename: 'style.[name].css'
+        filename: 'style.[chunkhash].css'
     }),
     new CopyWebpackPlugin([{
         from:'./src/assets/image',

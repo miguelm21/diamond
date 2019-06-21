@@ -2,7 +2,7 @@ import $ from 'jquery';
 import jQuery from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import '../panelEmpresas/panelEmpresas';
+import '../../styles/scss/main.scss';
 import * as firebase from 'firebase';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel';
@@ -17,7 +17,6 @@ $(window).scroll(function() {
 });
 
 $( document ).ready(function() {
-
 /* Carousel */
 
 $('#carousel-associates').owlCarousel({
