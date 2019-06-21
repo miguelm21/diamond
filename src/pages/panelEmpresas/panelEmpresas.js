@@ -97,3 +97,21 @@ function backbutton(){
   $('#show-register2').hide();
   $('#show-button').show();
 }
+//*************************codigo vitico */
+
+firebase.initializeApp(firebaseConfig);
+
+function escribir() {
+  $(document).ready(function () {
+      $('#registrar').click(function (e) {
+          e.preventDefault();
+      
+          firebase.database().ref('users/' + 'userId').set({
+              username: 'nombre',
+              apellido: 'apellido',
+              email: 'correo',
+              contraseña: 'contraseña'
+          });
+      });
+  });
+} escribir();

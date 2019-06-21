@@ -9,92 +9,139 @@ import 'owl.carousel';
 import * as AOS from 'aos/dist/aos.js';
 import swal from 'sweetalert';
 import Chart from 'chart.js';
+import { async } from 'q';
 
 // toggle class scroll 
-$(window).scroll(function() {
-    // Init AOS 
-    AOS.init();
+$(window).scroll(function () {
+  // Init AOS 
+  AOS.init();
 });
 
-$( document ).ready(function() {
+$(document).ready(function () {
 
-/* Carousel */
+  /* Carousel */
 
-$('#carousel-associates').owlCarousel({
-    loop:true,
-    margin:10,
-    nav:true,
-    autoplay:true,
-    autoplayTimeout:2000,
-    autoplayHoverPause:false,
-  responsive:{
-    0:{
-        items:1
-    },
-    600:{
-        items:3
-    },
-    1000:{
-        items:6
+  $('#carousel-associates').owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: true,
+    autoplay: true,
+    autoplayTimeout: 2000,
+    autoplayHoverPause: false,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: 3
+      },
+      1000: {
+        items: 6
+      }
     }
-  }
-})
-  
+  })
+
   /* Tooltips */
 
   $('[data-toggle="tooltip"]').tooltip()
 
-$('#expand').click(function(){
-	$('.sidebar').toggleClass('width');
-	$('.body-panel').toggleClass('width-panel');
-	$('#arrow').toggleClass('rotate-arrow');
-  $('.sidebar-nav ul li a span').toggleClass('text-hide1')
-})
-$("nav li a").click(function(){
+  $('#expand').click(function () {
+    $('.sidebar').toggleClass('width');
+    $('.body-panel').toggleClass('width-panel');
+    $('#arrow').toggleClass('rotate-arrow');
+    $('.sidebar-nav ul li a span').toggleClass('text-hide1')
+  })
+  $("nav li a").click(function () {
     $("nav li").removeClass("active");
     $(this).parent().addClass("active");
     $("nav li a").removeClass("active");
+  });
+
+  /*show and hide REGISTRO */
+
+  $('#show-register').click(function () {
+    $('#login-empresa').hide();
+    $('#register-form').show();
+  });
+
+  $('#backlogin').click(function () {
+    $('#register-form').hide();
+    $('#login-empresa').show();
+  })
+
+  $('#show-register2').click(function () {
+    $('#login-empresa2').hide();
+    $('#register-form2').show();
+  });
+
+  $('#backlogin2').click(function () {
+    $('#register-form2').hide();
+    $('#login-empresa2').show();
+  })
+
+  /* Panel admin empresas */
+
+  $('#registro1').click(function () {
+    $('#show-button').hide();
+    $('#show-register1').show();
+  })
+
+  $('#registro2').click(function () {
+    $('#show-button').hide();
+    $('#show-register2').show();
+  })
+
+
 });
 
- /*show and hide REGISTRO */
-
- $('#show-register').click(function(){
-  $('#login-empresa').hide();
-  $('#register-form').show();
- });
-
-$('#backlogin').click(function(){
-  $('#register-form').hide();
-  $('#login-empresa').show();
-})
-
- $('#show-register2').click(function(){
-  $('#login-empresa2').hide();
-  $('#register-form2').show();
- });
-
-$('#backlogin2').click(function(){
-  $('#register-form2').hide();
-  $('#login-empresa2').show();
-})
-
-/* Panel admin empresas */ 
-
-$('#registro1').click(function(){
-  $('#show-button').hide();
-  $('#show-register1').show();
-})
-
-$('#registro2').click(function(){
-  $('#show-button').hide();
-  $('#show-register2').show();
-})
-
-
-});
-
-function backbutton(){
+function backbutton() {
   $('#show-register1').hide();
   $('#show-register2').hide();
   $('#show-button').show();
 }
+
+//*************************codigo vitico */
+
+firebase.initializeApp(firebaseConfig);
+
+function registroEmpresa() {
+  $(document).ready(function () {
+    $('#registrar').click(function (e) {
+      e.preventDefault();
+      var datos = $('#formRegistrar').serializeArray();
+      var nombreEmpresa = datos[0].value;
+      var correo = datos[1].value;
+      var pais = datos[2].value;
+      var direccion = datos[3].value;
+      var poblacion = datos[4].value;
+      var direccion = datos[5].value;
+      var telefono = datos[6].value;
+      var codigoPostal = datos[7].value;
+      var NIF = datos[8].value;
+      var contraseña = datos[9].value;
+    
+      firebase.auth().createUserWithEmailAndPassword(correo, contraseña).then(function (resultado) {
+        
+       var uid=  resultado.user.uid;
+        firebase.database().ref('users/' + 'userId'+uid).set({
+          
+          "nombreEmpresa": nombreEmpresa,
+          "correo": correo,
+          "pais": pais,
+          "direccion": direccion,
+          "poblacion": poblacion,
+          "direccion": direccion,
+          "telefono": telefono,
+          "codigoPostal": codigoPostal,
+          "NIF": NIF,
+          "contraseña": contraseña,
+          "uid": uid
+         
+
+        });
+
+      })
+
+    });
+  });
+} registroEmpresa();

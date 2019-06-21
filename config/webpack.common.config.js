@@ -8,7 +8,8 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 var ImageminPlugin = require('imagemin-webpack-plugin').default
 
 module.exports = {
-  entry: {
+  entry: {      
+    
       index: './src/index.js',
       panelEmpresas: './src/pages/panelEmpresas/panelEmpresas.js',
       panelRestaurante: './src/pages/panelEmpresas/panelEmpresas.js',
