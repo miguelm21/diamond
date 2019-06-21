@@ -17,7 +17,7 @@ module.exports = {
       loginEmpresas: './src/pages/loginEmpresas/loginEmpresas.js'
   },
   output: {
-    filename: 'main.[chunkhash].js',
+    filename: 'main.[name].js',
     path: path.resolve(__dirname, '../dist')
   },
   resolve: {
@@ -105,7 +105,7 @@ module.exports = {
             collapseWhitespace: false
         }
     }),
-    new
+    
     new HtmlWebpackPlugin({
         title: 'EmetLife',
         template: './src/pages/panelClientes/panelClientes.html',
@@ -129,7 +129,7 @@ module.exports = {
         }
     }),
     new MiniCssExtractPlugin({
-        filename: 'style.[chunkhash].css'
+        filename: 'style.[name].css'
     }),
     new CopyWebpackPlugin([{
         from:'./src/assets/image',

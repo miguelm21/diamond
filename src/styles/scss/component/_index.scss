@@ -10,7 +10,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-image: url('../image/banner2.jpg');
+      background-image: url('/src/assets/image/banner.jpg');
         h5{
           font-size: 22px;
           color: #fff;
@@ -155,7 +155,7 @@
 
     .download-section{
       height: 50vh;
-      background-image: url('../image/section-app2.jpg');
+      background-image: url('/src/assets/image/section-app2.jpg');
       background-size: cover;
       background-position: center;
       position: relative;
@@ -193,15 +193,15 @@
 
 .empresa{
   .banner.restaurante{
-     background-image: url(../image/comercio2.jpg);
+     background-image: url('/src/assets/image/comercio2.jpg');
     display: block;
   }
   .banner.cliente{
-    background-image: url(../image/banner.jpg);
+    background-image: url('/src/assets/image/banner2.jpg');
     display: block;
   }
   .banner{
-    background-image: url(../image/empresa2.jpg);
+    background-image: url('/src/assets/image/empresa2.jpg');
     display: block;
             
             .box-login.register{
