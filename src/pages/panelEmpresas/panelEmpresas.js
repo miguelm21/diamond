@@ -2,7 +2,7 @@ import $ from 'jquery';
 import jQuery from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import '../../styles/scss/main.scss';
+import '../panelEmpresas/panelEmpresas';
 import * as firebase from 'firebase';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel';

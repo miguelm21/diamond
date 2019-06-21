@@ -1,0 +1,729 @@
+
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Blue Diamong</title>
+      <meta name="description" content="Servinformación">
+      <link rel="icon" type="image/png" href="">
+      <!-- Fonts -->
+    
+      <!-- Styles -->
+    <!--   <link rel="stylesheet" href="css/aos.css">
+      <link rel="stylesheet" href="css/animate.css"> -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--   <link rel="stylesheet" href="css/main.css">
+      <link rel="stylesheet" href="css/normalize.css">
+      <link rel="stylesheet" href="css/owl.carousel.min.css">
+      <link rel="stylesheet" href="css/owl.theme.default.min.css"> -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      <script src="../../../js/fontawesome.js"></script>
+      <script src="../../../js/fontawesome-all.min.js"></script>
+      <script src="../../../js/owl.carousel.js"></script>
+      <script src="../../../js/main.js"></script>
+      <script src="../../../js/aos.js"></script>
+    </head>
+    <body>
+    
+    
+    
+    
+    <!--  Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-edit">
+      <a class="navbar-brand" href="index.html"><img src="../../assets/image/logo.png" alt="" class="img-logo"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">¿Quienes somos?</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#">Empresas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Personas</a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href="#">Restaurantes</a>
+          </li>
+         <li class="nav-item login">
+            <a class="nav-link" href="login-empresas.html">Iniciar sesión</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
+    <!-- Panel admin -->
+    <section class="panel-admin">
+      <div class="box-panel">
+        <div class="nav d-flex">
+          <div class="logo">
+            <button id="expand" class="hidden-button" ><i class="fas fa-chevron-right" id="arrow"></i></button>
+          </div>
+          <div class="header">
+            <div class="dropdown text-right edit">
+              <a class="dropdown-toggle option-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="../../assets/image/avatar.png" alt="">
+               Astrapp C.A
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Editar contraseña</a>
+                <a class="dropdown-item" href="#">Cambiar imagen</a>
+                <a class="dropdown-item" href="#">Cerrar sesión</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app">
+          <aside class="sidebar d-flex">
+            <nav class="sidebar-nav">
+              <div class="price-status">
+                <p>Tu saldo</p>
+                <h5>540.00 €</h5>
+              </div>
+              <ul>
+               <li>
+                  <a data-toggle="tab" href="#home"><i class="fas fa-home"></i> <span class="">Inicio</span></a>
+                </li>
+                <li>
+                  <a data-toggle="tab" href="#clientes"><i class="fas fa-users"></i> <span class="">Empleados registrados</span></a>
+                </li>
+                <li>
+                  <a data-toggle="tab" href="#plan-beneficios" ><i class="fas fa-chart-bar"></i><span class="">Beneficios</span></a>
+                </li>
+                   <li>
+                  <a data-toggle="tab" href="#"><i class="far fa-building"></i><span class="">Transferir saldo a banco</span></a>
+                </li>
+                <li>
+                  <a data-toggle="tab" href="#configuracion"><i class="fas fa-cogs"></i> <span class="">Configuración</span></a>
+                </li>
+              </ul>
+            </nav>
+          </aside>
+          <div class="body-panel">
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div class="tab-pane active" id="home">
+               <div class="row" id="show-button">
+                  <div class="col-6 col-sm-4 col-md-4">
+                    <button class="btn btn-add purple" id="registro1"><i class="fas fa-plus"></i>Registrar empleados</button>
+                  </div>
+                  <div class="col-6 col-sm-4 col-md-4">
+                    <button class="btn btn-add green" id="registro2"><i class="far fa-money-bill-alt"></i>Registrar plan benefico</button>
+                  </div>
+                  <div class="col-6 col-sm-4 col-md-4">
+                    <button class="btn btn-add yellow" id="registro4"><i class="fas fa-exclamation-triangle"></i>Promociones caducadas</button>
+                  </div>
+                </div>
+    
+                <!--registro cliente-->
+                <div class="register-client max-width" id="show-register1">
+                  <h5>Registrar cliente</h5>
+                  <div class="form-client">
+                    <div class="row register-form">
+                      <div class="col-md-6 col-12">
+                          <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Nombres" value="" />
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Apellidos" value="" />
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="form-group">
+                              <input type="date" class="form-control" placeholder="Fecha de nacimiento" value="" />
+                          </div>
+                        </div>  
+                         <div class="col-md-6 col-12"> 
+                          <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Correo electrónico" value="" />
+                          </div>
+                        </div> 
+                        <div class="col-md-6 col-12"> 
+                          <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Cargo" value="" />
+                          </div>
+                        </div> 
+                        <div class="col-md-6 col-12"> 
+                          <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Inactivo" value="" />
+                          </div>
+                        </div> 
+                        <div class="col-md-6 col-12"> 
+                            <div class="form-group">
+                              <select class="form-control" id="exampleFormControlSelect1">
+                                <option>Plan de beneficio</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                              </select>
+                            </div>
+                        </div>   
+                        <div class="col-12 d-flex justify-content-center mt-4 text-center">
+                           <button type="submit" onclick="backbutton()" class="btn btn-back">Volver</button>
+                          <button type="submit" class="btn btn-register">Registrar</button>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                 <!-- registro Beneficios -->
+                <div class="register-client max-width" id="show-register2">
+                  <h5>Registrar Beneficios</h5>
+                  <div class="form-client">
+                    <div class="row register-form">
+                      <div class="col-md-6 col-12">
+                          <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Nombre del plan" value="" />
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="form-group">
+                              <input type="number" class="form-control" placeholder="Monto del plan" value="" />
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="form-group">
+                              <input type="date" class="form-control" placeholder="Fecha de creación del plan" value="" />
+                          </div>
+                        </div>   
+                        <div class="col-12 d-flex justify-content-center text-center">
+                           <button type="submit" onclick="backbutton()" class="btn btn-back">Volver</button>
+                          <button type="submit" class="btn btn-register">Registrar</button>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="clientes">
+                <div class="box-table">
+                  <h2 class="title">Empleados</h2>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class="thead-blue">
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Nombre</th>
+                          <th scope="col">Apellido</th>
+                          <th scope="col">Correo</th>
+                         <!--  <th scope="col">Dirección</th> -->
+                         <!--  <th scope="col">Cargo</th> -->
+                          <th scope="col">Inactivo</th>
+                          <th scope="col">Plan beneficio</th>
+                          <th scope="col">Opciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>Juan</td>
+                          <td>Perez Jimenez</td>
+                          <td>Prueba4223141@hotmail.com</td>
+                        <!--   <td>Calle 22 carrera 33</td> -->
+                         <!--  <td>Desarrollador</td> -->
+                          <td>
+                            <i class="status green fas fa-check"></i>
+                            <i class="status red fas fa-times d-none"></i>
+                          </td>
+                          <td>Promocion a</td>
+                         <td>  
+                          <div class="btn-group mr-2" role="group" aria-label="First group">
+                            <span data-toggle="modal" data-target="#modal-detalles"><button type="button" class="btn btn-secondary" data-toggle="tooltip"  data-placement="top" title="Ver detalles"><i class="fa fa-file"></i></button></span>
+    
+                            <span data-toggle="modal" data-target="#modal-editar"><button type="button" class="btn btn-secondary" data-toggle="tooltip"  data-placement="top" title="Editar"><i class="fas fa-pencil-alt"></i></button></span>
+    
+                            <span data-toggle="modal" data-target="#modal-eliminar"><button type="button" class="btn btn-secondary" data-toggle="tooltip"  data-placement="top" title="Eliminar"><i class="fas fa-trash"></i></button></span>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>Juan</td>
+                        <td>Perez Jimenez</td>
+                        <td>Prueba4223141@hotmail.com</td>
+                       <!--  <td>Calle 22 carrera 33</td> -->
+                      <!--   <td>Desarrollador</td> -->
+                        <td>
+                          <i class="status green fas fa-check"></i>
+                          <i class="status red fas fa-times d-none"></i>
+                        </td>
+                        <td>Promocion B</td>
+                       <td>  
+                         <div class="btn-group mr-2" role="group" aria-label="First group">
+                            <span data-toggle="modal" data-target="#modal-detalles"><button type="button" class="btn btn-secondary" data-toggle="tooltip"  data-placement="top" title="Ver detalles"><i class="fa fa-file"></i></button></span>
+    
+                            <span data-toggle="modal" data-target="#modal-editar"><button type="button" class="btn btn-secondary" data-toggle="tooltip"  data-placement="top" title="Editar"><i class="fas fa-pencil-alt"></i></button></span>
+    
+                            <span data-toggle="modal" data-target="#modal-eliminar"><button type="button" class="btn btn-secondary" data-toggle="tooltip"  data-placement="top" title="Eliminar"><i class="fas fa-trash"></i></button></span>
+                          </div>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="pagination-section">
+                    <div class="row">
+                    <div class="col-12">
+                      <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="plan-beneficios">
+                <h2 class="title">Beneficios</h2>
+                <div class="box-beneficios">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                  <div class="box-card blue">
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                       <i class="fas fa-ellipsis-v"></i>
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-editar-beneficio">Editar</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-eliminar">Eliminar</a>
+                      </div>
+                    </div>
+                    <div class="info-card">
+                      <h5 class="name">Beneficio 1</h5>
+                      <p class="price">50.000 COP</p>
+                      <span class="date">27-03-18</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                  <div class="box-card yellow">
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                       <i class="fas fa-ellipsis-v"></i>
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-editar-beneficio">Editar</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-eliminar">Eliminar</a>
+                      </div>
+                    </div>
+                    <div class="info-card">
+                      <h5 class="name">Beneficio 2</h5>
+                      <p class="price">50.000 COP</p>
+                      <span class="date">27-03-18</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                  <div class="box-card green">
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                       <i class="fas fa-ellipsis-v"></i>
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-editar-beneficio">Editar</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-eliminar">Eliminar</a>
+                      </div>
+                    </div>
+                    <div class="info-card">
+                      <h5 class="name">Beneficio 3</h5>
+                      <p class="price">50.000 COP</p>
+                      <span class="date">27-03-18</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                  <div class="box-card red">
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                       <i class="fas fa-ellipsis-v"></i>
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-editar-beneficio">Editar</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-eliminar">Eliminar</a>
+                      </div>
+                    </div>
+                    <div class="info-card">
+                      <h5 class="name">Beneficio 1</h5>
+                      <p class="price">50.000 COP</p>
+                      <span class="date">27-03-18</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                  <div class="box-card blue">
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                       <i class="fas fa-ellipsis-v"></i>
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-editar-beneficio">Editar</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-eliminar">Eliminar</a>
+                      </div>
+                    </div>
+                    <div class="info-card">
+                      <h5 class="name">Beneficio 1</h5>
+                      <p class="price">50.000 COP</p>
+                      <span class="date">27-03-18</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                  <div class="box-card yellow">
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                       <i class="fas fa-ellipsis-v"></i>
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-editar-beneficio">Editar</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-eliminar">Eliminar</a>
+                      </div>
+                    </div>
+                    <div class="info-card">
+                      <h5 class="name">Beneficio 1</h5>
+                      <p class="price">50.000 COP</p>
+                      <span class="date">27-03-18</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                  <div class="box-card red">
+                    <div class="dropdown">
+                      <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                       <i class="fas fa-ellipsis-v"></i>
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-editar-beneficio">Editar</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-eliminar">Eliminar</a>
+                      </div>
+                    </div>
+                    <div class="info-card">
+                      <h5 class="name">Beneficio 1</h5>
+                      <p class="price">50.000 COP</p>
+                      <span class="date">27-03-18</span>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="configuracion">
+                  <div class="box-configuracion max-width">
+                     <h2 class="title">Configuración</h2>
+                     <div class="row register-form">
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Nombre de la empresa" value="" />
+                            </div>
+                          </div>
+                          <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="ID de la compañia" value="" />
+                            </div>
+                          </div>
+                          <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Contacto" value="" />
+                            </div>
+                          </div>  
+                          <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Telefono" value="" />
+                            </div>
+                          </div> 
+                          <div class="col-md-6 col-12"> 
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Dirección" value="" />
+                            </div>
+                          </div> 
+                          <div class="col-md-6 col-12"> 
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Correo electrónico" value="" />
+                            </div>
+                          </div> 
+                          <div class="col-md-6 col-12"> 
+                            <div class="form-group">
+                                <input type="number" class="form-control" placeholder="Código postal" value="" />
+                            </div>
+                          </div> 
+                          <div class="col-md-6 col-12"> 
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Nombre del representante" value="" />
+                            </div>
+                          </div> 
+                          <div class="col-md-6 col-12"> 
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Cedula del representante" value="" />
+                            </div>
+                          </div> 
+                          <div class="col-md-6 col-12"> 
+                             <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Telefono del representante" value="" />
+                            </div>
+                          </div> 
+                          <div class="col-md-6 col-12"> 
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Correo del representante" value="" />
+                            </div>
+                          </div>  
+                           <div class="col-12 d-flex justify-content-center mt-4 text-center">
+                             <button type="submit" class="btn btn-register">Editar</button>
+                          </div>
+                      </div>
+                  </div> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+      <!-- Site footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-12">
+            <h6>Conócenos</h6>
+            <p class="text-justify">Somos una empresa enfocada al Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, quis.</p>
+          </div>
+    
+          <div class="col-sm-3 col-6 d-none d-sm-block">
+            <!--  <h6></h6>
+            <ul class="footer-links">
+              <li><a href="#"></a></li>
+              <li><a href="#"> Design</a></li>
+              <li><a href="#"></a></li>
+              <li><a href="#"></a></li>
+              <li><a href="#"></a></li>
+              <li><a href="#"></a></li>
+            </ul> -->
+          </div>
+    
+          <div class="col-sm-3 col-12">
+            <h6>Contacto</h6>
+            <ul class="footer-links">
+              <li><a href="">Conrtatanos</a></li>
+              <li><a href="">Contribuciones</a></li>
+              <li><a href="">Política de privacidad</a></li>
+              <li><a href="">Mapa</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-sm-6 col-xs-12">
+            <p class="copyright-text">Copyright &copy; 2019 Todos los derechos reservados para 
+         <a href="#">Blue Diamong</a>.
+            </p>
+          </div>
+    
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <ul class="social-icons">
+              <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
+              <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+              <li><a class="dribbble" href="#"><i class="fab fa-instagram"></i></a></li>
+              <li><a class="linkedin" href="#"><i class="fab fa-linkedin-in"></i></a></li>   
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+    <!-- Modales Ver detalles -->
+    
+    
+    
+    
+    
+    
+    
+    <div class="modal fade" id="modal-detalles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-base" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="show-details">
+               <div class="row">
+                <div class="col-sm-6 col-12" >
+                  <div class="form-group">
+                    <label>Nombre</label>
+                    <p>Juan </p>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-12" >
+                  <div class="form-group">
+                    <label>Apellido</label>
+                    <p>Gonzalez Espinoza</p>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-12" >
+                  <div class="form-group">
+                    <label>Correo</label>
+                    <p>Prueba4223141@hotmail.com</p>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-12" >
+                  <div class="form-group">
+                    <label>Dirección</label>
+                    <p>Carrera 13 entre av unda</p>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-12" >
+                  <div class="form-group">
+                    <label>Cargo</label>
+                    <p>Desarrollador</p>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-12" >
+                  <div class="form-group">
+                    <label>Inactivo</label>
+                    <p>
+                       <i class="status red fas fa-check"></i>
+                        <i class="status green fas fa-times d-none"></i>
+                    </p>
+                  </div>
+                </div>
+                 <div class="col-sm-6 col-12" >
+                  <div class="form-group">
+                    <label>Plan beneficio</label>
+                    <p>Plan mensual</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn edit" data-dismiss="modal">Salir</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="modal-editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-base" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Editar usuario</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+             <div class="row register-form">
+                <div class="col-md-6 col-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Nombres" value="" />
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Apellidos" value="" />
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                        <input type="date" onfocus="(this.type='date')" id="date" class="form-control" placeholder="Fecha de nacimiento" value="" />
+                    </div>
+                  </div>  
+                   <div class="col-md-6 col-12"> 
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Correo electrónico" value="" />
+                    </div>
+                  </div> 
+                  <div class="col-md-6 col-12"> 
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Cargo" value="" />
+                    </div>
+                  </div> 
+                  <div class="col-md-6 col-12"> 
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Inactivo" value="" />
+                    </div>
+                  </div> 
+                  <div class="col-md-6 col-12"> 
+                      <div class="form-group">
+                        <select class="form-control" id="exampleFormControlSelect1">
+                          <option>Plan de beneficio</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                      </div>
+                  </div>   
+               </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn edit" data-dismiss="modal">Salir</button>
+            <button type="button" class="btn primary" data-dismiss="modal">Editar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="modal-eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-base modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Atención</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="eliminar">
+              <p>Esta seguro que desea eliminar este usuario ?</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn edit" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn primary" data-dismiss="modal">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="modal-editar-beneficio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-base modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+             <div class="row register-form">
+                <div class="col-md-12 col-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Nombres" value="" />
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                        <input type="number" class="form-control" placeholder="Monto" value="" />
+                    </div>
+                  </div>     
+               </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn edit" data-dismiss="modal">Salir</button>
+            <button type="button" class="btn primary" data-dismiss="modal">Editar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    </body>
+    </html>
