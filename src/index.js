@@ -10,6 +10,7 @@ import * as AOS from 'aos/dist/aos.js';
 import swal from 'sweetalert';
 import Chart from 'chart.js';
 import { async } from 'q';
+import { stringify } from 'querystring';
 
 // toggle class scroll 
 $(window).scroll(function () {
@@ -106,7 +107,7 @@ firebase.initializeApp(firebaseConfig);
 
 function registroEmpresa() {
   $(document).ready(function () {
-    $('#registrar').click(function (e) {
+    $('#registrarEmpresa').click(function (e) {
       e.preventDefault();
       var datos = $('#formRegistrar').serializeArray();
       var nombreEmpresa = datos[0].value;
@@ -119,12 +120,12 @@ function registroEmpresa() {
       var codigoPostal = datos[7].value;
       var NIF = datos[8].value;
       var contraseña = datos[9].value;
-    
+
       firebase.auth().createUserWithEmailAndPassword(correo, contraseña).then(function (resultado) {
-        
-       var uid=  resultado.user.uid;
-        firebase.database().ref('users/' + 'userId'+uid).set({
-          
+
+        var uid = resultado.user.uid;
+        var res = firebase.database().ref('Empresas/' + uid).set({
+
           "nombreEmpresa": nombreEmpresa,
           "correo": correo,
           "pais": pais,
@@ -136,12 +137,123 @@ function registroEmpresa() {
           "NIF": NIF,
           "contraseña": contraseña,
           "uid": uid
-         
+
+
+        }, function (error) {
+          if (error) {
+            alert('Hay un error en sus datos verifique e intentelo de nuevo...')
+          } else {
+            alert('Registro completado con exito!')
+          }
+
+
+        })
+
+      });
+    });
+  })
+} registroEmpresa();
+
+function registroRestaurante() {
+  $(document).ready(function () {
+    $('#registrarRestaurante').click(function (e) {
+      e.preventDefault();
+      var datos = $('#regristroRestaurante').serializeArray();
+      console.log(datos);
+
+      var nombreRestaurante = datos[0].value;
+      var NIF = datos[1].value;
+      var idRestauran = datos[2].value;
+      var correo = datos[3].value;
+      var telefono = datos[4].value;
+      var direccion = datos[5].value;
+      var codigoPosta = datos[6].value;
+      var pais = datos[7].value;
+      var poblacion = datos[8].value;
+      var contraseña = datos[9].value;
+      var confirmarContraseña = datos[10].value;
+
+      firebase.auth().createUserWithEmailAndPassword(correo, contraseña).then(function (resultado) {
+
+        var uid = resultado.user.uid;
+        var res = firebase.database().ref('Restaurante/' + uid).set({
+
+          "nombreRestaurante": nombreRestaurante,
+          "NIF": NIF,
+          "idRestauran": idRestauran,
+          "correo": correo,
+          "telefono": telefono,
+          "direccion": direccion,
+          "codigoPosta": codigoPosta,
+          "pais": pais,
+          "poblacion": poblacion,
+          "contraseña": contraseña,
+          "confirmarContraseña": confirmarContraseña,
+
+
+        }, function (error) {
+          if (error) {
+            alert('Hay un error en sus datos verifique e intentelo de nuevo...')
+          } else {
+            alert('Registro completado con exito!')
+          }
+
+
+        })
+
+      });
+    });
+  })
+} registroRestaurante();
+
+function iniciarSesionEMpresa() {
+  $(document).ready(function () {
+    $('#iniciarSesionEmpresa').click(function (e) {
+      e.preventDefault();
+      var datos = $('#sesionEmpresa').serializeArray();
+      var correo = datos[0].value;
+      var contraseña = datos[1].value;
+
+      firebase.auth().signInWithEmailAndPassword(correo, contraseña).then(function (data) {
+        var uid = data.user.uid;
+        var correo = data.user.email;
+      
+        /*recuperar datos de la empresa para el inicio de sesion */
+        firebase.database().ref('Empresas/').orderByKey().equalTo(uid).once('value').then(function (snapshot) {
+         var datosEmpresa = snapshot.val();
+         console.log(datosEmpresa);
+         var datas = {
+          "uid": uid,
+          "correo": correo,
+          "empresa": datosEmpresa,
+        }
+
+         sessionStorage.setItem("data", JSON.stringify(datas));
+         var sesionjson = sessionStorage.getItem("data");
+         var sesion = JSON.parse(sesionjson);
+         if (sesion === '' | sesion === 'null') {
+           alert('no ha iniciado sesion')
+         } else {
+ 
+ 
+           alert("has iniciado sesion  =" + sesion);
+          // console.log(sesion);
+          location.href = "panelEmpresas.html"
+         }
+ 
+ 
+       }) /* .catch(function(error) {
+        
+         var errorCode = error.code;
+         var errorMessage = error.message;
+         console.log(errorCode,errorMessage)
+       });*/
+ 
+     }); 
 
         });
 
-      })
-
-    });
+       
   });
-} registroEmpresa();
+
+} iniciarSesionEMpresa()

@@ -23,7 +23,7 @@
      
       </script>
     </head>
-    <body> 
+    <body > 
     
     
     
@@ -66,13 +66,13 @@
             <div class="dropdown text-right edit">
               <a class="dropdown-toggle option-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img src="../../assets/image/avatar.png" alt="">
-               Astrapp C.A
+              <h1 id="nombreEmpresa"></h1>
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">Editar contraseña</a>
                 <a class="dropdown-item" href="#">Cambiar imagen</a>
                 <a class="dropdown-item" href="#">Cerrar sesión</a>
-              </div>
+              </div>  
             </div>
           </div>
         </div>
@@ -122,40 +122,42 @@
                 <div class="register-client max-width" id="show-register1">
                   <h5>Registrar cliente</h5>
                   <div class="form-client">
+                    <form id="RegistrarEmpleados">
                     <div class="row register-form">
                       <div class="col-md-6 col-12">
+                        
                           <div class="form-group">
-                              <input type="text" class="form-control" placeholder="Nombres" value="" />
+                              <input type="text" class="form-control" placeholder="Nombres" value="" name="nombre"/>
                           </div>
                         </div>
                         <div class="col-md-6 col-12">
                           <div class="form-group">
-                              <input type="text" class="form-control" placeholder="Apellidos" value="" />
+                              <input type="text" class="form-control" placeholder="Apellidos" value="" name="apellido"/>
                           </div>
                         </div>
                         <div class="col-md-6 col-12">
                           <div class="form-group">
-                              <input type="date" class="form-control" placeholder="Fecha de nacimiento" value="" />
+                              <input type="date" class="form-control" placeholder="Fecha de nacimiento" value="" name="fechaNacimiento"/>
                           </div>
                         </div>  
                          <div class="col-md-6 col-12"> 
                           <div class="form-group">
-                              <input type="text" class="form-control" placeholder="Correo electrónico" value="" />
+                              <input type="text" class="form-control" placeholder="Correo electrónico" value="" name="correo"/>
                           </div>
                         </div> 
                         <div class="col-md-6 col-12"> 
                           <div class="form-group">
-                              <input type="text" class="form-control" placeholder="Cargo" value="" />
+                              <input type="text" class="form-control" placeholder="Cargo" value="" name="cargo"/>
                           </div>
                         </div> 
                         <div class="col-md-6 col-12"> 
                           <div class="form-group">
-                              <input type="text" class="form-control" placeholder="Inactivo" value="" />
+                              <input type="text" class="form-control" placeholder="Inactivo" value="" name="Inactivo"/>
                           </div>
                         </div> 
                         <div class="col-md-6 col-12"> 
                             <div class="form-group">
-                              <select class="form-control" id="exampleFormControlSelect1">
+                              <select class="form-control" id="exampleFormControlSelect1" name="planBeneficio">
                                 <option>Plan de beneficio</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -164,37 +166,49 @@
                               </select>
                             </div>
                         </div>   
+                        <div class="col-md-6 col-12"> 
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Contraseña" value="" name="contraseña"/>
+                            </div>
+                          </div> 
+                      </form>
                         <div class="col-12 d-flex justify-content-center mt-4 text-center">
                            <button type="submit" onclick="backbutton()" class="btn btn-back">Volver</button>
-                          <button class="btn btn-register" id="registrar" type="submit" >Registrar</button>
+                          <button class="btn btn-register" id="registrarEmpleados" type="submit" >Registrar Empleados</button>
                         </div>
                      </div>
                   </div>
                 </div>
+            
                  <!-- registro Beneficios -->
                 <div class="register-client max-width" id="show-register2">
                   <h5>Registrar Beneficios</h5>
+                  
                   <div class="form-client">
+                    
                     <div class="row register-form">
+                        <form id="registroBeneficio">
                       <div class="col-md-6 col-12">
                           <div class="form-group">
-                              <input type="text" class="form-control" placeholder="Nombre del plan" value="" />
+                              <input type="text" class="form-control" placeholder="Nombre del plan" value="" name = "nombrePlan"/>
                           </div>
                         </div>
                         <div class="col-md-6 col-12">
                           <div class="form-group">
-                              <input type="number" class="form-control" placeholder="Monto del plan" value="" />
+                              <input type="tex" class="form-control" placeholder="Monto del plan" value="" name = "montoPlan"/>
                           </div>
                         </div>
                         <div class="col-md-6 col-12">
                           <div class="form-group">
-                              <input type="date" class="form-control" placeholder="Fecha de creación del plan" value="" />
+                              <input type="date" class="form-control" placeholder="Fecha de creación del plan" value="" name = "FechaPlan"/>
                           </div>
                         </div>   
+                      
                         <div class="col-12 d-flex justify-content-center text-center">
                            <button type="submit" onclick="backbutton()" class="btn btn-back">Volver</button>
-                          <button type="submit" class="btn btn-register">Registrar</button>
+                          <button type="submit" class="btn btn-register" id="registrarBeneficio" >Registrar</button>
                         </div>
+                      </form>
                      </div>
                   </div>
                 </div>
