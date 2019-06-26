@@ -236,7 +236,7 @@ function beneficionRegistrados() {
         var montoPlan = childData.montoPlan;
         var nombrePlan = childData.nombrePlan;
         //console.log(nombrePlan);
-        $('.tarjetaBeneficio').append("<div>mordisco</div>");
+        $('#tarjetaBeneficio').append("<div>mordisco</div>");
         
       });
      
