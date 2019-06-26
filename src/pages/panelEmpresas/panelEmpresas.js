@@ -135,7 +135,7 @@ function registroempleados() {
           "planBeneficio": planBeneficio,
           "contraseña": contraseña,
           "empresa": json.uid,
-          "uidempleado":uid
+          "uidempleado": uid
 
         }, function (error) {
           if (error) {
@@ -196,8 +196,52 @@ function empleadosRegistrados() {
     var uid = (sesion.uid);
 
     firebase.database().ref('/users/' + uid).once('value').then(function (snapshot) {
-      var datos = (snapshot.val());
-      console.log(datos);
+      //var datosCantidad = snapshot.numChildren();
+
+      snapshot.forEach(function (childSnapshot) {
+        // var key = childSnapshot.key;        
+        var childData = childSnapshot.val();
+        // console.log(childData);
+        var Inactivo = childData.Inactivo;
+        var apellido = childData.apellido;
+        var cargo = childData.cargo;
+        var contraseña = childData.contraseña;
+        var correo = childData.correo;
+        var empresa = childData.empresa;
+        var fechaNacimiento = childData.fechaNacimiento;
+        var nombre = childData.nombre;
+        var planBeneficio = childData.planBeneficio;
+
+        $('#tablaEmpleados').append("<tr><td>" + nombre + "</td><td>" + apellido + "</td><td>" + correo + "</td><td>" + Inactivo + "</td><td>" + planBeneficio + "</td><td>" + cargo + "</td></tr>");
+
+
+
+      });
+
+
     });
   });
 } empleadosRegistrados()
+
+function beneficionRegistrados() {
+  $('body').ready(function () {
+    var sesion = JSON.parse(sessionStorage.getItem('data'));
+    var uid = (sesion.uid);
+
+    firebase.database().ref('/Empresas/' + uid + "/planes/").once('value').then(function (snapshot) {
+      snapshot.forEach(function (childSnapshot) {
+       
+        var childData = childSnapshot.val();
+        var fechaPlan = childData.fechaPlan;
+        var montoPlan = childData.montoPlan;
+        var nombrePlan = childData.nombrePlan;
+        //console.log(nombrePlan);
+        $('.tarjetaBeneficio').append("<div>mordisco</div>");
+        
+      });
+     
+    });
+   
+  });
+  
+} beneficionRegistrados()
