@@ -5,8 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Blue Diamong</title>
-  <meta name="description" content="Servinformación">
+  <meta name="description" content="Blue Diamong">
   <link rel="icon" type="image/png" href="">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css">
   <script src="https://www.gstatic.com/firebasejs/6.2.1/firebase-app.js"></script>
   <script>
     // Your web app's Firebase configuration
@@ -29,7 +30,7 @@
 
   <!--  Navbar -->
   <nav class="navbar navbar-expand-lg navbar-edit">
-    <a class="navbar-brand" href="index.html"><img src="../../assets/image/logo.png" alt="" class="img-logo"></a>
+    <a class="navbar-brand" href="index.html"><img src="/src/assets/image/logo.png" alt="" class="img-logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-bars"></i>
@@ -66,8 +67,8 @@
         <div class="header">
           <div class="dropdown text-right edit">
             <a class="dropdown-toggle option-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img src="../../assets/image/avatar.png" alt="">
-              <h1 id="nombreEmpresa"></h1>
+              <img src="/src/assets/image/avatar.png" alt="">
+              <span id="nombreEmpresa"></span>
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" href="#">Editar contraseña</a>
@@ -183,7 +184,7 @@
                       </div>
                   </form>
                   <div class="col-12 d-flex justify-content-center mt-4 text-center">
-                    <button type="submit" onclick="backbutton()" class="btn btn-back">Volver</button>
+                    <button onclick="backbutton()" class="btn btn-back">Volver</button>
                     <button class="btn btn-register" id="registrarEmpleados" type="submit">Registrar Empleados</button>
                   </div>
                 </div>
@@ -224,123 +225,123 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="tab-pane fade" id="clientes">
-            <div class="box-table">
-              <h2 class="title">Empleados</h2>
-              <div class="table-responsive">
-                <table class="table">
-                  <thead class="thead-blue">
-                    <tr>
-                      <th scope="col">Nombre</th>
-                      <th scope="col">Apellido</th>
-                      <th scope="col">Correo</th>
-                      <th scope="col">Inactivo</th>
-                      <th scope="col">Plan beneficio</th>
-                      <th scope="col">Cargo</th>
-                    </tr>
-                  </thead>
-                  <tbody id="tablaEmpleados">
-                  </tbody>
-                </table>
-              </div>
-              <div class="pagination-section">
-                <div class="row">
-                  <div class="col-12">
-                    <ul class="pagination">
-                      <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a></li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a></li>
-                    </ul>
+            <div class="tab-pane fade" id="clientes">
+              <div class="box-table">
+                <h2 class="title">Empleados</h2>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class="thead-blue">
+                      <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Inactivo</th>
+                        <th scope="col">Plan beneficio</th>
+                        <th scope="col">Cargo</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tablaEmpleados">
+                    </tbody>
+                  </table>
+                </div>
+                <div class="pagination-section">
+                  <div class="row">
+                    <div class="col-12">
+                      <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a></li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="tab-pane fade" id="plan-beneficios">
-            <h2 class="title">Beneficios</h2>
-            <div class="box-beneficios" id="tarjetaBeneficio">
+            <div class="tab-pane fade" id="plan-beneficios">
+              <h2 class="title">Beneficios</h2>
+              <div class="box-beneficios" id="tarjetaBeneficio">
+              </div>
             </div>
-          </div>
-          <div class="tab-pane fade" id="configuracion">
-            <div class="box-configuracion max-width">
-              <h2 class="title">Configuración</h2>
-              <div class="row register-form">
+            <div class="tab-pane fade" id="configuracion">
+              <div class="box-configuracion max-width">
+                <h2 class="title">Configuración</h2>
                 <form id="editarEmpresa">
-                  <div class="col-md-6 col-12">
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Nombre de la empresa" id="conNombreEmpresa"
-                        name="conNombreEmpresa" />
+                  <div class="row register-form">
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Nombre de la empresa" id="conNombreEmpresa"
+                          name="conNombreEmpresa" />
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-md-6 col-12">
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="ID de la compañia" id="conIdCompañia"
-                        name="conIdCompañia" />
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="ID de la compañia" id="conIdCompañia"
+                          name="conIdCompañia" />
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-md-6 col-12">
-                    <div class="form-group">
-                      <input type="email" class="form-control" placeholder="Correo" id="conCorreo" name="conCorreo" />
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Correo" id="conCorreo" name="conCorreo" />
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-md-6 col-12">
-                    <div class="form-group">
-                      <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Telefono"
-                        id="conTelefono" name="conTelefono" />
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Telefono"
+                          id="conTelefono" name="conTelefono" />
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-md-6 col-12">
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Dirección" id="conDireccion"
-                        name="conDireccion" />
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Dirección" id="conDireccion"
+                          name="conDireccion" />
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-md-6 col-12">
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Código postal" id="conpostal"
-                        name="conpostal" />
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Código postal" id="conpostal"
+                          name="conpostal" />
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-md-6 col-12">
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Pais" id="conpais" name="conpais" />
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Pais" id="conpais" name="conpais" />
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-md-6 col-12">
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Poblacion" id="conpoblacion"
-                        name="conpoblacion" />
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Poblacion" id="conpoblacion"
+                          name="conpoblacion" />
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-md-6 col-12">
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Nombre del representante"
-                        name="conNombreRepresentante" />
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Nombre del representante"
+                          name="conNombreRepresentante" />
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-md-6 col-12">
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Cedula del representante"
-                        name="conCedulaRepresentante" />
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Cedula del representante"
+                          name="conCedulaRepresentante" />
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-md-6 col-12">
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Telefono del representante"
-                        name="conTelRepresentante" />
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Telefono del representante"
+                          name="conTelRepresentante" />
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-md-6 col-12">
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Correo del representante"
-                        name="conCorreoRepresentante" />
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Correo del representante"
+                          name="conCorreoRepresentante" />
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-12 d-flex justify-content-center mt-4 text-center">
-                    <button type="submit" class="btn btn-register" id="guardarEmpresa">GUardar Cambios</button>
+                    <div class="col-12 d-flex justify-content-center mt-4 text-center">
+                      <button type="submit" class="btn btn-register" id="guardarEmpresa">Guardar Cambios</button>
+                    </div>
                   </div>
                 </form>
               </div>

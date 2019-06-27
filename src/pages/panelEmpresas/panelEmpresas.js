@@ -40,7 +40,6 @@ $(document).ready(function () {
   })
 
   /* Tooltips */
-
   $('[data-toggle="tooltip"]').tooltip()
 
   $('#expand').click(function () {
@@ -75,23 +74,23 @@ $(document).ready(function () {
   $('#backlogin2').click(function () {
     $('#register-form2').hide();
     $('#login-empresa2').show();
-  })
+  });
 
   /* Panel admin empresas */
 
   $('#registro1').click(function () {
     $('#show-button').hide();
     $('#show-register1').show();
-  })
+  });
 
   $('#registro2').click(function () {
     $('#show-button').hide();
     $('#show-register2').show();
-  })
+  });
+
 
 
 });
-
 function backbutton() {
   $('#show-register1').hide();
   $('#show-register2').hide();
@@ -158,7 +157,7 @@ function recuperarNOmbreEmpresa() {
     var sesion = JSON.parse(sesionjson);
 
     var nombreEmpresa = sesion.empresa.nombreEmpresa;
-    $('#nombreEmpresa').append("<h3>" + nombreEmpresa + "</h3>");
+    $('#nombreEmpresa').append("<span>" + nombreEmpresa + "</span>");
   });
 } recuperarNOmbreEmpresa()
 
