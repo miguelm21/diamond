@@ -217,43 +217,45 @@ function iniciarSesionEMpresa() {
       firebase.auth().signInWithEmailAndPassword(correo, contraseña).then(function (data) {
         var uid = data.user.uid;
         var correo = data.user.email;
-      
+
         /*recuperar datos de la empresa para el inicio de sesion */
         firebase.database().ref('Empresas/').orderByKey().equalTo(uid).once('value').then(function (snapshot) {
-         var datosEmpresa = snapshot.val();
-         console.log(datosEmpresa);
-         var datas = {
-          "uid": uid,
-          "correo": correo,
-          "empresa": datosEmpresa,
-        }
+          //var datosEmpresa = snapshot.val();
+          snapshot.forEach(function (childSnapshot) {
+            var childData = childSnapshot.val();
+            console.log(childData);
+            var datas = {
+              "uid": uid,
+              "correo": correo,
+              "empresa": childData,
+            }
+            sessionStorage.setItem("data", JSON.stringify(datas));
+            var sesionjson = sessionStorage.getItem("data");
+            var sesion = JSON.parse(sesionjson);
+            if (sesion === '' | sesion === 'null') {
+              alert('no ha iniciado sesion')
+            } else {
+              alert("has iniciado sesion  =" + sesion);
+              // console.log(sesion);
+              location.href = "panelEmpresas.html"
+            }
 
-         sessionStorage.setItem("data", JSON.stringify(datas));
-         var sesionjson = sessionStorage.getItem("data");
-         var sesion = JSON.parse(sesionjson);
-         if (sesion === '' | sesion === 'null') {
-           alert('no ha iniciado sesion')
-         } else {
- 
- 
-           alert("has iniciado sesion  =" + sesion);
-          // console.log(sesion);
-          location.href = "panelEmpresas.html"
-         }
- 
- 
-       }) /* .catch(function(error) {
+          });
+
+
+
+        }) /* .catch(function(error) {
         
          var errorCode = error.code;
          var errorMessage = error.message;
          console.log(errorCode,errorMessage)
        });*/
- 
-     }); 
 
-        });
+      });
 
-       
+    });
+
+
   });
 
 } iniciarSesionEMpresa()

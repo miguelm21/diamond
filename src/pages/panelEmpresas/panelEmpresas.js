@@ -156,8 +156,8 @@ function recuperarNOmbreEmpresa() {
   $(document).ready(function () {
     var sesionjson = sessionStorage.getItem("data");
     var sesion = JSON.parse(sesionjson);
-    var uid = sesion.uid;
-    var nombreEmpresa = sesion.empresa[uid].nombreEmpresa;
+
+    var nombreEmpresa = sesion.empresa.nombreEmpresa;
     $('#nombreEmpresa').append("<h3>" + nombreEmpresa + "</h3>");
   });
 } recuperarNOmbreEmpresa()
@@ -205,7 +205,7 @@ function empleadosRegistrados() {
         var Inactivo = childData.Inactivo;
         var apellido = childData.apellido;
         var cargo = childData.cargo;
-        var contraseña = childData.contraseña;
+
         var correo = childData.correo;
         var empresa = childData.empresa;
         var fechaNacimiento = childData.fechaNacimiento;
@@ -226,22 +226,103 @@ function empleadosRegistrados() {
 function beneficionRegistrados() {
   $('body').ready(function () {
     var sesion = JSON.parse(sessionStorage.getItem('data'));
-    var uid = (sesion.uid);
-
-    firebase.database().ref('/Empresas/' + uid + "/planes/").once('value').then(function (snapshot) {
+    firebase.database().ref('/Empresas/' + sesion.uid + "/planes/").once('value').then(function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
-       
         var childData = childSnapshot.val();
         var fechaPlan = childData.fechaPlan;
         var montoPlan = childData.montoPlan;
         var nombrePlan = childData.nombrePlan;
-        //console.log(nombrePlan);
-        $('#tarjetaBeneficio').append("<div>mordisco</div>");
-        
+        var tarjeta = $("<div class='col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3'>" +
+          "<div class='box-card yellow'>" +
+          "<div class='dropdown'>" +
+          "<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton'" +
+          "data-toggle='dropdown' aria-haspopup='false' aria-expanded='false'>" +
+          "<i class='fas fa-ellipsis-v'></i>" +
+          "</button>" +
+          "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>" +
+          "<a class='dropdown-item' href='#' data-toggle='modal'" +
+          "data-target='#modal-editar-beneficio'>Editar</a>" +
+          "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-eliminar'>Eliminar</a>" +
+          "</div>" +
+          "</div>" +
+          "<div class='info-card'>" +
+          "<h5 class='name'> " + nombrePlan + "</h5>" +
+          "<p class='price'> € " + montoPlan + "</p>" +
+          "<span class='date'>" + fechaPlan + "</span>" +
+          "</div>" +
+          "</div>" +
+          "</div>");
+
+        $('#tarjetaBeneficio').append(tarjeta);
+
       });
-     
     });
-   
   });
-  
 } beneficionRegistrados()
+
+function configuracionEmpresa() {
+  $(document).ready(function () {
+    var sesionjson = sessionStorage.getItem("data");
+    var sesion = JSON.parse(sesionjson);
+
+    //console.log(sesion.empresa);
+    var uid = sesion.uid;
+    var NIF = sesion.empresa.NIF;
+    var codigoPostal = sesion.empresa.codigoPostal;
+    var correo = sesion.empresa.correo;
+    var direccion = sesion.empresa.direccion;
+    var nombreEmpresa = sesion.empresa.nombreEmpresa;
+    var pais = sesion.empresa.pais;
+    var poblacion = sesion.empresa.poblacion;
+    var telefono = sesion.empresa.telefono;
+    $('#conNombreEmpresa').val(nombreEmpresa);
+    $('#conpostal').val(codigoPostal);
+    $('#conDireccion').val(direccion);
+    $('#conTelefono').val(telefono);
+    $('#conCorreo').val(correo);
+    $('#conIdCompañia').val(NIF);
+    $('#conpais').val(pais);
+    $('#conpoblacion').val(poblacion);
+    $('#guardarEmpresa').click(function (e) {
+      e.preventDefault();
+      var datos = $('#editarEmpresa').serializeArray();
+      console.log(datos[11].value);
+      var conNombreEmpresa = datos[0].value;
+      var conIdCompañia = datos[1].value;
+      var conCorreo = datos[2].value;
+      var conTelefono = datos[3].value;
+      var conDireccion = datos[4].value;
+      var conpostal = datos[5].value;
+      var conpais = datos[6].value;
+      var conpoblacion = datos[7].value;
+      var conNombreRepresentante = datos[8].value;
+      var conCedulaRepresentante = datos[9].value;
+      var conTelRepresentante = datos[10].value;
+      var conCorreoRepresentante = datos[11].value;
+
+      firebase.database().ref('Empresas/' + uid).update({
+        "nombreEmpresa": conNombreEmpresa,
+        "correo": conCorreo,
+        "pais": conpais,
+        "direccion": conDireccion,
+        "poblacion": conpoblacion,
+        "telefono": conTelefono,
+        "codigoPostal": conpostal,
+        "representante": {
+          "NombreRepresentante": conNombreRepresentante,
+          "CedulaRepresentante": conCedulaRepresentante,
+          "TelRepresentante": conTelRepresentante,
+          "CorreoRepresentante": conCorreoRepresentante
+
+        }
+
+      }, function (error) {
+        if (error) {
+          alert('Hay un error en sus datos verifique e intentelo de nuevo...')
+        } else {
+          alert('Registro completado con exito!')
+        }
+      });
+    });
+  });
+} configuracionEmpresa()
