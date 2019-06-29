@@ -259,3 +259,61 @@ function iniciarSesionEMpresa() {
   });
 
 } iniciarSesionEMpresa()
+
+function iniciarSesionRestaurante() {
+  $(document).ready(function () {
+    $('#iniciarSesionRestaurante').click(function (e) {
+      e.preventDefault();
+      var datos = $('#sesionRestaurante').serializeArray();
+      var correo = datos[0].value;
+      var contraseña = datos[1].value;
+      console.log(datos);
+
+      firebase.auth().signInWithEmailAndPassword(correo, contraseña).then(function (data) {
+        var uid = data.user.uid;
+        var correo = data.user.email;
+console.log(uid);
+
+        /*recuperar datos de la empresa para el inicio de sesion */
+        firebase.database().ref('Restaurante/').orderByKey().equalTo(uid).once('value').then(function (snapshot) {
+          //var datosEmpresa = snapshot.val();
+          snapshot.forEach(function (childSnapshot) {
+            var childData = childSnapshot.val();
+            console.log(childData);
+            var datas = {
+              "uid": uid,
+              "correo": correo,
+              "empresa": childData,
+            }
+            sessionStorage.setItem("data", JSON.stringify(datas));
+            var sesionjson = sessionStorage.getItem("data");
+            var sesion = JSON.parse(sesionjson);
+            console.log(sesion);
+            
+            if (sesion === '' | sesion === 'null') {
+              alert('no ha iniciado sesion')
+            } else {
+              alert("has iniciado sesion  =" + sesion);
+              // console.log(sesion);
+              location.href = "panelRestaurante.html"
+            }
+
+          });
+
+
+
+        }) /* .catch(function(error) {
+        
+         var errorCode = error.code;
+         var errorMessage = error.message;
+         console.log(errorCode,errorMessage)
+       });*/
+
+      });
+
+    });
+
+
+  });
+
+} iniciarSesionRestaurante()

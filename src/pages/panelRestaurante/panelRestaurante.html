@@ -1,0 +1,465 @@
+
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Blue Diamong</title>
+      <meta name="description" content="Servinformación">
+      <link rel="icon" type="image/png" href="">
+      <!-- Fonts -->
+      
+      <!-- Styles -->
+    <!--   <link rel="stylesheet" href="css/aos.css">
+      <link rel="stylesheet" href="css/animate.css"> -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--   <link rel="stylesheet" href="css/main.css">
+      <link rel="stylesheet" href="css/normalize.css">
+      <link rel="stylesheet" href="css/owl.carousel.min.css">
+      <link rel="stylesheet" href="css/owl.theme.default.min.css"> -->
+    
+    </head>
+    <body>
+    
+    <!--  Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-edit">
+      <a class="navbar-brand" href="index.html"><img src="image/logo.png" alt="" class="img-logo"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">¿Quienes somos?</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#">Empresas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Personas</a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href="#">Restaurantes</a>
+          </li>
+         <li class="nav-item login">
+            <a class="nav-link" href="login-empresas.html">Iniciar sesión</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
+    <section class="register-section">
+      <div class="register restaurante-section">
+        <div class="row mx-0">
+          <div class="col-sm-6 col-md-5 col-lg-3">
+            <div class="box-restaurante">
+              <h5 class="title-panel">Panel</h5>
+                <ul class="">
+                  <li class="d-flex align-items-center space-between" >
+                    <a class="active" id="activepanel1" data-toggle="tab" href="#platos2">Platos</a>
+                    <button class="btn" id="add-plate"><i class="fas fa-plus"></i></button>
+                  </li>
+    
+                  <li class="d-flex align-items-center space-between" 
+                  ><a data-toggle="tab" href="#chef2" id="activepanel2">Chef</a>
+                  <button class="btn" id="add-chef"><i class="fas fa-plus"></i></button>
+                </li>
+    
+                  <li class="d-flex align-items-center space-between" >
+                    <a data-toggle="tab" href="#promociones2" id="activepanel3">Promociones</a>
+                    <button class="btn" id="add-promocion"><i class="fas fa-plus"></i></button>
+                  </li>
+                </ul>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-7 col-lg-9 register-right">
+    
+              <div class="box-panel " id="platos2">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="card">
+                       <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                         <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-editar-beneficio">Editar</a>
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-eliminar">Eliminar</a>
+                        </div>
+                      </div>
+                      <img class="card-img-top" src="image/platos/plato1.jpg" alt="Card image">
+                      <div class="card-body">
+                        <h4 class="card-title">John Doe</h4>
+                        <p class="card-text">Some example text.</p>
+                      </div>
+                      <div class="tag">
+                        <a href="#">#vegan</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="card">
+                       <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                         <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-editar-beneficio">Editar</a>
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-eliminar">Eliminar</a>
+                        </div>
+                      </div>
+                      <img class="card-img-top" src="image/platos/plato2.jpg" alt="Card image">
+                      <div class="card-body">
+                        <h4 class="card-title">John Doe</h4>
+                        <p class="card-text">Some example text.</p>
+                      </div>
+                      <div class="tag">
+                        <a href="#">#dinner</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="card">
+                       <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                         <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-editar-beneficio">Editar</a>
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-eliminar">Eliminar</a>
+                        </div>
+                      </div>
+                      <img class="card-img-top" src="image/platos/plato3.jpg" alt="Card image">
+                      <div class="card-body">
+                        <h4 class="card-title">John Doe</h4>
+                        <p class="card-text">Some example text.</p>
+                      </div>
+                      <div class="tag">
+                        <a href="#">#kosheer</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="card">
+                       <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton4" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                         <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton4">
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-editar-beneficio">Editar</a>
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-eliminar">Eliminar</a>
+                        </div>
+                      </div>
+                      <img class="card-img-top" src="image/platos/plato4.jpg" alt="Card image">
+                      <div class="card-body">
+                        <h4 class="card-title">John Doe</h4>
+                        <p class="card-text">Some example text.</p>
+                      </div>
+                      <div class="tag">
+                        <a href="#">#vegan</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="box-register" id="registro-platos">
+                <h5 class="title">Registrar plato</h5>
+                  <div class="form-client">
+                    <div class="row register-form" >
+                      <div class="col-md-6 col-12">
+                         <div class="form-group">
+                            <label for="file" class="form-control pointer">Agregar imagen
+                               <input type="file" class="form-control d-none" id="file">
+                            </label>
+                         </div>
+                       </div>
+                       <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Nombre" value="" />
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Descripción" value="" />
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <input type="date" class="form-control" placeholder="Precio del plato" value="" />
+                        </div>
+                      </div>  
+                      <div class="col-md-6 col-12"> 
+                          <div class="form-group">
+                            <select class="form-control" id="exampleFormControlSelect1">
+                              <option>Tamaño del plato</option>
+                              <option>Pequeño</option>
+                              <option>Mediano</option>
+                              <option>Grande</option>
+                            </select>
+                          </div>
+                      </div> 
+                      <div class="col-md-6 col-12"> 
+                        <div class="form-group">
+                            <input type="number" class="form-control" placeholder="Cantidad" value="" />
+                        </div>
+                      </div> 
+                      <div class="col-md-6 col-12"> 
+                        <div class="form-group">
+                            <input type="number" class="form-control" placeholder="Porcion" value="" />
+                        </div>
+                      </div>  
+                      <div class="col-md-6 col-12"> 
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Tipo de plato" value="" />
+                        </div>
+                      </div>    
+                      <div class="col-12 d-flex justify-content-center mt-4 text-center">
+                         <button type="submit" onclick="backbutton()" class="btn btn-back">Volver</button>
+                        <button type="submit" class="btn btn-register">Registrar</button>
+                      </div>
+                   </div>
+                </div>
+              </div>
+    
+               <div class="box-panel chef" style="display: none;" id="chef2">
+                 <div class="row">
+                  <div class="col-md-3">
+                    <div class="card">
+                       <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                         <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-editar-beneficio">Editar</a>
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-eliminar">Eliminar</a>
+                        </div>
+                      </div>
+                      <img class="card-img-top" src="image/platos/chef1.jpg" alt="Card image">
+                      <div class="card-body">
+                        <h4 class="card-title">John Doe</h4>
+                        <p class="card-text">Some example text.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="card">
+                       <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                         <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-editar-beneficio">Editar</a>
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-eliminar">Eliminar</a>
+                        </div>
+                      </div>
+                      <img class="card-img-top" src="image/platos/chef2.jpg" alt="Card image">
+                      <div class="card-body">
+                        <h4 class="card-title">John Doe</h4>
+                        <p class="card-text">Some example text.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="box-register" id="register-chef">
+                 <h5 class="title">Registrar Chef</h5>
+                  <div class="form-client">
+                    <div class="row register-form" >
+                      <div class="col-md-6 col-12">
+                         <div class="form-group">
+                            <label for="file" class="form-control pointer">Agregar imagen
+                               <input type="file" class="form-control d-none" id="file">
+                            </label>
+                         </div>
+                       </div>
+                       <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Nombre" value="" />
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Descripción" value="" />
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <input type="date" class="form-control" placeholder="Precio del plato" value="" />
+                        </div>
+                      </div>  
+                      <div class="col-md-6 col-12"> 
+                          <div class="form-group">
+                            <select class="form-control" id="exampleFormControlSelect1">
+                              <option>Tamaño del plato</option>
+                              <option>Pequeño</option>
+                              <option>Mediano</option>
+                              <option>Grande</option>
+                            </select>
+                          </div>
+                      </div> 
+                      <div class="col-md-6 col-12"> 
+                        <div class="form-group">
+                            <input type="number" class="form-control" placeholder="Cantidad" value="" />
+                        </div>
+                      </div> 
+                      <div class="col-md-6 col-12"> 
+                        <div class="form-group">
+                            <input type="number" class="form-control" placeholder="Porcion" value="" />
+                        </div>
+                      </div>   
+                      <div class="col-12 d-flex justify-content-center mt-4 text-center">
+                         <button type="submit" onclick="backbutton()" class="btn btn-back">Volver</button>
+                        <button type="submit" class="btn btn-register">Registrar</button>
+                      </div>
+                   </div>
+                </div>
+              </div>
+               <div class="box-panel " style="display: none;" id="promocion2">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                 <div class="box-card blue">
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                       <i class="fas fa-ellipsis-v"></i>
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-editar-beneficio">Editar</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-eliminar">Eliminar</a>
+                      </div>
+                    </div>
+                    <div class="info-card">
+                      <h5 class="name">Beneficio 1</h5>
+                      <p class="price">50.000 COP</p>
+                      <span class="date">27-03-18</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="box-register" id="register-promocion">
+                <h5 class="title">Registrar promoción</h5>
+                  <div class="form-client">
+                    <div class="row register-form" >
+                      <div class="col-md-6 col-12">
+                         <div class="form-group">
+                            <label for="file" class="form-control pointer">Agregar imagen
+                               <input type="file" class="form-control d-none" id="file">
+                            </label>
+                         </div>
+                       </div>
+                       <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Nombre" value="" />
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Descripción" value="" />
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <input type="date" class="form-control" placeholder="Precio del plato" value="" />
+                        </div>
+                      </div>  
+                      <div class="col-md-6 col-12"> 
+                          <div class="form-group">
+                            <select class="form-control" id="exampleFormControlSelect1">
+                              <option>Tamaño del plato</option>
+                              <option>Pequeño</option>
+                              <option>Mediano</option>
+                              <option>Grande</option>
+                            </select>
+                          </div>
+                      </div> 
+                      <div class="col-md-6 col-12"> 
+                        <div class="form-group">
+                            <input type="number" class="form-control" placeholder="Cantidad" value="" />
+                        </div>
+                      </div> 
+                      <div class="col-md-6 col-12"> 
+                        <div class="form-group">
+                            <input type="number" class="form-control" placeholder="Porcion" value="" />
+                        </div>
+                      </div>   
+                      <div class="col-12 d-flex justify-content-center mt-4 text-center">
+                         <button type="submit" onclick="backbutton()" class="btn btn-back">Volver</button>
+                        <button type="submit" class="btn btn-register">Registrar</button>
+                      </div>
+                   </div>
+                </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+     <!-- Site footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-12">
+            <h6>Conócenos</h6>
+            <p class="text-justify">Somos una empresa enfocada al Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, quis.</p>
+          </div>
+    
+          <div class="col-sm-3 col-6 d-none d-sm-block">
+            <!--  <h6></h6>
+            <ul class="footer-links">
+              <li><a href="#"></a></li>
+              <li><a href="#"> Design</a></li>
+              <li><a href="#"></a></li>
+              <li><a href="#"></a></li>
+              <li><a href="#"></a></li>
+              <li><a href="#"></a></li>
+            </ul> -->
+          </div>
+    
+          <div class="col-sm-3 col-12">
+            <h6>Contacto</h6>
+            <ul class="footer-links">
+              <li><a href="">Conrtatanos</a></li>
+              <li><a href="">Contribuciones</a></li>
+              <li><a href="">Política de privacidad</a></li>
+              <li><a href="">Mapa</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-sm-6 col-xs-12">
+            <p class="copyright-text">Copyright &copy; 2019 Todos los derechos reservados para 
+         <a href="#">Blue Diamong</a>.
+            </p>
+          </div>
+    
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <ul class="social-icons">
+              <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
+              <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+              <li><a class="dribbble" href="#"><i class="fab fa-instagram"></i></a></li>
+              <li><a class="linkedin" href="#"><i class="fab fa-linkedin-in"></i></a></li>   
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+     
+    </script>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="js/fontawesome.js"></script>
+    <script src="js/fontawesome-all.min.js"></script>
+    <script src="js/owl.carousel.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/aos.js"></script>
+    
+    </html>

@@ -274,6 +274,10 @@ function configuracionEmpresa() {
     var pais = sesion.empresa.pais;
     var poblacion = sesion.empresa.poblacion;
     var telefono = sesion.empresa.telefono;
+    var CedulaRepresentante = sesion.empresa.representante.CedulaRepresentante;
+    var CorreoRepresentante = sesion.empresa.representante.CorreoRepresentante;
+    var NombreRepresentante = sesion.empresa.representante.NombreRepresentante;
+    var TelRepresentante = sesion.empresa.representante.TelRepresentante;
     $('#conNombreEmpresa').val(nombreEmpresa);
     $('#conpostal').val(codigoPostal);
     $('#conDireccion').val(direccion);
@@ -282,10 +286,28 @@ function configuracionEmpresa() {
     $('#conIdCompañia').val(NIF);
     $('#conpais').val(pais);
     $('#conpoblacion').val(poblacion);
+    $('#conNombreRepresentante').val(NombreRepresentante);
+    $('#conCedulaRepresentante').val(CedulaRepresentante);
+    $('#conTelRepresentante').val(TelRepresentante);
+    $('#conCorreoRepresentante').val(CorreoRepresentante);
     $('#guardarEmpresa').click(function (e) {
       e.preventDefault();
       var datos = $('#editarEmpresa').serializeArray();
-      console.log(datos[11].value);
+      //  console.log(datos);
+      var img = $('#conLogoEmpresa').val();
+
+
+      //////////////////////////////////////////// prueba de imagen   
+      
+      function printFile(file) {
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+          console.log(evt.target.result);
+        };
+        reader.readAsText(file,'file');
+      }printFile(img)
+
+      //////////////prueba de imagen
       var conNombreEmpresa = datos[0].value;
       var conIdCompañia = datos[1].value;
       var conCorreo = datos[2].value;
@@ -325,3 +347,5 @@ function configuracionEmpresa() {
     });
   });
 } configuracionEmpresa()
+
+
