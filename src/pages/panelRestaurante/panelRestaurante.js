@@ -156,78 +156,78 @@ $(document).ready(function () {
   });
 
 
-/* Formularios restaurantes */
+  /* Formularios restaurantes */
 
-$('#platos2').show();
-/* panel restaurante */
-$('#add-plate').click(function(){
-  $('#chef2').hide();
-  $('#platos2').hide();
-  $('#promocion2').hide();
-  $('#register-chef').hide();
-  $('#register-promocion').hide();
-  $('#registro-platos').show();
-});
-$('#add-chef').click(function(){
-  $('#chef2').hide();
-  $('#platos2').hide();
-  $('#promocion2').hide();
-  $('#registro-platos').hide();
-  $('#register-promocion').hide();
-  $('#register-chef').show();
-});
-$('#add-promocion').click(function(){
-  $('#chef2').hide();
-  $('#platos2').hide();
-  $('#promocion2').hide();
-  $('#registro-platos').hide();
-  $('#register-chef').hide();
-  $('#register-promocion').show();
-});
-
-$('#activepanel1').click(function(){
-   $('#activepanel2').removeClass('active');
-   $('#activepanel3').removeClass('active');
-  $(this).addClass('active');
-
-  $('#promocion2').hide();
-  $('#chef2').hide();
   $('#platos2').show();
-  /* registro platos */
-  $('#registro-platos').hide();
+  /* panel restaurante */
+  $('#add-plate').click(function () {
+    $('#chef2').hide();
+    $('#platos2').hide();
+    $('#promocion2').hide();
+    $('#register-chef').hide();
     $('#register-promocion').hide();
-      $('#register-chef').hide();
-});
-$('#activepanel2').click(function(){
-   $('#activepanel1').removeClass('active');
-   $('#activepanel3').removeClass('active');
-  $(this).addClass('active');
-  $('#promocion2').hide();
-  $('#platos2').hide();
-  $('#chef2').show();
-  /* registro platos */
-  $('#registro-platos').hide();
-  $('#register-chef').hide();
-  $('#register-promocion').hide();
-});
-$('#activepanel3').click(function(){
-   $('#activepanel1').removeClass('active');
-   $('#activepanel2').removeClass('active');
-  $(this).addClass('active');
-  $('#chef2').hide();
-  $('#platos2').hide();
-  $('#promocion2').show();
-  /* registro platos */
-  $('#registro-platos').hide();
-  $('#register-chef').hide();
-  $('#register-promocion').hide();
-});
+    $('#registro-platos').show();
+  });
+  $('#add-chef').click(function () {
+    $('#chef2').hide();
+    $('#platos2').hide();
+    $('#promocion2').hide();
+    $('#registro-platos').hide();
+    $('#register-promocion').hide();
+    $('#register-chef').show();
+  });
+  $('#add-promocion').click(function () {
+    $('#chef2').hide();
+    $('#platos2').hide();
+    $('#promocion2').hide();
+    $('#registro-platos').hide();
+    $('#register-chef').hide();
+    $('#register-promocion').show();
+  });
 
-function backbutton() {
-$('#show-register1').hide();
-$('#show-register2').hide();
-$('#show-button').show();
-}
+  $('#activepanel1').click(function () {
+    $('#activepanel2').removeClass('active');
+    $('#activepanel3').removeClass('active');
+    $(this).addClass('active');
+
+    $('#promocion2').hide();
+    $('#chef2').hide();
+    $('#platos2').show();
+    /* registro platos */
+    $('#registro-platos').hide();
+    $('#register-promocion').hide();
+    $('#register-chef').hide();
+  });
+  $('#activepanel2').click(function () {
+    $('#activepanel1').removeClass('active');
+    $('#activepanel3').removeClass('active');
+    $(this).addClass('active');
+    $('#promocion2').hide();
+    $('#platos2').hide();
+    $('#chef2').show();
+    /* registro platos */
+    $('#registro-platos').hide();
+    $('#register-chef').hide();
+    $('#register-promocion').hide();
+  });
+  $('#activepanel3').click(function () {
+    $('#activepanel1').removeClass('active');
+    $('#activepanel2').removeClass('active');
+    $(this).addClass('active');
+    $('#chef2').hide();
+    $('#platos2').hide();
+    $('#promocion2').show();
+    /* registro platos */
+    $('#registro-platos').hide();
+    $('#register-chef').hide();
+    $('#register-promocion').hide();
+  });
+
+  function backbutton() {
+    $('#show-register1').hide();
+    $('#show-register2').hide();
+    $('#show-button').show();
+  }
 
 });
 
@@ -291,7 +291,7 @@ function platosRegistrados() {
       snapshot.forEach(function (childSnapshot) {
 
         var childData = childSnapshot.val();
-        console.log(childData);
+        //  console.log(childData);
         var PrecioPlato = childData.PrecioPlato;
         var TamañoPLato = childData.TamañoPLato;
         var cantidadPlato = childData.cantidadPlato;
@@ -301,7 +301,7 @@ function platosRegistrados() {
         var tiempoMaximo = childData.tiempoMaximo;
         var tiempoMinimo = childData.tiempoMinimo;
         var tipoPLato = childData.tipoPLato;
-        console.log(PrecioPlato);
+        // console.log(PrecioPlato);
 
 
         var tarjeta = $("<div class=' col-xl-3 col-md-4 col-sm-6 col-12' >" +
@@ -333,3 +333,92 @@ function platosRegistrados() {
   });
 } platosRegistrados()
 
+function registropromociones() {
+  $(document).ready(function () {
+    $('#registrarPromo').click(function (e) {
+      e.preventDefault();
+      var datos = $('#registroPromo').serializeArray();
+      //console.log(datos);
+      var nombrePromo = datos[0].value;
+      var DescripcionPromo = datos[1].value;
+      var PrecioPromo = datos[2].value;
+      var tamañoPromo = datos[3].value;
+      var cantidadPromo = datos[4].value;
+      var procionPromo = datos[5].value;
+      var tiempoMin = datos[6].value;
+      var tiempoMax = datos[7].value;
+      //console.log(nombrePromo);
+
+      var sesion = JSON.parse(sessionStorage.getItem('data'));
+      var restaurante = (sesion.uid);
+      console.log(restaurante);
+
+      firebase.database().ref('Promo/' + restaurante + "/").push().set({
+
+        "nombrePromo" :nombrePromo,
+        "DescripcionPromo":DescripcionPromo,
+        "PrecioPromo":PrecioPromo,
+        "tamañoPromo":tamañoPromo,
+        "cantidadPromo":cantidadPromo,
+        "procionPromo":procionPromo,
+        "tiempoMin":tiempoMin,
+        "tiempoMax":tiempoMax
+
+      }, function (error) {
+        if (error) {
+          alert('Hay un error en sus datos verifique e intentelo de nuevo...')
+        } else {
+          alert('Registro completado con exito!')
+        }
+      });
+    });
+  });
+} registropromociones();
+
+function promoRegistrados() {
+  $('body').ready(function () {
+    var sesion = JSON.parse(sessionStorage.getItem('data'));
+    firebase.database().ref('/Promo/' + sesion.uid).once('value').then(function (snapshot) {
+      snapshot.forEach(function (childSnapshot) {
+
+        var childData = childSnapshot.val();
+          //console.log(childData);
+       
+          var DescripcionPromo = childData.DescripcionPromo;
+          var PrecioPromo= childData.PrecioPromo;
+          var cantidadPromo= childData.cantidadPromo;
+          var nombrePromo= childData.nombrePromo;
+          var procionPromo= childData.procionPromo;
+          var tamañoPromo= childData.tamañoPromo;
+          var tiempoMax= childData.tiempoMax;
+          var tiempoMin= childData.tiempoMin;
+
+
+        var tarjeta = $("<div class=' col-xl-3 col-md-4 col-sm-6 col-12' >" +
+          "<div class='card'>" +
+          "<div class='dropdown'>" +
+          "<button class='btn dropdown-toggle' type='button' id='dropdownMenuButton1' data-toggle='dropdown' aria-haspopup='false' aria-expanded='false'>" +
+          "<i class='fas fa-ellipsis-v'></i>" +
+          "</button>" +
+          "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton1'>" +
+          "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-editar-beneficio'>Editar</a>" +
+          "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-eliminar'>Eliminar</a>" +
+          "</div>" +
+          "</div>" +
+          "<img class='card-img-top' src='/src/assets/image/platos/plato1.jpg' alt='Card image'>" +
+          "<div class='card-body'>" +
+          "<h4 class='card-title'>" + nombrePromo + "</h4>" +
+          "<p class='card-text'>" + DescripcionPromo + "</p>" +
+          "</div>" +
+          "<div class='tag'>" +
+          "<a href='#'> €" + PrecioPromo + "</a>" +
+          "</div>" +
+          "</div>" +
+          "</div>");
+
+        $('#promocion2').append(tarjeta);
+
+      });
+    });
+  });
+} promoRegistrados()
