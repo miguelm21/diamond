@@ -341,7 +341,7 @@ function configuracionEmpresa() {
     var pais = sesion.empresa.pais;
     var poblacion = sesion.empresa.poblacion;
     var telefono = sesion.empresa.telefono;
-    var CedulaRepresentante = sesion.empresa.representante.CedulaRepresentante;
+   // var CedulaRepresentante = sesion.empresa.representante.CedulaRepresentante;
     var CorreoRepresentante = sesion.empresa.representante.CorreoRepresentante;
     var NombreRepresentante = sesion.empresa.representante.NombreRepresentante;
     var TelRepresentante = sesion.empresa.representante.TelRepresentante;
