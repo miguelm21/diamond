@@ -191,15 +191,15 @@ function registroempleados() {
 
       firebase.database().ref('Platos/' + restaurante + "/").push().set({
 
-        "nombrePlato" : nombrePlato ,
-        "descripcionPlato": descripcionPlato ,
-        "PrecioPlato": PrecioPlato ,
-        "TamañoPLato":TamañoPLato,
-        "cantidadPlato":cantidadPlato,
-        "porcionPlato": porcionPlato ,
-        "tipoPLato":tipoPLato ,
-        "tiempoMinimo": tiempoMinimo ,
-        "tiempoMaximo": tiempoMaximo ,
+        "nombrePlato": nombrePlato,
+        "descripcionPlato": descripcionPlato,
+        "PrecioPlato": PrecioPlato,
+        "TamañoPLato": TamañoPLato,
+        "cantidadPlato": cantidadPlato,
+        "porcionPlato": porcionPlato,
+        "tipoPLato": tipoPLato,
+        "tiempoMinimo": tiempoMinimo,
+        "tiempoMaximo": tiempoMaximo,
 
       }, function (error) {
         if (error) {
@@ -219,44 +219,44 @@ function registroempleados() {
 function platosRegistrados() {
   $('body').ready(function () {
     var sesion = JSON.parse(sessionStorage.getItem('data'));
-    firebase.database().ref('/Platos/' + sesion.uid ).once('value').then(function (snapshot) {
+    firebase.database().ref('/Platos/' + sesion.uid).once('value').then(function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
-       
-         var childData = childSnapshot.val();
-         console.log(childData);
-         var PrecioPlato =childData.PrecioPlato;
-         var TamañoPLato =childData.TamañoPLato;
-         var cantidadPlato=childData.cantidadPlato;
-         var descripcionPlato=childData.descripcionPlato;
-         var nombrePlato=childData.nombrePlato;
-         var porcionPlato=childData.porcionPlato;
-         var tiempoMaximo=childData.tiempoMaximo;
-         var tiempoMinimo=childData.tiempoMinimo;
-         var tipoPLato=childData.tipoPLato;
-        console.log(PrecioPlato);
-        
 
-        var tarjeta = $("<div class=' col-xl-3 col-md-4 col-sm-6 col-12' >"+
-        "<div class='card'>"+
-           "<div class='dropdown'>"+
-            "<button class='btn dropdown-toggle' type='button' id='dropdownMenuButton1' data-toggle='dropdown' aria-haspopup='false' aria-expanded='false'>"+
-             "<i class='fas fa-ellipsis-v'></i>"+
-            "</button>"+
-            "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton1'>"+
-              "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-editar-beneficio'>Editar</a>"+
-              "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-eliminar'>Eliminar</a>"+
-            "</div>"+
-          "</div>"+
-          "<img class='card-img-top' src='/src/assets/image/platos/plato1.jpg' alt='Card image'>"+
-          "<div class='card-body'>"+
-            "<h4 class='card-title'>"+ nombrePlato+"</h4>"+
-            "<p class='card-text'>"+descripcionPlato+"</p>"+
-          "</div>"+
-          "<div class='tag'>"+
-            "<a href='#'>"+tipoPLato+"</a>"+
-          "</div>"+
-        "</div>"+
-      "</div>");
+        var childData = childSnapshot.val();
+        console.log(childData);
+        var PrecioPlato = childData.PrecioPlato;
+        var TamañoPLato = childData.TamañoPLato;
+        var cantidadPlato = childData.cantidadPlato;
+        var descripcionPlato = childData.descripcionPlato;
+        var nombrePlato = childData.nombrePlato;
+        var porcionPlato = childData.porcionPlato;
+        var tiempoMaximo = childData.tiempoMaximo;
+        var tiempoMinimo = childData.tiempoMinimo;
+        var tipoPLato = childData.tipoPLato;
+        console.log(PrecioPlato);
+
+
+        var tarjeta = $("<div class=' col-xl-3 col-md-4 col-sm-6 col-12' >" +
+          "<div class='card'>" +
+          "<div class='dropdown'>" +
+          "<button class='btn dropdown-toggle' type='button' id='dropdownMenuButton1' data-toggle='dropdown' aria-haspopup='false' aria-expanded='false'>" +
+          "<i class='fas fa-ellipsis-v'></i>" +
+          "</button>" +
+          "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton1'>" +
+          "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-editar-beneficio'>Editar</a>" +
+          "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-eliminar'>Eliminar</a>" +
+          "</div>" +
+          "</div>" +
+          "<img class='card-img-top' src='/src/assets/image/platos/plato1.jpg' alt='Card image'>" +
+          "<div class='card-body'>" +
+          "<h4 class='card-title'>" + nombrePlato + "</h4>" +
+          "<p class='card-text'>" + descripcionPlato + "</p>" +
+          "</div>" +
+          "<div class='tag'>" +
+          "<a href='#'>" + tipoPLato + "</a>" +
+          "</div>" +
+          "</div>" +
+          "</div>");
 
         $('#tarjetaPlato').append(tarjeta);
 
