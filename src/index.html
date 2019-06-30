@@ -348,19 +348,23 @@
 
             </div>
             <div class="col-md-6">
+              
               <div class="box-login">
                 <h4 class="title-login">Iniciar sesión</h4>
+                <form id="sesionCliente">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Usuario o correo electrónico " value="" />
+                   
+                  <input type="text" class="form-control" placeholder="Usuario o correo electrónico " value="" name="correoCliente"/>
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" placeholder="Contraseña" value="" />
+                  <input type="password" class="form-control" placeholder="Contraseña" value=""  name="contraseñaCLiente"/>
                 </div>
+              </form>
                 <div class="form-group">
                   <a href="#" class="forget">¿Olvido su contraseña?</a>
                 </div>
                 <div class="form-group">
-                  <a href="panelClientes.html" class="btn btn-block secondary-btn login">Entrar Cliente</a>
+                 <button class="btn btn-block secondary-btn login" id="iniciarcliente">Entrar Cliente</button>
                 </div>
                 <div class="form-group">
                   <button type="submit" class="btn btn-block facebook"><i class="fab fa-facebook-f mr-2"></i>Iniciar con
@@ -371,6 +375,7 @@
                     Google</button>
                 </div>
               </div>
+            
             </div>
           </div>
         </div>

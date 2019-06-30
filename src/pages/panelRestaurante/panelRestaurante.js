@@ -332,7 +332,7 @@ function platosRegistrados() {
     });
   });
 } platosRegistrados()
-
+/*
 function registropromociones() {
   $(document).ready(function () {
     $('#registrarPromo').click(function (e) {
@@ -355,14 +355,14 @@ function registropromociones() {
 
       firebase.database().ref('Promo/' + restaurante + "/").push().set({
 
-        "nombrePromo" :nombrePromo,
-        "DescripcionPromo":DescripcionPromo,
-        "PrecioPromo":PrecioPromo,
-        "tamañoPromo":tamañoPromo,
-        "cantidadPromo":cantidadPromo,
-        "procionPromo":procionPromo,
-        "tiempoMin":tiempoMin,
-        "tiempoMax":tiempoMax
+        "nombrePromo": nombrePromo,
+        "DescripcionPromo": DescripcionPromo,
+        "PrecioPromo": PrecioPromo,
+        "tamañoPromo": tamañoPromo,
+        "cantidadPromo": cantidadPromo,
+        "procionPromo": procionPromo,
+        "tiempoMin": tiempoMin,
+        "tiempoMax": tiempoMax
 
       }, function (error) {
         if (error) {
@@ -373,7 +373,7 @@ function registropromociones() {
       });
     });
   });
-} registropromociones();
+} registropromociones();**/
 
 function promoRegistrados() {
   $('body').ready(function () {
@@ -382,16 +382,16 @@ function promoRegistrados() {
       snapshot.forEach(function (childSnapshot) {
 
         var childData = childSnapshot.val();
-          //console.log(childData);
-       
-          var DescripcionPromo = childData.DescripcionPromo;
-          var PrecioPromo= childData.PrecioPromo;
-          var cantidadPromo= childData.cantidadPromo;
-          var nombrePromo= childData.nombrePromo;
-          var procionPromo= childData.procionPromo;
-          var tamañoPromo= childData.tamañoPromo;
-          var tiempoMax= childData.tiempoMax;
-          var tiempoMin= childData.tiempoMin;
+        //console.log(childData);
+
+        var DescripcionPromo = childData.DescripcionPromo;
+        var PrecioPromo = childData.PrecioPromo;
+        var cantidadPromo = childData.cantidadPromo;
+        var nombrePromo = childData.nombrePromo;
+        var procionPromo = childData.procionPromo;
+        var tamañoPromo = childData.tamañoPromo;
+        var tiempoMax = childData.tiempoMax;
+        var tiempoMin = childData.tiempoMin;
 
 
         var tarjeta = $("<div class=' col-xl-3 col-md-4 col-sm-6 col-12' >" +
@@ -422,3 +422,18 @@ function promoRegistrados() {
     });
   });
 } promoRegistrados()
+
+function readFile(input) {
+
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      console.log(e.target.result);
+    }
+    reader.readAsDataURL(input.files[0]);
+  
+}
+
+var fileUpload = document.getElementById('file-upload');
+fileUpload.onchange = function (e) {
+  readFile(e);
+}

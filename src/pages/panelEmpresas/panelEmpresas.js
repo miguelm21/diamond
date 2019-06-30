@@ -190,7 +190,7 @@ function registroempleados() {
       firebase.auth().createUserWithEmailAndPassword(correo, contraseña).then(function (resultado) {
 
         var uid = resultado.user.uid;
-        firebase.database().ref('users/' + empresa + "/" + uid + "/").set({
+        firebase.database().ref('users/' +  uid + "/").set({
 
           "nombre": nombre,
           "apellido": apellido,
