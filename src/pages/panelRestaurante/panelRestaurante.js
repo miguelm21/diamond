@@ -435,5 +435,5 @@ function readFile(input) {
 
 var fileUpload = document.getElementById('file-upload');
 fileUpload.onchange = function (e) {
-  readFile(e);
+  readFile(e.srcElement);
 }
