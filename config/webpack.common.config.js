@@ -12,7 +12,7 @@ module.exports = {
     
       index: './src/index.js',
       panelEmpresas: './src/pages/panelEmpresas/panelEmpresas.js',
-      panelRestaurante: './src/pages/panelEmpresas/panelEmpresas.js',
+      panelRestaurante: './src/pages/panelRestaurante/panelRestaurante.js',
       panelRestaurante2: './src/pages/panelRestaurante2/panelRestaurante2.js',
       panelClientes: './src/pages/panelClientes/panelClientes.js',
       loginEmpresas: './src/pages/loginEmpresas/loginEmpresas.js'
