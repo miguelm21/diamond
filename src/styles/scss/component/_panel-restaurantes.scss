@@ -39,6 +39,9 @@
              .box-panel{
                 padding: 25px 40px;
                 display: none;
+                @include respond(tablet){
+                  padding: 25px 15px;
+                }
 
                 .card{
                     margin-bottom: 20px;
@@ -271,6 +274,18 @@
                   width: 100%;
                   max-width: 130px;
                 } 
+
+                .time-to{
+                  color: $primary;
+                  .d-flex{
+                    .ion{
+                      width: 45px;
+                      height: 1px;
+                      margin: auto 20px;
+                      background-color: #666;
+                    }
+                  }
+                }                
               }
         }
 

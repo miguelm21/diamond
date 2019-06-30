@@ -88,6 +88,73 @@ $(document).ready(function () {
     $('#show-register2').show();
   });
 
+  /* Formularios restaurantes */
+
+  $('#platos2').show();
+  /* panel restaurante */
+  $('#add-plate').click(function(){
+    $('#chef2').hide();
+    $('#platos2').hide();
+    $('#promocion2').hide();
+    $('#register-chef').hide();
+    $('#register-promocion').hide();
+    $('#registro-platos').show();
+  });
+  $('#add-chef').click(function(){
+    $('#chef2').hide();
+    $('#platos2').hide();
+    $('#promocion2').hide();
+    $('#registro-platos').hide();
+    $('#register-promocion').hide();
+    $('#register-chef').show();
+  });
+  $('#add-promocion').click(function(){
+    $('#chef2').hide();
+    $('#platos2').hide();
+    $('#promocion2').hide();
+    $('#registro-platos').hide();
+    $('#register-chef').hide();
+    $('#register-promocion').show();
+  });
+  
+  $('#activepanel1').click(function(){
+     $('#activepanel2').removeClass('active');
+     $('#activepanel3').removeClass('active');
+    $(this).addClass('active');
+  
+    $('#promocion2').hide();
+    $('#chef2').hide();
+    $('#platos2').show();
+    /* registro platos */
+    $('#registro-platos').hide();
+      $('#register-promocion').hide();
+        $('#register-chef').hide();
+  });
+  $('#activepanel2').click(function(){
+     $('#activepanel1').removeClass('active');
+     $('#activepanel3').removeClass('active');
+    $(this).addClass('active');
+    $('#promocion2').hide();
+    $('#platos2').hide();
+    $('#chef2').show();
+    /* registro platos */
+    $('#registro-platos').hide();
+    $('#register-chef').hide();
+    $('#register-promocion').hide();
+  });
+  $('#activepanel3').click(function(){
+     $('#activepanel1').removeClass('active');
+     $('#activepanel2').removeClass('active');
+    $(this).addClass('active');
+    $('#chef2').hide();
+    $('#platos2').hide();
+    $('#promocion2').show();
+    /* registro platos */
+    $('#registro-platos').hide();
+    $('#register-chef').hide();
+    $('#register-promocion').hide();
+  });
+
 
 
 });

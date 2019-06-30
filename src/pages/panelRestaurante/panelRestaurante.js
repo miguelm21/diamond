@@ -41,6 +41,10 @@ $('#carousel-associates').owlCarousel({
 })
   
   /* Tooltips */
+  $('.dropdown').click(function(){
+    alert('qloq');
+  });
+  
 
   $('[data-toggle="tooltip"]').tooltip()
 
