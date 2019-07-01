@@ -317,11 +317,31 @@ function platosRegistrados() {
     });
   });
 } platosRegistrados()
-/*
+
 function registropromociones() {
   $(document).ready(function () {
     $('#registrarPromo').click(function (e) {
       e.preventDefault();
+      //////////////////////imagen    
+      var fotoval = document.getElementById('imagenPromo');
+      console.log(fotoval.files[0].name);
+      
+      var foto = new FileReader();
+      foto.onload = function (e) {
+          var file = (e.target.result);
+         console.log(file);    
+         var storageRef = firebase.storage().ref();
+         var mountainsRef = storageRef.child('imagen/'+fotoval.files[0].name);
+         var imagen = file.substring(23);
+         mountainsRef.putString(imagen, 'base64').then(function (snapshot) {
+             console.log('Uploaded a base64 string!');
+             console.log(snapshot);
+         });            
+      }
+      foto.readAsDataURL(fotoval.files[0]);
+    //////////////imagen//////////////////////////////
+     
+       
       var datos = $('#registroPromo').serializeArray();
       //console.log(datos);
       var nombrePromo = datos[0].value;
@@ -358,7 +378,7 @@ function registropromociones() {
       });
     });
   });
-} registropromociones();**/
+} registropromociones();
 
 function promoRegistrados() {
   $('body').ready(function () {
@@ -407,18 +427,3 @@ function promoRegistrados() {
     });
   });
 } promoRegistrados()
-
-function readFile(input) {
-
-    var reader = new FileReader();
-    reader.onload = function (e) {
-      console.log(e.target.result);
-    }
-    reader.readAsDataURL(input.files[0]);
-  
-}
-
-var fileUpload = document.getElementById('file-upload');
-fileUpload.onchange = function (e) {
-  readFile(e.srcElement);
-}
