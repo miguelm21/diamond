@@ -9,6 +9,7 @@
       border-bottom: 1px solid #ececec;
       border-top: 1px solid #ececec;
       background-color: #e9ecef;
+      height: 70px;
     }
     .header{
       width: 70%;
@@ -504,6 +505,32 @@ Chev elements
             margin-bottom: 0;
             @include respond(tablet){
               font-size: 12px
+            }
+          }
+        }
+      }
+    }
+
+    .box-reportes{
+      .box{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        .btn-recuperar{
+          box-shadow: 3px 3px 3px #c1c1c1;
+          border: 1px solid #c1c1c1;
+          margin: 0 0 20px;
+          padding: 7px 30px;
+        }
+      }
+      table{
+
+        .tfoot{
+          tr{
+            th{
+              color: $gray;
+              font-weight: 300;
+              font-size: 20px;
             }
           }
         }

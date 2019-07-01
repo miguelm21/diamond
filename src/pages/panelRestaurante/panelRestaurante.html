@@ -62,9 +62,22 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Restaurantes</a>
         </li>
-        <li class="nav-item login">
-          <a class="nav-link" href="login-empresas.html">Iniciar sesión</a>
+        <li class="nav-item">
+          <div class="dropdown text-right edit">
+            <a class="dropdown-toggle option-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="/src/assets/image/avatar.png" alt="">
+              <span id="nombreEmpresa"><span>Empresa 1</span></span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Editar contraseña</a>
+              <a class="dropdown-item" href="#">Cambiar imagen</a>
+              <a class="dropdown-item" href="#">Cerrar sesión</a>
+            </div>
+          </div>
         </li>
+    <!--  <li class="nav-item login">
+            <a class="nav-link" href="login-empresas.html">Iniciar sesión</a>
+          </li> -->
       </ul>
     </div>
   </nav>
@@ -79,15 +92,19 @@
                 <a class="active" id="activepanel1" data-toggle="tab" href="#platos2">Platos</a>
                 <button class="btn" id="add-plate"><i class="fas fa-plus"></i></button>
               </li>
-
+<!-- 
               <li class="d-flex align-items-center space-between"><a data-toggle="tab" href="#chef2"
                   id="activepanel2">Chef</a>
                 <button class="btn" id="add-chef"><i class="fas fa-plus"></i></button>
-              </li>
+              </li> -->
 
               <li class="d-flex align-items-center space-between">
                 <a data-toggle="tab" href="#promociones2" id="activepanel3">Promociones</a>
                 <button class="btn" id="add-promocion"><i class="fas fa-plus"></i></button>
+              </li>
+              <li class="d-flex align-items-center space-between">
+                <a data-toggle="tab" href="#Historial2" id="show-historial">Historial</a>
+               <!--  <button class="btn" id="add-promocion"><i class="fas fa-plus"></i></button> -->
               </li>
             </ul>
             <br>
@@ -275,8 +292,10 @@
               </div>
             </div>
           </div>
-          <div class="box-panel  box-panel " style="display: none;" id="promocion2">
-       
+          <div class="box-panel  box-panel " style="display: none;" id="promocion22">
+            <div class="row" id="promocion2">
+              
+            </div>
           </div>
           <div class="box-panel  box-register" id="register-promocion">
             <h5 class="title">Registrar promoción</h5>
@@ -343,8 +362,133 @@
               </div>
             </div>
           </div>
+          <div class="box-historial"  style="display: none;" id="historial-compras">
+            <h2 class="title">Empleados</h2>
+            <ul class="nav nav-pills nav-edit" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#First" role="tab" aria-controls="first" aria-selected="true">Por atender</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#second" role="tab" aria-controls="second" aria-selected="false">Atendidos</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="first" role="tabpanel" aria-labelledby="first-tab">
+                <div class="register-form p-0">
+                  <div class="form-group w-25 ">
+                    <select name="" class="form-control" id="">
+                      <option value="">Dia</option>
+                      <option value="">Semana</option>
+                      <option value="">Mes</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="box-table">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class="thead-blue">
+                        <tr>
+                          <th scope="col">Nombre</th>
+                          <th scope="col">Apellido</th>
+                          <th scope="col">Cedula</th>
+                          <th scope="col">Plato</th>
+                          <th scope="col">Atendido</th>
+                        </tr>
+                      </thead>
+                      <tbody id="">
+                        <tr>
+                          <td>Juan </td>
+                          <td>Güaido</td>
+                          <td>342431</td>
+                          <td>Cachapa con queso e mano y cochino.</td>
+                          <td>
+                            <div style="text-align:center">
+                              <div class="md-checkbox md-checkbox-inline">
+                                <input id="checkbox" type="checkbox">
+                                <label for="checkbox"></label>
+                              </div>
+                            </div> 
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="pagination-section">
+                    <div class="row">
+                      <div class="col-12">
+                        <ul class="pagination">
+                          <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a></li>
+                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="second" role="tabpanel" aria-labelledby="second-tab">
+                <div class="register-form p-0">
+                  <div class="form-group w-25 ">
+                    <select name="" class="form-control" id="">
+                      <option value="">Dia</option>
+                      <option value="">Semana</option>
+                      <option value="">Mes</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="box-table">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class="thead-blue">
+                        <tr>
+                          <th scope="col">Nombre</th>
+                          <th scope="col">Apellido</th>
+                          <th scope="col">Cedula</th>
+                          <th scope="col">Plato</th>
+                          <th scope="col">Atendido</th>
+                        </tr>
+                      </thead>
+                      <tbody id="">
+                        <tr>
+                          <td>Jose </td>
+                          <td>Bruges</td>
+                          <td>342431</td>
+                          <td>Pabellon criollo</td>
+                          <td>
+                              <span class="btn btn-link status green"><i class="fas fa-times"></i></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Victor </td>
+                          <td>Camargo</td>
+                          <td>342431</td>
+                          <td>Bandeja paisa</td>
+                          <td>
+                              <span class="btn btn-link status red"><i class="fas fa-check"></i></span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="pagination-section">
+                    <div class="row">
+                      <div class="col-12">
+                        <ul class="pagination">
+                          <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a></li>
+                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+           </div>
         </div>
-       
   </section>
 
 
@@ -401,9 +545,29 @@
       </div>
     </div>
   </footer>
-  <script>
+<div class="modal fade" id="modal-eliminar1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-base modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Atención</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="eliminar">
+          <p>¿ Ests seguro de que atendio a este usuario ?</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn edit" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn primary" data-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-  </script>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
   integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

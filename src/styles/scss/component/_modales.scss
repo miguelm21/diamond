@@ -36,6 +36,19 @@
 		.modal-body{
 			/* detalles */
 			.show-details{
+
+				.detail-img{
+					max-width: 200px;
+					width: 100%;
+					height: 180px;
+					margin: auto;
+					img{
+						width: 100%;
+						height: 100%;
+						object-fit: contain;
+						object-position: center;
+					}
+				}
 				.form-group{
 					
 					label{
@@ -104,14 +117,45 @@
 		      } 
 			}
 
-			.eliminar{
-				p{
-					text-align: center;
-					margin-bottom: 0;
-					color: $gray;
+		.modal-body.pago{
+			.title{
+				color: $gray;
+				font-size: 20px;
+			}
+			ul{
+				display: flex;
+				list-style: none;
+				li{
+					input{
+						display: none;
+					}
+
+					label{
+						
+						img{
+							width: 70px;
+							height: 50px;
+							object-fit: contain;
+						}
+					}
 				}
 			}
+		}
 
+		label{
+			color: $gray;
+			margin-bottom: 0;
+		}
+
+		.description-text{
+			color: $gray;
+			text-align: center;
+			margin: 0;
+		}
+
+		.primary.align{
+			margin-top: -25px !important;
+		}
 
 
 		.modal-footer{
@@ -138,5 +182,13 @@
 				float: initial;	
 			}
 		}
+		.eliminar{
+				p{
+					text-align: center;
+					margin-bottom: 0;
+					color: $gray;
+				}
+			}
+
 	}
 }

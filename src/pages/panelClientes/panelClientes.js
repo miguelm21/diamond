@@ -89,9 +89,24 @@ $(document).ready(function () {
     $('#show-button').hide();
     $('#show-register2').show();
   })
+ /* Panel clientes */
 
+   /* show and hide aside */
+   $('#platos-show').click(function(){
+    $('#div-platos').show();
+    $('#historial_cliente').hide();
+  });
 
+  $('#historial-show').click(function(){
+    $('#div-platos').hide();
+    $('#historial_cliente').show();
+  });
+  
+ 
 });
+
+
+
 
 function backbutton() {
   $('#show-register1').hide();
@@ -127,8 +142,8 @@ function platosRegistradosClientes() {
             "<h2 class='card__title'>"+ nombrePlato +"</h2>" +
             "<p class='card__text'>"+ descripcionPlato+"</p>" +
             "<div class='card__action-bar d-flex justify-content-between'>" +
-            "<button class='card__button'>Detalles</button>" +
-            "<button class='card__button'>Comprar</button>" +
+            "<button class='card__button' data-toggle='modal' data-target='#modal-detalles-plato'>Detalles</button>" +
+            "<button class='card__button' data-toggle='modal' data-target='#modal-pago'>Comprar</button>" +
             "</div>" +
             "</div>" +
             "</div>");

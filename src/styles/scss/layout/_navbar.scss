@@ -34,8 +34,30 @@
 		@include respond(max-767){
 			text-align: center;
 		}
+
+	}
+	.option-menu{
+		cursor: pointer;
+		color: $primary;
+
+		img{
+			width: 30px;
+			height: 30px;
+			object-fit: contain;
+			margin: auto 5px;
+		}
 	}
 
+	.dropdown.edit{
+		margin: auto 15px;
+		.dropdown-menu{
+			border-bottom: 4px solid $primary !important;
+
+			.dropdown-item{
+			font-size: 14px;
+			}
+		}
+	}
 	.nav-link.active{
 		color: $secondary;
 	}

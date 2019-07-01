@@ -50,21 +50,7 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Restaurantes</a>
         </li>
-        <li class="nav-item login">
-          <a class="nav-link" href="login-empresas.html">Iniciar sesión</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- Panel admin -->
-  <section class="panel-admin">
-    <div class="box-panel">
-      <div class="nav d-flex">
-        <div class="logo">
-          <button id="expand" class="hidden-button"><i class="fas fa-chevron-right" id="arrow"></i></button>
-        </div>
-        <div class="header">
+        <li class="nav-item">
           <div class="dropdown text-right edit">
             <a class="dropdown-toggle option-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img src="/src/assets/image/avatar.png" alt="">
@@ -76,7 +62,25 @@
               <a class="dropdown-item" href="#">Cerrar sesión</a>
             </div>
           </div>
+        </li>
+        
+       <!--  <li class="nav-item login">
+          <a class="nav-link" href="login-empresas.html">Iniciar sesión</a>
+        </li> -->
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Panel admin -->
+  <section class="panel-admin">
+    <div class="box-panel">
+      <div class="nav d-flex">
+        <div class="logo">
+          <button id="expand" class="hidden-button"><i class="fas fa-chevron-right" id="arrow"></i></button>
         </div>
+      <!--   <div class="header">
+        
+        </div> -->
       </div>
       <div class="app">
         <aside class="sidebar d-flex">
@@ -94,13 +98,16 @@
                     registrados</span></a>
               </li>
               <li>
-                <a data-toggle="tab" href="#plan-beneficios"><i class="fas fa-chart-bar"></i><span
+                <a data-toggle="tab" href="#plan-beneficios"><i class="fas fa-list-ol"></i><span
                     class="">Beneficios</span></a>
               </li>
-              <li>
+             <!--  <li>
                 <a data-toggle="tab" href="#"><i class="far fa-building"></i><span class="">Transferir saldo a
                     banco</span></a>
-              </li>
+              </li> -->
+              <li>
+                  <a data-toggle="tab" href="#reportes"><i class="fas fa-chart-bar"></i><span class="">Reportes</span></a>
+                </li>
               <li>
                 <a data-toggle="tab" href="#configuracion"><i class="fas fa-cogs"></i> <span
                     class="">Configuración</span></a>
@@ -351,6 +358,111 @@
                 </form>
               </div>
             </div>
+            <div class="tab-pane fade" id="reportes">
+              <div class="box-reportes">
+                  <h5 class="title">Reportes</h5>
+                  <div class="box">
+                    <button class="btn btn-recuperar">Recuperar beneficio</button>
+                  </div>
+                  <div class="box-table">
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead class="thead-blue">
+                          <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Beneficio</th>
+                            <th scope="col">Monto consumido</th>
+                          </tr>
+                        </thead>
+                        <tbody id="">
+                          <tr>
+                            <td>Juan </td>
+                            <td>Arepa con diablitos</td>
+                            <td>22/07/2019</td>
+                            <td>
+                              <select name="" id="" class="form-control">
+                                <option value="">Beneficio 1</option>
+                                <option value="">Beneficio 2</option>
+                              </select>
+                            </td>
+                            <td>10 €</td>
+                            <td>15 €</td>
+                          </tr>
+                          <tr>
+                            <td>Jose </td>
+                            <td>Sopa de pescado</td>
+                            <td>22/07/2019</td>
+                            <td>
+                              <select name="" id="" class="form-control">
+                                <option value="">Beneficio 1</option>
+                                <option value="">Beneficio 2</option>
+                              </select> </td>
+                            <td>10 €</td>
+                            <td>15 €</td>
+                          </tr>
+                          <tr>
+                            <td>Ramon </td>
+                            <td>Pabellon criollo</td>
+                            <td>22/07/2019</td>
+                            <td>
+                              <select name="" id="" class="form-control">
+                                <option value="">Beneficio 1</option>
+                                <option value="">Beneficio 2</option>
+                              </select> </td>
+                            <td>10 €</td>
+                            <td>15 €</td>
+                          </tr>
+                          <tr>
+                            <td>Juan </td>
+                            <td>Pan de jamon</td>
+                            <td>22/07/2019</td>
+                            <td>
+                              <select name="" id="" class="form-control">
+                                <option value="">Beneficio 1</option>
+                                <option value="">Beneficio 2</option>
+                              </select>
+                            </td>
+                            <td>10 €</td>
+                            <td>15 €</td>
+                          </tr>
+                        </tbody>
+                      <tfoot class="tfoot">
+                        <tr>
+                          <th colspan="3">
+                            &nbsp; 
+                          </th>
+                          <th>
+                            <h5>Total</h5>
+                          </th>
+                          <th>
+                              230 €
+                          </th>
+                          <th>
+                              120 €
+                          </th>
+                        </tr>
+                      </tfoot>
+                      </table>
+                    </div>
+                    <div class="pagination-section">
+                      <div class="row">
+                        <div class="col-12">
+                          <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -412,12 +524,6 @@
   </footer>
 
   <!-- Modales Ver detalles -->
-
-
-
-
-
-
 
   <div class="modal fade" id="modal-detalles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
