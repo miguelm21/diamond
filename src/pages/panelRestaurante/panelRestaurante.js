@@ -9,6 +9,7 @@ import 'owl.carousel';
 import * as AOS from 'aos/dist/aos.js';
 import swal from 'sweetalert';
 import Chart from 'chart.js';
+import { log } from 'util';
 
 // toggle class scroll 
 $(window).scroll(function () {
@@ -99,7 +100,7 @@ $(document).ready(function () {
     $('#register-chef').hide();
     $('#historial-compras').hide();
     $('#register-promocion').hide();
-    $('#registro-platos').show();    
+    $('#registro-platos').show();
     $('#activepanel1').addClass('active');
     $('#activepanel3').removeClass('active');
     $('#show-historial').removeClass('active');
@@ -111,7 +112,7 @@ $(document).ready(function () {
     $('#registro-platos').hide();
     $('#historial-compras').hide();
     $('#register-promocion').hide();
-    $('#register-chef').show();    
+    $('#register-chef').show();
     $('#activepanel1').removeClass('active');
     $('#activepanel3').addClass('active');
     $('#show-historial').removeClass('active');
@@ -123,7 +124,7 @@ $(document).ready(function () {
     $('#registro-platos').hide();
     $('#register-chef').hide();
     $('#historial-compras').hide();
-    $('#register-promocion').show();    
+    $('#register-promocion').show();
     $('#activepanel1').removeClass('active');
     $('#activepanel3').addClass('active');
     $('#show-historial').removeClass('active');
@@ -196,7 +197,7 @@ $(document).ready(function () {
     $('#registro-platos').hide();
     $('#register-chef').hide();
     $('#register-promocion').hide();
-}); 
+  });
 
   function backbutton() {
     $('#show-register1').hide();
@@ -206,12 +207,12 @@ $(document).ready(function () {
 
   /* Open modal checkbox */
 
-  $('#checkbox').click(function(){
-    if($(this).is(':checked')) {
-       $('#modal-eliminar1').modal('show');
-     } else {
-       $('#modal-eliminar1').modal('hide');
-     }
+  $('#checkbox').click(function () {
+    if ($(this).is(':checked')) {
+      $('#modal-eliminar1').modal('show');
+    } else {
+      $('#modal-eliminar1').modal('hide');
+    }
   });
 
 });
@@ -220,13 +221,14 @@ $(document).ready(function () {
 
 firebase.initializeApp(firebaseConfig);
 
-function registroempleados() {
+function registroPlato() {
   $(document).ready(function () {
     $('#registrarPlato').click(function (e) {
       e.preventDefault();
-      var datos = $('#registroPlato').serializeArray();
-      //console.log(datos);
+      var sesion = JSON.parse(sessionStorage.getItem('data'));
+      var restaurante = (sesion.uid);
 
+      var datos = $('#registroPlato').serializeArray();
       var nombrePlato = datos[0].value;
       var descripcionPlato = datos[1].value;
       var PrecioPlato = datos[2].value;
@@ -236,38 +238,46 @@ function registroempleados() {
       var tipoPLato = datos[6].value;
       var tiempoMinimo = datos[7].value;
       var tiempoMaximo = datos[8].value;
-      console.log(nombrePlato);
+      console.log(tipoPLato);
 
-      var sesion = JSON.parse(sessionStorage.getItem('data'));
-      var restaurante = (sesion.uid);
-      console.log(restaurante);
+      var fotoval = document.getElementById('imagenPlato');
+      var foto = new FileReader();
+      foto.onload = function (e) {
+        var file = (e.target.result);
+        console.log(file);
 
-      firebase.database().ref('Platos/' + restaurante + "/").push().set({
+        var storageRef = firebase.storage().ref();
+        var mountainsRef = storageRef.child('imagen/plato' + restaurante + fotoval.files[0].name);
+        var imagen = file.substring(23);
+        mountainsRef.putString(imagen, 'base64').then(function (snapshot) {
+          var rutaGuardaImagen = snapshot.metadata.fullPath;
 
-        "nombrePlato": nombrePlato,
-        "descripcionPlato": descripcionPlato,
-        "PrecioPlato": PrecioPlato,
-        "TamañoPLato": TamañoPLato,
-        "cantidadPlato": cantidadPlato,
-        "porcionPlato": porcionPlato,
-        "tipoPLato": tipoPLato,
-        "tiempoMinimo": tiempoMinimo,
-        "tiempoMaximo": tiempoMaximo,
+          firebase.database().ref('Platos/' + restaurante + "/").push().set({
 
-      }, function (error) {
-        if (error) {
-          alert('Hay un error en sus datos verifique e intentelo de nuevo...')
-        } else {
-          alert('Registro completado con exito!')
-        }
+            "nombrePlato": nombrePlato,
+            "descripcionPlato": descripcionPlato,
+            "PrecioPlato": PrecioPlato,
+            "TamañoPLato": TamañoPLato,
+            "cantidadPlato": cantidadPlato,
+            "porcionPlato": porcionPlato,
+            "tipoPLato": tipoPLato,
+            "tiempoMinimo": tiempoMinimo,
+            "tiempoMaximo": tiempoMaximo,
+            "rutaGuardaImagen": rutaGuardaImagen
+          }, function (error) {
+            if (error) {
+              alert('Hay un error en sus datos verifique e intentelo de nuevo...')
+            } else {
+              alert('Registro completado con exito!')
+            }
+          });
 
-
-
-
-      });
+        })
+      }, foto.readAsDataURL(fotoval.files[0]);
     });
   });
-} registroempleados();
+
+} registroPlato();
 
 function platosRegistrados() {
   $('body').ready(function () {
@@ -276,7 +286,7 @@ function platosRegistrados() {
       snapshot.forEach(function (childSnapshot) {
 
         var childData = childSnapshot.val();
-        //  console.log(childData);
+        //console.log(childData);
         var PrecioPlato = childData.PrecioPlato;
         var TamañoPLato = childData.TamañoPLato;
         var cantidadPlato = childData.cantidadPlato;
@@ -286,33 +296,41 @@ function platosRegistrados() {
         var tiempoMaximo = childData.tiempoMaximo;
         var tiempoMinimo = childData.tiempoMinimo;
         var tipoPLato = childData.tipoPLato;
-        // console.log(PrecioPlato);
+        var rutaGuardaImagen = childData.rutaGuardaImagen;
 
+       // console.log(rutaGuardaImagen );
+        ////////////////////////////imagen traer
+        var storageRef = firebase.storage().ref();
+        var mountainsRef = storageRef.child("");
+        //console.log('qqqqqqqqqqqqqqqqq');
+        // console.log(rutaGuardaImagen);
+        mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) {
+              console.log(url);
+              
+          var tarjeta = $("<div class=' col-xl-3 col-md-4 col-sm-6 col-12' >" +
+            "<div class='card'>" +
+            "<div class='dropdown'>" +
+            "<button class='btn dropdown-toggle' type='button' id='dropdownMenuButton1' data-toggle='dropdown' aria-haspopup='false' aria-expanded='false'>" +
+            "<i class='fas fa-ellipsis-v'></i>" +
+            "</button>" +
+            "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton1'>" +
+            "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-editar-beneficio'>Editar</a>" +
+            "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-eliminar'>Eliminar</a>" +
+            "</div>" +
+            "</div>" +
+            "<img class='card-img-top' src='"+url+"' alt='Card image'>" +
+            "<div class='card-body'>" +
+            "<h4 class='card-title'>" + nombrePlato + "</h4>" +
+            "<p class='card-text'>" + descripcionPlato + "</p>" +
+            "</div>" +
+            "<div class='tag'>" +
+            "<a href='#'>" + tipoPLato + "</a>" +
+            "</div>" +
+            "</div>" +
+            "</div>");
 
-        var tarjeta = $("<div class=' col-xl-3 col-md-4 col-sm-6 col-12' >" +
-          "<div class='card'>" +
-          "<div class='dropdown'>" +
-          "<button class='btn dropdown-toggle' type='button' id='dropdownMenuButton1' data-toggle='dropdown' aria-haspopup='false' aria-expanded='false'>" +
-          "<i class='fas fa-ellipsis-v'></i>" +
-          "</button>" +
-          "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton1'>" +
-          "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-editar-beneficio'>Editar</a>" +
-          "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-eliminar'>Eliminar</a>" +
-          "</div>" +
-          "</div>" +
-          "<img class='card-img-top' src='/src/assets/image/platos/plato1.jpg' alt='Card image'>" +
-          "<div class='card-body'>" +
-          "<h4 class='card-title'>" + nombrePlato + "</h4>" +
-          "<p class='card-text'>" + descripcionPlato + "</p>" +
-          "</div>" +
-          "<div class='tag'>" +
-          "<a href='#'>" + tipoPLato + "</a>" +
-          "</div>" +
-          "</div>" +
-          "</div>");
-
-        $('#tarjetaPlato').append(tarjeta);
-
+          $('#tarjetaPlato').append(tarjeta);
+        })
       });
     });
   });
@@ -322,26 +340,11 @@ function registropromociones() {
   $(document).ready(function () {
     $('#registrarPromo').click(function (e) {
       e.preventDefault();
-      //////////////////////imagen    
-      var fotoval = document.getElementById('imagenPromo');
-      console.log(fotoval.files[0].name);
-      
-      var foto = new FileReader();
-      foto.onload = function (e) {
-          var file = (e.target.result);
-         console.log(file);    
-         var storageRef = firebase.storage().ref();
-         var mountainsRef = storageRef.child('imagen/'+fotoval.files[0].name);
-         var imagen = file.substring(23);
-         mountainsRef.putString(imagen, 'base64').then(function (snapshot) {
-             console.log('Uploaded a base64 string!');
-             console.log(snapshot);
-         });            
-      }
-      foto.readAsDataURL(fotoval.files[0]);
-    //////////////imagen//////////////////////////////
-     
-       
+
+      var sesion = JSON.parse(sessionStorage.getItem('data'));
+      var restaurante = (sesion.uid);
+      //console.log(restaurante);
+
       var datos = $('#registroPromo').serializeArray();
       //console.log(datos);
       var nombrePromo = datos[0].value;
@@ -352,30 +355,47 @@ function registropromociones() {
       var procionPromo = datos[5].value;
       var tiempoMin = datos[6].value;
       var tiempoMax = datos[7].value;
-      //console.log(nombrePromo);
 
-      var sesion = JSON.parse(sessionStorage.getItem('data'));
-      var restaurante = (sesion.uid);
-      console.log(restaurante);
 
-      firebase.database().ref('Promo/' + restaurante + "/").push().set({
+      //////////////////////imagen         
+      var fotoval = document.getElementById('imagenPromo');
+      var foto = new FileReader();
+      foto.onload = function (e) {
+        var file = (e.target.result);
+        var storageRef = firebase.storage().ref();
+        var mountainsRef = storageRef.child('imagen/' + restaurante + fotoval.files[0].name);
+        var imagen = file.substring(22);
+        mountainsRef.putString(imagen, 'base64').then(function (snapshot) {
+          var rutaGuardaImagen = snapshot.metadata.fullPath;
+          console.log(rutaGuardaImagen);
+          firebase.database().ref('Promo/' + restaurante + "/").push().set({
 
-        "nombrePromo": nombrePromo,
-        "DescripcionPromo": DescripcionPromo,
-        "PrecioPromo": PrecioPromo,
-        "tamañoPromo": tamañoPromo,
-        "cantidadPromo": cantidadPromo,
-        "procionPromo": procionPromo,
-        "tiempoMin": tiempoMin,
-        "tiempoMax": tiempoMax
+            "nombrePromo": nombrePromo,
+            "DescripcionPromo": DescripcionPromo,
+            "PrecioPromo": PrecioPromo,
+            "tamañoPromo": tamañoPromo,
+            "cantidadPromo": cantidadPromo,
+            "procionPromo": procionPromo,
+            "tiempoMin": tiempoMin,
+            "tiempoMax": tiempoMax,
+            "rutaGuardaImagen": rutaGuardaImagen
 
-      }, function (error) {
-        if (error) {
-          alert('Hay un error en sus datos verifique e intentelo de nuevo...')
-        } else {
-          alert('Registro completado con exito!')
-        }
-      });
+          }, function (error) {
+            if (error) {
+              alert('Hay un error en sus datos verifique e intentelo de nuevo...')
+            } else {
+              alert('Registro completado con exito!')
+            }
+          });
+
+
+
+
+        });
+      }
+      foto.readAsDataURL(fotoval.files[0]);
+      //////////////imagen//////////////////////////////
+
     });
   });
 } registropromociones();
@@ -383,11 +403,12 @@ function registropromociones() {
 function promoRegistrados() {
   $('body').ready(function () {
     var sesion = JSON.parse(sessionStorage.getItem('data'));
+
     firebase.database().ref('/Promo/' + sesion.uid).once('value').then(function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
 
         var childData = childSnapshot.val();
-        //console.log(childData);
+        // console.log(childData);
 
         var DescripcionPromo = childData.DescripcionPromo;
         var PrecioPromo = childData.PrecioPromo;
@@ -397,31 +418,48 @@ function promoRegistrados() {
         var tamañoPromo = childData.tamañoPromo;
         var tiempoMax = childData.tiempoMax;
         var tiempoMin = childData.tiempoMin;
+        var rutaGuardaImagen = childData.rutaGuardaImagen;
+        // 
+        ////////////////////////////traer imagen
+        var storageRef = firebase.storage().ref();
+        var mountainsRef = storageRef.child("");
+        //console.log('qqqqqqqqqqqqqqqqq');
+        // console.log(rutaGuardaImagen);
+        mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) {
+          // console.log('eeeeeeeeeeeeeeee');
+          // console.log(url);
+          //$('#foto').append("<img src=" + url + "></img>");
+          var tarjeta = $("<div class=' col-xl-3 col-md-4 col-sm-6 col-12' >" +
+            "<div class='card'>" +
+            "<div class='dropdown'>" +
+            "<button class='btn dropdown-toggle' type='button' id='dropdownMenuButton1' data-toggle='dropdown' aria-haspopup='false' aria-expanded='false'>" +
+            "<i class='fas fa-ellipsis-v'></i>" +
+            "</button>" +
+            "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton1'>" +
+            "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-editar-beneficio'>Editar</a>" +
+            "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-eliminar'>Eliminar</a>" +
+            "</div>" +
+            "</div>" +
+            "<img  src='" + url + "' class='card-img-top'  alt='Card image'>" +
+            "<div class='card-body'>" +
+            "<h4 class='card-title'>" + nombrePromo + "</h4>" +
+            "<p class='card-text'>" + DescripcionPromo + "</p>" +
+            "</div>" +
+            "<div class='tag'>" +
+            "<a href='#'> €" + PrecioPromo + "</a>" +
+            "</div>" +
+            "</div>" +
+            "</div>");
+
+          $('#promocion2').append(tarjeta);
+        })
 
 
-        var tarjeta = $("<div class=' col-xl-3 col-md-4 col-sm-6 col-12' >" +
-          "<div class='card'>" +
-          "<div class='dropdown'>" +
-          "<button class='btn dropdown-toggle' type='button' id='dropdownMenuButton1' data-toggle='dropdown' aria-haspopup='false' aria-expanded='false'>" +
-          "<i class='fas fa-ellipsis-v'></i>" +
-          "</button>" +
-          "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton1'>" +
-          "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-editar-beneficio'>Editar</a>" +
-          "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-eliminar'>Eliminar</a>" +
-          "</div>" +
-          "</div>" +
-          "<img class='card-img-top' src='/src/assets/image/platos/plato1.jpg' alt='Card image'>" +
-          "<div class='card-body'>" +
-          "<h4 class='card-title'>" + nombrePromo + "</h4>" +
-          "<p class='card-text'>" + DescripcionPromo + "</p>" +
-          "</div>" +
-          "<div class='tag'>" +
-          "<a href='#'> €" + PrecioPromo + "</a>" +
-          "</div>" +
-          "</div>" +
-          "</div>");
 
-        $('#promocion2').append(tarjeta);
+
+
+
+
 
       });
     });
