@@ -92,7 +92,7 @@ $(document).ready(function () {
 
   $('#platos2').show();
   /* panel restaurante */
-  $('#add-plate').click(function(){
+  $('#add-plate').click(function () {
     $('#chef2').hide();
     $('#platos2').hide();
     $('#promocion2').hide();
@@ -100,7 +100,7 @@ $(document).ready(function () {
     $('#register-promocion').hide();
     $('#registro-platos').show();
   });
-  $('#add-chef').click(function(){
+  $('#add-chef').click(function () {
     $('#chef2').hide();
     $('#platos2').hide();
     $('#promocion2').hide();
@@ -108,7 +108,7 @@ $(document).ready(function () {
     $('#register-promocion').hide();
     $('#register-chef').show();
   });
-  $('#add-promocion').click(function(){
+  $('#add-promocion').click(function () {
     $('#chef2').hide();
     $('#platos2').hide();
     $('#promocion2').hide();
@@ -116,23 +116,23 @@ $(document).ready(function () {
     $('#register-chef').hide();
     $('#register-promocion').show();
   });
-  
-  $('#activepanel1').click(function(){
-     $('#activepanel2').removeClass('active');
-     $('#activepanel3').removeClass('active');
+
+  $('#activepanel1').click(function () {
+    $('#activepanel2').removeClass('active');
+    $('#activepanel3').removeClass('active');
     $(this).addClass('active');
-  
+
     $('#promocion2').hide();
     $('#chef2').hide();
     $('#platos2').show();
     /* registro platos */
     $('#registro-platos').hide();
-      $('#register-promocion').hide();
-        $('#register-chef').hide();
+    $('#register-promocion').hide();
+    $('#register-chef').hide();
   });
-  $('#activepanel2').click(function(){
-     $('#activepanel1').removeClass('active');
-     $('#activepanel3').removeClass('active');
+  $('#activepanel2').click(function () {
+    $('#activepanel1').removeClass('active');
+    $('#activepanel3').removeClass('active');
     $(this).addClass('active');
     $('#promocion2').hide();
     $('#platos2').hide();
@@ -142,9 +142,9 @@ $(document).ready(function () {
     $('#register-chef').hide();
     $('#register-promocion').hide();
   });
-  $('#activepanel3').click(function(){
-     $('#activepanel1').removeClass('active');
-     $('#activepanel2').removeClass('active');
+  $('#activepanel3').click(function () {
+    $('#activepanel1').removeClass('active');
+    $('#activepanel2').removeClass('active');
     $(this).addClass('active');
     $('#chef2').hide();
     $('#platos2').hide();
@@ -190,7 +190,7 @@ function registroempleados() {
       firebase.auth().createUserWithEmailAndPassword(correo, contraseña).then(function (resultado) {
 
         var uid = resultado.user.uid;
-        firebase.database().ref('users/' +  uid + "/").set({
+        firebase.database().ref('users/' + uid + "/").set({
 
           "nombre": nombre,
           "apellido": apellido,
@@ -221,10 +221,19 @@ function registroempleados() {
 function recuperarNOmbreEmpresa() {
   $(document).ready(function () {
     var sesionjson = sessionStorage.getItem("data");
+
     var sesion = JSON.parse(sesionjson);
+    console.log(sesion);
 
     var nombreEmpresa = sesion.empresa.nombreEmpresa;
-    $('#nombreEmpresa').append("<span>" + nombreEmpresa + "</span>");
+    var rutaImagen = sesion.empresa.rutaImagen;
+    var storageRef = firebase.storage().ref();
+    var mountainsRef = storageRef.child("");
+    mountainsRef.child(rutaImagen).getDownloadURL().then(function (url) {
+      console.log(url);
+      $('#fotoEmpresa').append("'<img src='"+url +"'</span>'");
+      $('#nombreEmpresa').append("<span>" + nombreEmpresa + "</span>");
+    })
   });
 } recuperarNOmbreEmpresa()
 
@@ -329,8 +338,8 @@ function beneficionRegistrados() {
 function configuracionEmpresa() {
   $(document).ready(function () {
     var sesionjson = sessionStorage.getItem("data");
-    var sesion = JSON.parse(sesionjson);
 
+    var sesion = JSON.parse(sesionjson);
     //console.log(sesion.empresa);
     var uid = sesion.uid;
     var NIF = sesion.empresa.NIF;
@@ -341,7 +350,7 @@ function configuracionEmpresa() {
     var pais = sesion.empresa.pais;
     var poblacion = sesion.empresa.poblacion;
     var telefono = sesion.empresa.telefono;
-   // var CedulaRepresentante = sesion.empresa.representante.CedulaRepresentante;
+    // var CedulaRepresentante = sesion.empresa.representante.CedulaRepresentante;
     var CorreoRepresentante = sesion.empresa.representante.CorreoRepresentante;
     var NombreRepresentante = sesion.empresa.representante.NombreRepresentante;
     var TelRepresentante = sesion.empresa.representante.TelRepresentante;
@@ -354,63 +363,68 @@ function configuracionEmpresa() {
     $('#conpais').val(pais);
     $('#conpoblacion').val(poblacion);
     $('#conNombreRepresentante').val(NombreRepresentante);
-    $('#conCedulaRepresentante').val(CedulaRepresentante);
+    //$('#conCedulaRepresentante').val(CedulaRepresentante);
     $('#conTelRepresentante').val(TelRepresentante);
     $('#conCorreoRepresentante').val(CorreoRepresentante);
     $('#guardarEmpresa').click(function (e) {
       e.preventDefault();
+
       var datos = $('#editarEmpresa').serializeArray();
-      //  console.log(datos);
-      var img = $('#conLogoEmpresa').val();
 
+      //////////////////////imagen         
+      var fotoval = document.getElementById('conLogoEmpresa');
+      var foto = new FileReader();
+      foto.onload = function (e) {
+        var file = (e.target.result);
+        var storageRef = firebase.storage().ref();
+        var mountainsRef = storageRef.child('imagen/' + uid + fotoval.files[0].name);
+        var imagen = file.substring(22);
+        // console.log(imagen);
 
-      //////////////////////////////////////////// prueba de imagen   
-      
-      function printFile(file) {
-        var reader = new FileReader();
-        reader.onload = function(evt) {
-          console.log(evt.target.result);
-        };
-        reader.readAsText(file,'file');
-      }printFile(img)
+        mountainsRef.putString(imagen, 'base64').then(function (snapshot) {
+          var rutaGuardaImagen = snapshot.metadata.fullPath;
+          console.log(rutaGuardaImagen);
 
-      //////////////prueba de imagen
-      var conNombreEmpresa = datos[0].value;
-      var conIdCompañia = datos[1].value;
-      var conCorreo = datos[2].value;
-      var conTelefono = datos[3].value;
-      var conDireccion = datos[4].value;
-      var conpostal = datos[5].value;
-      var conpais = datos[6].value;
-      var conpoblacion = datos[7].value;
-      var conNombreRepresentante = datos[8].value;
-      var conCedulaRepresentante = datos[9].value;
-      var conTelRepresentante = datos[10].value;
-      var conCorreoRepresentante = datos[11].value;
+          //////////////prueba de imagen
+          var conNombreEmpresa = datos[0].value;
+          var conIdCompañia = datos[1].value;
+          var conCorreo = datos[2].value;
+          var conTelefono = datos[3].value;
+          var conDireccion = datos[4].value;
+          var conpostal = datos[5].value;
+          var conpais = datos[6].value;
+          var conpoblacion = datos[7].value;
+          var conNombreRepresentante = datos[8].value;
+          var conCedulaRepresentante = datos[9].value;
+          var conTelRepresentante = datos[10].value;
+          var conCorreoRepresentante = datos[11].value;
+          var rutaGuardaImagen = rutaGuardaImagen;
+          firebase.database().ref('Empresas/' + uid).update({
+            "nombreEmpresa": conNombreEmpresa,
+            "correo": conCorreo,
+            "pais": conpais,
+            "direccion": conDireccion,
+            "poblacion": conpoblacion,
+            "telefono": conTelefono,
+            "codigoPostal": conpostal,
+            "rutaImagen": rutaGuardaImagen,
+            "representante": {
+              "NombreRepresentante": conNombreRepresentante,
+              "CedulaRepresentante": conCedulaRepresentante,
+              "TelRepresentante": conTelRepresentante,
+              "CorreoRepresentante": conCorreoRepresentante
+            }
 
-      firebase.database().ref('Empresas/' + uid).update({
-        "nombreEmpresa": conNombreEmpresa,
-        "correo": conCorreo,
-        "pais": conpais,
-        "direccion": conDireccion,
-        "poblacion": conpoblacion,
-        "telefono": conTelefono,
-        "codigoPostal": conpostal,
-        "representante": {
-          "NombreRepresentante": conNombreRepresentante,
-          "CedulaRepresentante": conCedulaRepresentante,
-          "TelRepresentante": conTelRepresentante,
-          "CorreoRepresentante": conCorreoRepresentante
-
-        }
-
-      }, function (error) {
-        if (error) {
-          alert('Hay un error en sus datos verifique e intentelo de nuevo...')
-        } else {
-          alert('Registro completado con exito!')
-        }
-      });
+          }, function (error) {
+            if (error) {
+              alert('Hay un error en sus datos verifique e intentelo de nuevo...')
+            } else {
+              alert('Registro completado con exito!')
+            }
+          });
+        });
+      }
+      foto.readAsDataURL(fotoval.files[0]);
     });
   });
 } configuracionEmpresa()

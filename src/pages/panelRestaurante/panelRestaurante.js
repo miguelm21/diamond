@@ -425,7 +425,7 @@ function promoRegistrados() {
         var mountainsRef = storageRef.child("");
         //console.log('qqqqqqqqqqqqqqqqq');
         // console.log(rutaGuardaImagen);
-        mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) {
+        mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) {0
           // console.log('eeeeeeeeeeeeeeee');
           // console.log(url);
           //$('#foto').append("<img src=" + url + "></img>");
