@@ -453,14 +453,6 @@ function promoRegistrados() {
 
           $('#promocion2').append(tarjeta);
         })
-
-
-
-
-
-
-
-
       });
     });
   });
