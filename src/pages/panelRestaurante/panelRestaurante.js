@@ -465,3 +465,12 @@ function promoRegistrados() {
     });
   });
 } promoRegistrados()
+
+function nombreRestaurante() {
+  $(document).ready(function () {
+    var data = sessionStorage.getItem('data');
+    var sesion =JSON.parse(data);
+    var nombreRestaurante = sesion.restaurante.nombreRestaurante;
+    $('#nombreRestaurante').append("<span>"+ nombreRestaurante+"</span>");
+  });
+}nombreRestaurante()
