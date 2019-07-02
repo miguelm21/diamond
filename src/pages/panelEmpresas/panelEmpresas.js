@@ -223,15 +223,15 @@ function recuperarNOmbreEmpresa() {
     var sesionjson = sessionStorage.getItem("data");
 
     var sesion = JSON.parse(sesionjson);
-    console.log(sesion);
+    // console.log(sesion);
 
     var nombreEmpresa = sesion.empresa.nombreEmpresa;
     var rutaImagen = sesion.empresa.rutaImagen;
     var storageRef = firebase.storage().ref();
     var mountainsRef = storageRef.child("");
     mountainsRef.child(rutaImagen).getDownloadURL().then(function (url) {
-      console.log(url);
-      $('#fotoEmpresa').append("'<img src='"+url +"'</span>'");
+      // console.log(url);
+      $('#fotoEmpresa').append("'<img src='" + url + "'</span>'");
       $('#nombreEmpresa').append("<span>" + nombreEmpresa + "</span>");
     })
   });
@@ -270,17 +270,16 @@ function empleadosRegistrados() {
     var sesion = JSON.parse(sessionStorage.getItem('data'));
     var uid = (sesion.uid);
 
-    firebase.database().ref('/users/' + uid).once('value').then(function (snapshot) {
-      //var datosCantidad = snapshot.numChildren();
 
+    firebase.database().ref('/users/').orderByChild('empresa').equalTo(uid).once('value').then(function (snapshot) {
+      //console.log(snapshot.val());
       snapshot.forEach(function (childSnapshot) {
         // var key = childSnapshot.key;        
         var childData = childSnapshot.val();
-        // console.log(childData);
+        //  console.log(childData);
         var Inactivo = childData.Inactivo;
         var apellido = childData.apellido;
         var cargo = childData.cargo;
-
         var correo = childData.correo;
         var empresa = childData.empresa;
         var fechaNacimiento = childData.fechaNacimiento;
@@ -289,11 +288,7 @@ function empleadosRegistrados() {
 
         $('#tablaEmpleados').append("<tr><td>" + nombre + "</td><td>" + apellido + "</td><td>" + correo + "</td><td>" + Inactivo + "</td><td>" + planBeneficio + "</td><td>" + cargo + "</td></tr>");
 
-
-
       });
-
-
     });
   });
 } empleadosRegistrados()
@@ -429,4 +424,22 @@ function configuracionEmpresa() {
   });
 } configuracionEmpresa()
 
-
+function seleccionPlanEmpresa() {
+  $(document).ready(function () {
+    var data = sessionStorage.getItem('data');
+    var sesion = JSON.parse(data);
+    var uid = sesion.uid;
+    // console.log(uid);
+    ////filtrar .orderByChild('empresa').equalTo(uid).
+    firebase.database().ref('Empresas/' + uid + "/planes").once('value').then(function (snapshot) {
+     // console.log(snapshot.val());
+      snapshot.forEach(function (planes) {
+       var plan =planes.val();
+      var  montoPlan= plan.montoPlan;
+      var  nombrePlan= plan.nombrePlan;
+      console.log(nombrePlan);
+      $('#exampleFormControlSelect1').append("<option>" + nombrePlan +" "+"€  "+ montoPlan+ "</option>");
+      });   
+    });
+  });
+} seleccionPlanEmpresa()
