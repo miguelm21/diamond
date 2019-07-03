@@ -460,11 +460,58 @@ function consultaSaldoEmpresa() {
   $(document).ready(function () {
     var data = sessionStorage.getItem('data');
     var sesion = JSON.parse(data);
-    firebase.database().ref('/Empresas/' + sesion.uid + "/cuentas").once('value').then(function (snapshot) {
+    firebase.database().ref('/Empresas/' + sesion.uid + "/cuentas").on('value', function (snapshot) {
       var snap = snapshot.val();
-     //console.log(snap.cuentaTotal);
-     $('#saldoEmpresa').append("<h5>€ "+snap.cuentaTotal+"</h5>");
+      var cuenta1 = snap.cuenta1;
+      var cuenta2 = snap.cuenta2;
+      var saldoEmpresa = parseFloat(cuenta1) + parseFloat(cuenta2);
+
+      document.getElementById('saldoEmpresa').innerHTML = "€ " + saldoEmpresa;
 
     })
   });
 } consultaSaldoEmpresa()
+
+function RecargarSaldoEMpresa() {
+  $(document).ready(function () {
+    $('#recargarSaldoEmpresa').click(function (e) {
+      e.preventDefault();
+      var data = sessionStorage.getItem('data');
+      var sesion = JSON.parse(data);
+      var uid = sesion.uid;
+      firebase.database().ref('/Empresas/' + uid + "/cuentas").once('value').then(function (snapshot) {
+        var snap = snapshot.val();
+        //console.log(snap.cuentaTotal);
+        var saldoCuenta1 = snap.cuenta1;
+        //  console.log(saldoCuenta1);
+
+
+        var form = $('#recargaSaldoEmpresa').serializeArray();
+        // console.log(form);
+        var tarjetaCredito = form[0].value;
+        var nombreTitular = form[1].value;
+        var NumeroTarjeta = form[2].value;
+        var fechaExp = form[3].value;
+        var codigoSeguridad = form[4].value;
+        var montoRecargar = form[5].value;
+        var sumaSaldo = parseFloat(montoRecargar) + parseFloat(saldoCuenta1);
+        console.log(sumaSaldo);
+
+        firebase.database().ref('Empresas/' + uid + "/cuentas").update({
+          "cuenta1": sumaSaldo
+
+        })
+        firebase.database().ref('/Recargas/empresas' ).push().set( {
+          "tarjetaCredito" : tarjetaCredito,
+          "nombreTitular" : nombreTitular,
+          "NumeroTarjeta" : NumeroTarjeta,
+          "fechaExp" : fechaExp,
+          "codigoSeguridad" : codigoSeguridad,
+          "montoRecargar" : montoRecargar,
+          "saldoDespuesRecarga" : sumaSaldo       ,
+          "uidempresa":uid
+        })
+      })
+    });
+  });
+} RecargarSaldoEMpresa()
