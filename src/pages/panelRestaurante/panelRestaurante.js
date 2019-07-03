@@ -425,7 +425,7 @@ function promoRegistrados() {
         var mountainsRef = storageRef.child("");
         //console.log('qqqqqqqqqqqqqqqqq');
         // console.log(rutaGuardaImagen);
-        mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) {
+        mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) {0
           // console.log('eeeeeeeeeeeeeeee');
           // console.log(url);
           //$('#foto').append("<img src=" + url + "></img>");
@@ -453,15 +453,16 @@ function promoRegistrados() {
 
           $('#promocion2').append(tarjeta);
         })
-
-
-
-
-
-
-
-
       });
     });
   });
 } promoRegistrados()
+
+function nombreRestaurante() {
+  $(document).ready(function () {
+    var data = sessionStorage.getItem('data');
+    var sesion =JSON.parse(data);
+    var nombreRestaurante = sesion.restaurante.nombreRestaurante;
+    $('#nombreRestaurante').append("<span>"+ nombreRestaurante+"</span>");
+  });
+}nombreRestaurante()
