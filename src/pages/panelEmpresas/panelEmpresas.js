@@ -449,7 +449,7 @@ function seleccionPlanEmpresa() {
         var plan = planes.val();
         var montoPlan = plan.montoPlan;
         var nombrePlan = plan.nombrePlan;
-        console.log(nombrePlan);
+        //     console.log(nombrePlan);
         $('#exampleFormControlSelect1').append("<option>" + nombrePlan + " " + "€  " + montoPlan + "</option>");
       });
     });
@@ -487,7 +487,7 @@ function RecargarSaldoEMpresa() {
 
 
         var form = $('#recargaSaldoEmpresa').serializeArray();
-        // console.log(form);
+        console.log(form);
         var tarjetaCredito = form[0].value;
         var nombreTitular = form[1].value;
         var NumeroTarjeta = form[2].value;
@@ -495,23 +495,79 @@ function RecargarSaldoEMpresa() {
         var codigoSeguridad = form[4].value;
         var montoRecargar = form[5].value;
         var sumaSaldo = parseFloat(montoRecargar) + parseFloat(saldoCuenta1);
-        console.log(sumaSaldo);
+        //  console.log(sumaSaldo);
 
         firebase.database().ref('Empresas/' + uid + "/cuentas").update({
           "cuenta1": sumaSaldo
 
         })
-        firebase.database().ref('/Recargas/empresas' ).push().set( {
-          "tarjetaCredito" : tarjetaCredito,
-          "nombreTitular" : nombreTitular,
-          "NumeroTarjeta" : NumeroTarjeta,
-          "fechaExp" : fechaExp,
-          "codigoSeguridad" : codigoSeguridad,
-          "montoRecargar" : montoRecargar,
-          "saldoDespuesRecarga" : sumaSaldo       ,
-          "uidempresa":uid
-        })
-      })
+        firebase.database().ref('/Recargas/empresas').push().set({
+          "tarjetaCredito": tarjetaCredito,
+          "nombreTitular": nombreTitular,
+          "NumeroTarjeta": NumeroTarjeta,
+          "fechaExp": fechaExp,
+          "codigoSeguridad": codigoSeguridad,
+          "montoRecargar": montoRecargar,
+          "saldoDespuesRecarga": sumaSaldo,
+          "uidempresa": uid
+        }, function (error) {
+          if (error) {
+            alert('Hay un error en sus datos verifique e intentelo de nuevo...')
+          } else {
+            alert('Recarga realizada con exito!');
+          }
+        });
+      });
+    })
+  })
+
+} RecargarSaldoEMpresa()
+
+function tablaReporteEmpresa() {
+  $(document).ready(function () {
+    var data = sessionStorage.getItem('data');
+    var sesion = JSON.parse(data); var uid = sesion.uid;
+    firebase.database().ref('/users/').orderByChild('empresa').equalTo(uid).once('value').then(function (snapshot) {
+      console.log(snapshot.val());
+      snapshot.forEach(function (param) {
+        var datos = (param.val());
+        var Nombre= datos.nombre;        
+ //console.log(Nombre);
+ 
+        var tabla = ("<div class='table-responsive'>" +
+          "<table class='table'>" +
+          "<thead class='thead-blue'>" +
+          "<tr>" +
+          "<th scope='col'>Nombre Completo</th>" +
+          "<th scope='col'>Plato</th>" +
+          "<th scope='col'>Fecha</th>" +
+          "<th scope='col'>Tipo</th>" +
+          "<th scope='col'>Beneficio</th>" +
+          "<th scope='col'>Monto consumido</th>" +
+          "</tr>" +
+          "</thead>" +
+          "<tbody id=''>" +
+          "<tr>" +
+          "<td>"+Nombre+"</td>" +
+          "<td>Arepa con diablitos</td>" +
+          "<td>22/07/2019</td>" +
+          "<td>" +
+          "<select name='' id='' class='form-control'>" +
+          "<option value=''>Beneficio 1</option>" +
+          "<option value=''>Beneficio 2</option>" +
+          "</select>" +
+          "</td>" +
+          "<td>10 €</td>" +
+          "<td>15 €</td>" +
+          "</tr>" +
+          "</th>" +
+          "</tr>" +
+          "</tfoot>" +
+          "</table>" +
+          "</div>")
+        $('#tablaReporteEmpresa').append(tabla);
+        console.log(Nombre);
+      });
     });
   });
-} RecargarSaldoEMpresa()
+} tablaReporteEmpresa();

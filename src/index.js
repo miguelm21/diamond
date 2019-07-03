@@ -245,7 +245,7 @@ function iniciarSesionEMpresa() {
             if (sesion === '' | sesion === 'null') {
               alert('no ha iniciado sesion')
             } else {
-              alert("has iniciado sesion  =" + sesion);
+              alert("has iniciado sesion");
               // console.log(sesion);
               location.href = "panelEmpresas.html"
             }
@@ -303,7 +303,7 @@ function iniciarSesionRestaurante() {
             if (sesion === '' | sesion === 'null') {
               alert('no ha iniciado sesion')
             } else {
-              alert("has iniciado sesion  =" + sesion);
+              alert("has iniciado sesion  =");
               // console.log(sesion);
               location.href = "panelRestaurante.html"
             }
@@ -361,7 +361,7 @@ function iniciarSesioncliente() {
             if (sesion === '' | sesion === 'null') {
               alert('no ha iniciado sesion')
             } else {
-              alert("has iniciado sesion  =" + sesion);
+              alert("has iniciado sesion  =" );
               // console.log(sesion);
               location.href = "panelClientes.html"
             }

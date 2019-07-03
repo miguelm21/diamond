@@ -290,13 +290,16 @@
                       </div>
                     </div>
                   </div>
-                </form>
+                
+                <div class="col-12 d-flex justify-content-center text-center">
+                  <button type="submit" onclick="backbutton()" class="btn btn-back">Volver</button>
+                  <button type="submit" class="btn btn-register" id="recargarSaldoEmpresa">Recargar Saldo Empresa</button>
                 </div>
+             
+                </div>
+                 </form>
               </div>
-              <div class="col-12 d-flex justify-content-center text-center">
-                <button type="submit" onclick="backbutton()" class="btn btn-back">Volver</button>
-                <button type="submit" class="btn btn-register" id="recargarSaldoEmpresa">Recargar Saldo Empresa</button>
-              </div>
+              
 
             </div>
 
@@ -434,105 +437,10 @@
                 <div class="box">
                   <button class="btn btn-recuperar">Recuperar beneficio</button>
                 </div>
-                <div class="box-table">
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead class="thead-blue">
-                        <tr>
-                          <th scope="col">Nombre</th>
-                          <th scope="col">Apellido</th>
-                          <th scope="col">Fecha</th>
-                          <th scope="col">Tipo</th>
-                          <th scope="col">Beneficio</th>
-                          <th scope="col">Monto consumido</th>
-                        </tr>
-                      </thead>
-                      <tbody id="">
-                        <tr>
-                          <td>Juan </td>
-                          <td>Arepa con diablitos</td>
-                          <td>22/07/2019</td>
-                          <td>
-                            <select name="" id="" class="form-control">
-                              <option value="">Beneficio 1</option>
-                              <option value="">Beneficio 2</option>
-                            </select>
-                          </td>
-                          <td>10 €</td>
-                          <td>15 €</td>
-                        </tr>
-                        <tr>
-                          <td>Jose </td>
-                          <td>Sopa de pescado</td>
-                          <td>22/07/2019</td>
-                          <td>
-                            <select name="" id="" class="form-control">
-                              <option value="">Beneficio 1</option>
-                              <option value="">Beneficio 2</option>
-                            </select> </td>
-                          <td>10 €</td>
-                          <td>15 €</td>
-                        </tr>
-                        <tr>
-                          <td>Ramon </td>
-                          <td>Pabellon criollo</td>
-                          <td>22/07/2019</td>
-                          <td>
-                            <select name="" id="" class="form-control">
-                              <option value="">Beneficio 1</option>
-                              <option value="">Beneficio 2</option>
-                            </select> </td>
-                          <td>10 €</td>
-                          <td>15 €</td>
-                        </tr>
-                        <tr>
-                          <td>Juan </td>
-                          <td>Pan de jamon</td>
-                          <td>22/07/2019</td>
-                          <td>
-                            <select name="" id="" class="form-control">
-                              <option value="">Beneficio 1</option>
-                              <option value="">Beneficio 2</option>
-                            </select>
-                          </td>
-                          <td>10 €</td>
-                          <td>15 €</td>
-                        </tr>
-                      </tbody>
-                      <tfoot class="tfoot">
-                        <tr>
-                          <th colspan="3">
-                            &nbsp;
-                          </th>
-                          <th>
-                            <h5>Total</h5>
-                          </th>
-                          <th>
-                            230 €
-                          </th>
-                          <th>
-                            120 €
-                          </th>
-                        </tr>
-                      </tfoot>
-                    </table>
-                  </div>
-                  <div class="pagination-section">
-                    <div class="row">
-                      <div class="col-12">
-                        <ul class="pagination">
-                          <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a>
-                          </li>
-                          <li class="page-item"><a class="page-link" href="#">1</a></li>
-                          <li class="page-item"><a class="page-link" href="#">2</a></li>
-                          <li class="page-item"><a class="page-link" href="#">3</a></li>
-                          <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
+                <div class="box-table" id="tablaReporteEmpresa">
+
                 </div>
+                
               </div>
             </div>
           </div>
