@@ -136,7 +136,12 @@ function registroEmpresa() {
           "codigoPostal": codigoPostal,
           "NIF": NIF,
           "contraseña": contraseña,
-          "uid": uid
+          "uid": uid,
+          "cuentas":{
+            "cuanta1":0,
+            "cuenta2":0,
+            "cuentaTotal":0
+          }
 
 
         }, function (error) {
@@ -189,6 +194,11 @@ function registroRestaurante() {
           "poblacion": poblacion,
           "contraseña": contraseña,
           "confirmarContraseña": confirmarContraseña,
+          "cuentas":{
+            "cuanta1":0,
+            "cuenta2":0,
+            "cuentaTotal":0
+          }
 
 
         }, function (error) {

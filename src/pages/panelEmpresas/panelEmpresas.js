@@ -185,7 +185,7 @@ function registroempleados() {
       var json = JSON.parse(sesionjson);
       //console.log(json.uid);
       var sesion = JSON.parse(sessionStorage.getItem('data'));
-      var empresa = (sesion.uid);
+      //var empresa = (sesion.uid);
 
       firebase.auth().createUserWithEmailAndPassword(correo, contraseña).then(function (resultado) {
 
@@ -201,7 +201,12 @@ function registroempleados() {
           "planBeneficio": planBeneficio,
           "contraseña": contraseña,
           "empresa": json.uid,
-          "uidempleado": uid
+          "uidempleado": uid,
+          "cuentas": {
+            "cuanta1": 0,
+            "cuenta2": 0,
+            "cuentaTotal": 0
+          }
 
         }, function (error) {
           if (error) {
@@ -432,14 +437,27 @@ function seleccionPlanEmpresa() {
     // console.log(uid);
     ////filtrar .orderByChild('empresa').equalTo(uid).
     firebase.database().ref('Empresas/' + uid + "/planes").once('value').then(function (snapshot) {
-     // console.log(snapshot.val());
+      // console.log(snapshot.val());
       snapshot.forEach(function (planes) {
-       var plan =planes.val();
-      var  montoPlan= plan.montoPlan;
-      var  nombrePlan= plan.nombrePlan;
-      console.log(nombrePlan);
-      $('#exampleFormControlSelect1').append("<option>" + nombrePlan +" "+"€  "+ montoPlan+ "</option>");
-      });   
+        var plan = planes.val();
+        var montoPlan = plan.montoPlan;
+        var nombrePlan = plan.nombrePlan;
+        console.log(nombrePlan);
+        $('#exampleFormControlSelect1').append("<option>" + nombrePlan + " " + "€  " + montoPlan + "</option>");
+      });
     });
   });
 } seleccionPlanEmpresa()
+
+function consultaSaldoEmpresa() {
+  $(document).ready(function () {
+    var data = sessionStorage.getItem('data');
+    var sesion = JSON.parse(data);
+    firebase.database().ref('/Empresas/' + sesion.uid + "/cuentas").once('value').then(function (snapshot) {
+      var snap = snapshot.val();
+     //console.log(snap.cuentaTotal);
+     $('#saldoEmpresa').append("<h5>€ "+snap.cuentaTotal+"</h5>");
+
+    })
+  });
+} consultaSaldoEmpresa()
