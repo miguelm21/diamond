@@ -81,11 +81,18 @@ $(document).ready(function () {
   $('#registro1').click(function () {
     $('#show-button').hide();
     $('#show-register1').show();
+    $('#show-register3').hide();
   });
 
   $('#registro2').click(function () {
     $('#show-button').hide();
     $('#show-register2').show();
+    $('#show-register3').hide();
+  });
+  $('#registro3').click(function () {
+    $('#show-button').hide();
+    $('#show-register2').hide();
+    $('#show-register3').show();
   });
 
   /* Formularios restaurantes */

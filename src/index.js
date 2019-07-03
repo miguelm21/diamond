@@ -176,7 +176,7 @@ function registroRestaurante() {
       firebase.auth().createUserWithEmailAndPassword(correo, contraseña).then(function (resultado) {
 
         var uid = resultado.user.uid;
-        var res = firebase.database().ref('Restaurante/' + uid).set({
+        var res = firebase.database().ref('Restaurante/' + uid).push({
 
           "nombreRestaurante": nombreRestaurante,
           "NIF": NIF,

@@ -129,8 +129,14 @@
                     benefico</button>
                 </div>
                 <div class="col-6 col-sm-4 col-md-4">
-                  <button class="btn btn-add yellow" id="registro4"><i
-                      class="fas fa-exclamation-triangle"></i>Promociones caducadas</button>
+                  <button class="btn btn-add cyan" id="registro3"><i class="fas fa-coins"></i>Recargar saldo</button>
+                </div>
+                <div class="col-6 col-sm-4 col-md-4">
+                  <button class="btn btn-add yellow" id="registro3"><i
+                      class="fas fa-search"></i>Ver saldo</button>
+                </div>
+                <div class="col-6 col-sm-4 col-md-4">
+                  <button class="btn btn-add red" id="registro3"><i class="fas fa-hands"></i>Quitar saldo</button>
                 </div>
               </div>
 
@@ -203,9 +209,8 @@
               <h5>Registrar Beneficios</h5>
 
               <div class="form-client">
-
-                <div class="row register-form">
-                  <form id="registroBeneficio">
+                <form id="registroBeneficio">
+                   <div class="row register-form">
                     <div class="col-md-6 col-12">
                       <div class="form-group">
                         <input type="text" class="form-control" placeholder="Nombre del plan" value=""
@@ -228,10 +233,76 @@
                       <button type="submit" onclick="backbutton()" class="btn btn-back">Volver</button>
                       <button type="submit" class="btn btn-register" id="registrarBeneficio">Registrar</button>
                     </div>
-                  </form>
-                </div>
+                  </div>
+                </form>
               </div>
             </div>
+
+            <div class="register-client max-width" id="show-register3">
+              <div class="box-recargar-saldo">
+                <h5>Recargar saldo</h5>
+                <div class="box-pago register-form">
+                  <h5 class="title">Seleccionar tarjeta</h5>
+                    <div class="box-tarjetas " id="radio-style">
+                      <ul>
+                        <li>
+                          <input class="radio" type="radio" id="radio1" name="radio-group"/>
+                          <label class="radio-style" for="radio1"><img src="/src/assets/image/pago/card1.png" /></label>
+                        </li>
+                        <li>
+                          <input class="radio" type="radio" id="radio2" name="radio-group"/>
+                          <label class="radio-style" for="radio2"><img src="/src/assets/image/pago/card2.jpg" /></label>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="">Nombre del titular</label>
+                          <input type="text" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group">
+                            <label for="">Número de tarjeta</label>
+                            <input type="text" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="">Fecha de expiración</label>
+                          <div class="row">
+                            <div class="col-6">
+                                <input type="date" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <input type="date" class="form-control">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="">Código de seguridad</label>
+                          <input type="number" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="">Monto</label>
+                          <input type="number" class="form-control">
+                        </div>
+                      </div>  
+                    </div>
+                </div>
+              </div>
+              <div class="col-12 d-flex justify-content-center text-center">
+                <button type="submit" onclick="backbutton()" class="btn btn-back">Volver</button>
+                <button type="submit" class="btn btn-register" id="registrarBeneficio">Registrar</button>
+              </div>
+              
+            </div>
+
             <div class="tab-pane fade" id="clientes">
               <div class="box-table">
                 <h2 class="title">Empleados</h2>
