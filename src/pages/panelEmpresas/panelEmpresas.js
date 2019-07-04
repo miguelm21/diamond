@@ -191,7 +191,7 @@ function registroempleados() {
       var sesionjson = sessionStorage.getItem("data");
       var json = JSON.parse(sesionjson);
       //console.log(json.uid);
-      var sesion = JSON.parse(sessionStorage.getItem('data'));
+      //   var sesion = JSON.parse(sessionStorage.getItem('data'));
       //var empresa = (sesion.uid);
 
       firebase.auth().createUserWithEmailAndPassword(correo, contraseña).then(function (resultado) {
@@ -245,6 +245,7 @@ function recuperarNOmbreEmpresa() {
       // console.log(url);
       $('#fotoEmpresa').append("'<img src='" + url + "'</span>'");
       $('#nombreEmpresa').append("<span>" + nombreEmpresa + "</span>");
+
     })
   });
 } recuperarNOmbreEmpresa()
@@ -281,14 +282,13 @@ function empleadosRegistrados() {
   $('body').ready(function () {
     var sesion = JSON.parse(sessionStorage.getItem('data'));
     var uid = (sesion.uid);
-
-
     firebase.database().ref('/users/').orderByChild('empresa').equalTo(uid).once('value').then(function (snapshot) {
       //console.log(snapshot.val());
       snapshot.forEach(function (childSnapshot) {
-        // var key = childSnapshot.key;        
+        // var key = childSnapshot.key();       
         var childData = childSnapshot.val();
-        //  console.log(childData);
+        var key = childSnapshot.key;
+
         var Inactivo = childData.Inactivo;
         var apellido = childData.apellido;
         var cargo = childData.cargo;
@@ -298,10 +298,49 @@ function empleadosRegistrados() {
         var nombre = childData.nombre;
         var planBeneficio = childData.planBeneficio;
 
-        $('#tablaEmpleados').append("<tr><td>" + nombre + "</td><td>" + apellido + "</td><td>" + correo + "</td><td>" + Inactivo + "</td><td>" + planBeneficio + "</td><td>" + cargo + "</td></tr>");
 
+        $('#tablaEmpleados').append("<tr><td>" + nombre + "</td><td>" + apellido + "</td><td>" + correo + "</td><td>" + Inactivo + "</td><td>" +
+          planBeneficio +
+          " <button class='cambiarPlan' id='cambiarPlan' type='submit' value='" + key + "'  >Cambiar</button> </td><td>" + cargo + "</td></tr>");
+      });
+
+      $('.cambiarPlan').click(function () {
+        var usuario = $(this).val();
+        // console.log(usuario);
+
+        firebase.database().ref('users/').orderByKey().equalTo(usuario).once('value').then(function (snapshot) {
+          //   console.log(snapshot.val());
+          snapshot.forEach(function (data) {
+            //  console.log(data.val());
+            var nombre = data.val().nombre;
+            var apellido = data.val().apellido;
+            var nombreCOmpleto = nombre + "  " + apellido
+            //.orderByKey().equalTo(usuario).///esto para filtrar
+            firebase.database().ref('Empresas/' + uid + "/planes/").once('value').then(function (snapshot) {
+              snapshot.forEach(function (data) {
+                var nombrePlan = data.val().nombrePlan;
+                var montoPlan = data.val().montoPlan;
+                console.log(montoPlan);
+                var s = ("<option>" + nombrePlan + " " + "€  " + montoPlan + "</option>");
+                    console.log(s);
+                    
+
+                $('#cambiarPlan2').append("<div class='modal fade show' id='modal-editar-beneficio' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-modal='true' style='padding-right: 17px; display: block;'>    <div class='modal-dialog modal-base modal-sm' role='document'>" +
+                  "<div class='modal-content'>        <div class='modal-header'>          <h5 class='modal-title' id='exampleModalLabel'>Cambiar Plan</h5>" +
+                  "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>            <span aria-hidden='true'>×</span>" +
+                  "</button>        </div>        <div class='modal-body'>          <div class='row register-form'>            <div class='col-md-12 col-12'>" +
+                  "<div class='form-group'>           <label  class='form-control' placeholder='Nombres' > " + nombreCOmpleto + "  </label>            </div>" +
+                  "</div>            <div class='col-md-12 col-12'> <div class='form-group'> <select class='form-control' id='exampleFormControlSelect12' >"+s+" </select>" +
+                  "</div>            </div>          </div>        </div>        <div class='modal-footer'>          <button type='button' class='btn edit' data-dismiss='modal'>salir</button>" +
+                  "<button type='button' class='btn primary' data-dismiss='modal'>Editar</button>        </div>      </div>    </div>  </div>");
+
+              });
+            })
+          });
+        });
       });
     });
+
   });
 } empleadosRegistrados()
 
@@ -523,17 +562,17 @@ function RecargarSaldoEMpresa() {
 
 } RecargarSaldoEMpresa()
 
-function tablaReporteEmpresa() {
+function tablaReporteEmpresa() {////usar cuando ya se generen las compras
   $(document).ready(function () {
     var data = sessionStorage.getItem('data');
     var sesion = JSON.parse(data); var uid = sesion.uid;
     firebase.database().ref('/users/').orderByChild('empresa').equalTo(uid).once('value').then(function (snapshot) {
-      console.log(snapshot.val());
+      // console.log(snapshot.val());
       snapshot.forEach(function (param) {
         var datos = (param.val());
-        var Nombre= datos.nombre;        
- //console.log(Nombre);
- 
+        var Nombre = datos.nombre;
+        //console.log(Nombre);
+
         var tabla = ("<div class='table-responsive'>" +
           "<table class='table'>" +
           "<thead class='thead-blue'>" +
@@ -548,7 +587,7 @@ function tablaReporteEmpresa() {
           "</thead>" +
           "<tbody id=''>" +
           "<tr>" +
-          "<td>"+Nombre+"</td>" +
+          "<td>" + Nombre + "</td>" +
           "<td>Arepa con diablitos</td>" +
           "<td>22/07/2019</td>" +
           "<td>" +
@@ -566,8 +605,13 @@ function tablaReporteEmpresa() {
           "</table>" +
           "</div>")
         $('#tablaReporteEmpresa').append(tabla);
-        console.log(Nombre);
+        // console.log(Nombre);
       });
     });
   });
 } tablaReporteEmpresa();
+
+
+
+
+
