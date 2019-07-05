@@ -117,14 +117,13 @@ firebase.initializeApp(firebaseConfig);
 
 function restauranteRegistradosClientes() {
   $('body').ready(function () {
-    var sesion = JSON.parse(sessionStorage.getItem('data'));
 
     firebase.database().ref('Restaurante/').once('value').then(function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
         childSnapshot.forEach(function (e) {
           var restaurante = e.val();
-          //   console.log(restaurante);
-
+          console.log(e.key);
+          var keyRestaurante = e.key;
           var NIF = restaurante.NIF;
           var codigoPosta = restaurante.codigoPosta;
           var correo = restaurante.correo;
@@ -136,24 +135,21 @@ function restauranteRegistradosClientes() {
           var poblacion = restaurante.poblacion;
           var telefono = restaurante.telefono;
           var rutaImagenRestaurante = restaurante.rutaImagenRestaurante;
-          //console.log(NIF);
-          //busca imagen///////////////
+
+          //buscar imagen restaurante
           var storageRef = firebase.storage().ref();
           var mountainsRef = storageRef.child("");
-          //console.log('qqqqqqqqqqqqqqqqq');
-          // console.log(rutaGuardaImagen);
           mountainsRef.child(rutaImagenRestaurante).getDownloadURL().then(function (url) {
-            console.log(url);
-          
+
             var tarjeta = $(" <div class='col-12 col-sm-6 col-md-6 col-lg-4'>" +
               "<div class='card card--big'>" +
               "<div class='card__image'>" +
-              "<img src='"+url+"' class='img-fluid w-100' alt=''>" +
+              "<img src='" + url + "' class='img-fluid w-100' alt=''>" +
               "</div>" +
               "<h2 class='card__title'>" + nombreRestaurante + "</h2>" +
               "<p class='card__text'>" + pais + "</p>" +
               "<div class='card__action-bar d-flex justify-content-between'>" +
-              "<button class='card__button' data-toggle='modal' data-target='#modal-detalles-plato' value='"+pais+"'>Detalles</button>" +
+              "<button  class='card__button detalleRestaurante' data-toggle='modal' data-target='#modal-detalles-plato' value='" + keyRestaurante + "'>Detalles</button>" +
               "<button class='card__button' data-toggle='modal' data-target='#modal-pago'>Comprar</button>" +
               "</div>" +
               "</div>" +
@@ -161,76 +157,102 @@ function restauranteRegistradosClientes() {
 
             $('#tarjetaPlatoCliente').append(tarjeta);
 
-            ///mpdal
-              $('#modalRestauranteDetalle').append("<div class='modal fade' id='modal-detalles-plato' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel'aria-hidden='true'>"+
-              "  <div class='modal-dialog modal-base' role='document'>"+
-              "    <div class='modal-content'>"+
-              "      <div class='modal-header'>"+
-              "        <h5 class='modal-title' id='exampleModalLabel'>Detalles</h5>"+
-              "        <button type='button' class='close' data-dismiss='modal' aria-label='Close'>"+
-              "          <span aria-hidden='true'>&times;</span>"+
-              "        </button>"+
-              "      </div>"+
-              "      <div class='modal-body'>"+
-              "        <div class='show-details'>"+
-              "          <div class='row'>"+
-              "            <div class='col-sm-12 col-12'>"+
-              "              <div class='detail-img'>"+
-              "                  <img src='/src/assets/image/platos/plato1.jpg' >"+
-              "              </div>"+
-              "            </div>"+
-              "            <div class='col-sm-6 col-12'>"+
-              "              <div class='form-group'>"+
-              "                <label >Nombre Restaurante</label>"+
-              "                <p>" + nombreRestaurante + "</p>"+
-              "              </div>"+
-              "            </div>"+
-              "            <div class='col-sm-6 col-12'>"+
-              "              <div class='form-group'>"+
-              "                <label>Restaurante</label>"+
-              "                <p>Toro gordo</p>"+
-              "              </div>"+
-              "            </div>"+
-              "            <div class='col-sm-12 col-12'>"+
-              "              <div class='form-group'>"+
-              "                <label>Descripción</label>"+
-              "                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum dicta accusantium aperiam cum atque quasi deserunt quo enim fugit. Voluptatibus doloribus delectus velit possimus beatae, accusamus similique tenetur quia nesciunt?</p>"+
-              "              </div>"+
-              "            </div>"+
-              "            <div class='col-sm-6 col-12'>"+
-              "              <div class='form-group'>"+
-              "                <label>Tamaño</label>"+
-              "                <p>Personal</p>"+
-              "              </div>"+
-              "            </div>"+
-              "            <div class='col-sm-6 col-12'>"+
-              "              <div class='form-group'>"+
-              "                <label>Cantidad</label>"+
-              "                <p>500 g</p>"+
-              "              </div>"+
-              "            </div>"+
-              "            <div class='col-sm-6 col-12'>"+
-              "              <div class='form-group'>"+
-              "                <label>Porcion</label>"+
-              "                <p>2</p>"+
-              "              </div>"+
-              "            </div>"+
-              "            <div class='col-sm-6 col-12'>"+
-              "              <div class='form-group'>"+
-              "                <label>Tiempo de preparación</label>"+
-              "                <p>30 min</p>"+
-              "              </div>"+
-              "            </div>"+
-              "          </div>"+
-              "        </div>"+
-              "      </div>"+
-              "      <div class='modal-footer'>"+
-              "        <button type='button' class='btn edit' data-dismiss='modal'>Salir</button>"+
-              "      </div>"+
-              "    </div>"+
-              "  </div>"+
-              "</div>");
+            $('.detalleRestaurante').click(function () {
+              var keyRestauranteDetalle = $(this).val();
+              console.log(keyRestauranteDetalle);
 
+              firebase.database().ref('Restaurante/' + keyRestauranteDetalle + '/').once('value').then(function (snapshot) {
+                // console.log(snapshot.val());            
+
+                var restaurante = e.val();
+                // console.log(e.key);
+                var keyRestaurante = e.key;
+                var NIF = restaurante.NIF;
+                var codigoPosta = restaurante.codigoPosta;
+                var correo = restaurante.correo;
+                var cuentas = restaurante.cuentas;
+                var direccion = restaurante.direccion;
+                var idRestauran = restaurante.idRestauran;
+                var nombreRestaurante = restaurante.nombreRestaurante;
+                var pais = restaurante.pais;
+                var poblacion = restaurante.poblacion;
+                var telefono = restaurante.telefono;
+                var rutaImagenRestaurante = restaurante.rutaImagenRestaurante;
+                console.log(nombreRestaurante);
+
+
+                ///modal
+                $('#modalRestauranteDetalle').append("<div class='modal fade' id='modal-detalles-plato' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel'aria-hidden='true'>" +
+                  "  <div class='modal-dialog modal-base' role='document'>" +
+                  "    <div class='modal-content'>" +
+                  "      <div class='modal-header'>" +
+                  "        <h5 class='modal-title' id='exampleModalLabel'>Detalles</h5>" +
+                  "        <button type='button' class='close' data-dismiss='modal' aria-label='Close'>" +
+                  "          <span aria-hidden='true'>&times;</span>" +
+                  "        </button>" +
+                  "      </div>" +
+                  "      <div class='modal-body'>" +
+                  "        <div class='show-details'>" +
+                  "          <div class='row'>" +
+                  "            <div class='col-sm-12 col-12'>" +
+                  "              <div class='detail-img'>" +
+                  "                  <img src='/src/assets/image/platos/plato1.jpg' >" +
+                  "              </div>" +
+                  "            </div>" +
+                  "            <div class='col-sm-6 col-12'>" +
+                  "              <div class='form-group'>" +
+                  "                <label >Nombre Restaurante</label>" +
+                  "                <p>" + nombreRestaurante + "</p>" +
+                  "              </div>" +
+                  "            </div>" +
+                  "            <div class='col-sm-6 col-12'>" +
+                  "              <div class='form-group'>" +
+                  "                <label>Direccion</label>" +
+                  "                <p>'" + direccion + "'</p>" +
+                  "              </div>" +
+                  "            </div>" +
+                  "            <div class='col-sm-12 col-12'>" +
+                  "              <div class='form-group'>" +
+                  "                <label>Descripción</label>" +
+                  "                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum dicta accusantium aperiam cum atque quasi deserunt quo enim fugit. Voluptatibus doloribus delectus velit possimus beatae, accusamus similique tenetur quia nesciunt?</p>" +
+                  "              </div>" +
+                  "            </div>" +
+                  "            <div class='col-sm-6 col-12'>" +
+                  "              <div class='form-group'>" +
+                  "                <label>Tamaño</label>" +
+                  "                <p>Personal</p>" +
+                  "              </div>" +
+                  "            </div>" +
+                  "            <div class='col-sm-6 col-12'>" +
+                  "              <div class='form-group'>" +
+                  "                <label>Cantidad</label>" +
+                  "                <p>500 g</p>" +
+                  "              </div>" +
+                  "            </div>" +
+                  "            <div class='col-sm-6 col-12'>" +
+                  "              <div class='form-group'>" +
+                  "                <label>Porcion</label>" +
+                  "                <p>2</p>" +
+                  "              </div>" +
+                  "            </div>" +
+                  "            <div class='col-sm-6 col-12'>" +
+                  "              <div class='form-group'>" +
+                  "                <label>Tiempo de preparación</label>" +
+                  "                <p>30 min</p>" +
+                  "              </div>" +
+                  "            </div>" +
+                  "          </div>" +
+                  "        </div>" +
+                  "      </div>" +
+                  "      <div class='modal-footer'>" +
+                  "        <button type='button' class='btn edit' data-dismiss='modal'>Salir</button>" +
+                  "      </div>" +
+                  "    </div>" +
+                  "  </div>" +
+                  "</div>");
+
+              })
+            });
           })
         });
       });
@@ -309,10 +331,10 @@ function RecargarSaldoEMpresa() {
 
 } RecargarSaldoEMpresa()
 
-function nombreCliente() {  
+function nombreCliente() {
   $(document).ready(function () {
     var data = sessionStorage.getItem('data');
     var sesion = JSON.parse(data)
-    $('#nombreEmpresa').append("<span>"+ sesion.users.correo+"</span>");
+    $('#nombreEmpresa').append("<span>" + sesion.users.correo + "</span>");
   });
-}nombreCliente()
+} nombreCliente()
