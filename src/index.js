@@ -159,7 +159,7 @@ function registroEmpresa() {
   })
 } registroEmpresa();
 
-function registroRestaurante(d) {
+function registroRestaurante() {
   $(document).ready(function () {
     $('#registrarRestaurante').click(function (e) {
       e.preventDefault();
