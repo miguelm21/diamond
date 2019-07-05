@@ -137,10 +137,10 @@ function registroEmpresa() {
           "NIF": NIF,
           "contraseña": contraseña,
           "uid": uid,
-          "cuentas":{
-            "cuanta1":0,
-            "cuenta2":0,
-            "cuentaTotal":0
+          "cuentas": {
+            "cuanta1": 0,
+            "cuenta2": 0,
+            "cuentaTotal": 0
           }
 
 
@@ -177,41 +177,61 @@ function registroRestaurante() {
       var poblacion = datos[8].value;
       var contraseña = datos[9].value;
       var confirmarContraseña = datos[10].value;
+      console.log(contraseña);
+      console.log(datos[3].value);
 
       firebase.auth().createUserWithEmailAndPassword(correo, contraseña).then(function (resultado) {
 
         var uid = resultado.user.uid;
-        var res = firebase.database().ref('Restaurante/' + uid).push({
 
-          "nombreRestaurante": nombreRestaurante,
-          "NIF": NIF,
-          "idRestauran": idRestauran,
-          "correo": correo,
-          "telefono": telefono,
-          "direccion": direccion,
-          "codigoPosta": codigoPosta,
-          "pais": pais,
-          "poblacion": poblacion,
-          "contraseña": contraseña,
-          "confirmarContraseña": confirmarContraseña,
-          "cuentas":{
-            "cuanta1":0,
-            "cuenta2":0,
-            "cuentaTotal":0
-          }
+        //////////////////////////////////////////////////////
+        var fotoval = document.getElementById('imagenRestaurante');
+        var foto = new FileReader();
+        foto.onload = function (e) {
+          var file = (e.target.result);
+          console.log(file);
+
+          var storageRef = firebase.storage().ref();
+          var mountainsRef = storageRef.child('imagen/restaurante/' + uid + fotoval.files[0].name);
+          var imagen = file.substring(23);
+          mountainsRef.putString(imagen, 'base64').then(function (snapshot) {
+            var rutaGuardaImagen = snapshot.metadata.fullPath;
+          
+            /////////////////////////////////////////////////////
+
+            firebase.database().ref('Restaurante/' + uid).push({
+
+              "nombreRestaurante": nombreRestaurante,
+              "NIF": NIF,
+              "idRestauran": idRestauran,
+              "correo": correo,
+              "telefono": telefono,
+              "direccion": direccion,
+              "codigoPosta": codigoPosta,
+              "pais": pais,
+              "poblacion": poblacion,
+              "contraseña": contraseña,
+              "confirmarContraseña": confirmarContraseña,
+              "rutaImagenRestaurante":rutaGuardaImagen,
+              "cuentas": {
+                "cuanta1": 0,
+                "cuenta2": 0,
+                "cuentaTotal": 0,                
+              }
 
 
-        }, function (error) {
-          if (error) {
-            alert('Hay un error en sus datos verifique e intentelo de nuevo...')
-          } else {
-            alert('Registro completado con exito!')
-          }
+            }, function (error) {
+              if (error) {
+                alert('Hay un error en sus datos verifique e intentelo de nuevo...')
+              } else {
+                alert('Registro completado con exito!')
+              }
+            })
+          })
 
 
-        })
-
-      });
+        }, foto.readAsDataURL(fotoval.files[0]);
+      })
     });
   })
 } registroRestaurante();
@@ -361,7 +381,7 @@ function iniciarSesioncliente() {
             if (sesion === '' | sesion === 'null') {
               alert('no ha iniciado sesion')
             } else {
-              alert("has iniciado sesion  =" );
+              alert("has iniciado sesion  =");
               // console.log(sesion);
               location.href = "panelClientes.html"
             }

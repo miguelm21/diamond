@@ -51,7 +51,7 @@
         <div class="dropdown text-right edit">
           <a class="dropdown-toggle option-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img src="/src/assets/image/avatar.png" alt="">
-            <span id="nombreEmpresa"><span>Empresa 1</span></span>
+            <span id="nombreEmpresa"></span>
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="#">Editar contraseña</a>
@@ -113,23 +113,22 @@
               <h5 class="title">Panel</h5>
               <div class="price-status">
                 <p>Tu saldo</p>
-                <h5>540.00 €</h5>
+                <h5 id="saldoCliente"></h5>
               </div>
               <ul>
                 <li><a href="#" id="platos-show"><i class="fas fa-home mr-2" ></i>Platos</a></li>
-                <li>
-                  <div class="dropright">
-                    <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                      aria-expanded="false">
-                      <i class="far fa-credit-card mr-2"></i>Recargar saldo <i class="fas fa-chevron-right right"></i>
-                    </a>
+                <li> <a href="#" data-toggle="modal" data-target="#modal-pago">
+                  <i class="far fa-credit-card mr-2"></i>Recargar saldo <i class="fas fa-chevron-right right"></i>
+                </a>
+                  <!-- <div class="dropright">
+                   
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                       <a class="dropdown-item" href="#"><i class="fas fa-coins mr-2"></i>********4203</i></a>
                       <a class="dropdown-item" href="#"><i class="fas fa-coins mr-2"></i>********3516</a>
                       <a class="dropdown-item text-center" href="#">Añadir nueva</a>
-                    </div>
-                  </div>
+                    </div> 
+                  </div>-->
                 </li>
                 <li>
                   <!-- <div class="dropright">
@@ -284,367 +283,302 @@
 
   <!-- Modales Ver detalles -->
 
-
+  <div id="modalRestauranteDetalle">
+  
+  </div>
+  <div class="modal fade" id="modal-detalles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-base" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="show-details">
+            <div class="row">
+              <div class="col-sm-6 col-12">
+                <div class="form-group">
+                  <label>Nombre</label>
+                  <p>Juan </p>
+                </div>
+              </div>
+              <div class="col-sm-6 col-12">
+                <div class="form-group">
+                  <label>Apellido</label>
+                  <p>Gonzalez Espinoza</p>
+                </div>
+              </div>
+              <div class="col-sm-6 col-12">
+                <div class="form-group">
+                  <label>Correo</label>
+                  <p>Prueba4223141@hotmail.com</p>
+                </div>
+              </div>
+              <div class="col-sm-6 col-12">
+                <div class="form-group">
+                  <label>Dirección</label>
+                  <p>Carrera 13 entre av unda</p>
+                </div>
+              </div>
+              <div class="col-sm-6 col-12">
+                <div class="form-group">
+                  <label>Cargo</label>
+                  <p>Desarrollador</p>
+                </div>
+              </div>
+              <div class="col-sm-6 col-12">
+                <div class="form-group">
+                  <label>Inactivo</label>
+                  <p>
+                    <i class="status red fas fa-check"></i>
+                    <i class="status green fas fa-times d-none"></i>
+                  </p>
+                </div>
+              </div>
+              <div class="col-sm-6 col-12">
+                <div class="form-group">
+                  <label>Plan beneficio</label>
+                  <p>Plan mensual</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn edit" data-dismiss="modal">Salir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modal-editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-base" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar usuario</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row register-form">
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Nombres" value="" />
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Apellidos" value="" />
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <input type="date" onfocus="(this.type='date')" id="date" class="form-control"
+                  placeholder="Fecha de nacimiento" value="" />
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Correo electrónico" value="" />
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Cargo" value="" />
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Inactivo" value="" />
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>Plan de beneficio</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn edit" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn primary" data-dismiss="modal">Editar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modal-eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-base modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Atención</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="eliminar">
+            <p>Esta seguro que desea eliminar este usuario ?</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn edit" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn primary" data-dismiss="modal">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade" id="modal-editar-beneficio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-base modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row register-form">
+            <div class="col-md-12 col-12">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Nombres" value="" />
+              </div>
+            </div>
+            <div class="col-md-12 col-12">
+              <div class="form-group">
+                <input type="number" class="form-control" placeholder="Monto" value="" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn edit" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn primary" data-dismiss="modal">Editar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modal-comprar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-base modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Atención</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="eliminar">
+            <p>¿Esta seguro que desea comprar este plato ?</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn edit" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn primary" data-toggle='modal' data-target='#modal-comprar'>Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modal-pago" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-base" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Transacción</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body pago">
+          <div class="box-pago register-form">
+              <h5 class="title">Tarjetas de crédito</h5>
+                <form id="recargaSaldoCliente">
+            <div class="box-tarjetas " id="radio-style">
+              <ul>
+                <li>
+                  <input class="radio" type="radio" id="radio1" name="tarjetaCredito" value="visa"/>
+                  <label class="radio-style" for="radio1"><img src="/src/assets/image/pago/card1.png" /></label>
+                </li>
+                <li>
+                  <input class="radio" type="radio" id="radio2" name="tarjetaCredito" value="master"/>
+                  <label class="radio-style" for="radio2"><img src="/src/assets/image/pago/card2.jpg" /></label>
+                </li>
+              </ul>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="">Nombre del titular</label>
+                  <input type="text" class="form-control" name="nombreTitular" >
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                    <label for="">Número de tarjeta</label>
+                    <input type="text" class="form-control" name="NumeroTarjeta">
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="">Fecha de expiración</label>
+                  <div class="row">
+                    <div class="col-6">
+                        <input type="date" class="form-control" name="fechaExp">
+                    </div>
+                    <div class="col-6">
+                        <input type="date" class="form-control">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="">Código de seguridad</label>
+                  <div class="row">
+                    <div class="col-4">
+                        <input type="number" class="form-control" name="codigoSeguridad">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="">Monto</label>
+                  <div class="row">
+                    <div class="col-4">
+                        <input type="number" class="form-control" name="montoRecargar">
+                    </div>
+                  </div>
+                </div>
+              </div>
+           <!--    <div class="col-12">
+                <p class="description-text"></p>
+              </div> -->
+            </div>
+          </div>
+        </div></form>
+        <div class="modal-footer">
+          <button id="recargarSaldoCliente" type="button" class="btn primary align">Aceptar saldo cliente</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
-<div class="modal fade" id="modal-detalles-plato" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-base" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="show-details">
-          <div class="row">
-            <div class="col-sm-12 col-12">
-              <div class="detail-img">
-                  <img src="/src/assets/image/platos/plato1.jpg" >
-              </div>
-            </div>
-            <div class="col-sm-6 col-12">
-              <div class="form-group">
-                <label>Nombre</label>
-                <p>Juan </p>
-              </div>
-            </div>
-            <div class="col-sm-6 col-12">
-              <div class="form-group">
-                <label>Restaurante</label>
-                <p>Toro gordo</p>
-              </div>
-            </div>
-            <div class="col-sm-12 col-12">
-              <div class="form-group">
-                <label>Descripción</label>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum dicta accusantium aperiam cum atque quasi deserunt quo enim fugit. Voluptatibus doloribus delectus velit possimus beatae, accusamus similique tenetur quia nesciunt?</p>
-              </div>
-            </div>
-            <div class="col-sm-6 col-12">
-              <div class="form-group">
-                <label>Tamaño</label>
-                <p>Personal</p>
-              </div>
-            </div>
-            <div class="col-sm-6 col-12">
-              <div class="form-group">
-                <label>Cantidad</label>
-                <p>500 g</p>
-              </div>
-            </div>
-            <div class="col-sm-6 col-12">
-              <div class="form-group">
-                <label>Porcion</label>
-                <p>2</p>
-              </div>
-            </div>
-            <div class="col-sm-6 col-12">
-              <div class="form-group">
-                <label>Tiempo de preparación</label>
-                <p>30 min</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn edit" data-dismiss="modal">Salir</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade" id="modal-detalles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-base" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="show-details">
-          <div class="row">
-            <div class="col-sm-6 col-12">
-              <div class="form-group">
-                <label>Nombre</label>
-                <p>Juan </p>
-              </div>
-            </div>
-            <div class="col-sm-6 col-12">
-              <div class="form-group">
-                <label>Apellido</label>
-                <p>Gonzalez Espinoza</p>
-              </div>
-            </div>
-            <div class="col-sm-6 col-12">
-              <div class="form-group">
-                <label>Correo</label>
-                <p>Prueba4223141@hotmail.com</p>
-              </div>
-            </div>
-            <div class="col-sm-6 col-12">
-              <div class="form-group">
-                <label>Dirección</label>
-                <p>Carrera 13 entre av unda</p>
-              </div>
-            </div>
-            <div class="col-sm-6 col-12">
-              <div class="form-group">
-                <label>Cargo</label>
-                <p>Desarrollador</p>
-              </div>
-            </div>
-            <div class="col-sm-6 col-12">
-              <div class="form-group">
-                <label>Inactivo</label>
-                <p>
-                  <i class="status red fas fa-check"></i>
-                  <i class="status green fas fa-times d-none"></i>
-                </p>
-              </div>
-            </div>
-            <div class="col-sm-6 col-12">
-              <div class="form-group">
-                <label>Plan beneficio</label>
-                <p>Plan mensual</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn edit" data-dismiss="modal">Salir</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade" id="modal-editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-base" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Editar usuario</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="row register-form">
-          <div class="col-md-6 col-12">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Nombres" value="" />
-            </div>
-          </div>
-          <div class="col-md-6 col-12">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Apellidos" value="" />
-            </div>
-          </div>
-          <div class="col-md-6 col-12">
-            <div class="form-group">
-              <input type="date" onfocus="(this.type='date')" id="date" class="form-control"
-                placeholder="Fecha de nacimiento" value="" />
-            </div>
-          </div>
-          <div class="col-md-6 col-12">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Correo electrónico" value="" />
-            </div>
-          </div>
-          <div class="col-md-6 col-12">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Cargo" value="" />
-            </div>
-          </div>
-          <div class="col-md-6 col-12">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Inactivo" value="" />
-            </div>
-          </div>
-          <div class="col-md-6 col-12">
-            <div class="form-group">
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>Plan de beneficio</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn edit" data-dismiss="modal">Salir</button>
-        <button type="button" class="btn primary" data-dismiss="modal">Editar</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade" id="modal-eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-base modal-sm" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Atención</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="eliminar">
-          <p>Esta seguro que desea eliminar este usuario ?</p>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn edit" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn primary" data-dismiss="modal">Eliminar</button>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="modal fade" id="modal-editar-beneficio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-base modal-sm" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="row register-form">
-          <div class="col-md-12 col-12">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Nombres" value="" />
-            </div>
-          </div>
-          <div class="col-md-12 col-12">
-            <div class="form-group">
-              <input type="number" class="form-control" placeholder="Monto" value="" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn edit" data-dismiss="modal">Salir</button>
-        <button type="button" class="btn primary" data-dismiss="modal">Editar</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade" id="modal-comprar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-base modal-sm" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Atención</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="eliminar">
-          <p>¿Esta seguro que desea comprar este plato ?</p>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn edit" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn primary" data-toggle='modal' data-target='#modal-comprar'>Aceptar</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade" id="modal-pago" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-base" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Transacción</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body pago">
-        <div class="box-pago register-form">
-            <h5 class="title">Tarjetas de crédito</h5>
-          <div class="box-tarjetas " id="radio-style">
-            <ul>
-              <li>
-                <input class="radio" type="radio" id="radio1" name="radio-group"/>
-                <label class="radio-style" for="radio1"><img src="/src/assets/image/pago/card1.png" /></label>
-              </li>
-              <li>
-                <input class="radio" type="radio" id="radio2" name="radio-group"/>
-                <label class="radio-style" for="radio2"><img src="/src/assets/image/pago/card2.jpg" /></label>
-              </li>
-            </ul>
-          </div>
-          <div class="row">
-            <div class="col-6">
-              <div class="form-group">
-                <label for="">Nombre del titular</label>
-                <input type="text" class="form-control">
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="form-group">
-                  <label for="">Número de tarjeta</label>
-                  <input type="text" class="form-control">
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-group">
-                <label for="">Fecha de expiración</label>
-                <div class="row">
-                  <div class="col-6">
-                      <input type="date" class="form-control">
-                  </div>
-                  <div class="col-6">
-                      <input type="date" class="form-control">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-group">
-                <label for="">Código de seguridad</label>
-                <div class="row">
-                  <div class="col-4">
-                      <input type="number" class="form-control">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-group">
-                <label for="">Monto</label>
-                <div class="row">
-                  <div class="col-4">
-                      <input type="number" class="form-control">
-                  </div>
-                </div>
-              </div>
-            </div>
-         <!--    <div class="col-12">
-              <p class="description-text"></p>
-            </div> -->
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn primary align">Aceptar</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
   integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">

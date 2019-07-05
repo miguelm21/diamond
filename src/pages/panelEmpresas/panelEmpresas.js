@@ -320,7 +320,7 @@ function empleadosRegistrados() {
               snapshot.forEach(function (data) {
                 var nombrePlan = data.val().nombrePlan;
                 var montoPlan = data.val().montoPlan;
-                console.log(montoPlan);
+               // console.log(montoPlan);
                 var s = ("<option>" + nombrePlan + " " + "€  " + montoPlan + "</option>");
                     console.log(s);
                     
