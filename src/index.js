@@ -159,7 +159,7 @@ function registroEmpresa() {
   })
 } registroEmpresa();
 
-function registroRestaurante() {
+function registroRestaurante(d) {
   $(document).ready(function () {
     $('#registrarRestaurante').click(function (e) {
       e.preventDefault();
@@ -216,7 +216,8 @@ function registroRestaurante() {
               "cuentas": {
                 "cuanta1": 0,
                 "cuenta2": 0,
-                "cuentaTotal": 0,                
+                "cuentaTotal": 0,    
+
               }
 
 
