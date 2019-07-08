@@ -72,9 +72,6 @@
 							padding: 0;
 						}
 					}
-					.status{
-						
-					}
 				  	 .status.green{
 			           color: $red;
 			         }
@@ -149,7 +146,7 @@
 								border: none;
 								color: $secondary;
 								border-radius: 0 !important;
-								&:hover,{
+								&:hover{
 									border-radius: 0 !important;
 									background-color: transparent;
 									color: $primary;
@@ -282,4 +279,38 @@
 			}
 
 	}
+
+
+}	
+/* Modal buy */
+
+.modal-dialog.buy-edit{
+	max-width: 420px;
+
+.nombrePlato{
+	margin-top: 30px;
+	border: 1px solid #ececec;
+	border-bottom: 3px solid $primary;
+	h4{
+		font-size: 18px;
+		background-color: $primary;
+		padding: 8px;
+		color: #fff;
+		text-align: center;
+	}
+
+	.description{
+		text-align: center;
+		padding: 8px;
+		min-height: 100px;
+	}
+
+	p:last-child{
+		padding: 8px;
+		background-color: #ececec;
+		color: #666;
+		font-weight: bold;
+		font-size: 18px;
+	}
+}
 }

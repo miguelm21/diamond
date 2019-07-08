@@ -321,7 +321,7 @@ function comprar() {
         var descripcionPlato =platoComprado.descripcionPlato;
         var nombrePlato=platoComprado.nombrePlato;
         var PrecioPlato=platoComprado.PrecioPlato;
-     $('.nombrePlato').html("<h4>" + nombrePlato + "</h4> <h4>" + descripcionPlato + "</h4><h4> € " + PrecioPlato + "</h4>");
+     $('.nombrePlato').html("<h4>" + nombrePlato + "</h4> <p class='description'>" + descripcionPlato + "</p><p> € " + PrecioPlato + "</p>");
 
     })
   })
