@@ -263,7 +263,7 @@ function detalleRestauranteCliente() {
       var rutaImagenRestaurante = restaurante.rutaImagenRestaurante;
       var telefono = restaurante.telefono;
 
-      
+
       $('#resName').text(nombreRestaurante);
       $('#direccionRestaurante').text(direccion);
       $('#direccionTelefono').text(telefono);
@@ -271,13 +271,13 @@ function detalleRestauranteCliente() {
       $('#direccionCorreo').text(correo);
 
       firebase.database().ref('Platos/' + uidRestaurante + '/').once('value').then(function (snapshot) {
-       
-        
+
+
         snapshot.forEach(function (plato) {
           var platos = (plato.val());
-   var keyPlato = plato.key;
-   console.log(keyPlato);
-   
+          var keyPlato = plato.key;
+          console.log(keyPlato);
+
           var PrecioPlato = platos.PrecioPlato;
           var TamañoPLato = platos.TamañoPLato;
           var cantidadPlato = platos.cantidadPlato;
@@ -291,19 +291,20 @@ function detalleRestauranteCliente() {
 
           var storageRef = firebase.storage().ref();
           var mountainsRef = storageRef.child("");
-          mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) { 
+          mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) {
             $('#tablaPlatos').append("<tr><td>" + nombrePlato + "</td><td>" + descripcionPlato + "</td><td> €" + PrecioPlato + "</td><td>" + tipoPLato + "</td><td>" +
-              porcionPlato + "</td><td> <img class='img-fluid' src='"+url+"' > </td><td>   <button class='btn buy' id='cambiarPlan' type='submit' value='"+keyPlato+"'  data-toggle='modal' data-target='#modal-comprar'><i class='fas fa-shopping-cart'></i></button> </td></tr>");
+              porcionPlato + "</td><td> <img class='img-fluid' src='" + url + "' > </td><td> " +
+              " <button class='btn buy comprarPlatoboton' id='" + keyPlato + "' type='submit' value='" + uidRestaurante + "'  data-toggle='modal' data-target='#modal-comprar'><i class='fas fa-shopping-cart'></i></button> </td></tr>");
 
           });
         });
-        });
+      });
 
       $('#modal-detalles-plato').modal('show');
 
-     $('#cambiarPlan').click(function(){
-      $('#modal-comprar').modal('show');
-     });
+      //  $('#cambiarPlan').click(function(){
+      // $('#modal-comprar').modal('show');
+      //});
     })
   });
 
@@ -311,11 +312,17 @@ function detalleRestauranteCliente() {
 
 function comprar() {
   $(document.body).on('click', '.comprarPlatoboton', (e) => {
-var keyPlatos = e.target.value;
-//$('#modal-detalles-plato').modal('hide');
-$('#modalVerificacionCompra').modal('show');
-})
-   // alert('aqui compras'+ keyPlatos);
-  
-  
-}comprar()
+    var keyPlatos = e.currentTarget.id;
+    var restaurante = e.currentTarget.value;
+ 
+
+    firebase.database().ref('Platos/' + restaurante + '/'+keyPlatos+'/').once('value').then(function (snapshot) {
+         var platoComprado=(   snapshot.val());
+        var descripcionPlato =platoComprado.descripcionPlato;
+        var nombrePlato=platoComprado.nombrePlato;
+        var PrecioPlato=platoComprado.PrecioPlato;
+     $('.nombrePlato').html("<h4>" + nombrePlato + "</h4> <h4>" + descripcionPlato + "</h4><h4> € " + PrecioPlato + "</h4>");
+
+    })
+  })
+} comprar()
