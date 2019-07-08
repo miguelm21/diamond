@@ -293,13 +293,17 @@ function detalleRestauranteCliente() {
           var mountainsRef = storageRef.child("");
           mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) { 
             $('#tablaPlatos').append("<tr><td>" + nombrePlato + "</td><td>" + descripcionPlato + "</td><td> €" + PrecioPlato + "</td><td>" + tipoPLato + "</td><td>" +
-              porcionPlato + "</td><td> <img src='"+url+"' > </td><td> '  <button class='comprarPlatoboton' id='cambiarPlan' type='submit' value='"+keyPlato+"'  >Comprar</button> </td></tr>");
+              porcionPlato + "</td><td> <img class='img-fluid' src='"+url+"' > </td><td>   <button class='btn buy' id='cambiarPlan' type='submit' value='"+keyPlato+"'  data-toggle='modal' data-target='#modal-comprar'><i class='fas fa-shopping-cart'></i></button> </td></tr>");
 
           });
         });
         });
 
       $('#modal-detalles-plato').modal('show');
+
+     $('#cambiarPlan').click(function(){
+      $('#modal-comprar').modal('show');
+     });
     })
   });
 
