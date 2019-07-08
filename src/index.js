@@ -199,7 +199,7 @@ function registroRestaurante() {
           
             /////////////////////////////////////////////////////
 
-            firebase.database().ref('Restaurante/' + uid).push({
+            firebase.database().ref('Restaurante/' + uid).set({
 
               "nombreRestaurante": nombreRestaurante,
               "NIF": NIF,
