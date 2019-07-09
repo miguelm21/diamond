@@ -9,6 +9,7 @@ import 'owl.carousel';
 import * as AOS from 'aos/dist/aos.js';
 import swal from 'sweetalert';
 import Chart from 'chart.js';
+//import swal from 'sweetalert';
 
 // toggle class scroll 
 $(window).scroll(function () {
@@ -209,7 +210,7 @@ function RecargarSaldoEMpresa() {
         var montoRecargar = form[5].value;
         var sumaSaldo = parseFloat(montoRecargar) + parseFloat(saldoCuenta1);
 
-        console.log(sumaSaldo);
+        // console.log(sumaSaldo);
 
         firebase.database().ref('users/' + uid + "/cuentas").update({
           "cuanta1": sumaSaldo
@@ -226,6 +227,7 @@ function RecargarSaldoEMpresa() {
           "uidempresa": uid
         }, function (error) {
           if (error) {
+           
             alert('Hay un error en sus datos verifique e intentelo de nuevo...')
           } else {
             alert('Recarga realizada con exito!');
@@ -271,12 +273,10 @@ function detalleRestauranteCliente() {
       $('#direccionCorreo').text(correo);
 
       firebase.database().ref('Platos/' + uidRestaurante + '/').once('value').then(function (snapshot) {
-
-
         snapshot.forEach(function (plato) {
           var platos = (plato.val());
           var keyPlato = plato.key;
-          console.log(keyPlato);
+          // console.log(keyPlato);
 
           var PrecioPlato = platos.PrecioPlato;
           var TamañoPLato = platos.TamañoPLato;
@@ -310,19 +310,74 @@ function detalleRestauranteCliente() {
 
 } detalleRestauranteCliente()
 
-function comprar() {
+function comprarLista() {
   $(document.body).on('click', '.comprarPlatoboton', (e) => {
     var keyPlatos = e.currentTarget.id;
     var restaurante = e.currentTarget.value;
- 
 
-    firebase.database().ref('Platos/' + restaurante + '/'+keyPlatos+'/').once('value').then(function (snapshot) {
-         var platoComprado=(   snapshot.val());
-        var descripcionPlato =platoComprado.descripcionPlato;
-        var nombrePlato=platoComprado.nombrePlato;
-        var PrecioPlato=platoComprado.PrecioPlato;
-     $('.nombrePlato').html("<h4>" + nombrePlato + "</h4> <p class='description'>" + descripcionPlato + "</p><p> € " + PrecioPlato + "</p>");
-
+    firebase.database().ref('Platos/' + restaurante + '/' + keyPlatos + '/').once('value').then(function (snapshot) {
+      var platoComprado = (snapshot.val());
+      var descripcionPlato = platoComprado.descripcionPlato;
+      var nombrePlato = platoComprado.nombrePlato;
+      var PrecioPlato = platoComprado.PrecioPlato;
+      $('.nombrePlato').html("<h4>" + nombrePlato + "</h4> <p class='description'>" + descripcionPlato + "</p><p> € " + PrecioPlato + "</p>");
+      $('#botonComprar').html("<button type='button' id=" + keyPlatos + " class='btn primary comprarYa' value=" + restaurante + " >Aceptar y Comprar</button>");
     })
   })
+} comprarLista()
+
+function comprar() {
+  $(document).ready(function () {
+    $(document.body).on('click', '.comprarYa', function (e) {
+      var data = sessionStorage.getItem('data');
+      var sesion = JSON.parse(data);
+      //console.log(sesion.users.nombre);
+      var keyPlatos = e.currentTarget.id;
+      var restaurante = e.currentTarget.value;
+      //console.log(keyPlatos, restaurante);
+      firebase.database().ref('Platos/' + restaurante + '/' + keyPlatos + '/').once('value').then(function (snapshot) {
+        var platoComprado = (snapshot.val());
+        var descripcionPlato = platoComprado.descripcionPlato;
+        var nombrePlato = platoComprado.nombrePlato;
+        var PrecioPlato = platoComprado.PrecioPlato;
+        firebase.database().ref('users/' + sesion.uid + "/cuentas").once('value').then(function (snapshot) {
+          var snap = snapshot.val();
+         // console.log(snap.cuentaTotal);
+          var saldoCuenta1 = snap.cuanta1;
+          var saldoCuenta2 = snap.cuenta2;
+          var saldoTotal = parseFloat(saldoCuenta1) + parseFloat(saldoCuenta2);
+           console.log( 'saldo'+saldoCuenta1);
+           console.log('precio'+PrecioPlato);
+
+           if (saldoTotal < PrecioPlato) {
+            swal({
+              title: "Sin Saldo?",
+              text: "Aprovecha y recarga tu saldo!",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+            })
+             alert('no tienes saldo suficiente Recarga saldo!!!!')
+           } else if ( saldoCuenta1 <= PrecioPlato ){
+
+            var resta1 = parseFloat(saldoCuenta1) - parseFloat(PrecioPlato);
+            var positivo = -1 *resta1;
+            var resta2 = parseFloat(saldoCuenta2) - parseFloat(positivo);
+            console.log('resultado1'+resta1);
+            console.log('resultado2'+resta2);
+
+            firebase.database().ref('users/' + sesion.uid + "/cuentas").update({
+              "cuanta1": 0,
+              "cuenta2":resta2,    
+            })           
+            firebase.database().ref('transaccion/').push().update({
+             "usuario" :sesion,
+             "restaurante":restaurante,
+              "plato":platoComprado
+            })           
+           }else{alert('Error Desconocido, mal calculo busca funcion comprar')}
+        })
+      })
+    });
+  });
 } comprar()

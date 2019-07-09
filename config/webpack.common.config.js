@@ -6,8 +6,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin   = require('clean-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 var ImageminPlugin = require('imagemin-webpack-plugin').default
-
+var WebpackNotifierPlugin = require('webpack-notifier');
 module.exports = {
+    
   entry: {      
     
       index: './src/index.js',
@@ -62,6 +63,7 @@ module.exports = {
     ]
   },
   plugins: [
+  
     new HtmlWebpackPlugin({
         title: 'EmetLife',
         template: './src/index.html',
