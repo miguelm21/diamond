@@ -363,8 +363,8 @@ function comprar() {
             var resta1 = parseFloat(saldoCuenta1) - parseFloat(PrecioPlato);
             var positivo = -1 * parseFloat(resta1);
             var resta2 = parseFloat(saldoCuenta2) - parseFloat(positivo);
-            console.log('resultado1' + resta1);
-            console.log('resultado2' + resta2);
+         //   console.log('resultado1' + resta1);
+           // console.log('resultado2' + resta2);
 
             firebase.database().ref('users/' + sesion.uid + "/cuentas").update({
               "cuanta1": 0,
@@ -389,7 +389,8 @@ function comprar() {
             firebase.database().ref('transaccion/').push().update({
               "usuario": sesion,
               "restaurante": restaurante,
-              "plato": platoComprado
+              "plato": platoComprado,
+              "fecha": firebase.database.ServerValue.TIMESTAMP
             })
             swal("Good job!", "You clicked the button!", "success", {
               button: "Aww yiss!",
@@ -411,25 +412,33 @@ function historialCliente() {
       //console.log(snapshot.val());
       snapshot.forEach(element => {
         var datosCompras = (element.val());
-        console.log(datosCompras);
+        //   console.log(datosCompras);
 
         var restaurante = datosCompras.restaurante;
         var plato = datosCompras.plato.nombrePlato;
         var PrecioPlato = datosCompras.plato.PrecioPlato;
         var fecha = datosCompras.fecha;
-       
-        
-        var date = Date.parse(fecha);
-        console.log(date);
-        
+        var date = new Date(fecha);
+        var year = date.getFullYear();
+        var month = date.getMonth();
+        var hours = date.getHours();
+        var day = date.getDate();
+        var minutes = "0" + date.getMinutes();
+        var seconds = "0" + date.getSeconds();
+        var convdataTime = day + '-' +  month + '-' + year + ' ' + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+
+        // Day
+        var dia = date.getDate();
+        console.log(convdataTime);
+
         firebase.database().ref('Restaurante/').orderByKey().equalTo(restaurante).once('value').then(function (snapshot) {
-          console.log(snapshot.val());
+          // console.log(snapshot.val());
           snapshot.forEach(element => {
             var datos = element.val();
             var restaurante = datos.nombreRestaurante;
-            console.log(restaurante);
+            //   console.log(restaurante);
 
-            $('#historialClientePlatos').append("  <tr><td>" + restaurante + "</td> <td>" + plato + "</td> <td>" + PrecioPlato + "</td> <td>€ " + PrecioPlato + "</td> <td>" + date + "</td> </tr>");
+            $('#historialClientePlatos').append("  <tr><td>" + restaurante + "</td> <td>" + plato + "</td> <td>" + PrecioPlato + "</td> <td>€ " + PrecioPlato + "</td> <td>" + convdataTime + "</td> </tr>");
           });
         })
       });
