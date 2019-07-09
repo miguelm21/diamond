@@ -115,6 +115,17 @@ function backbutton() {
   $('#show-register2').hide();
   $('#show-button').show();
 }
+function restartLoading() {
+  $("#status").show();
+  $("#preloader").show();
+}restartLoading()
+
+function hideLoading() {
+  $("#status").fadeOut();
+  $("#preloader").delay(1000).fadeOut("slow");
+  $('.modal-backdrop').remove();
+}
+
 firebase.initializeApp(firebaseConfig);
 
 function restauranteRegistradosClientes() {
@@ -179,9 +190,10 @@ function consultaSaldoCliente() {
       //console.log(cuenta2);
 
       var saldoEmpresa = parseFloat(cuenta1) + parseFloat(cuenta2);
-
-      document.getElementById('saldoCliente').innerHTML = "€ " + saldoEmpresa;
-
+         
+        var g = saldoEmpresa.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })
+      document.getElementById('saldoCliente').innerHTML = "" + g;
+        
     })
   });
 } consultaSaldoCliente()
@@ -325,8 +337,9 @@ function comprarLista() {
 } comprarLista()
 
 function comprar() {
-  $(document).ready(function () {
-    $(document.body).on('click', '.comprarYa', function (e) {
+  $(document).ready(function () {       
+    $(document.body).on('click', '.comprarYa', function (e) {    
+      restartLoading(); 
       var data = sessionStorage.getItem('data');
       var sesion = JSON.parse(data);
       //console.log(sesion.users.nombre);
@@ -348,6 +361,7 @@ function comprar() {
           console.log('precio' + PrecioPlato);
 
           if (saldoTotal < PrecioPlato) {
+            
             swal({
               title: "Sin Saldo?",
               text: "Aprovecha y recarga tu saldo!",
@@ -359,7 +373,7 @@ function comprar() {
             })
 
           } else if (saldoCuenta1 <= PrecioPlato) {
-
+            
             var resta1 = parseFloat(saldoCuenta1) - parseFloat(PrecioPlato);
             var positivo = -1 * parseFloat(resta1);
             var resta2 = parseFloat(saldoCuenta2) - parseFloat(positivo);
@@ -375,12 +389,13 @@ function comprar() {
               "restaurante": restaurante,
               "plato": platoComprado,
               "fecha": firebase.database.ServerValue.TIMESTAMP
-            })
+            });
+         
             swal("Good job!", "You clicked the button!", "success", {
               button: "Aww yiss!",
             });
           } else {
-
+          
             var resta1 = parseFloat(saldoCuenta1) - parseFloat(PrecioPlato);
             firebase.database().ref('users/' + sesion.uid + "/cuentas").update({
               "cuanta1": resta1
@@ -391,7 +406,8 @@ function comprar() {
               "restaurante": restaurante,
               "plato": platoComprado,
               "fecha": firebase.database.ServerValue.TIMESTAMP
-            })
+            });
+            hideLoading();
             swal("Good job!", "You clicked the button!", "success", {
               button: "Aww yiss!",
             });
@@ -404,6 +420,7 @@ function comprar() {
 
 function historialCliente() {
   $(document).ready(function () {
+    hideLoading();
     var data = sessionStorage.getItem('data');
     var sesion = JSON.parse(data);
     //console.log(sesion.uid);
@@ -420,7 +437,7 @@ function historialCliente() {
         var fecha = datosCompras.fecha;
         var date = new Date(fecha);
         var year = date.getFullYear();
-        var month = date.getMonth();
+        var month = date.getMonth()+1;
         var hours = date.getHours();
         var day = date.getDate();
         var minutes = "0" + date.getMinutes();
@@ -445,4 +462,5 @@ function historialCliente() {
     })
   });
 } historialCliente()
+
 
