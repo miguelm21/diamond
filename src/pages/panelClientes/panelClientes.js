@@ -227,7 +227,7 @@ function RecargarSaldoEMpresa() {
           "uidempresa": uid
         }, function (error) {
           if (error) {
-           
+
             alert('Hay un error en sus datos verifique e intentelo de nuevo...')
           } else {
             alert('Recarga realizada con exito!');
@@ -342,40 +342,60 @@ function comprar() {
         var PrecioPlato = platoComprado.PrecioPlato;
         firebase.database().ref('users/' + sesion.uid + "/cuentas").once('value').then(function (snapshot) {
           var snap = snapshot.val();
-         // console.log(snap.cuentaTotal);
+          // console.log(snap.cuentaTotal);
           var saldoCuenta1 = snap.cuanta1;
           var saldoCuenta2 = snap.cuenta2;
           var saldoTotal = parseFloat(saldoCuenta1) + parseFloat(saldoCuenta2);
-           console.log( 'saldo'+saldoCuenta1);
-           console.log('precio'+PrecioPlato);
+          console.log('saldo' + saldoCuenta1);
+          console.log('precio' + PrecioPlato);
 
-           if (saldoTotal < PrecioPlato) {
+          if (saldoTotal < PrecioPlato) {
             swal({
               title: "Sin Saldo?",
               text: "Aprovecha y recarga tu saldo!",
               icon: "warning",
               buttons: true,
               dangerMode: true,
+            }).then(() => {
+              $('#modal-pago').modal('show');
             })
-             alert('no tienes saldo suficiente Recarga saldo!!!!')
-           } else if ( saldoCuenta1 <= PrecioPlato ){
+
+          } else if (saldoCuenta1 <= PrecioPlato) {
 
             var resta1 = parseFloat(saldoCuenta1) - parseFloat(PrecioPlato);
-            var positivo = -1 *resta1;
+            var positivo = -1 * parseFloat(resta1);
             var resta2 = parseFloat(saldoCuenta2) - parseFloat(positivo);
-            console.log('resultado1'+resta1);
-            console.log('resultado2'+resta2);
+            console.log('resultado1' + resta1);
+            console.log('resultado2' + resta2);
 
             firebase.database().ref('users/' + sesion.uid + "/cuentas").update({
               "cuanta1": 0,
-              "cuenta2":resta2,    
-            })           
+              "cuenta2": resta2,
+            })
             firebase.database().ref('transaccion/').push().update({
-             "usuario" :sesion,
-             "restaurante":restaurante,
-              "plato":platoComprado
-            })           
-           }else{alert('Error Desconocido, mal calculo busca funcion comprar')}
+              "usuario": sesion,
+              "restaurante": restaurante,
+              "plato": platoComprado
+            })
+            swal("Good job!", "You clicked the button!", "success", {
+              button: "Aww yiss!",
+            });
+          } else {
+
+            var resta1 = parseFloat(saldoCuenta1) - parseFloat(PrecioPlato);
+            firebase.database().ref('users/' + sesion.uid + "/cuentas").update({
+              "cuanta1": resta1
+             
+            })
+            firebase.database().ref('transaccion/').push().update({
+              "usuario": sesion,
+              "restaurante": restaurante,
+              "plato": platoComprado
+            })
+            swal("Good job!", "You clicked the button!", "success", {
+              button: "Aww yiss!",
+            });
+          }
         })
       })
     });
