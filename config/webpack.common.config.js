@@ -6,7 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin   = require('clean-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 var ImageminPlugin = require('imagemin-webpack-plugin').default
-var WebpackNotifierPlugin = require('webpack-notifier');
+
 module.exports = {
     
   entry: {      

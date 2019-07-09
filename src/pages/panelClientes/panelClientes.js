@@ -297,14 +297,12 @@ function detalleRestauranteCliente() {
               " <button class='btn buy comprarPlatoboton' id='" + keyPlato + "' type='submit' value='" + uidRestaurante + "'  data-toggle='modal' data-target='#modal-comprar'><i class='fas fa-shopping-cart'></i></button> </td></tr>");
 
           });
-        });
+        }); $('#modal-detalles-plato').modal('show');
       });
 
-      $('#modal-detalles-plato').modal('show');
 
-      //  $('#cambiarPlan').click(function(){
-      // $('#modal-comprar').modal('show');
-      //});
+
+
     })
   });
 
@@ -375,7 +373,8 @@ function comprar() {
             firebase.database().ref('transaccion/').push().update({
               "usuario": sesion,
               "restaurante": restaurante,
-              "plato": platoComprado
+              "plato": platoComprado,
+              "fecha": firebase.database.ServerValue.TIMESTAMP
             })
             swal("Good job!", "You clicked the button!", "success", {
               button: "Aww yiss!",
@@ -385,7 +384,7 @@ function comprar() {
             var resta1 = parseFloat(saldoCuenta1) - parseFloat(PrecioPlato);
             firebase.database().ref('users/' + sesion.uid + "/cuentas").update({
               "cuanta1": resta1
-             
+
             })
             firebase.database().ref('transaccion/').push().update({
               "usuario": sesion,
@@ -401,3 +400,40 @@ function comprar() {
     });
   });
 } comprar()
+
+function historialCliente() {
+  $(document).ready(function () {
+    var data = sessionStorage.getItem('data');
+    var sesion = JSON.parse(data);
+    //console.log(sesion.uid);
+
+    firebase.database().ref('/transaccion/').orderByChild('/usuario/uid/').equalTo(sesion.uid).once('value').then(function (snapshot) {
+      //console.log(snapshot.val());
+      snapshot.forEach(element => {
+        var datosCompras = (element.val());
+        console.log(datosCompras);
+
+        var restaurante = datosCompras.restaurante;
+        var plato = datosCompras.plato.nombrePlato;
+        var PrecioPlato = datosCompras.plato.PrecioPlato;
+        var fecha = datosCompras.fecha;
+       
+        
+        var date = Date.parse(fecha);
+        console.log(date);
+        
+        firebase.database().ref('Restaurante/').orderByKey().equalTo(restaurante).once('value').then(function (snapshot) {
+          console.log(snapshot.val());
+          snapshot.forEach(element => {
+            var datos = element.val();
+            var restaurante = datos.nombreRestaurante;
+            console.log(restaurante);
+
+            $('#historialClientePlatos').append("  <tr><td>" + restaurante + "</td> <td>" + plato + "</td> <td>" + PrecioPlato + "</td> <td>€ " + PrecioPlato + "</td> <td>" + date + "</td> </tr>");
+          });
+        })
+      });
+    })
+  });
+} historialCliente()
+
