@@ -320,17 +320,17 @@ function empleadosRegistrados() {
               snapshot.forEach(function (data) {
                 var nombrePlan = data.val().nombrePlan;
                 var montoPlan = data.val().montoPlan;
-               // console.log(montoPlan);
+                // console.log(montoPlan);
                 var s = ("<option>" + nombrePlan + " " + "€  " + montoPlan + "</option>");
-                    console.log(s);
-                    
+                console.log(s);
+
 
                 $('#cambiarPlan2').append("<div class='modal fade show' id='modal-editar-beneficio' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-modal='true' style='padding-right: 17px; display: block;'>    <div class='modal-dialog modal-base modal-sm' role='document'>" +
                   "<div class='modal-content'>        <div class='modal-header'>          <h5 class='modal-title' id='exampleModalLabel'>Cambiar Plan</h5>" +
                   "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>            <span aria-hidden='true'>×</span>" +
                   "</button>        </div>        <div class='modal-body'>          <div class='row register-form'>            <div class='col-md-12 col-12'>" +
                   "<div class='form-group'>           <label  class='form-control' placeholder='Nombres' > " + nombreCOmpleto + "  </label>            </div>" +
-                  "</div>            <div class='col-md-12 col-12'> <div class='form-group'> <select class='form-control' id='exampleFormControlSelect12' >"+s+" </select>" +
+                  "</div>            <div class='col-md-12 col-12'> <div class='form-group'> <select class='form-control' id='exampleFormControlSelect12' >" + s + " </select>" +
                   "</div>            </div>          </div>        </div>        <div class='modal-footer'>          <button type='button' class='btn edit' data-dismiss='modal'>salir</button>" +
                   "<button type='button' class='btn primary' data-dismiss='modal'>Editar</button>        </div>      </div>    </div>  </div>");
 
@@ -610,6 +610,36 @@ function tablaReporteEmpresa() {////usar cuando ya se generen las compras
     });
   });
 } tablaReporteEmpresa();
+
+function recargarSaldoClientes() {
+  $(document).ready(function () {
+    $('.recargarSaldoCliente').on('click', function (e) {
+      e.preventDefault();
+      
+      var data = sessionStorage.getItem('data');
+      var sesion = JSON.parse(data);
+      firebase.database().ref('users/').orderByChild('empresa').equalTo(sesion.uid).once('value').then(function (snapshot) {
+      //  console.log(snapshot.val());
+
+        snapshot.forEach(element => {
+          var datos = element.val();
+          var aSumar= 0;
+ var montoCargarEmpleado = datos.planBeneficio;
+ var saldos = montoCargarEmpleado.split('€');
+ var t;
+for (let index = 0; index < saldos.length; index++) {
+
+  t = saldos[1];
+  console.log(t);
+  
+  
+}
+//console.log(t);
+        });
+      })
+    });
+  });
+} recargarSaldoClientes()
 
 
 

@@ -198,10 +198,11 @@ function consultaSaldoCliente() {
   });
 } consultaSaldoCliente()
 
-function RecargarSaldoEMpresa() {
+function RecargarSaldoTarjeta() {
   $(document).ready(function () {
     $('#recargarSaldoCliente').click(function (e) {
       e.preventDefault();
+      restartLoading(); 
       var data = sessionStorage.getItem('data');
       var sesion = JSON.parse(data);
       var uid = sesion.uid;
@@ -225,7 +226,7 @@ function RecargarSaldoEMpresa() {
         // console.log(sumaSaldo);
 
         firebase.database().ref('users/' + uid + "/cuentas").update({
-          "cuanta1": sumaSaldo
+          "cuenta2": sumaSaldo
 
         })
         firebase.database().ref('/Recargas/users').push().set({
@@ -239,17 +240,24 @@ function RecargarSaldoEMpresa() {
           "uidempresa": uid
         }, function (error) {
           if (error) {
-
-            alert('Hay un error en sus datos verifique e intentelo de nuevo...')
+            hideLoading();
+            swal("Error al Cargar Saldo", error, "error", {
+              button: "ok",
+            });
+           
           } else {
-            alert('Recarga realizada con exito!');
+            hideLoading();
+            swal("Saldo Recargado", 'El monto de su recarga es de '+sumaSaldo+'€', "success", {
+              button: "ok",
+            });
+         
           }
         });
       });
     })
   })
 
-} RecargarSaldoEMpresa()
+} RecargarSaldoTarjeta()
 
 function nombreCliente() {
   $(document).ready(function () {
@@ -361,7 +369,7 @@ function comprar() {
           console.log('precio' + PrecioPlato);
 
           if (saldoTotal < PrecioPlato) {
-            
+            hideLoading();
             swal({
               title: "Sin Saldo?",
               text: "Aprovecha y recarga tu saldo!",
@@ -369,6 +377,7 @@ function comprar() {
               buttons: true,
               dangerMode: true,
             }).then(() => {
+             
               $('#modal-pago').modal('show');
             })
 
@@ -390,7 +399,7 @@ function comprar() {
               "plato": platoComprado,
               "fecha": firebase.database.ServerValue.TIMESTAMP
             });
-         
+            hideLoading();
             swal("Good job!", "You clicked the button!", "success", {
               button: "Aww yiss!",
             });
