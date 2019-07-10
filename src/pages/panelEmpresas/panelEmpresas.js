@@ -627,9 +627,9 @@ function recargarSaldoClientes() {
           //   console.log(datos);
           var montoCargarEmpleado = datos.planBeneficio;
           var saldos = montoCargarEmpleado.split('€');
-        
+
           //for (let index = 0; index < saldos.length; index++) {
-            t = t + parseFloat(saldos[1].trim());
+          t = t + parseFloat(saldos[1].trim());
           //}
           console.log(t);
           firebase.database().ref('/Empresas/' + sesion.uid + "/").once('value').then(function (snapshot) {
@@ -642,7 +642,7 @@ function recargarSaldoClientes() {
             // console.log(t);
 
             //console.log(saldoQuedaEmpresa);
-            if (saldototalEmpresa < t) { 
+            if (saldototalEmpresa < t) {
               swal({
                 title: "Sin Saldo!",
                 text: "Deber Ir a recargar tu saldo",
@@ -670,7 +670,38 @@ function recargarSaldoClientes() {
   });
 } recargarSaldoClientes()
 
+function recuperarSaldodeClientes() {
+  $(document).ready(function () {
+    $('.quitarSaldo').click(function (e) {
+      e.preventDefault();
 
+      var data = sessionStorage.getItem('data');
+      var sesion = JSON.parse(data);
+      firebase.database().ref('Empresas/' + sesion.uid + "/").once('value').then(function (snapshot) {
+       var empresa = snapshot.val();
+       var cuenta1 = empresa.cuentas.cuenta1;
+console.log(cuenta1);
+
+        firebase.database().ref('users/').orderByChild('empresa').equalTo(sesion.uid).once('value').then(function (snapshot) {
+          var suma = 0;
+          snapshot.forEach(element => {
+            var datos = element.val();
+            var uidEmpleado = datos.uidempleado;
+            var cuentasUsuario = datos.cuentas.cuanta1;
+            suma = suma + cuentasUsuario;
+            var sumaRegresarEmpresa = suma +cuenta1  ;
+           console.log(sumaRegresarEmpresa);
+           
+
+             firebase.database().ref('Empresas/' + sesion.uid + "/cuentas/").update({
+                 "cuenta1":sumaRegresarEmpresa 
+               });
+          });
+        })
+      })
+    });
+  });
+} recuperarSaldodeClientes()
 
 
 
