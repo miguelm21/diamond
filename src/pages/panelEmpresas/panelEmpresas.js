@@ -615,26 +615,50 @@ function recargarSaldoClientes() {
   $(document).ready(function () {
     $('.recargarSaldoCliente').on('click', function (e) {
       e.preventDefault();
-      
+
       var data = sessionStorage.getItem('data');
       var sesion = JSON.parse(data);
       firebase.database().ref('users/').orderByChild('empresa').equalTo(sesion.uid).once('value').then(function (snapshot) {
-      //  console.log(snapshot.val());
-
-        snapshot.forEach(element => {
+           snapshot.forEach(element => {
           var datos = element.val();
-          var aSumar= 0;
- var montoCargarEmpleado = datos.planBeneficio;
- var saldos = montoCargarEmpleado.split('€');
- var t;
-for (let index = 0; index < saldos.length; index++) {
 
-  t = saldos[1];
-  console.log(t);
-  
-  
-}
-//console.log(t);
+         
+          
+          var uidEmpleado = datos.uidempleado;
+       //   console.log(datos);
+          var montoCargarEmpleado = datos.planBeneficio;
+          var saldos = montoCargarEmpleado.split('€');
+          var t = 0;
+          for (let index = 0; index < saldos.length; index++) {
+            t = t + parseFloat(saldos[1]);
+          }
+          firebase.database().ref('/Empresas/' + sesion.uid + "/").once('value').then(function (snapshot) {
+            // console.log(t);//monto de los empleados
+            var empresa = (snapshot.val());
+            var cuenta1Empresa = empresa.cuentas.cuenta1;
+            var cuenta2Empresa = empresa.cuentas.cuenta2;
+            var saldototalEmpresa = parseFloat(cuenta1Empresa) + cuenta2Empresa
+          //  console.log(saldototalEmpresa);
+            if (saldototalEmpresa < t) {
+
+              swal({
+                title: "Sin Saldo!",
+                text: "Deber Ir a recargar tu saldo",
+                icon: "warning",
+                dangerMode: true,
+              })
+            } else {
+              firebase.database().ref('users/'+uidEmpleado+"/cuentas/").update( {             
+                    "cuanta1": parseFloat(saldos[1])
+              });
+              swal({
+                title: "Saldo Recargado",
+                text: "Sus usuarios ya tien el saldo disponible",
+                icon: "success",
+               
+              })
+            }
+          })
         });
       })
     });
