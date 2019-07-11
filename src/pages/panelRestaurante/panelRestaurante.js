@@ -218,6 +218,16 @@ $(document).ready(function () {
 });
 
 //*************************codigo vitico */
+function restartLoading() {
+  $("#status").show();
+  $("#preloader").show();
+}restartLoading()
+
+function hideLoading() {
+  $("#status").fadeOut();
+  $("#preloader").delay(1000).fadeOut("slow");
+  $('.modal-backdrop').remove();
+}
 
 firebase.initializeApp(firebaseConfig);
 

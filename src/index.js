@@ -102,11 +102,21 @@ function backbutton() {
 }
 
 //*************************codigo vitico */
+function restartLoading() {
+  $("#status").show();
+  $("#preloader").show();
+}
+function hideLoading() {
+  $("#status").fadeOut();
+  $("#preloader").delay(1000).fadeOut("slow");
+  $('.modal-backdrop').remove();
+}
 
 firebase.initializeApp(firebaseConfig);
 
 function registroEmpresa() {
   $(document).ready(function () {
+  
     $('#registrarEmpresa').click(function (e) {
       e.preventDefault();
       var datos = $('#formRegistrar').serializeArray();
@@ -294,6 +304,7 @@ function iniciarSesionEMpresa() {
 function iniciarSesionRestaurante() {
   $(document).ready(function () {
     $('#iniciarSesionRestaurante').click(function (e) {
+    
       e.preventDefault();
       var datos = $('#sesionRestaurante').serializeArray();
       var correo = datos[0].value;

@@ -171,6 +171,16 @@ function backbutton() {
   $('#show-button').show();
 }
 //*************************codigo vitico */
+function restartLoading() {
+  $("#status").show();
+  $("#preloader").show();
+} restartLoading()
+
+function hideLoading() {
+  $("#status").fadeOut();
+  $("#preloader").delay(1000).fadeOut("slow");
+  $('.modal-backdrop').remove();
+}
 
 firebase.initializeApp(firebaseConfig);
 
@@ -504,8 +514,8 @@ function consultaSaldoEmpresa() {
       var cuenta1 = snap.cuenta1;
       var cuenta2 = snap.cuenta2;
       var saldoEmpresa = parseFloat(cuenta1) + parseFloat(cuenta2);
-
-      document.getElementById('saldoEmpresa').innerHTML = "€ " + saldoEmpresa;
+      var saldoEmpresaFormato =  saldoEmpresa.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })
+      document.getElementById('saldoEmpresa').innerHTML =   saldoEmpresaFormato;
 
     })
   });
@@ -678,9 +688,9 @@ function recuperarSaldodeClientes() {
       var data = sessionStorage.getItem('data');
       var sesion = JSON.parse(data);
       firebase.database().ref('Empresas/' + sesion.uid + "/").once('value').then(function (snapshot) {
-       var empresa = snapshot.val();
-       var cuenta1 = empresa.cuentas.cuenta1;
-console.log(cuenta1);
+        var empresa = snapshot.val();
+        var cuenta1 = empresa.cuentas.cuenta1;
+    //    console.log(cuenta1);
 
         firebase.database().ref('users/').orderByChild('empresa').equalTo(sesion.uid).once('value').then(function (snapshot) {
           var suma = 0;
@@ -689,13 +699,22 @@ console.log(cuenta1);
             var uidEmpleado = datos.uidempleado;
             var cuentasUsuario = datos.cuentas.cuanta1;
             suma = suma + cuentasUsuario;
-            var sumaRegresarEmpresa = suma +cuenta1  ;
-           console.log(sumaRegresarEmpresa);
-           
+            var sumaRegresarEmpresa = suma + cuenta1;
+            console.log(sumaRegresarEmpresa);
 
-             firebase.database().ref('Empresas/' + sesion.uid + "/cuentas/").update({
-                 "cuenta1":sumaRegresarEmpresa 
-               });
+
+            firebase.database().ref('Empresas/' + sesion.uid + "/cuentas/").update({
+              "cuenta1": sumaRegresarEmpresa
+            });
+            firebase.database().ref('users/' + uidEmpleado + "/cuentas/").update({
+              "cuanta1": 0
+            });
+            swal({
+              title: "Saldo no utilizado Recuperado",
+              text: "Sus empleados no cuentan con saldo.",
+              icon: "success",
+
+            })
           });
         })
       })
