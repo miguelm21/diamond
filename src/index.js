@@ -105,7 +105,7 @@ function backbutton() {
 function restartLoading() {
   $("#status").show();
   $("#preloader").show();
-}
+}restartLoading()
 function hideLoading() {
   $("#status").fadeOut();
   $("#preloader").delay(1000).fadeOut("slow");
@@ -158,7 +158,9 @@ function registroEmpresa() {
           if (error) {
             alert('Hay un error en sus datos verifique e intentelo de nuevo...')
           } else {
-            alert('Registro completado con exito!')
+            hideLoading()
+            swal("Registro Exitoso!", "Empresa registrado!", "success");
+            $("#formRegistrar")[0].reset();
           }
 
 
@@ -235,7 +237,9 @@ function registroRestaurante() {
               if (error) {
                 alert('Hay un error en sus datos verifique e intentelo de nuevo...')
               } else {
-                alert('Registro completado con exito!')
+                hideLoading()
+                swal("Registro Exitoso!", "Restaurante registrado!", "success");
+                $("#regristroRestaurante")[0].reset();
               }
             })
           })
@@ -251,6 +255,7 @@ function iniciarSesionEMpresa() {
   $(document).ready(function () {
     $('#iniciarSesionEmpresa').click(function (e) {
       e.preventDefault();
+      restartLoading()
       var datos = $('#sesionEmpresa').serializeArray();
       var correo = datos[0].value;
       var contraseña = datos[1].value;
@@ -275,8 +280,10 @@ function iniciarSesionEMpresa() {
             var sesion = JSON.parse(sesionjson);
             if (sesion === '' | sesion === 'null') {
               alert('no ha iniciado sesion')
+             // hideLoading()
             } else {
              // alert("has iniciado sesion");
+             hideLoading()
               swal("Bienvenido!", correo, "success").then((value) => {
                 location.href = "panelEmpresas.html"
               });
@@ -303,9 +310,9 @@ function iniciarSesionEMpresa() {
 
 function iniciarSesionRestaurante() {
   $(document).ready(function () {
-    $('#iniciarSesionRestaurante').click(function (e) {
-    
+    $('#iniciarSesionRestaurante').click(function (e) {    
       e.preventDefault();
+      restartLoading()
       var datos = $('#sesionRestaurante').serializeArray();
       var correo = datos[0].value;
       var contraseña = datos[1].value;
@@ -335,6 +342,7 @@ function iniciarSesionRestaurante() {
             if (sesion === '' | sesion === 'null') {
               alert('no ha iniciado sesion')
             } else {
+              hideLoading();
               swal("Bienvenido!", correo, "success").then((value) => {
                 location.href = "panelRestaurante.html"
               });
@@ -366,6 +374,7 @@ function iniciarSesioncliente() {
   $(document).ready(function () {
     $('#iniciarcliente').click(function (e) {
       e.preventDefault();
+      restartLoading();
       var datos = $('#sesionCliente').serializeArray();
       var correo = datos[0].value;
       var contraseña = datos[1].value;
@@ -395,6 +404,7 @@ function iniciarSesioncliente() {
             if (sesion === '' | sesion === 'null') {
               alert('no ha iniciado sesion')
             } else {
+              hideLoading();
               swal("Bienvenido!", correo, "success").then((value) => {
                 location.href = "panelClientes.html"})
               //location.href = "panelClientes.html"
@@ -424,5 +434,7 @@ function iniciarSesioncliente() {
 
   });
 
-} iniciarSesioncliente()
+} iniciarSesioncliente();
+hideLoading(); 
+
 

@@ -330,6 +330,7 @@ function detalleRestauranteCliente() {
 
 function comprarLista() {
   $(document.body).on('click', '.comprarPlatoboton', (e) => {
+    restartLoading();
     var keyPlatos = e.currentTarget.id;
     var restaurante = e.currentTarget.value;
 
@@ -338,6 +339,7 @@ function comprarLista() {
       var descripcionPlato = platoComprado.descripcionPlato;
       var nombrePlato = platoComprado.nombrePlato;
       var PrecioPlato = platoComprado.PrecioPlato;
+      hideLoading();
       $('.nombrePlato').html("<h4>" + nombrePlato + "</h4> <p class='description'>" + descripcionPlato + "</p><p> € " + PrecioPlato + "</p>");
       $('#botonComprar').html("<button type='button' id=" + keyPlatos + " class='btn primary comprarYa' value=" + restaurante + " >Aceptar y Comprar</button>");
     })

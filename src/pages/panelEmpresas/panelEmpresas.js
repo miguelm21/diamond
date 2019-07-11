@@ -188,6 +188,7 @@ function registroempleados() {
   $(document).ready(function () {
     $('#registrarEmpleados').click(function (e) {
       e.preventDefault();
+      restartLoading()
       var datos = $('#RegistrarEmpleados').serializeArray();
 
       var nombre = datos[0].value;
@@ -227,9 +228,12 @@ function registroempleados() {
 
         }, function (error) {
           if (error) {
-            alert('Hay un error en sus datos verifique e intentelo de nuevo...')
+            hideLoading()
+          swal("algo paso!", "error!", "error")
           } else {
-            alert('Registro completado con exito!')
+            hideLoading()
+            swal("Registro Exitoso!", "Empleado registrado!", "success");
+            $("#RegistrarEmpleados")[0].reset();
           }
 
 
@@ -264,6 +268,7 @@ function CrearPlanes() {
   $(document).ready(function () {
     $('#registrarBeneficio').click(function (e) {
       e.preventDefault();
+      restartLoading()
       var datos = $('#registroBeneficio').serializeArray();
       var nombrePlan = datos[0].value;
       var montoPlan = datos[1].value;
@@ -279,9 +284,12 @@ function CrearPlanes() {
 
       }, function (error) {
         if (error) {
-          alert('Hay un error en sus datos verifique e intentelo de nuevo...')
+          hideLoading()
+          swal("Algo paso!", "error!", "error")
         } else {
-          alert('Registro completado con exito!')
+          hideLoading()
+          swal("Registro Exitoso!", "Beneficio registrado!", "success")
+          $("#registroBeneficio")[0].reset();
         }
       })
     });
@@ -525,6 +533,7 @@ function RecargarSaldoEMpresa() {
   $(document).ready(function () {
     $('#recargarSaldoEmpresa').click(function (e) {
       e.preventDefault();
+      restartLoading();
       var data = sessionStorage.getItem('data');
       var sesion = JSON.parse(data);
       var uid = sesion.uid;
@@ -533,8 +542,6 @@ function RecargarSaldoEMpresa() {
         //console.log(snap.cuentaTotal);
         var saldoCuenta1 = snap.cuenta1;
         //  console.log(saldoCuenta1);
-
-
         var form = $('#recargaSaldoEmpresa').serializeArray();
         console.log(form);
         var tarjetaCredito = form[0].value;
@@ -563,7 +570,8 @@ function RecargarSaldoEMpresa() {
           if (error) {
             alert('Hay un error en sus datos verifique e intentelo de nuevo...')
           } else {
-            alert('Recarga realizada con exito!');
+            hideLoading()
+            swal("Recarga!", "Recarga exitosa!", "success")
           }
         });
       });
@@ -625,6 +633,7 @@ function recargarSaldoClientes() {
   $(document).ready(function () {
     $('.recargarSaldoCliente').on('click', function (e) {
       e.preventDefault();
+      restartLoading();
 
       var data = sessionStorage.getItem('data');
       var sesion = JSON.parse(data);
@@ -653,6 +662,7 @@ function recargarSaldoClientes() {
 
             //console.log(saldoQuedaEmpresa);
             if (saldototalEmpresa < t) {
+              hideLoading();
               swal({
                 title: "Sin Saldo!",
                 text: "Deber Ir a recargar tu saldo",
@@ -666,6 +676,7 @@ function recargarSaldoClientes() {
               firebase.database().ref('Empresas/' + sesion.uid + "/cuentas/").update({
                 "cuenta1": saldoQuedaEmpresa,
               });
+              hideLoading();
               swal({
                 title: "Saldo Recargado",
                 text: "Sus usuarios ya tien el saldo disponible",
@@ -722,5 +733,5 @@ function recuperarSaldodeClientes() {
   });
 } recuperarSaldodeClientes()
 
-
+hideLoading() 
 

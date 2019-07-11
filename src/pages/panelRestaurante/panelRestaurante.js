@@ -235,6 +235,7 @@ function registroPlato() {
   $(document).ready(function () {
     $('#registrarPlato').click(function (e) {
       e.preventDefault();
+      restartLoading();
       var sesion = JSON.parse(sessionStorage.getItem('data'));
       var restaurante = (sesion.uid);
 
@@ -276,9 +277,12 @@ function registroPlato() {
             "rutaGuardaImagen": rutaGuardaImagen
           }, function (error) {
             if (error) {
-              alert('Hay un error en sus datos verifique e intentelo de nuevo...')
+              hideLoading()
+              swal("error!", "error!", "error")
             } else {
-              alert('Registro completado con exito!')
+              hideLoading()
+              swal("Registro Exitoso!", "Registrado!", "success")
+             
             }
           });
 
@@ -350,7 +354,7 @@ function registropromociones() {
   $(document).ready(function () {
     $('#registrarPromo').click(function (e) {
       e.preventDefault();
-
+restartLoading()
       var sesion = JSON.parse(sessionStorage.getItem('data'));
       var restaurante = (sesion.uid);
       //console.log(restaurante);
@@ -392,10 +396,13 @@ function registropromociones() {
 
           }, function (error) {
             if (error) {
-              alert('Hay un error en sus datos verifique e intentelo de nuevo...')
+               hideLoading()
+              swal("Registro error!", "error!", "error")
             } else {
-              alert('Registro completado con exito!')
+              hideLoading()
+              swal("Registro Exitoso!", " registrado!", "success")
             }
+           
           });
 
 
@@ -476,3 +483,4 @@ function nombreRestaurante() {
     $('#nombreRestaurante').append("<span>"+ nombreRestaurante+"</span>");
   });
 }nombreRestaurante()
+hideLoading();
