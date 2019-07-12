@@ -49,6 +49,7 @@
     "aos": "^2.3.4",
     "bootstrap": "^4.3.1",
     "chart.js": "^2.8.0",
+    "emailjs-com": "^2.3.2",
     "firebase": "^6.2.1",
     "font-awesome": "^4.7.0",
     "imagemin-webpack-plugin": "^2.4.2",

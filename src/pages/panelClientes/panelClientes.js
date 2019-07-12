@@ -330,7 +330,7 @@ function detalleRestauranteCliente() {
 
 function comprarLista() {
   $(document.body).on('click', '.comprarPlatoboton', (e) => {
-    restartLoading();
+   
     var keyPlatos = e.currentTarget.id;
     var restaurante = e.currentTarget.value;
 
@@ -339,7 +339,7 @@ function comprarLista() {
       var descripcionPlato = platoComprado.descripcionPlato;
       var nombrePlato = platoComprado.nombrePlato;
       var PrecioPlato = platoComprado.PrecioPlato;
-      hideLoading();
+      
       $('.nombrePlato').html("<h4>" + nombrePlato + "</h4> <p class='description'>" + descripcionPlato + "</p><p> € " + PrecioPlato + "</p>");
       $('#botonComprar').html("<button type='button' id=" + keyPlatos + " class='btn primary comprarYa' value=" + restaurante + " >Aceptar y Comprar</button>");
     })
@@ -349,7 +349,7 @@ function comprarLista() {
 function comprar() {
   $(document).ready(function () {       
     $(document.body).on('click', '.comprarYa', function (e) {    
-      restartLoading(); 
+  
       var data = sessionStorage.getItem('data');
       var sesion = JSON.parse(data);
       //console.log(sesion.users.nombre);
@@ -401,7 +401,7 @@ function comprar() {
               "plato": platoComprado,
               "fecha": firebase.database.ServerValue.TIMESTAMP
             });
-            hideLoading();
+            
             swal("Good job!", "You clicked the button!", "success", {
               button: "Aww yiss!",
             });
@@ -418,7 +418,7 @@ function comprar() {
               "plato": platoComprado,
               "fecha": firebase.database.ServerValue.TIMESTAMP
             });
-            hideLoading();
+           
             swal("Good job!", "You clicked the button!", "success", {
               button: "Aww yiss!",
             });
@@ -457,7 +457,7 @@ function historialCliente() {
 
         // Day
         var dia = date.getDate();
-        console.log(convdataTime);
+      //  console.log(convdataTime);
 
         firebase.database().ref('Restaurante/').orderByKey().equalTo(restaurante).once('value').then(function (snapshot) {
           // console.log(snapshot.val());
@@ -474,4 +474,9 @@ function historialCliente() {
   });
 } historialCliente()
 
+function enviarCorreo( ){
+  $(document).ready(function () {
+    emailjs.send("bluediamont", "template_K6VOnQ26", {"reply_to":"dddddddd","from_name":"vicancari@gmail.com","to_name":"julian","message_html":"que pedo wei"},'user_2ewX4RxxKWacMlmO529Cl')
+  });
+}enviarCorreo()
 

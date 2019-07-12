@@ -181,6 +181,11 @@ function hideLoading() {
   $("#preloader").delay(1000).fadeOut("slow");
   $('.modal-backdrop').remove();
 }
+function enviarCorreo( correoEmpleado, nombreEmpleado){
+  $(document).ready(function () {
+    emailjs.send('bluediamont', 'template_K6VOnQ26', {'from_name':correoEmpleado,'to_name':nombreEmpleado})
+  });
+}
 
 firebase.initializeApp(firebaseConfig);
 
@@ -231,7 +236,8 @@ function registroempleados() {
             hideLoading()
           swal("algo paso!", "error!", "error")
           } else {
-            hideLoading()
+            hideLoading();
+            enviarCorreo( correo, nombre);
             swal("Registro Exitoso!", "Empleado registrado!", "success");
             $("#RegistrarEmpleados")[0].reset();
           }
