@@ -740,4 +740,58 @@ function recuperarSaldodeClientes() {
 } recuperarSaldodeClientes()
 
 hideLoading() 
+function notificaciones() {
+  $(document).ready(function () {
+
+    const messaging = firebase.messaging();
+    messaging.usePublicVapidKey("BNH9hyxKC5faMqmfutsoi2bmVm8jm3guerqNkbW0DisLS48Rd9ebtBilFQYZzfaxCaoxlISBT7aQ2gf08WHn3jU");
+    Notification.requestPermission().then(function (permission) {
+      if (permission === 'granted') {
+        console.log('Notification permission granted.');
+        console.log("kkk");
+
+        messaging.getToken().then(function (snap) {
+          console.log(snap);
+          localStorage.setItem('tokenBlue',snap)
+          messaging.onMessage(function (payload) {
+            console.log('Message received. ', payload);
+          
+          });
+        });
+
+      } else {
+        console.log('Unable to get permission to notify.');
+      }
+    });
+    console.log('notificaciones');
+  });
+} notificaciones()
+
+function enviarNotificacion(token) {
+  $(document).ready(function () {
+    ////////////////////////////////////////////////////////
+    var msg = {
+      "to": token,
+      "collapse_key": "type_a",
+      "data": {
+        "body": "Sending Notification Body From Data",
+        "title": "Notification Title from Data",
+        "key_1": "Value for key_1",
+        "key_2": "Value for key_2"
+      }
+    }
+    $.ajax({
+      type: 'POST',
+      url: 'https://fcm.googleapis.com/fcm/send',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'key=AAAAUsOwWoo:APA91bFKBqlAGM9eVVJ6WcQoQ6WUqQCXCAFexnSjn0gge-BT-IBVukT9lIluT05nl9QWM51uiZlsbmauq9o7ihYo8D1WtLHWXz4EEoDS_qMbsPtCjc_rDmNTNBhODNeiNpie8HWBs2lZ'
+      },
+      data: JSON.stringify(msg),
+      success: function (response) {
+        console.log(response);
+      },
+    });
+  });
+}
 

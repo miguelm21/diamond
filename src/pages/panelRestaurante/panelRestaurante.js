@@ -249,7 +249,7 @@ function registroPlato() {
       var tipoPLato = datos[6].value;
       var tiempoMinimo = datos[7].value;
       var tiempoMaximo = datos[8].value;
-      console.log(tipoPLato);
+     // console.log(tipoPLato);
 
       var fotoval = document.getElementById('imagenPlato');
       var foto = new FileReader();
@@ -263,7 +263,12 @@ function registroPlato() {
         mountainsRef.putString(imagen, 'base64').then(function (snapshot) {
           var rutaGuardaImagen = snapshot.metadata.fullPath;
 
-          firebase.database().ref('Platos/' + restaurante + "/").push().set({
+          var storageRef = firebase.storage().ref();
+          var mountainsRef = storageRef.child("");     
+          mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) {  
+          
+
+          firebase.database().ref('Platos/').push().set({
 
             "nombrePlato": nombrePlato,
             "descripcionPlato": descripcionPlato,
@@ -274,7 +279,7 @@ function registroPlato() {
             "tipoPLato": tipoPLato,
             "tiempoMinimo": tiempoMinimo,
             "tiempoMaximo": tiempoMaximo,
-            "rutaGuardaImagen": rutaGuardaImagen,
+            "rutaGuardaImagen": url,
             "restaurante":restaurante
           }, function (error) {
             if (error) {
@@ -286,7 +291,7 @@ function registroPlato() {
              
             }
           });
-
+        })
         })
       }, foto.readAsDataURL(fotoval.files[0]);
     });
@@ -297,7 +302,7 @@ function registroPlato() {
 function platosRegistrados() {
   $('body').ready(function () {
     var sesion = JSON.parse(sessionStorage.getItem('data'));
-    firebase.database().ref('/Platos/' + sesion.uid).once('value').then(function (snapshot) {
+    firebase.database().ref('/Platos/').orderByChild('restaurante').equalTo(sesion.uid).once('value').then(function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
 
         var childData = childSnapshot.val();
@@ -312,16 +317,7 @@ function platosRegistrados() {
         var tiempoMinimo = childData.tiempoMinimo;
         var tipoPLato = childData.tipoPLato;
         var rutaGuardaImagen = childData.rutaGuardaImagen;
-
-       // console.log(rutaGuardaImagen );
-        ////////////////////////////imagen traer
-        var storageRef = firebase.storage().ref();
-        var mountainsRef = storageRef.child("");
-        //console.log('qqqqqqqqqqqqqqqqq');
-        // console.log(rutaGuardaImagen);
-        mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) {
-              console.log(url);
-              
+                   
           var tarjeta = $("<div class=' col-xl-3 col-md-4 col-sm-6 col-12' >" +
             "<div class='card'>" +
             "<div class='dropdown'>" +
@@ -333,7 +329,7 @@ function platosRegistrados() {
             "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-eliminar'>Eliminar</a>" +
             "</div>" +
             "</div>" +
-            "<img class='card-img-top' src='"+url+"' alt='Card image'>" +
+            "<img class='card-img-top' src='"+rutaGuardaImagen+"' alt='Card image'>" +
             "<div class='card-body'>" +
             "<h4 class='card-title'>" + nombrePlato + "</h4>" +
             "<p class='card-text'>" + descripcionPlato + "</p>" +
@@ -345,7 +341,7 @@ function platosRegistrados() {
             "</div>");
 
           $('#tarjetaPlato').append(tarjeta);
-        })
+      
       });
     });
   });
@@ -379,11 +375,14 @@ restartLoading()
         var file = (e.target.result);
         var storageRef = firebase.storage().ref();
         var mountainsRef = storageRef.child('imagen/' + restaurante + fotoval.files[0].name);
-        var imagen = file.substring(22);
+        var imagen = file.substring(23);
         mountainsRef.putString(imagen, 'base64').then(function (snapshot) {
           var rutaGuardaImagen = snapshot.metadata.fullPath;
           console.log(rutaGuardaImagen);
-          firebase.database().ref('Promo/' + restaurante + "/").push().set({
+          var storageRef = firebase.storage().ref();
+          var mountainsRef = storageRef.child("");     
+          mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) {  
+          firebase.database().ref('Promo/').push().set({
 
             "nombrePromo": nombrePromo,
             "DescripcionPromo": DescripcionPromo,
@@ -393,7 +392,8 @@ restartLoading()
             "procionPromo": procionPromo,
             "tiempoMin": tiempoMin,
             "tiempoMax": tiempoMax,
-            "rutaGuardaImagen": rutaGuardaImagen
+            "rutaGuardaImagen": url,
+            "restaurante":restaurante
 
           }, function (error) {
             if (error) {
@@ -408,7 +408,7 @@ restartLoading()
 
 
 
-
+        })
         });
       }
       foto.readAsDataURL(fotoval.files[0]);
@@ -422,7 +422,7 @@ function promoRegistrados() {
   $('body').ready(function () {
     var sesion = JSON.parse(sessionStorage.getItem('data'));
 
-    firebase.database().ref('/Promo/' + sesion.uid).once('value').then(function (snapshot) {
+    firebase.database().ref('/Promo/' ).orderByChild('restaurante').equalTo(sesion.uid).once('value').then(function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
 
         var childData = childSnapshot.val();
@@ -437,16 +437,7 @@ function promoRegistrados() {
         var tiempoMax = childData.tiempoMax;
         var tiempoMin = childData.tiempoMin;
         var rutaGuardaImagen = childData.rutaGuardaImagen;
-        // 
-        ////////////////////////////traer imagen
-        var storageRef = firebase.storage().ref();
-        var mountainsRef = storageRef.child("");
-        //console.log('qqqqqqqqqqqqqqqqq');
-        // console.log(rutaGuardaImagen);
-        mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) {0
-          // console.log('eeeeeeeeeeeeeeee');
-          // console.log(url);
-          //$('#foto').append("<img src=" + url + "></img>");
+   
           var tarjeta = $("<div class=' col-xl-3 col-md-4 col-sm-6 col-12' >" +
             "<div class='card'>" +
             "<div class='dropdown'>" +
@@ -458,7 +449,7 @@ function promoRegistrados() {
             "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-eliminar'>Eliminar</a>" +
             "</div>" +
             "</div>" +
-            "<img  src='" + url + "' class='card-img-top'  alt='Card image'>" +
+            "<img  src='" + rutaGuardaImagen + "' class='card-img-top'  alt='Card image'>" +
             "<div class='card-body'>" +
             "<h4 class='card-title'>" + nombrePromo + "</h4>" +
             "<p class='card-text'>" + DescripcionPromo + "</p>" +
@@ -470,7 +461,7 @@ function promoRegistrados() {
             "</div>");
 
           $('#promocion2').append(tarjeta);
-        })
+       
       });
     });
   });
@@ -485,3 +476,57 @@ function nombreRestaurante() {
   });
 }nombreRestaurante()
 hideLoading();
+function notificaciones() {
+  $(document).ready(function () {
+
+    const messaging = firebase.messaging();
+    messaging.usePublicVapidKey("BNH9hyxKC5faMqmfutsoi2bmVm8jm3guerqNkbW0DisLS48Rd9ebtBilFQYZzfaxCaoxlISBT7aQ2gf08WHn3jU");
+    Notification.requestPermission().then(function (permission) {
+      if (permission === 'granted') {
+        console.log('Notification permission granted.');
+        console.log("kkk");
+
+        messaging.getToken().then(function (snap) {
+          console.log(snap);
+          localStorage.setItem('tokenBlue',snap)
+          messaging.onMessage(function (payload) {
+            console.log('Message received. ', payload);
+          
+          });
+        });
+
+      } else {
+        console.log('Unable to get permission to notify.');
+      }
+    });
+    console.log('notificaciones');
+  });
+} notificaciones()
+
+function enviarNotificacion(token) {
+  $(document).ready(function () {
+    ////////////////////////////////////////////////////////
+    var msg = {
+      "to": token,
+      "collapse_key": "type_a",
+      "data": {
+        "body": "Sending Notification Body From Data",
+        "title": "Notification Title from Data",
+        "key_1": "Value for key_1",
+        "key_2": "Value for key_2"
+      }
+    }
+    $.ajax({
+      type: 'POST',
+      url: 'https://fcm.googleapis.com/fcm/send',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'key=AAAAUsOwWoo:APA91bFKBqlAGM9eVVJ6WcQoQ6WUqQCXCAFexnSjn0gge-BT-IBVukT9lIluT05nl9QWM51uiZlsbmauq9o7ihYo8D1WtLHWXz4EEoDS_qMbsPtCjc_rDmNTNBhODNeiNpie8HWBs2lZ'
+      },
+      data: JSON.stringify(msg),
+      success: function (response) {
+        console.log(response);
+      },
+    });
+  });
+}

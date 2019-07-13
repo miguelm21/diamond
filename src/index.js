@@ -105,7 +105,7 @@ function backbutton() {
 function restartLoading() {
   $("#status").show();
   $("#preloader").show();
-}restartLoading()
+} restartLoading()
 function hideLoading() {
   $("#status").fadeOut();
   $("#preloader").delay(1000).fadeOut("slow");
@@ -116,7 +116,7 @@ firebase.initializeApp(firebaseConfig);
 
 function registroEmpresa() {
   $(document).ready(function () {
-  
+
     $('#registrarEmpresa').click(function (e) {
       e.preventDefault();
       var datos = $('#formRegistrar').serializeArray();
@@ -208,39 +208,42 @@ function registroRestaurante() {
           var imagen = file.substring(23);
           mountainsRef.putString(imagen, 'base64').then(function (snapshot) {
             var rutaGuardaImagen = snapshot.metadata.fullPath;
-          
-            /////////////////////////////////////////////////////
+            var storageRef = firebase.storage().ref();
+            var mountainsRef = storageRef.child("");
+            mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) {
+              /////////////////////////////////////////////////////
 
-            firebase.database().ref('Restaurante/' + uid).set({
+              firebase.database().ref('Restaurante/' + uid).set({
 
-              "nombreRestaurante": nombreRestaurante,
-              "NIF": NIF,
-              "idRestauran": idRestauran,
-              "correo": correo,
-              "telefono": telefono,
-              "direccion": direccion,
-              "codigoPosta": codigoPosta,
-              "pais": pais,
-              "poblacion": poblacion,
-              "contraseña": contraseña,
-              "confirmarContraseña": confirmarContraseña,
-              "rutaImagenRestaurante":rutaGuardaImagen,
-              "cuentas": {
-                "cuanta1": 0,
-                "cuenta2": 0,
-                "cuentaTotal": 0,    
+                "nombreRestaurante": nombreRestaurante,
+                "NIF": NIF,
+                "idRestauran": idRestauran,
+                "correo": correo,
+                "telefono": telefono,
+                "direccion": direccion,
+                "codigoPosta": codigoPosta,
+                "pais": pais,
+                "poblacion": poblacion,
+                "contraseña": contraseña,
+                "confirmarContraseña": confirmarContraseña,
+                "rutaImagenRestaurante": url,
+                "cuentas": {
+                  "cuanta1": 0,
+                  "cuenta2": 0,
+                  "cuentaTotal": 0,
 
-              }
+                }
 
 
-            }, function (error) {
-              if (error) {
-                alert('Hay un error en sus datos verifique e intentelo de nuevo...')
-              } else {
-                hideLoading()
-                swal("Registro Exitoso!", "Restaurante registrado!", "success");
-                $("#regristroRestaurante")[0].reset();
-              }
+              }, function (error) {
+                if (error) {
+                  alert('Hay un error en sus datos verifique e intentelo de nuevo...')
+                } else {
+                  hideLoading()
+                  swal("Registro Exitoso!", "Restaurante registrado!", "success");
+                  $("#regristroRestaurante")[0].reset();
+                }
+              })
             })
           })
 
@@ -259,6 +262,8 @@ function iniciarSesionEMpresa() {
       var datos = $('#sesionEmpresa').serializeArray();
       var correo = datos[0].value;
       var contraseña = datos[1].value;
+var datoss = localStorage.getItem('tokenBlue');
+
 
       firebase.auth().signInWithEmailAndPassword(correo, contraseña).then(function (data) {
         var uid = data.user.uid;
@@ -274,21 +279,30 @@ function iniciarSesionEMpresa() {
               "uid": uid,
               "correo": correo,
               "empresa": childData,
+              "tokenBLue":datoss
             }
+           
             sessionStorage.setItem("data", JSON.stringify(datas));
             var sesionjson = sessionStorage.getItem("data");
             var sesion = JSON.parse(sesionjson);
             if (sesion === '' | sesion === 'null') {
               alert('no ha iniciado sesion')
-             // hideLoading()
+              // hideLoading()
             } else {
-             // alert("has iniciado sesion");
-             hideLoading()
+              // alert("has iniciado sesion");
+              console.log(datoss);
+              console.log(uid);
+              
+              firebase.database().ref('Empresas/' + uid).update({
+                "tokenBLue":datoss
+              
+                })
+              hideLoading()
               swal("Bienvenido!", correo, "success").then((value) => {
-                location.href = "panelEmpresas.html"
+              //  location.href = "panelEmpresas.html"
               });
               // console.log(sesion);
-             //setTimeout( ,6000)
+              //setTimeout( ,6000)
             }
 
           });
@@ -298,8 +312,9 @@ function iniciarSesionEMpresa() {
         })
 
       }).catch(function (error) {
-      //  console.log(  error.message);
-        swal("Oh no!", error.message, "error");});
+        //  console.log(  error.message);
+        swal("Oh no!", error.message, "error");
+      });
 
     });
 
@@ -310,25 +325,25 @@ function iniciarSesionEMpresa() {
 
 function iniciarSesionRestaurante() {
   $(document).ready(function () {
-    $('#iniciarSesionRestaurante').click(function (e) {    
+    $('#iniciarSesionRestaurante').click(function (e) {
       e.preventDefault();
       restartLoading()
       var datos = $('#sesionRestaurante').serializeArray();
       var correo = datos[0].value;
       var contraseña = datos[1].value;
-     // console.log(datos);
+      // console.log(datos);
 
       firebase.auth().signInWithEmailAndPassword(correo, contraseña).then(function (data) {
         var uid = data.user.uid;
         var correo = data.user.email;
-       // console.log(uid);
+        // console.log(uid);
 
         /*recuperar datos de la empresa para el inicio de sesion */
         firebase.database().ref('Restaurante/').orderByKey().equalTo(uid).once('value').then(function (snapshot) {
           //var datosEmpresa = snapshot.val();
           snapshot.forEach(function (childSnapshot) {
             var childData = childSnapshot.val();
-           // console.log(childData);
+            // console.log(childData);
             var datas = {
               "uid": uid,
               "correo": correo,
@@ -337,7 +352,7 @@ function iniciarSesionRestaurante() {
             sessionStorage.setItem("data", JSON.stringify(datas));
             var sesionjson = sessionStorage.getItem("data");
             var sesion = JSON.parse(sesionjson);
-           // console.log(sesion);
+            // console.log(sesion);
 
             if (sesion === '' | sesion === 'null') {
               alert('no ha iniciado sesion')
@@ -346,7 +361,7 @@ function iniciarSesionRestaurante() {
               swal("Bienvenido!", correo, "success").then((value) => {
                 location.href = "panelRestaurante.html"
               });
-              }
+            }
 
           });
 
@@ -360,8 +375,9 @@ function iniciarSesionRestaurante() {
        });*/
 
       }).catch(function (error) {
-     //  console.log(  error.message);
-        swal("Oh no!", error.message, "error");})
+        //  console.log(  error.message);
+        swal("Oh no!", error.message, "error");
+      })
 
     });
 
@@ -378,12 +394,12 @@ function iniciarSesioncliente() {
       var datos = $('#sesionCliente').serializeArray();
       var correo = datos[0].value;
       var contraseña = datos[1].value;
-     // console.log(datos);
+      // console.log(datos);
 
       firebase.auth().signInWithEmailAndPassword(correo, contraseña).then(function (data) {
         var uid = data.user.uid;
         var correo = data.user.email;
-       // console.log(uid);
+        // console.log(uid);
 
         /*recuperar datos de la empresa para el inicio de sesion */
         firebase.database().ref('users/').orderByKey().equalTo(uid).once('value').then(function (snapshot) {
@@ -399,14 +415,15 @@ function iniciarSesioncliente() {
             sessionStorage.setItem("data", JSON.stringify(datas));
             var sesionjson = sessionStorage.getItem("data");
             var sesion = JSON.parse(sesionjson);
-          //  console.log(sesion);
+            //  console.log(sesion);
 
             if (sesion === '' | sesion === 'null') {
               alert('no ha iniciado sesion')
             } else {
               hideLoading();
               swal("Bienvenido!", correo, "success").then((value) => {
-                location.href = "panelClientes.html"})
+                location.href = "panelClientes.html"
+              })
               //location.href = "panelClientes.html"
             }
 
@@ -414,20 +431,21 @@ function iniciarSesioncliente() {
 
 
 
-        })  .catch(function(error) {
-        
-         var errorCode = error.code;
-         var errorMessage = error.message;
-         swal("ups!!", error.message, "error").then((value) => {
-          location.href = "panelClientes.html"})
-       });
+        }).catch(function (error) {
+
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          swal("ups!!", error.message, "error").then((value) => {
+            location.href = "panelClientes.html"
+          })
+        });
 
       }).catch(function (error) {
-       // console.log(  error.message);
+        // console.log(  error.message);
         swal("Oh no!", error.message, "error");
-        
-      
-       });
+
+
+      });
 
     });
 
@@ -435,6 +453,55 @@ function iniciarSesioncliente() {
   });
 
 } iniciarSesioncliente();
-hideLoading(); 
+hideLoading();
 
+function notificaciones() {
+  $(document).ready(function () {
 
+    const messaging = firebase.messaging();
+    messaging.usePublicVapidKey("BNH9hyxKC5faMqmfutsoi2bmVm8jm3guerqNkbW0DisLS48Rd9ebtBilFQYZzfaxCaoxlISBT7aQ2gf08WHn3jU");
+    Notification.requestPermission().then(function (permission) {
+      if (permission === 'granted') {
+        console.log('Notification permission granted.');      
+        messaging.getToken().then(function (snap) {        
+          localStorage.setItem('tokenBlue',snap)
+          messaging.onMessage(function (payload) {
+            console.log('Message received. ', payload);          
+          });
+        });
+
+      } else {
+        console.log('Unable to get permission to notify.');
+      }
+    });
+    console.log('notificaciones');
+  });
+} notificaciones()
+
+function enviarNotificacion(token) {
+  $(document).ready(function () {
+    ////////////////////////////////////////////////////////
+    var msg = {
+      "to": token,
+      "collapse_key": "type_a",
+      "data": {
+        "body": "Sending Notification Body From Data",
+        "title": "Notification Title from Data",
+        "key_1": "Value for key_1",
+        "key_2": "Value for key_2"
+      }
+    }
+    $.ajax({
+      type: 'POST',
+      url: 'https://fcm.googleapis.com/fcm/send',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'key=AAAAUsOwWoo:APA91bFKBqlAGM9eVVJ6WcQoQ6WUqQCXCAFexnSjn0gge-BT-IBVukT9lIluT05nl9QWM51uiZlsbmauq9o7ihYo8D1WtLHWXz4EEoDS_qMbsPtCjc_rDmNTNBhODNeiNpie8HWBs2lZ'
+      },
+      data: JSON.stringify(msg),
+      success: function (response) {
+        console.log(response);
+      },
+    });
+  });
+}
