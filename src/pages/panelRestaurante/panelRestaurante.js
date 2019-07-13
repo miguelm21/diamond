@@ -274,7 +274,8 @@ function registroPlato() {
             "tipoPLato": tipoPLato,
             "tiempoMinimo": tiempoMinimo,
             "tiempoMaximo": tiempoMaximo,
-            "rutaGuardaImagen": rutaGuardaImagen
+            "rutaGuardaImagen": rutaGuardaImagen,
+            "restaurante":restaurante
           }, function (error) {
             if (error) {
               hideLoading()
