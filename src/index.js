@@ -116,60 +116,71 @@ firebase.initializeApp(firebaseConfig);
 function registroEmpresa() {
   $(document).ready(function () {
     $('#registrarEmpresa').click(function (e) {
+      $("#formRegistrar").validate();
       e.preventDefault();
-    
+      restartLoading();
       var datos = $('#formRegistrar').serializeArray();
       var nombreEmpresa = datos[0].value;
-      var correo = datos[1].value;
-      var pais = datos[2].value;
-      var direccion = datos[3].value;
-      var poblacion = datos[4].value;
-      var direccion = datos[5].value;
-      var telefono = datos[6].value;
-      var codigoPostal = datos[7].value;
-      var NIF = datos[8].value;
-      var contraseña = datos[9].value;
+      var correo = datos[1].value; 
+      var pais = datos[2].value; 
+      var direccion = datos[3].value; 
+      var poblacion = datos[4].value; 
+      var telefono = datos[5].value; 
+      var codigoPostal = datos[6].value; 
+      var NIF = datos[7].value; 
+      var identificacion = datos[8].value; 
+      var contraseña = datos[9].value; 
+      var contraseña2 = datos[10].value; 
+     
 
-      firebase.auth().createUserWithEmailAndPassword(correo, contraseña).then(function (resultado) {
+      if (contraseña === contraseña2) {
+        firebase.auth().createUserWithEmailAndPassword(correo, contraseña).then(function (resultado) {
 
-        var uid = resultado.user.uid;
-        var res = firebase.database().ref('Empresas/' + uid).set({
+          var uid = resultado.user.uid;
+          firebase.database().ref('Empresas/' + uid).set({
 
-          "nombreEmpresa": nombreEmpresa,
-          "correo": correo,
-          "pais": pais,
-          "direccion": direccion,
-          "poblacion": poblacion,
-          "direccion": direccion,
-          "telefono": telefono,
-          "codigoPostal": codigoPostal,
-          "NIF": NIF,
-          "contraseña": contraseña,
-          "uid": uid,
-          "cuentas": {
-            "cuanta1": 0,
-            "cuenta2": 0,
-            "cuentaTotal": 0
-          }
+            "nombreEmpresa": nombreEmpresa,
+            "correo": correo,
+            "pais": pais,
+            "direccion": direccion,
+            "poblacion": poblacion,
+            "identificacion": identificacion,
+            "telefono": telefono,
+            "codigoPostal": codigoPostal,
+            "NIF": NIF,
+            "contraseña": contraseña,
+            "uid": uid,
+            "cuentas": {
+              "cuanta1": 0,
+              "cuenta2": 0,
+              "cuentaTotal": 0
+            }
 
+
+          }, function (error) {
+            if (error) {
+              alert('Hay un error en sus datos verifique e intentelo de nuevo...')
+            } else {
+              hideLoading()
+              swal("Registro Exitoso!", "Empresa registrado!", "success");
+              $("#formRegistrar")[0].reset();
+            }
+
+
+          })
 
         }, function (error) {
-          if (error) {
-            alert('Hay un error en sus datos verifique e intentelo de nuevo...')
-          } else {
-            hideLoading()
-            swal("Registro Exitoso!", "Empresa registrado!", "success");
-            $("#formRegistrar")[0].reset();
-          }
+          console.log();
+          hideLoading();
+          swal("Error!", error.message, "error")
+        });
+
+      } else {
+        hideLoading();
+        swal("Error", "Las contraseñas no son igules", "error")
+      }
 
 
-        })
-
-      }, function (error) {
-        console.log();
-
-        swal("Error!", error.message, "error")
-      });
     });
   })
 } registroEmpresa();
@@ -177,7 +188,10 @@ function registroEmpresa() {
 function registroRestaurante() {
   $(document).ready(function () {
     $('#registrarRestaurante').click(function (e) {
+      $("#regristroRestaurante").validate();
       e.preventDefault();
+     
+
       var datos = $('#regristroRestaurante').serializeArray();
       console.log(datos);
 
@@ -192,67 +206,74 @@ function registroRestaurante() {
       var poblacion = datos[8].value;
       var contraseña = datos[9].value;
       var confirmarContraseña = datos[10].value;
-      console.log(contraseña);
-      console.log(datos[3].value);
+      if (contraseña === confirmarContraseña) {
 
-      firebase.auth().createUserWithEmailAndPassword(correo, contraseña).then(function (resultado) {
 
-        var uid = resultado.user.uid;
+        firebase.auth().createUserWithEmailAndPassword(correo, contraseña).then(function (resultado) {
 
-        //////////////////////////////////////////////////////
-        var fotoval = document.getElementById('imagenRestaurante');
-        var foto = new FileReader();
-        foto.onload = function (e) {
-          var file = (e.target.result);
-          console.log(file);
+          var uid = resultado.user.uid;
 
-          var storageRef = firebase.storage().ref();
-          var mountainsRef = storageRef.child('imagen/restaurante/' + uid + fotoval.files[0].name);
-          var imagen = file.substring(23);
-          mountainsRef.putString(imagen, 'base64').then(function (snapshot) {
-            var rutaGuardaImagen = snapshot.metadata.fullPath;
+          //////////////////////////////////////////////////////
+          var fotoval = document.getElementById('imagenRestaurante');
+          var foto = new FileReader();
+          foto.onload = function (e) {
+            var file = (e.target.result);
+            console.log(file);
+
             var storageRef = firebase.storage().ref();
-            var mountainsRef = storageRef.child("");
-            mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) {
-              /////////////////////////////////////////////////////
+            var mountainsRef = storageRef.child('imagen/restaurante/' + uid + fotoval.files[0].name);
+            var imagen = file.substring(23);
+            mountainsRef.putString(imagen, 'base64').then(function (snapshot) {
+              var rutaGuardaImagen = snapshot.metadata.fullPath;
+              var storageRef = firebase.storage().ref();
+              var mountainsRef = storageRef.child("");
+              mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) {
+                /////////////////////////////////////////////////////
 
-              firebase.database().ref('Restaurante/' + uid).set({
+                firebase.database().ref('Restaurante/' + uid).set({
 
-                "nombreRestaurante": nombreRestaurante,
-                "NIF": NIF,
-                "idRestauran": idRestauran,
-                "correo": correo,
-                "telefono": telefono,
-                "direccion": direccion,
-                "codigoPosta": codigoPosta,
-                "pais": pais,
-                "poblacion": poblacion,
-                "contraseña": contraseña,
-                "confirmarContraseña": confirmarContraseña,
-                "rutaImagenRestaurante": url,
-                "cuentas": {
-                  "cuanta1": 0,
-                  "cuenta2": 0,
-                  "cuentaTotal": 0,
+                  "nombreRestaurante": nombreRestaurante,
+                  "NIF": NIF,
+                  "idRestauran": idRestauran,
+                  "correo": correo,
+                  "telefono": telefono,
+                  "direccion": direccion,
+                  "codigoPosta": codigoPosta,
+                  "pais": pais,
+                  "poblacion": poblacion,
+                  "contraseña": contraseña,
+                  "confirmarContraseña": confirmarContraseña,
+                  "rutaImagenRestaurante": url,
+                  "cuentas": {
+                    "cuanta1": 0,
+                    "cuenta2": 0,
+                    "cuentaTotal": 0,
 
-                }
+                  }
 
 
-              }, function (error) {
-                if (error) {
-                  alert('Hay un error en sus datos verifique e intentelo de nuevo...')
-                } else {
-                  hideLoading()
-                  swal("Registro Exitoso!", "Restaurante registrado!", "success");
-                  $("#regristroRestaurante")[0].reset();
-                }
+                }, function (error) {
+                  if (error) {
+                    alert('Hay un error en sus datos verifique e intentelo de nuevo...')
+                  } else {
+                    hideLoading()
+                    swal("Registro Exitoso!", "Restaurante registrado!", "success");
+                    $("#regristroRestaurante")[0].reset();
+                  }
+                })
               })
             })
-          })
 
 
-        }, foto.readAsDataURL(fotoval.files[0]);
-      })
+          }, foto.readAsDataURL(fotoval.files[0]);
+        },function (error) { 
+          swal("Error",error,"error");
+         })
+
+      } else {
+        swal("Error", "Contraseña no son iguales", "error")
+      }
+
     });
   })
 } registroRestaurante();
@@ -433,7 +454,7 @@ function iniciarSesioncliente() {
 
         }).catch(function (error) {
           hideLoading()
-        
+
           swal("ups!!", error.message, "error").then((value) => {
             location.href = "panelClientes.html"
           })

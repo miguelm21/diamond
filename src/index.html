@@ -12,6 +12,7 @@
   <script src="https://www.gstatic.com/firebasejs/6.2.1/firebase-messaging.js"></script>
 
 
+
   <script>
     // Your web app's Firebase configuration
     var firebaseConfig = {
@@ -211,45 +212,40 @@
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group">
 
-                          <input type="text" class="form-control required " placeholder="Nombre Empresa" 
-                            name="nombreEmpresa" required/>
+                          <input type="text" class="form-control  required" placeholder="Nombre Empresa" name="nombreEmpresa" required/>
                         </div>
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                          <input type="email" class="form-control" placeholder="Email" value="" name="correo" />
+                          <input type="email" class="form-control required " placeholder="Email" value="" name="correo" required/>
                         </div>
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                          <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Pais"
-                            value="" name="pais" />
+                          <input type="text" class="form-control required" placeholder="Pais"
+                            value="" name="pais" required/>
                         </div>
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Dirección" value="" name="direccion" />
+                          <input type="text" class="form-control required" placeholder="Dirección" value="" name="direccion" required/>
                         </div>
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Poblacion" value="" name="poblacion" />
+                          <input type="text" class="form-control required" placeholder="Poblacion" value="" name="poblacion" required/>
+                        </div>
+                      </div>
+                     
+                      <div class="col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                          <input type="text" class="form-control required" placeholder="Telefono" value="" name="telefono" required/>
                         </div>
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                          <input type="number" class="form-control" placeholder="Direccion" value="" name="direccion" />
-                        </div>
-                      </div>
-                      <div class="col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Telefono" value="" name="telefono" />
-                        </div>
-                      </div>
-                      <div class="col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Código postal" value=""
-                            name="codigoPostal" />
+                          <input type="text" class="form-control required" placeholder="Código postal" value=""
+                            name="codigoPostal" required/>
                         </div>
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
@@ -265,12 +261,17 @@
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Contraseña" value="" name="contraseña" />
+                          <input type="text" class="form-control required" placeholder="Identificacion Empresa" value="" name="identificacion" required/>
                         </div>
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Confirmar Contraseña" value="" />
+                          <input type="password" class="form-control required" placeholder="Contraseña" value="" name="contraseña" required/>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                          <input type="password" class="form-control required" placeholder="Confirmar Contraseña" name="contraseña2" required/>
                         </div>
                       </div>
                       <div class="col-12">
@@ -420,13 +421,13 @@
             <div class="col-md-12 col-lg-8 m-md-auto" style="display: none;" id="register-form2">
               <div class="box-login register">
                 <h4 class="title-login">Registra tu restaurant</h4>
-                <form id="regristroRestaurante">
+                <form id="regristroRestaurante" action="" method="post">
                 <div class="row register-form">
                     <div class="col-md-6 col-sm-6 col-12">
 
                       <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nombre del Restaurante" value=""
-                          name="nombreRestaurante" />
+                        <input type="text" class="form-control required" placeholder="Nombre del Restaurante" value=""
+                          name="nombreRestaurante"  required/>
                       </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
@@ -442,61 +443,57 @@
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <input type="text" class="form-control" placeholder="ID del restaurante" value=""
-                          name="idRestaurante" />
+                        <input type="text" class="form-control required" placeholder="ID del restaurante" value=""
+                          name="idRestaurante" required/>
                       </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Correo" value="" name="correo" />
+                        <input type="email" class="form-control required" placeholder="Correo" value="" name="correo" required/>
                       </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Telefono"
-                          value="" name="telefono" />
+                        <input type="text" maxlength="10" minlength="10" class="form-control required" placeholder="Telefono"
+                          value="" name="telefono" required/>
                       </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Dirección" value="" name="direccion" />
+                        <input type="text" class="form-control required" placeholder="Dirección" value="" name="direccion" required/>
+                      </div>
+                    </div>
+                   
+                    <div class="col-md-6 col-sm-6 col-12">
+                      <div class="form-group">
+                        <input type="number" class="form-control required" placeholder="Código postal" value=""
+                          name="codigoPostal" required/>
                       </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Correo electrónico" value="" name="" />
+                        <input type="text" class="form-control required" placeholder="Pais" value="" name="pais" required/>
                       </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <input type="number" class="form-control" placeholder="Código postal" value=""
-                          name="codigoPostal" />
+                        <input type="text" class="form-control required" placeholder="Poblacion" value="" name="poblacion" required/>
                       </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Pais" value="" name="pais" />
+                        <input type="text" class="form-control required" placeholder="Direccion" value="" name="" required/>
                       </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Poblacion" value="" name="poblacion" />
+                        <input type="password" class="form-control required" placeholder="Contraseña" value="" name="contraseña" required/>
                       </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Direccion" value="" name="" />
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-12">
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Contraseña" value="" name="contraseña" />
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-12">
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Confirmar contraseña" value=""
-                          name="confirmarContraseña" />
+                        <input type="password" class="form-control required" placeholder="Confirmar contraseña" value=""
+                          name="confirmarContraseña" required/>
                       </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
