@@ -181,9 +181,9 @@ function hideLoading() {
   $("#preloader").delay(1000).fadeOut("slow");
   $('.modal-backdrop').remove();
 }
-function enviarCorreo( correoEmpleado, nombreEmpleado){
+function enviarCorreo(correoEmpleado, nombreEmpleado) {
   $(document).ready(function () {
-    emailjs.send('bluediamont', 'template_K6VOnQ26', {'from_name':correoEmpleado,'to_name':nombreEmpleado})
+    emailjs.send('bluediamont', 'template_K6VOnQ26', { 'from_name': correoEmpleado, 'to_name': nombreEmpleado })
   });
 }
 
@@ -234,10 +234,10 @@ function registroempleados() {
         }, function (error) {
           if (error) {
             hideLoading()
-          swal("algo paso!", "error!", "error")
+            swal("algo paso!", "error!", "error")
           } else {
             hideLoading();
-            enviarCorreo( correo, nombre);
+            enviarCorreo(correo, nombre);
             swal("Registro Exitoso!", "Empleado registrado!", "success");
             $("#RegistrarEmpleados")[0].reset();
           }
@@ -528,8 +528,8 @@ function consultaSaldoEmpresa() {
       var cuenta1 = snap.cuenta1;
       var cuenta2 = snap.cuenta2;
       var saldoEmpresa = parseFloat(cuenta1) + parseFloat(cuenta2);
-      var saldoEmpresaFormato =  saldoEmpresa.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })
-      document.getElementById('saldoEmpresa').innerHTML =   saldoEmpresaFormato;
+      var saldoEmpresaFormato = saldoEmpresa.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })
+      document.getElementById('saldoEmpresa').innerHTML = saldoEmpresaFormato;
 
     })
   });
@@ -647,46 +647,59 @@ function recargarSaldoClientes() {
         var t = 0;
         snapshot.forEach(element => {
           var datos = element.val();
-
+          var saldoCliente = (datos.cuentas.cuanta1);
           var uidEmpleado = datos.uidempleado;
-          //   console.log(datos);
           var montoCargarEmpleado = datos.planBeneficio;
           var saldos = montoCargarEmpleado.split('€');
 
-          //for (let index = 0; index < saldos.length; index++) {
+
           t = t + parseFloat(saldos[1].trim());
-          //}
-          console.log(t);
+
+          // console.log(t);
           firebase.database().ref('/Empresas/' + sesion.uid + "/").once('value').then(function (snapshot) {
-            //monto de los empleados
+
             var empresa = (snapshot.val());
             var cuenta1Empresa = empresa.cuentas.cuenta1;
             var cuenta2Empresa = empresa.cuentas.cuenta2;
             var saldototalEmpresa = parseFloat(cuenta1Empresa) + cuenta2Empresa
             var saldoQuedaEmpresa = cuenta1Empresa - t;
-            // console.log(t);
+            if (saldoCliente <= 0) {
 
-            //console.log(saldoQuedaEmpresa);
-            if (saldototalEmpresa < t) {
-              hideLoading();
-              swal({
-                title: "Sin Saldo!",
-                text: "Deber Ir a recargar tu saldo",
-                icon: "warning",
-                dangerMode: true,
-              })
+
+              if (saldototalEmpresa < t) {
+                hideLoading();
+                swal({
+                  title: "Sin Saldo!",
+                  text: "Deber Ir a recargar tu saldo",
+                  icon: "warning",
+                  dangerMode: true,
+                })
+              } else {
+                firebase.database().ref('users/' + uidEmpleado + "/cuentas/").update({
+                  "cuanta1": parseFloat(saldos[1])
+                });
+                firebase.database().ref('Empresas/' + sesion.uid + "/cuentas/").update({
+                  "cuenta1": saldoQuedaEmpresa,
+                });
+                var ko = enviarNotificacion(datos.tokenBLue);
+                console.log('saliooooooooooooooo');
+                console.log(ko);
+
+
+                hideLoading();
+                swal({
+                  title: "Saldo Recargado",
+                  text: "Sus usuarios ya tien el saldo disponible",
+                  icon: "success",
+
+                })
+              }
             } else {
-              firebase.database().ref('users/' + uidEmpleado + "/cuentas/").update({
-                "cuanta1": parseFloat(saldos[1])
-              });
-              firebase.database().ref('Empresas/' + sesion.uid + "/cuentas/").update({
-                "cuenta1": saldoQuedaEmpresa,
-              });
               hideLoading();
               swal({
-                title: "Saldo Recargado",
-                text: "Sus usuarios ya tien el saldo disponible",
-                icon: "success",
+                title: "El saldo ya fue recargado",
+                text: "El saldo ya fue recargado si el error pesiste llame al Soporte 0800",
+                icon: "error",
 
               })
             }
@@ -707,7 +720,7 @@ function recuperarSaldodeClientes() {
       firebase.database().ref('Empresas/' + sesion.uid + "/").once('value').then(function (snapshot) {
         var empresa = snapshot.val();
         var cuenta1 = empresa.cuentas.cuenta1;
-    //    console.log(cuenta1);
+        //    console.log(cuenta1);
 
         firebase.database().ref('users/').orderByChild('empresa').equalTo(sesion.uid).once('value').then(function (snapshot) {
           var suma = 0;
@@ -739,7 +752,17 @@ function recuperarSaldodeClientes() {
   });
 } recuperarSaldodeClientes()
 
-hideLoading() 
+
+function cerrarsesion() {
+  $(document).ready(function () {
+    $(document.body).on('click', '.cerrarsesion', function () {
+      sessionStorage.removeItem("data");
+      location.href = 'index.html'
+      //alert("cerrado");
+    });
+  });
+} cerrarsesion()
+
 function notificaciones() {
   $(document).ready(function () {
 
@@ -752,10 +775,10 @@ function notificaciones() {
 
         messaging.getToken().then(function (snap) {
           console.log(snap);
-          localStorage.setItem('tokenBlue',snap)
+          localStorage.setItem('tokenBlue', snap)
           messaging.onMessage(function (payload) {
             console.log('Message received. ', payload);
-          
+
           });
         });
 
@@ -789,9 +812,13 @@ function enviarNotificacion(token) {
       },
       data: JSON.stringify(msg),
       success: function (response) {
-        console.log(response);
+        return (response);
       },
     });
   });
 }
 
+
+
+
+hideLoading()

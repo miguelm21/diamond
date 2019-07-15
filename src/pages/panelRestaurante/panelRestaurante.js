@@ -476,6 +476,17 @@ function nombreRestaurante() {
   });
 }nombreRestaurante()
 hideLoading();
+
+function cerrarsesion() {
+  $(document).ready(function () {
+    $(document.body).on('click', '.cerrarsesion', function () {
+      sessionStorage.removeItem("data");
+        location.href='index.html'
+//alert("cerrado");
+    });
+  });
+} cerrarsesion()
+
 function notificaciones() {
   $(document).ready(function () {
 

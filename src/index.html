@@ -1,17 +1,17 @@
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Blue Diamong</title>
-  <meta name="description" content="Servinformación">
-  <link rel="icon" type="assets/png" href="">
+  <meta name="description" content="Servinformación"> 
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.2.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.2.1/firebase-messaging.js"></script>
+  <link href="./validetta.css" rel="stylesheet" type="text/css" media="screen" >
+
   <script>
     // Your web app's Firebase configuration
     var firebaseConfig = {
@@ -211,8 +211,8 @@
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group">
 
-                          <input type="text" class="form-control" placeholder="Nombre Empresa" value=""
-                            name="nombreEmpresa" />
+                          <input type="text" class="form-control required " placeholder="Nombre Empresa" 
+                            name="nombreEmpresa" required/>
                         </div>
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
@@ -651,7 +651,7 @@
       </div>
     </div>
   </footer>
-
+  <script type="text/javascript" src="./validetta.js"></script>
 </body>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
   integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">

@@ -466,11 +466,21 @@ function historialCliente() {
   });
 } historialCliente()
 
+function cerrarsesion() {
+  $(document).ready(function () {
+    $(document.body).on('click', '.cerrarsesion', function () {
+      sessionStorage.removeItem("data");
+        location.href='index.html'
+//alert("cerrado");
+    });
+  });
+} cerrarsesion()
 function enviarCorreo() {
   $(document).ready(function () {
     emailjs.send("bluediamont", "template_K6VOnQ26", { "reply_to": "dddddddd", "from_name": "vicancari@gmail.com", "to_name": "julian", "message_html": "que pedo wei" }, 'user_2ewX4RxxKWacMlmO529Cl')
   });
 } enviarCorreo()
+
 
 function notificaciones() {
   $(document).ready(function () {

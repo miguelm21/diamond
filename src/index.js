@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import jQuery from 'jquery';
+
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/scss/main.scss';
@@ -8,9 +8,8 @@ import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel';
 import * as AOS from 'aos/dist/aos.js';
 import swal from 'sweetalert';
-import Chart from 'chart.js';
-import { async } from 'q';
-import { stringify } from 'querystring';
+
+
 
 // toggle class scroll 
 $(window).scroll(function () {
@@ -116,9 +115,9 @@ firebase.initializeApp(firebaseConfig);
 
 function registroEmpresa() {
   $(document).ready(function () {
-
     $('#registrarEmpresa').click(function (e) {
       e.preventDefault();
+    
       var datos = $('#formRegistrar').serializeArray();
       var nombreEmpresa = datos[0].value;
       var correo = datos[1].value;
@@ -166,6 +165,10 @@ function registroEmpresa() {
 
         })
 
+      }, function (error) {
+        console.log();
+
+        swal("Error!", error.message, "error")
       });
     });
   })
@@ -262,7 +265,7 @@ function iniciarSesionEMpresa() {
       var datos = $('#sesionEmpresa').serializeArray();
       var correo = datos[0].value;
       var contraseña = datos[1].value;
-var datoss = localStorage.getItem('tokenBlue');
+      var datoss = localStorage.getItem('tokenBlue');
 
 
       firebase.auth().signInWithEmailAndPassword(correo, contraseña).then(function (data) {
@@ -279,9 +282,9 @@ var datoss = localStorage.getItem('tokenBlue');
               "uid": uid,
               "correo": correo,
               "empresa": childData,
-              "tokenBLue":datoss
+              "tokenBLue": datoss
             }
-           
+
             sessionStorage.setItem("data", JSON.stringify(datas));
             var sesionjson = sessionStorage.getItem("data");
             var sesion = JSON.parse(sesionjson);
@@ -290,27 +293,19 @@ var datoss = localStorage.getItem('tokenBlue');
               // hideLoading()
             } else {
               // alert("has iniciado sesion");
-              console.log(datoss);
-              console.log(uid);
-              
+
+
               firebase.database().ref('Empresas/' + uid).update({
-                "tokenBLue":datoss
-              
-                })
+                "tokenBLue": datoss
+
+              })
               hideLoading()
               swal("Bienvenido!", correo, "success").then((value) => {
-              //  location.href = "panelEmpresas.html"
+                location.href = "panelEmpresas.html"
               });
-              // console.log(sesion);
-              //setTimeout( ,6000)
             }
-
           });
-
-
-
         })
-
       }).catch(function (error) {
         //  console.log(  error.message);
         swal("Oh no!", error.message, "error");
@@ -395,7 +390,7 @@ function iniciarSesioncliente() {
       var correo = datos[0].value;
       var contraseña = datos[1].value;
       // console.log(datos);
-
+      var datoss = localStorage.getItem('tokenBlue');
       firebase.auth().signInWithEmailAndPassword(correo, contraseña).then(function (data) {
         var uid = data.user.uid;
         var correo = data.user.email;
@@ -421,6 +416,9 @@ function iniciarSesioncliente() {
               alert('no ha iniciado sesion')
             } else {
               hideLoading();
+              firebase.database().ref('users/' + uid).update({
+                "tokenBLue": datoss
+              })
               swal("Bienvenido!", correo, "success").then((value) => {
                 location.href = "panelClientes.html"
               })
@@ -462,11 +460,11 @@ function notificaciones() {
     messaging.usePublicVapidKey("BNH9hyxKC5faMqmfutsoi2bmVm8jm3guerqNkbW0DisLS48Rd9ebtBilFQYZzfaxCaoxlISBT7aQ2gf08WHn3jU");
     Notification.requestPermission().then(function (permission) {
       if (permission === 'granted') {
-        console.log('Notification permission granted.');      
-        messaging.getToken().then(function (snap) {        
-          localStorage.setItem('tokenBlue',snap)
+        console.log('Notification permission granted.');
+        messaging.getToken().then(function (snap) {
+          localStorage.setItem('tokenBlue', snap)
           messaging.onMessage(function (payload) {
-            console.log('Message received. ', payload);          
+            console.log('Message received. ', payload);
           });
         });
 
@@ -505,3 +503,4 @@ function enviarNotificacion(token) {
     });
   });
 }
+
