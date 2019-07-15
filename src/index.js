@@ -308,6 +308,7 @@ function iniciarSesionEMpresa() {
         })
       }).catch(function (error) {
         //  console.log(  error.message);
+        hideLoading()
         swal("Oh no!", error.message, "error");
       });
 
@@ -371,6 +372,7 @@ function iniciarSesionRestaurante() {
 
       }).catch(function (error) {
         //  console.log(  error.message);
+        hideLoading()
         swal("Oh no!", error.message, "error");
       })
 
@@ -430,9 +432,8 @@ function iniciarSesioncliente() {
 
 
         }).catch(function (error) {
-
-          var errorCode = error.code;
-          var errorMessage = error.message;
+          hideLoading()
+        
           swal("ups!!", error.message, "error").then((value) => {
             location.href = "panelClientes.html"
           })
