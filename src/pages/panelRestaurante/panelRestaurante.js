@@ -221,7 +221,7 @@ $(document).ready(function () {
 function restartLoading() {
   $("#status").show();
   $("#preloader").show();
-}restartLoading()
+} restartLoading()
 
 function hideLoading() {
   $("#status").fadeOut();
@@ -234,6 +234,7 @@ firebase.initializeApp(firebaseConfig);
 function registroPlato() {
   $(document).ready(function () {
     $('#registrarPlato').click(function (e) {
+      $('#registroPlato').validate();
       e.preventDefault();
       restartLoading();
       var sesion = JSON.parse(sessionStorage.getItem('data'));
@@ -249,7 +250,7 @@ function registroPlato() {
       var tipoPLato = datos[6].value;
       var tiempoMinimo = datos[7].value;
       var tiempoMaximo = datos[8].value;
-     // console.log(tipoPLato);
+      // console.log(tipoPLato);
 
       var fotoval = document.getElementById('imagenPlato');
       var foto = new FileReader();
@@ -264,34 +265,34 @@ function registroPlato() {
           var rutaGuardaImagen = snapshot.metadata.fullPath;
 
           var storageRef = firebase.storage().ref();
-          var mountainsRef = storageRef.child("");     
-          mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) {  
-          
+          var mountainsRef = storageRef.child("");
+          mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) {
 
-          firebase.database().ref('Platos/').push().set({
 
-            "nombrePlato": nombrePlato,
-            "descripcionPlato": descripcionPlato,
-            "PrecioPlato": PrecioPlato,
-            "TamañoPLato": TamañoPLato,
-            "cantidadPlato": cantidadPlato,
-            "porcionPlato": porcionPlato,
-            "tipoPLato": tipoPLato,
-            "tiempoMinimo": tiempoMinimo,
-            "tiempoMaximo": tiempoMaximo,
-            "rutaGuardaImagen": url,
-            "restaurante":restaurante
-          }, function (error) {
-            if (error) {
-              hideLoading()
-              swal("error!", "error!", "error")
-            } else {
-              hideLoading()
-              swal("Registro Exitoso!", "Registrado!", "success")
-             
-            }
-          });
-        })
+            firebase.database().ref('Platos/').push().set({
+
+              "nombrePlato": nombrePlato,
+              "descripcionPlato": descripcionPlato,
+              "PrecioPlato": PrecioPlato,
+              "TamañoPLato": TamañoPLato,
+              "cantidadPlato": cantidadPlato,
+              "porcionPlato": porcionPlato,
+              "tipoPLato": tipoPLato,
+              "tiempoMinimo": tiempoMinimo,
+              "tiempoMaximo": tiempoMaximo,
+              "rutaGuardaImagen": url,
+              "restaurante": restaurante
+            }, function (error) {
+              if (error) {
+                hideLoading()
+                swal("error!", "error!", "error")
+              } else {
+                hideLoading()
+                swal("Registro Exitoso!", "Registrado!", "success")
+
+              }
+            });
+          })
         })
       }, foto.readAsDataURL(fotoval.files[0]);
     });
@@ -317,31 +318,31 @@ function platosRegistrados() {
         var tiempoMinimo = childData.tiempoMinimo;
         var tipoPLato = childData.tipoPLato;
         var rutaGuardaImagen = childData.rutaGuardaImagen;
-                   
-          var tarjeta = $("<div class=' col-xl-3 col-md-4 col-sm-6 col-12' >" +
-            "<div class='card'>" +
-            "<div class='dropdown'>" +
-            "<button class='btn dropdown-toggle' type='button' id='dropdownMenuButton1' data-toggle='dropdown' aria-haspopup='false' aria-expanded='false'>" +
-            "<i class='fas fa-ellipsis-v'></i>" +
-            "</button>" +
-            "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton1'>" +
-            "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-editar-beneficio'>Editar</a>" +
-            "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-eliminar'>Eliminar</a>" +
-            "</div>" +
-            "</div>" +
-            "<img class='card-img-top' src='"+rutaGuardaImagen+"' alt='Card image'>" +
-            "<div class='card-body'>" +
-            "<h4 class='card-title'>" + nombrePlato + "</h4>" +
-            "<p class='card-text'>" + descripcionPlato + "</p>" +
-            "</div>" +
-            "<div class='tag'>" +
-            "<a href='#'>" + tipoPLato + "</a>" +
-            "</div>" +
-            "</div>" +
-            "</div>");
 
-          $('#tarjetaPlato').append(tarjeta);
-      
+        var tarjeta = $("<div class=' col-xl-3 col-md-4 col-sm-6 col-12' >" +
+          "<div class='card'>" +
+          "<div class='dropdown'>" +
+          "<button class='btn dropdown-toggle' type='button' id='dropdownMenuButton1' data-toggle='dropdown' aria-haspopup='false' aria-expanded='false'>" +
+          "<i class='fas fa-ellipsis-v'></i>" +
+          "</button>" +
+          "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton1'>" +
+          "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-editar-beneficio'>Editar</a>" +
+          "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-eliminar'>Eliminar</a>" +
+          "</div>" +
+          "</div>" +
+          "<img class='card-img-top' src='" + rutaGuardaImagen + "' alt='Card image'>" +
+          "<div class='card-body'>" +
+          "<h4 class='card-title'>" + nombrePlato + "</h4>" +
+          "<p class='card-text'>" + descripcionPlato + "</p>" +
+          "</div>" +
+          "<div class='tag'>" +
+          "<a href='#'>" + tipoPLato + "</a>" +
+          "</div>" +
+          "</div>" +
+          "</div>");
+
+        $('#tarjetaPlato').append(tarjeta);
+
       });
     });
   });
@@ -350,8 +351,9 @@ function platosRegistrados() {
 function registropromociones() {
   $(document).ready(function () {
     $('#registrarPromo').click(function (e) {
+      $('#registroPromo').validate();
       e.preventDefault();
-restartLoading()
+      restartLoading()
       var sesion = JSON.parse(sessionStorage.getItem('data'));
       var restaurante = (sesion.uid);
       //console.log(restaurante);
@@ -380,35 +382,35 @@ restartLoading()
           var rutaGuardaImagen = snapshot.metadata.fullPath;
           console.log(rutaGuardaImagen);
           var storageRef = firebase.storage().ref();
-          var mountainsRef = storageRef.child("");     
-          mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) {  
-          firebase.database().ref('Promo/').push().set({
+          var mountainsRef = storageRef.child("");
+          mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) {
+            firebase.database().ref('Promo/').push().set({
 
-            "nombrePromo": nombrePromo,
-            "DescripcionPromo": DescripcionPromo,
-            "PrecioPromo": PrecioPromo,
-            "tamañoPromo": tamañoPromo,
-            "cantidadPromo": cantidadPromo,
-            "procionPromo": procionPromo,
-            "tiempoMin": tiempoMin,
-            "tiempoMax": tiempoMax,
-            "rutaGuardaImagen": url,
-            "restaurante":restaurante
+              "nombrePromo": nombrePromo,
+              "DescripcionPromo": DescripcionPromo,
+              "PrecioPromo": PrecioPromo,
+              "tamañoPromo": tamañoPromo,
+              "cantidadPromo": cantidadPromo,
+              "procionPromo": procionPromo,
+              "tiempoMin": tiempoMin,
+              "tiempoMax": tiempoMax,
+              "rutaGuardaImagen": url,
+              "restaurante": restaurante
 
-          }, function (error) {
-            if (error) {
-               hideLoading()
-              swal("Registro error!", "error!", "error")
-            } else {
-              hideLoading()
-              swal("Registro Exitoso!", " registrado!", "success")
-            }
-           
-          });
+            }, function (error) {
+              if (error) {
+                hideLoading()
+                swal("Registro error!", "error!", "error")
+              } else {
+                hideLoading()
+                swal("Registro Exitoso!", " registrado!", "success")
+              }
+
+            });
 
 
 
-        })
+          })
         });
       }
       foto.readAsDataURL(fotoval.files[0]);
@@ -422,7 +424,7 @@ function promoRegistrados() {
   $('body').ready(function () {
     var sesion = JSON.parse(sessionStorage.getItem('data'));
 
-    firebase.database().ref('/Promo/' ).orderByChild('restaurante').equalTo(sesion.uid).once('value').then(function (snapshot) {
+    firebase.database().ref('/Promo/').orderByChild('restaurante').equalTo(sesion.uid).once('value').then(function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
 
         var childData = childSnapshot.val();
@@ -437,31 +439,31 @@ function promoRegistrados() {
         var tiempoMax = childData.tiempoMax;
         var tiempoMin = childData.tiempoMin;
         var rutaGuardaImagen = childData.rutaGuardaImagen;
-   
-          var tarjeta = $("<div class=' col-xl-3 col-md-4 col-sm-6 col-12' >" +
-            "<div class='card'>" +
-            "<div class='dropdown'>" +
-            "<button class='btn dropdown-toggle' type='button' id='dropdownMenuButton1' data-toggle='dropdown' aria-haspopup='false' aria-expanded='false'>" +
-            "<i class='fas fa-ellipsis-v'></i>" +
-            "</button>" +
-            "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton1'>" +
-            "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-editar-beneficio'>Editar</a>" +
-            "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-eliminar'>Eliminar</a>" +
-            "</div>" +
-            "</div>" +
-            "<img  src='" + rutaGuardaImagen + "' class='card-img-top'  alt='Card image'>" +
-            "<div class='card-body'>" +
-            "<h4 class='card-title'>" + nombrePromo + "</h4>" +
-            "<p class='card-text'>" + DescripcionPromo + "</p>" +
-            "</div>" +
-            "<div class='tag'>" +
-            "<a href='#'> €" + PrecioPromo + "</a>" +
-            "</div>" +
-            "</div>" +
-            "</div>");
 
-          $('#promocion2').append(tarjeta);
-       
+        var tarjeta = $("<div class=' col-xl-3 col-md-4 col-sm-6 col-12' >" +
+          "<div class='card'>" +
+          "<div class='dropdown'>" +
+          "<button class='btn dropdown-toggle' type='button' id='dropdownMenuButton1' data-toggle='dropdown' aria-haspopup='false' aria-expanded='false'>" +
+          "<i class='fas fa-ellipsis-v'></i>" +
+          "</button>" +
+          "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton1'>" +
+          "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-editar-beneficio'>Editar</a>" +
+          "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-eliminar'>Eliminar</a>" +
+          "</div>" +
+          "</div>" +
+          "<img  src='" + rutaGuardaImagen + "' class='card-img-top'  alt='Card image'>" +
+          "<div class='card-body'>" +
+          "<h4 class='card-title'>" + nombrePromo + "</h4>" +
+          "<p class='card-text'>" + DescripcionPromo + "</p>" +
+          "</div>" +
+          "<div class='tag'>" +
+          "<a href='#'> €" + PrecioPromo + "</a>" +
+          "</div>" +
+          "</div>" +
+          "</div>");
+
+        $('#promocion2').append(tarjeta);
+
       });
     });
   });
@@ -470,19 +472,19 @@ function promoRegistrados() {
 function nombreRestaurante() {
   $(document).ready(function () {
     var data = sessionStorage.getItem('data');
-    var sesion =JSON.parse(data);
+    var sesion = JSON.parse(data);
     var nombreRestaurante = sesion.restaurante.nombreRestaurante;
-    $('#nombreRestaurante').append("<span>"+ nombreRestaurante+"</span>");
+    $('#nombreRestaurante').append("<span>" + nombreRestaurante + "</span>");
   });
-}nombreRestaurante()
+} nombreRestaurante()
 hideLoading();
 
 function cerrarsesion() {
   $(document).ready(function () {
     $(document.body).on('click', '.cerrarsesion', function () {
       sessionStorage.removeItem("data");
-        location.href='index.html'
-//alert("cerrado");
+      location.href = 'index.html'
+      //alert("cerrado");
     });
   });
 } cerrarsesion()
@@ -499,10 +501,10 @@ function notificaciones() {
 
         messaging.getToken().then(function (snap) {
           console.log(snap);
-          localStorage.setItem('tokenBlue',snap)
+          localStorage.setItem('tokenBlue', snap)
           messaging.onMessage(function (payload) {
             console.log('Message received. ', payload);
-          
+
           });
         });
 

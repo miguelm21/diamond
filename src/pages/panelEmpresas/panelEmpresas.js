@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import jQuery from 'jquery';
+
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../styles/scss/main.scss';
@@ -8,7 +8,7 @@ import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel';
 import * as AOS from 'aos/dist/aos.js';
 import swal from 'sweetalert';
-import Chart from 'chart.js';
+
 
 // toggle class scroll 
 $(window).scroll(function () {
@@ -192,6 +192,7 @@ firebase.initializeApp(firebaseConfig);
 function registroempleados() {
   $(document).ready(function () {
     $('#registrarEmpleados').click(function (e) {
+      $("#RegistrarEmpleados").validate();
       e.preventDefault();
       restartLoading()
       var datos = $('#RegistrarEmpleados').serializeArray();
@@ -273,6 +274,7 @@ function recuperarNOmbreEmpresa() {
 function CrearPlanes() {
   $(document).ready(function () {
     $('#registrarBeneficio').click(function (e) {
+      $('#registroBeneficio').validate();
       e.preventDefault();
       restartLoading()
       var datos = $('#registroBeneficio').serializeArray();
@@ -538,6 +540,7 @@ function consultaSaldoEmpresa() {
 function RecargarSaldoEMpresa() {
   $(document).ready(function () {
     $('#recargarSaldoEmpresa').click(function (e) {
+      $('#recargaSaldoEmpresa').validate();
       e.preventDefault();
       restartLoading();
       var data = sessionStorage.getItem('data');
@@ -817,8 +820,4 @@ function enviarNotificacion(token) {
     });
   });
 }
-
-
-
-
 hideLoading()

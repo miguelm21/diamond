@@ -40,7 +40,7 @@
 
   <!--  Navbar -->
   <nav class="navbar navbar-expand-lg navbar-edit">
-    <a class="navbar-brand" href="index.html"><img src="/src/assets/image/logo.png" alt="" class="img-logo"></a>
+    <a class="navbar-brand" href="index.html"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Flogo.png?alt=media&token=ff89ac3f-cb1f-4e39-820f-856908e94880" alt="" class="img-logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-bars"></i>
@@ -126,31 +126,32 @@
                   <div class="col-md-6 col-12">
                     <div class="form-group">
                       <label for="file" class="form-control pointer">Agregar imagen
-                        <input id="imagenPlato" type="file" accept="image/*" />
+                      
+                        <input id="imagenPlato" type="file" accept="image/*" class="required" required/>
                       </label>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Nombre Plato" value=""
-                        name="nombrePlato" />
+                      <input type="text" class="form-control required" placeholder="Nombre Plato" value=""
+                        name="nombrePlato" required/>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Descripción Plato" value=""
-                        name="descripcionPlato" />
+                      <input type="text" class="form-control required" placeholder="Descripción Plato" value=""
+                        name="descripcionPlato" required/>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="form-group">
-                      <input type="number" class="form-control" placeholder="Precio del plato" value=""
-                        name="PrecioPlato" />
+                      <input type="number" class="form-control required" placeholder="Precio del plato" value=""
+                        name="PrecioPlato" required/>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="form-group">
-                      <select class="form-control" id="exampleFormControlSelect1" name="TamañoPLato">
+                      <select class="form-control required" id="exampleFormControlSelect1" name="TamañoPLato" required>
                         <option>Tamaño del plato</option>
                         <option>Pequeño</option>
                         <option>Mediano</option>
@@ -160,27 +161,27 @@
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="form-group">
-                      <input type="number" class="form-control" placeholder="Cantidad" value=""
-                        name="cantidadPlato" />
+                      <input type="number" class="form-control required" placeholder="Cantidad" value=""
+                        name="cantidadPlato" required/>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="form-group">
-                      <input type="number" class="form-control" placeholder="Porcion" value="" name="porcionPlato" />
+                      <input type="number" class="form-control required" placeholder="Porcion" value="" name="porcionPlato" required/>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Tipo de plato" value="" name="tipoPLato" />
+                      <input type="text" class="form-control required" placeholder="Tipo de plato" value="" name="tipoPLato" required/>
                     </div>
                   </div>
                   <div class="col-md-12 col-12">
                     <div class="form-group time-to">
                       <label for="" class="mt-2">Tiempo de preparacion</label>
                       <div class="d-flex align-items-center w-25">
-                        <input type="number" class="form-control" placeholder="min" value="" name="tiempoMinimo" />
+                        <input type="number" class="form-control required" placeholder="min" value="" name="tiempoMinimo" required/>
                         <p class="ion"></p>
-                        <input type="number" class="form-control" placeholder="max" value="" name="tiempoMaximo" />
+                        <input type="number" class="form-control required" placeholder="max" value="" name="tiempoMaximo" required/>
                       </div>
                     </div>
                   </div>
@@ -302,24 +303,24 @@
                 <div class="col-md-6 col-12">
                   <div class="form-group">
                     <label for="file" class="form-control pointer">Agregar imagen
-                      <input id="imagenPromo" type="file" accept="image/*" />
+                      <input id="imagenPromo" type="file" accept="image/*" class="required" required />
                     </label>
                   </div>
                 </div>
                 <form id="registroPromo" >
                 <div class="col-md-6 col-12">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Nombre" value="" name="nombrePromo"/>
+                    <input type="text" class="form-control required" placeholder="Nombre" value="" name="nombrePromo" required/>
                   </div>
                 </div>
                 <div class="col-md-6 col-12">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Descripción" value="" name="DescripcionPromo"/>
+                    <input type="text" class="form-control required" placeholder="Descripción" value="" name="DescripcionPromo" required/>
                   </div>
                 </div>
                 <div class="col-md-6 col-12">
                   <div class="form-group">
-                    <input type="number" class="form-control" placeholder="Precio" value="" name="PrecioPromo"/>
+                    <input type="number" class="form-control required" placeholder="Precio" value="" name="PrecioPromo" required/>
                   </div>
                 </div>
                 <div class="col-md-6 col-12">
@@ -334,12 +335,12 @@
                 </div>
                 <div class="col-md-6 col-12">
                   <div class="form-group">
-                    <input type="number" class="form-control" placeholder="Cantidad" value="" name="cantidadPromo"/>
+                    <input type="number" class="form-control required" placeholder="Cantidad" value="" name="cantidadPromo" required/>
                   </div>
                 </div>
                 <div class="col-md-6 col-12">
                   <div class="form-group">
-                    <input type="number" class="form-control" placeholder="Porcion" value="" name="procionPromo"/>
+                    <input type="number" class="form-control required" placeholder="Porcion" value="" name="procionPromo" required/>
                   </div>
                 </div>
                 <div class="col-md-12 col-12">
@@ -352,11 +353,12 @@
                     </div>
                   </div>
                 </div>
-              </form>
+             
                 <div class="col-12 d-flex justify-content-center mt-4 text-center">
                   <button type="submit" onclick="backbutton()" class="btn btn-back">Volver</button>
                   <button type="submit" class="btn btn-register" id="registrarPromo" >Crear Promociones</button>
                 </div>
+              </form>
               </div>
             </div>
           </div>

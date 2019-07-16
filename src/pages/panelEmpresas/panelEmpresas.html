@@ -1,5 +1,4 @@
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,7 +44,7 @@
 
   <!--  Navbar -->
   <nav class="navbar navbar-expand-lg navbar-edit">
-    <a class="navbar-brand" href="index.html"><img src="/src/assets/image/logo.png" alt="" class="img-logo"></a>
+    <a class="navbar-brand" href="index.html"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Flogo.png?alt=media&token=ff89ac3f-cb1f-4e39-820f-856908e94880" alt="" class="img-logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-bars"></i>
@@ -159,58 +158,59 @@
               <div class="register-client max-width" id="show-register1">
                 <h5>Registrar cliente</h5>
                 <div class="form-client">
-                  <form id="RegistrarEmpleados">
+                  <form id="RegistrarEmpleados" action="" method="post">
                     <div class="row register-form">
                       <div class="col-md-6 col-12">
 
                         <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Nombres" value="" name="nombre" />
+                          <input type="text" class="form-control required" placeholder="Nombres" value="" name="nombre" required/>
                         </div>
                       </div>
                       <div class="col-md-6 col-12">
                         <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Apellidos" value="" name="apellido" />
+                          <input type="text" class="form-control required" placeholder="Apellidos" value="" name="apellido" required/>
                         </div>
                       </div>
                       <div class="col-md-6 col-12">
                         <div class="form-group">
-                          <input type="date" class="form-control" placeholder="Fecha de nacimiento" value=""
-                            name="fechaNacimiento" />
+                          <input type="date" class="form-control required" placeholder="Fecha de nacimiento" value=""
+                            name="fechaNacimiento" required/>
                         </div>
                       </div>
                       <div class="col-md-6 col-12">
                         <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Correo electrónico" value=""
-                            name="correo" />
+                          <input type="text" class="form-control required" placeholder="Correo electrónico" value=""
+                            name="correo" required/>
                         </div>
                       </div>
                       <div class="col-md-6 col-12">
                         <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Cargo" value="" name="cargo" />
+                          <input type="text" class="form-control required" placeholder="Cargo" value="" name="cargo" required/>
                         </div>
                       </div>
                       <div class="col-md-6 col-12">
                         <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Inactivo" value="" name="Inactivo" />
+                          <input type="text" class="form-control required" placeholder="Inactivo" value="" name="Inactivo" required/>
                         </div>
                       </div>
                       <div class="col-md-6 col-12">
                         <div class="form-group">
-                          <select class="form-control" id="exampleFormControlSelect1" name="planBeneficio">
+                          <select class="form-control required" id="exampleFormControlSelect1" name="planBeneficio">
 
                           </select>
                         </div>
                       </div>
                       <div class="col-md-6 col-12">
                         <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Contraseña" value="" name="contraseña" />
+                          <input type="text" class="form-control required" placeholder="Contraseña" value="" name="contraseña" required/>
                         </div>
                       </div>
-                  </form>
+                 
                   <div class="col-12 d-flex justify-content-center mt-4 text-center">
                     <button onclick="backbutton()" class="btn btn-back">Volver</button>
                     <button class="btn btn-register" id="registrarEmpleados" type="submit">Registrar Empleados</button>
                   </div>
+                </form>
                 </div>
               </div>
             </div>
@@ -220,23 +220,23 @@
               <h5>Registrar Beneficios</h5>
 
               <div class="form-client">
-                <form id="registroBeneficio">
+                <form id="registroBeneficio" action="" method="post">
                   <div class="row register-form">
                     <div class="col-md-6 col-12">
                       <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nombre del plan" value=""
-                          name="nombrePlan" />
+                        <input type="text" class="form-control required" placeholder="Nombre del plan" value=""
+                          name="nombrePlan" required/>
                       </div>
                     </div>
                     <div class="col-md-6 col-12">
                       <div class="form-group">
-                        <input type="tex" class="form-control" placeholder="Monto del plan" value="" name="montoPlan" />
+                        <input type="tex" class="form-control required" placeholder="Monto del plan" value="" name="montoPlan" required/>
                       </div>
                     </div>
                     <div class="col-md-6 col-12">
                       <div class="form-group">
-                        <input type="date" class="form-control" placeholder="Fecha de creación del plan" value=""
-                          name="FechaPlan" />
+                        <input type="date" class="form-control required" placeholder="Fecha de creación del plan" value=""
+                          name="FechaPlan" required/>
                       </div>
                     </div>
 
@@ -252,17 +252,17 @@
             <div class="register-client max-width" id="show-register3">
               <div class="box-recargar-saldo">
                 <h5>Recargar saldo</h5>
-                <form id="recargaSaldoEmpresa">
+                <form id="recargaSaldoEmpresa" >
                 <div class="box-pago register-form">
                   <h5 class="title">Seleccionar tarjeta</h5>
                   <div class="box-tarjetas " id="radio-style">
                     <ul>
                       <li>
-                        <input class="radio" type="radio" id="radio1" name="tarjetaCredito" value="visa"/>
+                        <input class="radio required" type="radio" id="radio1" name="tarjetaCredito" value="visa" required/>
                         <label class="radio-style" for="radio1"><img src="/src/assets/image/pago/card1.png" /></label>
                       </li>
                       <li>
-                        <input class="radio" type="radio" id="radio2" name="tarjetaCredito" value="master"/>
+                        <input class="radio required" type="radio" id="radio2" name="tarjetaCredito" value="master" required/>
                         <label class="radio-style" for="radio2"><img src="/src/assets/image/pago/card2.jpg" /></label>
                       </li>
                     </ul>
@@ -272,13 +272,13 @@
                     <div class="col-6">
                       <div class="form-group">
                         <label for="">Nombre del titular</label>
-                        <input type="text" class="form-control" name="nombreTitular" >
+                        <input type="text" class="form-control required" name="nombreTitular" required>
                       </div>
                     </div>
                     <div class="col-6">
                       <div class="form-group">
                         <label for="">Número de tarjeta</label>
-                        <input type="text" class="form-control" name="NumeroTarjeta" >
+                        <input type="text" class="form-control required" name="NumeroTarjeta" required>
                       </div>
                     </div>
                     <div class="col-6">
@@ -286,7 +286,7 @@
                         <label for="">Fecha de expiración</label>
                         <div class="row">
                           <div class="col-6">
-                            <input type="date" class="form-control" name="fechaExp" >
+                            <input type="date" class="form-control required" name="fechaExp" required>
                           </div>
                          
                         </div>
@@ -295,13 +295,13 @@
                     <div class="col-6">
                       <div class="form-group">
                         <label for="">Código de seguridad</label>
-                        <input type="number" class="form-control" name="codigoSeguridad" >
+                        <input type="number" class="form-control required" name="codigoSeguridad" required>
                       </div>
                     </div>
                     <div class="col-6">
                       <div class="form-group">
                         <label for="">Monto</label>
-                        <input type="number" class="form-control" name="montoRecargar" >
+                        <input type="number" class="form-control required" name="montoRecargar" required>
                       </div>
                     </div>
                   </div>
@@ -708,7 +708,8 @@
       </div>
     </div>
   </div>
-
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+  integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </body>
 
 </html>
