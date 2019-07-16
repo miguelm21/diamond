@@ -601,27 +601,30 @@
   </div>
   <div class="modal fade" id="modal-pago" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
+    
     <div class="modal-dialog modal-base" role="document">
-      <div class="modal-content">
+      <div class="modal-content" >
+          
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Transacción</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Recarga Saldo</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+        <form id="recargaSaldoCliente">
         <div class="modal-body pago">
           <div class="box-pago register-form">
               <h5 class="title">Tarjetas de crédito</h5>
-                <form id="recargaSaldoCliente">
+                
             <div class="box-tarjetas " id="radio-style">
               <ul>
                 <li>
-                  <input class="radio" type="radio" id="radio1" name="tarjetaCredito" value="visa"/>
-                  <label class="radio-style" for="radio1"><img src="/src/assets/image/pago/card1.png" /></label>
+                  <input class="radio required" type="radio" id="radio1" name="tarjetaCredito" value="visa" />
+                  <label class="radio-style" for="radio1"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fcard1.png?alt=media&token=443a536b-e1ee-4a77-9406-b6aae6287aae" /></label>
                 </li>
                 <li>
-                  <input class="radio" type="radio" id="radio2" name="tarjetaCredito" value="master"/>
-                  <label class="radio-style" for="radio2"><img src="/src/assets/image/pago/card2.jpg" /></label>
+                  <input class="radio required" type="radio" id="radio2" name="tarjetaCredito" value="master" />
+                  <label class="radio-style" for="radio2"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fcard2.jpg?alt=media&token=84381cb3-5a85-4153-877b-d0b7ff41da70" /></label>
                 </li>
               </ul>
             </div>
@@ -629,13 +632,13 @@
               <div class="col-6">
                 <div class="form-group">
                   <label for="">Nombre del titular</label>
-                  <input type="text" class="form-control" name="nombreTitular" >
+                  <input type="text" class="form-control required" name="nombreTitular" >
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
                     <label for="">Número de tarjeta</label>
-                    <input type="text" class="form-control" name="NumeroTarjeta">
+                    <input type="text" class="form-control required" name="NumeroTarjeta" >
                 </div>
               </div>
               <div class="col-12">
@@ -643,7 +646,7 @@
                   <label for="">Fecha de expiración</label>
                   <div class="row">
                     <div class="col-6">
-                        <input type="date" class="form-control" name="fechaExp">
+                        <input type="date" class="form-control required" name="fechaExp" >
                     </div>
                     <div class="col-6">
                         <input type="date" class="form-control">
@@ -656,7 +659,7 @@
                   <label for="">Código de seguridad</label>
                   <div class="row">
                     <div class="col-4">
-                        <input type="number" class="form-control" name="codigoSeguridad">
+                        <input type="text" class="form-control required" name="codigoSeguridad" >
                     </div>
                   </div>
                 </div>
@@ -666,7 +669,7 @@
                   <label for="">Monto</label>
                   <div class="row">
                     <div class="col-4">
-                        <input type="number" class="form-control" name="montoRecargar">
+                        <input type="text" class="form-control required" name="montoRecargar" required>
                     </div>
                   </div>
                 </div>
@@ -676,10 +679,11 @@
               </div> -->
             </div>
           </div>
-        </div></form>
-        <div class="modal-footer">
-          <button id="recargarSaldoCliente" type="button" class="btn primary align">Aceptar saldo cliente</button>
         </div>
+        <div class="modal-footer">
+          <button id="recargarSaldoCliente" type="button" class="btn primary align">Recargar Saldo</button>
+        </div>
+      </form>
       </div>
     </div>
   </div>
@@ -726,8 +730,6 @@
     </div>
 
 </body>
-
-
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
   integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 

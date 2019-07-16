@@ -194,6 +194,7 @@ function consultaSaldoCliente() {
 function RecargarSaldoTarjeta() {
   $(document).ready(function () {
     $('#recargarSaldoCliente').click(function (e) {
+
       e.preventDefault();
       restartLoading();
       var data = sessionStorage.getItem('data');
@@ -201,13 +202,11 @@ function RecargarSaldoTarjeta() {
       var uid = sesion.uid;
       firebase.database().ref('users/' + uid + "/cuentas").once('value').then(function (snapshot) {
         var snap = snapshot.val();
-        console.log(snap.cuentaTotal);
-        var saldoCuenta1 = snap.cuanta1;
-        //  console.log(saldoCuenta1);
-
-
+       // console.log(snap.cuentaTotal);
+        var saldoCuenta1 = snap.cuenta2;
+        
         var form = $('#recargaSaldoCliente').serializeArray();
-        //  console.log(form);
+         console.log(form);
         var tarjetaCredito = form[0].value;
         var nombreTitular = form[1].value;
         var NumeroTarjeta = form[2].value;
@@ -216,7 +215,7 @@ function RecargarSaldoTarjeta() {
         var montoRecargar = form[5].value;
         var sumaSaldo = parseFloat(montoRecargar) + parseFloat(saldoCuenta1);
 
-        // console.log(sumaSaldo);
+        console.log(sumaSaldo);
 
         firebase.database().ref('users/' + uid + "/cuentas").update({
           "cuenta2": sumaSaldo
