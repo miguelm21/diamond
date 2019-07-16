@@ -192,24 +192,18 @@ firebase.initializeApp(firebaseConfig);
 function registroempleados() {
   $(document).ready(function () {
     $('#registrarEmpleados').click(function (e) {
-      $("#RegistrarEmpleados").validate();
-      e.preventDefault();
-      restartLoading()
       var datos = $('#RegistrarEmpleados').serializeArray();
-
-      var nombre = datos[0].value;
+      var nombre = datos[0].value; 
       var apellido = datos[1].value;
-      var fechaNacimiento = datos[2].value;
+      var fechaNacimiento = datos[2].value; 
       var correo = datos[3].value;
       var cargo = datos[4].value;
       var Inactivo = datos[5].value;
       var planBeneficio = datos[6].value;
       var contraseña = datos[7].value;
+
       var sesionjson = sessionStorage.getItem("data");
       var json = JSON.parse(sesionjson);
-      //console.log(json.uid);
-      //   var sesion = JSON.parse(sessionStorage.getItem('data'));
-      //var empresa = (sesion.uid);
 
       firebase.auth().createUserWithEmailAndPassword(correo, contraseña).then(function (resultado) {
 
@@ -231,7 +225,6 @@ function registroempleados() {
             "cuenta2": 0,
             "cuentaTotal": 0
           }
-
         }, function (error) {
           if (error) {
             hideLoading()
@@ -240,12 +233,9 @@ function registroempleados() {
             hideLoading();
             enviarCorreo(correo, nombre);
             swal("Registro Exitoso!", "Empleado registrado!", "success");
-            $("#RegistrarEmpleados")[0].reset();
+          //  $("#RegistrarEmpleados")[0].reset();
           }
-
-
         })
-
       });
     });
   });
@@ -273,10 +263,9 @@ function recuperarNOmbreEmpresa() {
 
 function CrearPlanes() {
   $(document).ready(function () {
+
     $('#registrarBeneficio').click(function (e) {
-      $('#registroBeneficio').validate();
-      e.preventDefault();
-      restartLoading()
+
       var datos = $('#registroBeneficio').serializeArray();
       var nombrePlan = datos[0].value;
       var montoPlan = datos[1].value;
@@ -285,22 +274,25 @@ function CrearPlanes() {
       var sesion = JSON.parse(sesionjson);
       var uid = (sesion.uid);
 
-      firebase.database().ref('Empresas/' + uid + '/planes/').push().update({
+      if (nombrePlan &&  montoPlan && fechaPlan) {     
+   restartLoading();
+     firebase.database().ref('Empresas/' + uid + '/planes/').push().update({
         "nombrePlan": nombrePlan,
         "montoPlan": montoPlan,
         "fechaPlan": fechaPlan
 
       }, function (error) {
-        if (error) {
-          hideLoading()
+        if (error) {        
           swal("Algo paso!", "error!", "error")
         } else {
-          hideLoading()
+       hideLoading();
           swal("Registro Exitoso!", "Beneficio registrado!", "success")
           $("#registroBeneficio")[0].reset();
         }
       })
+    }
     });
+    
   });
 } CrearPlanes()
 
@@ -540,9 +532,7 @@ function consultaSaldoEmpresa() {
 function RecargarSaldoEMpresa() {
   $(document).ready(function () {
     $('#recargarSaldoEmpresa').click(function (e) {
-      $('#recargaSaldoEmpresa').validate();
-      e.preventDefault();
-      restartLoading();
+   
       var data = sessionStorage.getItem('data');
       var sesion = JSON.parse(data);
       var uid = sesion.uid;
@@ -561,7 +551,7 @@ function RecargarSaldoEMpresa() {
         var montoRecargar = form[5].value;
         var sumaSaldo = parseFloat(montoRecargar) + parseFloat(saldoCuenta1);
         //  console.log(sumaSaldo);
-
+ if(tarjetaCredito &&  nombreTitular &&  NumeroTarjeta &&  fechaExp &&  codigoSeguridad &&  montoRecargar &&  sumaSaldo){
         firebase.database().ref('Empresas/' + uid + "/cuentas").update({
           "cuenta1": sumaSaldo
 
@@ -583,6 +573,7 @@ function RecargarSaldoEMpresa() {
             swal("Recarga!", "Recarga exitosa!", "success")
           }
         });
+      }
       });
     })
   })
@@ -773,14 +764,14 @@ function notificaciones() {
     messaging.usePublicVapidKey("BNH9hyxKC5faMqmfutsoi2bmVm8jm3guerqNkbW0DisLS48Rd9ebtBilFQYZzfaxCaoxlISBT7aQ2gf08WHn3jU");
     Notification.requestPermission().then(function (permission) {
       if (permission === 'granted') {
-        console.log('Notification permission granted.');
-        console.log("kkk");
+       // console.log('Notification permission granted.');
+        //console.log("kkk");
 
         messaging.getToken().then(function (snap) {
           console.log(snap);
           localStorage.setItem('tokenBlue', snap)
           messaging.onMessage(function (payload) {
-            console.log('Message received. ', payload);
+        //    console.log('Message received. ', payload);
 
           });
         });

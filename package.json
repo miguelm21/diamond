@@ -59,6 +59,7 @@
     "request": "^2.88.0",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^8.11.6",
+    "validate.js": "^0.13.1",
     "vanilla-router": "^1.2.7",
     "webpack-manifest-generator-plugin": "^1.2.1"
   }

@@ -265,7 +265,7 @@ function detalleRestauranteCliente() {
     var uidRestaurante = e.currentTarget.id;
     firebase.database().ref('Restaurante/' + uidRestaurante + '/').once('value').then(function (snapshot) {
       var restaurante = snapshot.val();
-        console.log(restaurante);
+      //  console.log(restaurante);
       var NIF = restaurante.NIF;
       var codigoPosta = restaurante.codigoPosta;
       var correo = restaurante.correo;
@@ -299,7 +299,7 @@ function detalleRestauranteCliente() {
           var tiempoMinimo = platos.tiempoMinimo;
           var tipoPLato = platos.tipoPLato;
           //console.log(tipoPLato);        
-            $('#tablaPlatos').append("<tr><td>" + nombrePlato + "</td><td>" + descripcionPlato + "</td><td> €" + PrecioPlato + "</td><td>" + tipoPLato + "</td><td>" +
+            $('#tablaPlatos').html("<tr><td>" + nombrePlato + "</td><td>" + descripcionPlato + "</td><td> €" + PrecioPlato + "</td><td>" + tipoPLato + "</td><td>" +
               porcionPlato + "</td><td> <img class='img-fluid' src='" + rutaGuardaImagen + "' > </td><td> " +
               " <button class='btn buy comprarPlatoboton' id='" + keyPlato + "' type='submit' value='" + uidRestaurante + "'  data-toggle='modal' data-target='#modal-comprar'><i class='fas fa-shopping-cart'></i></button> </td></tr>");
 
