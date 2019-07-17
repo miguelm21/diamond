@@ -191,20 +191,23 @@ firebase.initializeApp(firebaseConfig);
 
 function registroempleados() {
   $(document).ready(function () {
-    $('#registrarEmpleados').click(function (e) {
+    $('#registrarEmpleados').click(function (e) {    
+        e.preventDefault();        
+    
       var datos = $('#RegistrarEmpleados').serializeArray();
-      var nombre = datos[0].value; 
-      var apellido = datos[1].value;
-      var fechaNacimiento = datos[2].value; 
-      var correo = datos[3].value;
-      var cargo = datos[4].value;
-      var Inactivo = datos[5].value;
-      var planBeneficio = datos[6].value;
-      var contraseña = datos[7].value;
+      var nombre = datos[0].value;  if(!nombre) { $('#pnombre').html('Campo Obligatorio'); }else{$('#pnombre').html('');}
+      var apellido = datos[1].value; if(!apellido){ $('#papellido').html('Campo Obligatorio'); }else{$('#papellido').html('');}
+      var fechaNacimiento = datos[2].value;  if(!fechaNacimiento){ $('#pfechaNacimiento').html('Campo Obligatorio'); }else{$('#pfechaNacimiento').html('');}
+      var correo = datos[3].value; if(!correo){ $('#pcorreo').html('Campo Obligatorio'); }else{$('#pcorreo').html('');}
+      var cargo = datos[4].value; if(!cargo){ $('#pcargo').html('Campo Obligatorio'); }else{$('#pcargo').html('');}
+      var Inactivo = datos[5].value; if(!Inactivo){ $('#pInactivo').html('Campo Obligatorio'); }else{$('#pInactivo').html('');}
+      var planBeneficio = datos[6].value; if(!'#pInactivo'){ $('#pplanBeneficio').html('Campo Obligatorio'); }else{$('#pplanBeneficio').html('');}
+      var contraseña = datos[7].value; if(!contraseña){ $('#pcontraseña').html('Campo Obligatorio'); }else{$('#pcontraseña').html('');}
 
       var sesionjson = sessionStorage.getItem("data");
       var json = JSON.parse(sesionjson);
-
+if(datos &&  nombre &&  apellido &&  fechaNacimiento &&  correo &&  cargo &&  Inactivo &&  planBeneficio &&  contraseña) {  
+  restartLoading();
       firebase.auth().createUserWithEmailAndPassword(correo, contraseña).then(function (resultado) {
 
         var uid = resultado.user.uid;
@@ -227,17 +230,20 @@ function registroempleados() {
           }
         }, function (error) {
           if (error) {
-            hideLoading()
+            hideLoading();
             swal("algo paso!", "error!", "error")
           } else {
-            hideLoading();
+        hideLoading();
             enviarCorreo(correo, nombre);
             swal("Registro Exitoso!", "Empleado registrado!", "success");
           //  $("#RegistrarEmpleados")[0].reset();
           }
         })
       });
-    });
+    } else{swal("Error!", "Debe completar los campos Faltantes", "error");
+  }
+})
+  
   });
 } registroempleados();
 
@@ -263,13 +269,13 @@ function recuperarNOmbreEmpresa() {
 
 function CrearPlanes() {
   $(document).ready(function () {
-
     $('#registrarBeneficio').click(function (e) {
+      e.preventDefault(); 
 
       var datos = $('#registroBeneficio').serializeArray();
-      var nombrePlan = datos[0].value;
-      var montoPlan = datos[1].value;
-      var fechaPlan = datos[2].value;
+      var nombrePlan = datos[0].value; if(!nombrePlan) { $('#pnombrePlan').html('Campo Obligatorio'); }else{$('#pnombrePlan').html('');}
+      var montoPlan = datos[1].value; if(!montoPlan) { $('#pmontoPlan').html('Campo Obligatorio'); }else{$('#pmontoPlan').html('');}
+      var fechaPlan = datos[2].value; if(!fechaPlan) { $('#pFechaPlan').html('Campo Obligatorio'); }else{$('#pFechaPlan').html('');}
       var sesionjson = sessionStorage.getItem("data");
       var sesion = JSON.parse(sesionjson);
       var uid = (sesion.uid);
@@ -283,6 +289,7 @@ function CrearPlanes() {
 
       }, function (error) {
         if (error) {        
+          hideLoading();
           swal("Algo paso!", "error!", "error")
         } else {
        hideLoading();
@@ -519,7 +526,7 @@ function consultaSaldoEmpresa() {
     var sesion = JSON.parse(data);
     firebase.database().ref('/Empresas/' + sesion.uid + "/cuentas").on('value', function (snapshot) {
       var snap = snapshot.val();
-      var cuenta1 = snap.cuenta1;
+      var cuenta1 = snap.cuanta1;
       var cuenta2 = snap.cuenta2;
       var saldoEmpresa = parseFloat(cuenta1) + parseFloat(cuenta2);
       var saldoEmpresaFormato = saldoEmpresa.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })
@@ -531,31 +538,39 @@ function consultaSaldoEmpresa() {
 
 function RecargarSaldoEMpresa() {
   $(document).ready(function () {
-    $('#recargarSaldoEmpresa').click(function (e) {
-   
+    $('#recargarSaldoEmpresa').click(function (e) {  
+     e.preventDefault();     
       var data = sessionStorage.getItem('data');
       var sesion = JSON.parse(data);
       var uid = sesion.uid;
       firebase.database().ref('/Empresas/' + uid + "/cuentas").once('value').then(function (snapshot) {
         var snap = snapshot.val();
         //console.log(snap.cuentaTotal);
-        var saldoCuenta1 = snap.cuenta1;
-        //  console.log(saldoCuenta1);
+        var saldoCuenta1 = snap.cuanta1;
+        // alert(saldoCuenta1);
         var form = $('#recargaSaldoEmpresa').serializeArray();
-        console.log(form);
-        var tarjetaCredito = form[0].value;
-        var nombreTitular = form[1].value;
-        var NumeroTarjeta = form[2].value;
-        var fechaExp = form[3].value;
-        var codigoSeguridad = form[4].value;
-        var montoRecargar = form[5].value;
+        //console.log(form);
+        var tarjetaCredito = form[0].value;  if(!tarjetaCredito) { $('#ptarjetaCredito').html('Campo Obligatorio'); }else{$('#ptarjetaCredito').html('');}
+        var nombreTitular = form[1].value;  if(!nombreTitular) { $('#pnombreTitular').html('Campo Obligatorio'); }else{$('#pnombreTitular').html('');}
+        var NumeroTarjeta = form[2].value;  if(!NumeroTarjeta) { $('#pNumeroTarjeta').html('Campo Obligatorio'); }else{$('#pNumeroTarjeta').html('');}
+        var fechaExp = form[3].value;        if(!fechaExp) { $('#pfechaExp').html('Campo Obligatorio'); }else{$('#pfechaExp').html('');}
+        var codigoSeguridad = form[4].value;  if(!codigoSeguridad) { $('#pcodigoSeguridad').html('Campo Obligatorio'); }else{$('#pcodigoSeguridad').html('');}
+        var montoRecargar = form[5].value;    if(!montoRecargar) { $('#pmontoRecargar').html('Campo Obligatorio'); }else{$('#pmontoRecargar').html('');}
         var sumaSaldo = parseFloat(montoRecargar) + parseFloat(saldoCuenta1);
-        //  console.log(sumaSaldo);
- if(tarjetaCredito &&  nombreTitular &&  NumeroTarjeta &&  fechaExp &&  codigoSeguridad &&  montoRecargar &&  sumaSaldo){
+      //  alert(montoRecargar);
+if(tarjetaCredito &&  nombreTitular &&  NumeroTarjeta &&  fechaExp &&  codigoSeguridad &&  montoRecargar &&  sumaSaldo){
         firebase.database().ref('Empresas/' + uid + "/cuentas").update({
-          "cuenta1": sumaSaldo
+          "cuanta1": sumaSaldo
 
-        })
+        }, function (error) {
+          if (error) {
+            alert('Hay un error en sus datos verifique e intentelo de nuevo...')
+          } else {
+            hideLoading()
+            swal("Recarga!", "Recarga exitosa!", "success")
+          }
+        });
+
         firebase.database().ref('/Recargas/empresas').push().set({
           "tarjetaCredito": tarjetaCredito,
           "nombreTitular": nombreTitular,

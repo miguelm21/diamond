@@ -13,6 +13,7 @@
   <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.2.1/firebase-messaging.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-storage.js"></script>
   <script>
     // Your web app's Firebase configuration
     var firebaseConfig = {
@@ -163,52 +164,52 @@
                       <div class="col-md-6 col-12">
 
                         <div class="form-group">
-                          <input type="text" class="form-control required" placeholder="Nombres" value="" name="nombre" required/>
+                          <input type="text" class="form-control required" placeholder="Nombres" value="" name="nombre" />
                           <p id="pnombre"></p>
                         </div>
                       </div>
                       <div class="col-md-6 col-12">
                         <div class="form-group">
-                          <input type="text" class="form-control required" placeholder="Apellidos" value="" name="apellido" required/>
+                          <input type="text" class="form-control required" placeholder="Apellidos" value="" name="apellido" />
                           <p id="papellido"></p>
                         </div>
                       </div>
                       <div class="col-md-6 col-12">
                         <div class="form-group">
                           <input type="date" class="form-control required" placeholder="Fecha de nacimiento" value=""
-                            name="fechaNacimiento" required/>
+                            name="fechaNacimiento" />
                             <p id=""></p>
                         </div>
                       </div>
                       <div class="col-md-6 col-12">
                         <div class="form-group">
                           <input type="text" class="form-control required" placeholder="Correo electrónico" value=""
-                            name="correo" required/>
+                            name="correo" />
                             <p id="pcorreo"></p>
                         </div>
                       </div>
                       <div class="col-md-6 col-12">
                         <div class="form-group">
-                          <input type="text" class="form-control required" placeholder="Cargo" value="" name="cargo" required/>
+                          <input type="text" class="form-control required" placeholder="Cargo" value="" name="cargo" />
                           <p id="pcargo"></p>
                         </div>
                       </div>
                       <div class="col-md-6 col-12">
                         <div class="form-group">
-                          <input type="text" class="form-control required" placeholder="Inactivo" value="" name="Inactivo" required/>
+                          <input type="text" class="form-control required" placeholder="Inactivo" value="" name="Inactivo" />
                           <p id="pInactivo"></p>
                         </div>
                       </div>
                       <div class="col-md-6 col-12">
                         <div class="form-group">
                           <select class="form-control required" id="exampleFormControlSelect1" name="planBeneficio">
-
+                            <p id="pInactivo"></p>
                           </select>
                         </div>
                       </div>
                       <div class="col-md-6 col-12">
                         <div class="form-group">
-                          <input type="text" class="form-control required" placeholder="Contraseña" value="" name="contraseña" required/>
+                          <input type="text" class="form-control required" placeholder="Contraseña" value="" name="contraseña" />
                           <p id="pcontraseña"></p>
                         </div>
                       </div>
@@ -232,18 +233,21 @@
                     <div class="col-md-6 col-12">
                       <div class="form-group">
                         <input type="text" class="form-control required" placeholder="Nombre del plan" value=""
-                          name="nombrePlan" required/>
+                          name="nombrePlan" />
+                          <p id="pnombrePlan" ></p>
                       </div>
                     </div>
                     <div class="col-md-6 col-12">
                       <div class="form-group">
-                        <input type="tex" class="form-control required" placeholder="Monto del plan" value="" name="montoPlan" required/>
+                        <input type="tex" class="form-control required" placeholder="Monto del plan" value="" name="montoPlan" />
+                        <p id="pmontoPlan" ></p>
                       </div>
                     </div>
                     <div class="col-md-6 col-12">
                       <div class="form-group">
                         <input type="date" class="form-control required" placeholder="Fecha de creación del plan" value=""
-                          name="FechaPlan" required/>
+                          name="FechaPlan" />
+                          <p id="pFechaPlan" ></p>
                       </div>
                     </div>
 
@@ -265,27 +269,30 @@
                   <div class="box-tarjetas " id="radio-style">
                     <ul>
                       <li>
-                        <input class="radio required" type="radio" id="radio1" name="tarjetaCredito" value="visa" required/>
+                        <input class="radio required" type="radio" id="radio1" name="tarjetaCredito" value="visa" />
                         <label class="radio-style" for="radio1"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fcard1.png?alt=media&token=443a536b-e1ee-4a77-9406-b6aae6287aae" /></label>
                       </li>
                       <li>
-                        <input class="radio required" type="radio" id="radio2" name="tarjetaCredito" value="master" required/>
+                        <input class="radio required" type="radio" id="radio2" name="tarjetaCredito" value="master" />
                         <label class="radio-style" for="radio2"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fcard2.jpg?alt=media&token=84381cb3-5a85-4153-877b-d0b7ff41da70" /></label>
                       </li>
                     </ul>
+                    <p id="ptarjetaCredito"></p>
                   </div>
                   
                   <div class="row">
                     <div class="col-6">
                       <div class="form-group">
                         <label for="">Nombre del titular</label>
-                        <input type="text" class="form-control required" name="nombreTitular" required>
+                        <input type="text" class="form-control required" name="nombreTitular" >
+                        <p id="pnombreTitular"></p>
                       </div>
                     </div>
                     <div class="col-6">
                       <div class="form-group">
                         <label for="">Número de tarjeta</label>
-                        <input type="text" class="form-control required" name="NumeroTarjeta" required>
+                        <input type="text" class="form-control required" name="NumeroTarjeta" >
+                        <p id="pNumeroTarjeta"></p>
                       </div>
                     </div>
                     <div class="col-6">
@@ -293,7 +300,8 @@
                         <label for="">Fecha de expiración</label>
                         <div class="row">
                           <div class="col-6">
-                            <input type="date" class="form-control required" name="fechaExp" required>
+                            <input type="date" class="form-control required" name="fechaExp" >
+                            <p id="pfechaExp"></p>
                           </div>
                          
                         </div>
@@ -302,13 +310,15 @@
                     <div class="col-6">
                       <div class="form-group">
                         <label for="">Código de seguridad</label>
-                        <input type="number" class="form-control required" name="codigoSeguridad" required>
+                        <input type="number" class="form-control required" name="codigoSeguridad" >
+                        <p id="pcodigoSeguridad"></p>
                       </div>
                     </div>
                     <div class="col-6">
                       <div class="form-group">
                         <label for="">Monto</label>
-                        <input type="number" class="form-control required" name="montoRecargar" required>
+                        <input type="number" class="form-control required" name="montoRecargar" >
+                        <p id="pmontoRecargar"></p>
                       </div>
                     </div>
                   </div>

@@ -234,7 +234,7 @@ firebase.initializeApp(firebaseConfig);
 function registroPlato() {
   $(document).ready(function () {
     $('#registrarPlato').click(function (e) {
-      $('#registroPlato').validate();
+    
       e.preventDefault();
       restartLoading();
       var sesion = JSON.parse(sessionStorage.getItem('data'));
@@ -351,7 +351,7 @@ function platosRegistrados() {
 function registropromociones() {
   $(document).ready(function () {
     $('#registrarPromo').click(function (e) {
-      $('#registroPromo').validate();
+     
       e.preventDefault();
       restartLoading()
       var sesion = JSON.parse(sessionStorage.getItem('data'));
@@ -368,8 +368,6 @@ function registropromociones() {
       var procionPromo = datos[5].value;
       var tiempoMin = datos[6].value;
       var tiempoMax = datos[7].value;
-
-
       //////////////////////imagen         
       var fotoval = document.getElementById('imagenPromo');
       var foto = new FileReader();
