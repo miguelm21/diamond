@@ -256,7 +256,7 @@ function registroPlato() {
       var foto = new FileReader();
       foto.onload = function (e) {
         var file = (e.target.result);
-        console.log(file);
+       // console.log(file);
 
         var storageRef = firebase.storage().ref();
         var mountainsRef = storageRef.child('imagen/plato' + restaurante + fotoval.files[0].name);

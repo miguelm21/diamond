@@ -191,59 +191,60 @@ firebase.initializeApp(firebaseConfig);
 
 function registroempleados() {
   $(document).ready(function () {
-    $('#registrarEmpleados').click(function (e) {    
-        e.preventDefault();        
-    
+    $('#registrarEmpleados').click(function (e) {
+      e.preventDefault();
+
       var datos = $('#RegistrarEmpleados').serializeArray();
-      var nombre = datos[0].value;  if(!nombre) { $('#pnombre').html('Campo Obligatorio'); }else{$('#pnombre').html('');}
-      var apellido = datos[1].value; if(!apellido){ $('#papellido').html('Campo Obligatorio'); }else{$('#papellido').html('');}
-      var fechaNacimiento = datos[2].value;  if(!fechaNacimiento){ $('#pfechaNacimiento').html('Campo Obligatorio'); }else{$('#pfechaNacimiento').html('');}
-      var correo = datos[3].value; if(!correo){ $('#pcorreo').html('Campo Obligatorio'); }else{$('#pcorreo').html('');}
-      var cargo = datos[4].value; if(!cargo){ $('#pcargo').html('Campo Obligatorio'); }else{$('#pcargo').html('');}
-      var Inactivo = datos[5].value; if(!Inactivo){ $('#pInactivo').html('Campo Obligatorio'); }else{$('#pInactivo').html('');}
-      var planBeneficio = datos[6].value; if(!'#pInactivo'){ $('#pplanBeneficio').html('Campo Obligatorio'); }else{$('#pplanBeneficio').html('');}
-      var contraseña = datos[7].value; if(!contraseña){ $('#pcontraseña').html('Campo Obligatorio'); }else{$('#pcontraseña').html('');}
+      var nombre = datos[0].value; if (!nombre) { $('#pnombre').html('Campo Obligatorio'); } else { $('#pnombre').html(''); }
+      var apellido = datos[1].value; if (!apellido) { $('#papellido').html('Campo Obligatorio'); } else { $('#papellido').html(''); }
+      var fechaNacimiento = datos[2].value; if (!fechaNacimiento) { $('#pfechaNacimiento').html('Campo Obligatorio'); } else { $('#pfechaNacimiento').html(''); }
+      var correo = datos[3].value; if (!correo) { $('#pcorreo').html('Campo Obligatorio'); } else { $('#pcorreo').html(''); }
+      var cargo = datos[4].value; if (!cargo) { $('#pcargo').html('Campo Obligatorio'); } else { $('#pcargo').html(''); }
+      var Inactivo = datos[5].value; if (!Inactivo) { $('#pInactivo').html('Campo Obligatorio'); } else { $('#pInactivo').html(''); }
+      var planBeneficio = datos[6].value; if (!'#pInactivo') { $('#pplanBeneficio').html('Campo Obligatorio'); } else { $('#pplanBeneficio').html(''); }
+      var contraseña = datos[7].value; if (!contraseña) { $('#pcontraseña').html('Campo Obligatorio'); } else { $('#pcontraseña').html(''); }
 
       var sesionjson = sessionStorage.getItem("data");
       var json = JSON.parse(sesionjson);
-if(datos &&  nombre &&  apellido &&  fechaNacimiento &&  correo &&  cargo &&  Inactivo &&  planBeneficio &&  contraseña) {  
-  restartLoading();
-      firebase.auth().createUserWithEmailAndPassword(correo, contraseña).then(function (resultado) {
+      if (datos && nombre && apellido && fechaNacimiento && correo && cargo && Inactivo && planBeneficio && contraseña) {
+        restartLoading();
+        firebase.auth().createUserWithEmailAndPassword(correo, contraseña).then(function (resultado) {
 
-        var uid = resultado.user.uid;
-        firebase.database().ref('users/' + uid + "/").set({
+          var uid = resultado.user.uid;
+          firebase.database().ref('users/' + uid + "/").set({
 
-          "nombre": nombre,
-          "apellido": apellido,
-          "fechaNacimiento": fechaNacimiento,
-          "correo": correo,
-          "cargo": cargo,
-          "Inactivo": Inactivo,
-          "planBeneficio": planBeneficio,
-          "contraseña": contraseña,
-          "empresa": json.uid,
-          "uidempleado": uid,
-          "cuentas": {
-            "cuanta1": 0,
-            "cuenta2": 0,
-            "cuentaTotal": 0
-          }
-        }, function (error) {
-          if (error) {
-            hideLoading();
-            swal("algo paso!", "error!", "error")
-          } else {
-        hideLoading();
-            enviarCorreo(correo, nombre);
-            swal("Registro Exitoso!", "Empleado registrado!", "success");
-          //  $("#RegistrarEmpleados")[0].reset();
-          }
-        })
-      });
-    } else{swal("Error!", "Debe completar los campos Faltantes", "error");
-  }
-})
-  
+            "nombre": nombre,
+            "apellido": apellido,
+            "fechaNacimiento": fechaNacimiento,
+            "correo": correo,
+            "cargo": cargo,
+            "Inactivo": Inactivo,
+            "planBeneficio": planBeneficio,
+            "contraseña": contraseña,
+            "empresa": json.uid,
+            "uidempleado": uid,
+            "cuentas": {
+              "cuanta1": 0,
+              "cuenta2": 0,
+              "cuentaTotal": 0
+            }
+          }, function (error) {
+            if (error) {
+              hideLoading();
+              swal("algo paso!", "error!", "error")
+            } else {
+              hideLoading();
+              enviarCorreo(correo, nombre);
+              swal("Registro Exitoso!", "Empleado registrado!", "success");
+              $("#RegistrarEmpleados")[0].reset();
+            }
+          })
+        });
+      } else {
+        swal("Error!", "Debe completar los campos Faltantes", "error");
+      }
+    })
+
   });
 } registroempleados();
 
@@ -270,36 +271,38 @@ function recuperarNOmbreEmpresa() {
 function CrearPlanes() {
   $(document).ready(function () {
     $('#registrarBeneficio').click(function (e) {
-      e.preventDefault(); 
+      e.preventDefault();
 
       var datos = $('#registroBeneficio').serializeArray();
-      var nombrePlan = datos[0].value; if(!nombrePlan) { $('#pnombrePlan').html('Campo Obligatorio'); }else{$('#pnombrePlan').html('');}
-      var montoPlan = datos[1].value; if(!montoPlan) { $('#pmontoPlan').html('Campo Obligatorio'); }else{$('#pmontoPlan').html('');}
-      var fechaPlan = datos[2].value; if(!fechaPlan) { $('#pFechaPlan').html('Campo Obligatorio'); }else{$('#pFechaPlan').html('');}
+      var nombrePlan = datos[0].value; if (!nombrePlan) { $('#pnombrePlan').html('Campo Obligatorio'); } else { $('#pnombrePlan').html(''); }
+      var montoPlan = datos[1].value; if (!montoPlan) { $('#pmontoPlan').html('Campo Obligatorio'); } else { $('#pmontoPlan').html(''); }
+      var fechaPlan = datos[2].value; if (!fechaPlan) { $('#pFechaPlan').html('Campo Obligatorio'); } else { $('#pFechaPlan').html(''); }
       var sesionjson = sessionStorage.getItem("data");
       var sesion = JSON.parse(sesionjson);
       var uid = (sesion.uid);
 
-      if (nombrePlan &&  montoPlan && fechaPlan) {     
-   restartLoading();
-     firebase.database().ref('Empresas/' + uid + '/planes/').push().update({
-        "nombrePlan": nombrePlan,
-        "montoPlan": montoPlan,
-        "fechaPlan": fechaPlan
+      if (nombrePlan && montoPlan && fechaPlan) {
+        restartLoading();
+        firebase.database().ref('Empresas/' + uid + '/planes/').push().update({
+          "nombrePlan": nombrePlan,
+          "montoPlan": montoPlan,
+          "fechaPlan": fechaPlan
 
-      }, function (error) {
-        if (error) {        
-          hideLoading();
-          swal("Algo paso!", "error!", "error")
-        } else {
-       hideLoading();
-          swal("Registro Exitoso!", "Beneficio registrado!", "success")
-          $("#registroBeneficio")[0].reset();
-        }
-      })
-    }
+        }, function (error) {
+          if (error) {
+            hideLoading();
+            swal("Algo paso!", "error!", "error")
+          } else {
+            hideLoading();
+            $(".registroBeneficio")[0].reset();
+            swal("Registro Exitoso!", "Beneficio registrado!", "success");
+
+
+          }
+        })
+      }
     });
-    
+
   });
 } CrearPlanes()
 
@@ -335,6 +338,7 @@ function empleadosRegistrados() {
 
         firebase.database().ref('users/').orderByKey().equalTo(usuario).once('value').then(function (snapshot) {
           //   console.log(snapshot.val());
+          var s= ''
           snapshot.forEach(function (data) {
             //  console.log(data.val());
             var nombre = data.val().nombre;
@@ -346,9 +350,8 @@ function empleadosRegistrados() {
                 var nombrePlan = data.val().nombrePlan;
                 var montoPlan = data.val().montoPlan;
                 // console.log(montoPlan);
-                var s = ("<option>" + nombrePlan + " " + "€  " + montoPlan + "</option>");
-                console.log(s);
-
+                 s = s+("<option>" + nombrePlan + " " + "€  " + montoPlan + "</option>");
+                
 
                 $('#cambiarPlan2').append("<div class='modal fade show' id='modal-editar-beneficio' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-modal='true' style='padding-right: 17px; display: block;'>    <div class='modal-dialog modal-base modal-sm' role='document'>" +
                   "<div class='modal-content'>        <div class='modal-header'>          <h5 class='modal-title' id='exampleModalLabel'>Cambiar Plan</h5>" +
@@ -409,9 +412,7 @@ function beneficionRegistrados() {
 function configuracionEmpresa() {
   $(document).ready(function () {
     var sesionjson = sessionStorage.getItem("data");
-
     var sesion = JSON.parse(sesionjson);
-    //console.log(sesion.empresa);
     var uid = sesion.uid;
     var NIF = sesion.empresa.NIF;
     var codigoPostal = sesion.empresa.codigoPostal;
@@ -421,10 +422,11 @@ function configuracionEmpresa() {
     var pais = sesion.empresa.pais;
     var poblacion = sesion.empresa.poblacion;
     var telefono = sesion.empresa.telefono;
-    // var CedulaRepresentante = sesion.empresa.representante.CedulaRepresentante;
+    var CedulaRepresentante = sesion.empresa.representante.CedulaRepresentante;  
     var CorreoRepresentante = sesion.empresa.representante.CorreoRepresentante;
     var NombreRepresentante = sesion.empresa.representante.NombreRepresentante;
     var TelRepresentante = sesion.empresa.representante.TelRepresentante;
+    
     $('#conNombreEmpresa').val(nombreEmpresa);
     $('#conpostal').val(codigoPostal);
     $('#conDireccion').val(direccion);
@@ -434,29 +436,28 @@ function configuracionEmpresa() {
     $('#conpais').val(pais);
     $('#conpoblacion').val(poblacion);
     $('#conNombreRepresentante').val(NombreRepresentante);
-    //$('#conCedulaRepresentante').val(CedulaRepresentante);
+    $('#conCedulaRepresentante').val(CedulaRepresentante);
     $('#conTelRepresentante').val(TelRepresentante);
-    $('#conCorreoRepresentante').val(CorreoRepresentante);
+    $('#conCorreoRepresentante').val(CorreoRepresentante);    
+    
     $('#guardarEmpresa').click(function (e) {
-      e.preventDefault();
-
-      var datos = $('#editarEmpresa').serializeArray();
-
+      e.preventDefault();   
+      restartLoading();
       //////////////////////imagen         
       var fotoval = document.getElementById('conLogoEmpresa');
       var foto = new FileReader();
       foto.onload = function (e) {
         var file = (e.target.result);
+        
         var storageRef = firebase.storage().ref();
         var mountainsRef = storageRef.child('imagen/' + uid + fotoval.files[0].name);
-        var imagen = file.substring(22);
-        // console.log(imagen);
+        var imagen = file.substring(23);     
 
         mountainsRef.putString(imagen, 'base64').then(function (snapshot) {
-          var rutaGuardaImagen = snapshot.metadata.fullPath;
-          console.log(rutaGuardaImagen);
+          var rutaGuardaImagen = snapshot.metadata.fullPath;         
 
           //////////////prueba de imagen
+          var datos = $('#editarEmpresa').serializeArray();
           var conNombreEmpresa = datos[0].value;
           var conIdCompañia = datos[1].value;
           var conCorreo = datos[2].value;
@@ -488,14 +489,15 @@ function configuracionEmpresa() {
 
           }, function (error) {
             if (error) {
-              alert('Hay un error en sus datos verifique e intentelo de nuevo...')
+              hideLoading();
+              swal("Error",error.message,"error")
             } else {
-              alert('Registro completado con exito!')
+              hideLoading();
+             swal("Modificado con exito"," has modificado esta empresa","succes")
             }
           });
-        });
-      }
-      foto.readAsDataURL(fotoval.files[0]);
+        },function (error) { hideLoading();  alert(error)  });
+      }, foto.readAsDataURL(fotoval.files[0]);
     });
   });
 } configuracionEmpresa()
@@ -538,8 +540,9 @@ function consultaSaldoEmpresa() {
 
 function RecargarSaldoEMpresa() {
   $(document).ready(function () {
-    $('#recargarSaldoEmpresa').click(function (e) {  
-     e.preventDefault();     
+    $('#recargarSaldoEmpresa').click(function (e) {
+      e.preventDefault();
+
       var data = sessionStorage.getItem('data');
       var sesion = JSON.parse(data);
       var uid = sesion.uid;
@@ -550,45 +553,47 @@ function RecargarSaldoEMpresa() {
         // alert(saldoCuenta1);
         var form = $('#recargaSaldoEmpresa').serializeArray();
         //console.log(form);
-        var tarjetaCredito = form[0].value;  if(!tarjetaCredito) { $('#ptarjetaCredito').html('Campo Obligatorio'); }else{$('#ptarjetaCredito').html('');}
-        var nombreTitular = form[1].value;  if(!nombreTitular) { $('#pnombreTitular').html('Campo Obligatorio'); }else{$('#pnombreTitular').html('');}
-        var NumeroTarjeta = form[2].value;  if(!NumeroTarjeta) { $('#pNumeroTarjeta').html('Campo Obligatorio'); }else{$('#pNumeroTarjeta').html('');}
-        var fechaExp = form[3].value;        if(!fechaExp) { $('#pfechaExp').html('Campo Obligatorio'); }else{$('#pfechaExp').html('');}
-        var codigoSeguridad = form[4].value;  if(!codigoSeguridad) { $('#pcodigoSeguridad').html('Campo Obligatorio'); }else{$('#pcodigoSeguridad').html('');}
-        var montoRecargar = form[5].value;    if(!montoRecargar) { $('#pmontoRecargar').html('Campo Obligatorio'); }else{$('#pmontoRecargar').html('');}
+        var tarjetaCredito = form[0].value; if (!tarjetaCredito) { $('#ptarjetaCredito').html('Campo Obligatorio'); } else { $('#ptarjetaCredito').html(''); }
+        var nombreTitular = form[1].value; if (!nombreTitular) { $('#pnombreTitular').html('Campo Obligatorio'); } else { $('#pnombreTitular').html(''); }
+        var NumeroTarjeta = form[2].value; if (!NumeroTarjeta) { $('#pNumeroTarjeta').html('Campo Obligatorio'); } else { $('#pNumeroTarjeta').html(''); }
+        var fechaExp = form[3].value; if (!fechaExp) { $('#pfechaExp').html('Campo Obligatorio'); } else { $('#pfechaExp').html(''); }
+        var codigoSeguridad = form[4].value; if (!codigoSeguridad) { $('#pcodigoSeguridad').html('Campo Obligatorio'); } else { $('#pcodigoSeguridad').html(''); }
+        var montoRecargar = form[5].value; if (!montoRecargar) { $('#pmontoRecargar').html('Campo Obligatorio'); } else { $('#pmontoRecargar').html(''); }
         var sumaSaldo = parseFloat(montoRecargar) + parseFloat(saldoCuenta1);
-      //  alert(montoRecargar);
-if(tarjetaCredito &&  nombreTitular &&  NumeroTarjeta &&  fechaExp &&  codigoSeguridad &&  montoRecargar &&  sumaSaldo){
-        firebase.database().ref('Empresas/' + uid + "/cuentas").update({
-          "cuanta1": sumaSaldo
+        //  alert(montoRecargar);
+        if (tarjetaCredito && nombreTitular && NumeroTarjeta && fechaExp && codigoSeguridad && montoRecargar && sumaSaldo) {
+          restartLoading();
+          firebase.database().ref('Empresas/' + uid + "/cuentas").update({
+            "cuanta1": sumaSaldo
 
-        }, function (error) {
-          if (error) {
-            alert('Hay un error en sus datos verifique e intentelo de nuevo...')
-          } else {
-            hideLoading()
-            swal("Recarga!", "Recarga exitosa!", "success")
-          }
-        });
+          }, function (error) {
+            if (error) {
+              alert('Hay un error en sus datos verifique e intentelo de nuevo...')
+            } else {
+              hideLoading()
+              swal("Recarga!", "Recarga exitosa!", "success")
+            }
+          });
 
-        firebase.database().ref('/Recargas/empresas').push().set({
-          "tarjetaCredito": tarjetaCredito,
-          "nombreTitular": nombreTitular,
-          "NumeroTarjeta": NumeroTarjeta,
-          "fechaExp": fechaExp,
-          "codigoSeguridad": codigoSeguridad,
-          "montoRecargar": montoRecargar,
-          "saldoDespuesRecarga": sumaSaldo,
-          "uidempresa": uid
-        }, function (error) {
-          if (error) {
-            alert('Hay un error en sus datos verifique e intentelo de nuevo...')
-          } else {
-            hideLoading()
-            swal("Recarga!", "Recarga exitosa!", "success")
-          }
-        });
-      }
+          firebase.database().ref('/Recargas/empresas').push().set({
+            "tarjetaCredito": tarjetaCredito,
+            "nombreTitular": nombreTitular,
+            "NumeroTarjeta": NumeroTarjeta,
+            "fechaExp": fechaExp,
+            "codigoSeguridad": codigoSeguridad,
+            "montoRecargar": montoRecargar,
+            "saldoDespuesRecarga": sumaSaldo,
+            "uidempresa": uid
+          }, function (error) {
+            if (error) {
+              alert('Hay un error en sus datos verifique e intentelo de nuevo...')
+            } else {
+              hideLoading()
+              swal("Recarga!", "Recarga exitosa!", "success")
+              $("#recargaSaldoEmpresa ")[0].reset();
+            }
+          });
+        }
       });
     })
   })
@@ -761,7 +766,6 @@ function recuperarSaldodeClientes() {
   });
 } recuperarSaldodeClientes()
 
-
 function cerrarsesion() {
   $(document).ready(function () {
     $(document.body).on('click', '.cerrarsesion', function () {
@@ -779,23 +783,23 @@ function notificaciones() {
     messaging.usePublicVapidKey("BNH9hyxKC5faMqmfutsoi2bmVm8jm3guerqNkbW0DisLS48Rd9ebtBilFQYZzfaxCaoxlISBT7aQ2gf08WHn3jU");
     Notification.requestPermission().then(function (permission) {
       if (permission === 'granted') {
-       // console.log('Notification permission granted.');
+        // console.log('Notification permission granted.');
         //console.log("kkk");
 
         messaging.getToken().then(function (snap) {
-          console.log(snap);
+        //  console.log(snap);
           localStorage.setItem('tokenBlue', snap)
           messaging.onMessage(function (payload) {
-        //    console.log('Message received. ', payload);
+            //    console.log('Message received. ', payload);
 
           });
         });
 
       } else {
-        console.log('Unable to get permission to notify.');
+       // console.log('Unable to get permission to notify.');
       }
     });
-    console.log('notificaciones');
+    //console.log('notificaciones');
   });
 } notificaciones()
 

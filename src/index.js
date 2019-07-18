@@ -165,6 +165,12 @@ function registroEmpresa() {
               "NIF": NIF,
               "contraseña": contraseña,
               "uid": uid,
+              "representante": {
+                "NombreRepresentante": '',
+                "CedulaRepresentante": '',
+                "TelRepresentante": '',
+                "CorreoRepresentante": ''
+              },
               "cuentas": {
                 "cuanta1": 0,
                 "cuenta2": 0,
