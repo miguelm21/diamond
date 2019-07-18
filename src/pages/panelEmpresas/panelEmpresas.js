@@ -350,8 +350,7 @@ function empleadosRegistrados() {
                 var nombrePlan = data.val().nombrePlan;
                 var montoPlan = data.val().montoPlan;
                 // console.log(montoPlan);
-                 s = s+("<option>" + nombrePlan + " " + "€  " + montoPlan + "</option>");
-                
+                 s = s+("<option>" + nombrePlan + " " + "€  " + montoPlan + "</option>");                
 
                 $('#cambiarPlan2').append("<div class='modal fade show' id='modal-editar-beneficio' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-modal='true' style='padding-right: 17px; display: block;'>    <div class='modal-dialog modal-base modal-sm' role='document'>" +
                   "<div class='modal-content'>        <div class='modal-header'>          <h5 class='modal-title' id='exampleModalLabel'>Cambiar Plan</h5>" +
