@@ -239,8 +239,9 @@ function registroempleados() {
               $("#RegistrarEmpleados")[0].reset();
             }
           })
-        });
-      } else {
+        },function (error) {
+          hideLoading();swal("Error",error.message,"error")  });
+      } else {hideLoading();
         swal("Error!", "Debe completar los campos Faltantes", "error");
       }
     })
@@ -310,8 +311,9 @@ function empleadosRegistrados() {
   $('body').ready(function () {
     var sesion = JSON.parse(sessionStorage.getItem('data'));
     var uid = (sesion.uid);
-    firebase.database().ref('/users/').orderByChild('empresa').equalTo(uid).once('value').then(function (snapshot) {
+    firebase.database().ref('/users/').orderByChild('empresa').equalTo(uid).on('value',function (snapshot) {
       //console.log(snapshot.val());
+      var tablita;
       snapshot.forEach(function (childSnapshot) {
         // var key = childSnapshot.key();       
         var childData = childSnapshot.val();
@@ -326,17 +328,18 @@ function empleadosRegistrados() {
         var nombre = childData.nombre;
         var planBeneficio = childData.planBeneficio;
 
+       tablita = tablita + "<tr><td>" + nombre + "</td><td>" + apellido + "</td><td>" + correo + "</td><td>" + Inactivo + "</td><td>" +
+        planBeneficio +
+        " <button class='cambiarPlan' id='cambiarPlan' type='submit' value='" + key + "'  >Cambiar</button> </td><td>" + cargo + "</td></tr>"
 
-        $('#tablaEmpleados').append("<tr><td>" + nombre + "</td><td>" + apellido + "</td><td>" + correo + "</td><td>" + Inactivo + "</td><td>" +
-          planBeneficio +
-          " <button class='cambiarPlan' id='cambiarPlan' type='submit' value='" + key + "'  >Cambiar</button> </td><td>" + cargo + "</td></tr>");
+        $('#tablaEmpleados').html(tablita);
       });
 
       $('.cambiarPlan').click(function () {
         var usuario = $(this).val();
         // console.log(usuario);
 
-        firebase.database().ref('users/').orderByKey().equalTo(usuario).once('value').then(function (snapshot) {
+        firebase.database().ref('users/').orderByKey().equalTo(usuario).on('value',function (snapshot) {
           //   console.log(snapshot.val());
           var s= ''
           snapshot.forEach(function (data) {
@@ -345,11 +348,13 @@ function empleadosRegistrados() {
             var apellido = data.val().apellido;
             var nombreCOmpleto = nombre + "  " + apellido
             //.orderByKey().equalTo(usuario).///esto para filtrar
-            firebase.database().ref('Empresas/' + uid + "/planes/").once('value').then(function (snapshot) {
+            firebase.database().ref('Empresas/' + uid + "/planes/").on('value',function (snapshot) {
               snapshot.forEach(function (data) {
                 var nombrePlan = data.val().nombrePlan;
                 var montoPlan = data.val().montoPlan;
-                // console.log(montoPlan);
+               
+
+                var js = {'usuario':usuario,'monto':montoPlan}
                  s = s+("<option>" + nombrePlan + " " + "€  " + montoPlan + "</option>");                
 
                 $('#cambiarPlan2').append("<div class='modal fade show' id='modal-editar-beneficio' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-modal='true' style='padding-right: 17px; display: block;'>    <div class='modal-dialog modal-base modal-sm' role='document'>" +
@@ -359,7 +364,7 @@ function empleadosRegistrados() {
                   "<div class='form-group'>           <label  class='form-control' placeholder='Nombres' > " + nombreCOmpleto + "  </label>            </div>" +
                   "</div>            <div class='col-md-12 col-12'> <div class='form-group'> <select class='form-control' id='exampleFormControlSelect12' >" + s + " </select>" +
                   "</div>            </div>          </div>        </div>        <div class='modal-footer'>          <button type='button' class='btn edit' data-dismiss='modal'>salir</button>" +
-                  "<button type='button' class='btn primary' data-dismiss='modal'>Editar</button>        </div>      </div>    </div>  </div>");
+                  "<button id='"+ js +"' type='button' class='btn primary' data-dismiss='modal'>Editar</button>        </div>      </div>    </div>  </div>");
 
               });
             })
@@ -374,7 +379,7 @@ function empleadosRegistrados() {
 function beneficionRegistrados() {
   $('body').ready(function () {
     var sesion = JSON.parse(sessionStorage.getItem('data'));
-    firebase.database().ref('/Empresas/' + sesion.uid + "/planes/").once('value').then(function (snapshot) {
+    firebase.database().ref('/Empresas/' + sesion.uid + "/planes/").on('value',function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
         var childData = childSnapshot.val();
         var fechaPlan = childData.fechaPlan;
@@ -672,11 +677,15 @@ function recargarSaldoClientes() {
           firebase.database().ref('/Empresas/' + sesion.uid + "/").once('value').then(function (snapshot) {
 
             var empresa = (snapshot.val());
-            var cuenta1Empresa = empresa.cuentas.cuenta1;
+            var cuenta1Empresa = empresa.cuentas.cuanta1;
             var cuenta2Empresa = empresa.cuentas.cuenta2;
             var saldototalEmpresa = parseFloat(cuenta1Empresa) + cuenta2Empresa
             var saldoQuedaEmpresa = cuenta1Empresa - t;
+              console.log(saldoCliente);
+
+
             if (saldoCliente <= 0) {
+console.log("entro");
 
 
               if (saldototalEmpresa < t) {
@@ -688,11 +697,12 @@ function recargarSaldoClientes() {
                   dangerMode: true,
                 })
               } else {
+                enviarNotificacion(empresa.tokenBLue)
                 firebase.database().ref('users/' + uidEmpleado + "/cuentas/").update({
                   "cuanta1": parseFloat(saldos[1])
                 });
                 firebase.database().ref('Empresas/' + sesion.uid + "/cuentas/").update({
-                  "cuenta1": saldoQuedaEmpresa,
+                  "cuanta1": saldoQuedaEmpresa,
                 });
                 var ko = enviarNotificacion(datos.tokenBLue);
                 console.log('saliooooooooooooooo');
@@ -709,12 +719,11 @@ function recargarSaldoClientes() {
               }
             } else {
               hideLoading();
-              swal({
-                title: "El saldo ya fue recargado",
-                text: "El saldo ya fue recargado si el error pesiste llame al Soporte 0800",
-                icon: "error",
+              swal(          "Error",
+                 "No se puede recargar dos veces el saldo, en este momento el cliente ya tiene saldo activo",
+                 "error",
 
-              })
+              )
             }
           })
         });
@@ -732,7 +741,7 @@ function recuperarSaldodeClientes() {
       var sesion = JSON.parse(data);
       firebase.database().ref('Empresas/' + sesion.uid + "/").once('value').then(function (snapshot) {
         var empresa = snapshot.val();
-        var cuenta1 = empresa.cuentas.cuenta1;
+        var cuenta1 = empresa.cuentas.cuanta1;
         //    console.log(cuenta1);
 
         firebase.database().ref('users/').orderByChild('empresa').equalTo(sesion.uid).once('value').then(function (snapshot) {
@@ -747,7 +756,7 @@ function recuperarSaldodeClientes() {
 
 
             firebase.database().ref('Empresas/' + sesion.uid + "/cuentas/").update({
-              "cuenta1": sumaRegresarEmpresa
+              "cuanta1": sumaRegresarEmpresa
             });
             firebase.database().ref('users/' + uidEmpleado + "/cuentas/").update({
               "cuanta1": 0

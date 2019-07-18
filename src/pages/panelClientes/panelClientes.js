@@ -128,8 +128,8 @@ firebase.initializeApp(firebaseConfig);
 function restauranteRegistradosClientes() {
   $('body').ready(function () {
 
-    firebase.database().ref('Restaurante/').once('value').then(function (snapshot) {
-
+    firebase.database().ref('Restaurante/').on('value', function (snapshot) {
+      var tarjeta = '';
       snapshot.forEach(function (e) {
         var restaurante = e.val();
         //  console.log(e.key);
@@ -147,25 +147,25 @@ function restauranteRegistradosClientes() {
         var rutaImagenRestaurante = restaurante.rutaImagenRestaurante;
 
 
-          var tarjeta = $(" <div class='col-12 col-sm-6 col-md-6 col-lg-4'>" +
-            "<div class='card card--big'>" +
-            "<div class='card__image'>" +
-            "<img src='" + rutaImagenRestaurante + "' class='img-fluid w-100' alt=''>" +
-            "</div>" +
-            "<h2 class='card__title'>" + nombreRestaurante + "</h2>" +
-            "<p class='card__text'>" + pais + "</p>" +
-            "<div class='card__action-bar d-flex justify-content-between'>" +
-            "<button class='card__button hh' id='" + keyRestaurante + "'>Detalles</button>" +
-            "<button class='card__button' data-toggle='modal' data-target='#modal-pago'>Comprar</button>" +
-            "</div>" +
-            "</div>" +
-            "</div>");
+        tarjeta = tarjeta + (" <div class='col-12 col-sm-6 col-md-6 col-lg-4'>" +
+          "<div class='card card--big'>" +
+          "<div class='card__image'>" +
+          "<img src='" + rutaImagenRestaurante + "' class='img-fluid w-100' alt=''>" +
+          "</div>" +
+          "<h2 class='card__title'>" + nombreRestaurante + "</h2>" +
+          "<p class='card__text'>" + pais + "</p>" +
+          "<div class='card__action-bar d-flex justify-content-between'>" +
+          "<button class='card__button hh' id='" + keyRestaurante + "'>Detalles</button>" +
+          "<button class='card__button' data-toggle='modal' data-target='#modal-pago'>Comprar</button>" +
+          "</div>" +
+          "</div>" +
+          "</div>");
 
-          $('#tarjetaPlatoCliente').append(tarjeta);
+        $('#tarjetaPlatoCliente').html(tarjeta);
 
-          /*  */
+        /*  */
 
-        
+
       });
     });
   });
@@ -202,11 +202,11 @@ function RecargarSaldoTarjeta() {
       var uid = sesion.uid;
       firebase.database().ref('users/' + uid + "/cuentas").once('value').then(function (snapshot) {
         var snap = snapshot.val();
-       // console.log(snap.cuentaTotal);
+        // console.log(snap.cuentaTotal);
         var saldoCuenta1 = snap.cuenta2;
-        
+
         var form = $('#recargaSaldoCliente').serializeArray();
-         console.log(form);
+        console.log(form);
         var tarjetaCredito = form[0].value;
         var nombreTitular = form[1].value;
         var NumeroTarjeta = form[2].value;
@@ -284,10 +284,11 @@ function detalleRestauranteCliente() {
       $('#direccionPais').text(pais);
       $('#direccionCorreo').text(correo);
 
-      firebase.database().ref('Platos/').orderByChild('restaurante').equalTo(uidRestaurante).once('value').then(function (snapshot) {
+      firebase.database().ref('Platos/').orderByChild('restaurante').equalTo(uidRestaurante).on('value', function (snapshot) {
+        var tarjeta = '';
         snapshot.forEach(function (plato) {
           var platos = (plato.val());
-          var keyPlato = plato.key;      
+          var keyPlato = plato.key;
           var PrecioPlato = platos.PrecioPlato;
           var TamañoPLato = platos.TamañoPLato;
           var cantidadPlato = platos.cantidadPlato;
@@ -299,11 +300,12 @@ function detalleRestauranteCliente() {
           var tiempoMinimo = platos.tiempoMinimo;
           var tipoPLato = platos.tipoPLato;
           //console.log(tipoPLato);        
-            $('#tablaPlatos').html("<tr><td>" + nombrePlato + "</td><td>" + descripcionPlato + "</td><td> €" + PrecioPlato + "</td><td>" + tipoPLato + "</td><td>" +
-              porcionPlato + "</td><td> <img class='img-fluid' src='" + rutaGuardaImagen + "' > </td><td> " +
-              " <button class='btn buy comprarPlatoboton' id='" + keyPlato + "' type='submit' value='" + uidRestaurante + "'  data-toggle='modal' data-target='#modal-comprar'><i class='fas fa-shopping-cart'></i></button> </td></tr>");
+          tarjeta = tarjeta + "<tr><td>" + nombrePlato + "</td><td>" + descripcionPlato + "</td><td> €" + PrecioPlato + "</td><td>" + tipoPLato + "</td><td>" +
+            porcionPlato + "</td><td> <img class='img-fluid' src='" + rutaGuardaImagen + "' > </td><td> " +
+            " <button class='btn buy comprarPlatoboton' id='" + keyPlato + "' type='submit' value='" + uidRestaurante + "'  data-toggle='modal' data-target='#modal-comprar'><i class='fas fa-shopping-cart'></i></button> </td></tr>"
+          $('#tablaPlatos').html(tarjeta);
 
-          
+
         }); $('#modal-detalles-plato').modal('show');
       });
     })
@@ -317,18 +319,20 @@ function comprarLista() {
     var keyPlatos = e.currentTarget.id;
     var restaurante = e.currentTarget.value;
 
-    firebase.database().ref('Platos/').orderByChild('restaurante').equalTo(restaurante).once('value').then(function (snap) {
-
+    firebase.database().ref('Platos/').orderByChild('restaurante').equalTo(restaurante).on('value', function (snap) {
       snap.forEach(snapshot => {
+        if (keyPlatos == snapshot.key) {
+          ; var platoComprado = (snapshot.val());
+          var descripcionPlato = platoComprado.descripcionPlato;
+          var nombrePlato = platoComprado.nombrePlato;
+          var PrecioPlato = platoComprado.PrecioPlato;
+          var tarjeta = ("<h4>" + nombrePlato + "</h4> <p class='description'>" + descripcionPlato + "</p><p> € " + PrecioPlato + "</p>");
+          $('.nombrePlato').html(tarjeta);
 
-        var platoComprado = (snapshot.val());
-        var descripcionPlato = platoComprado.descripcionPlato;
-        var nombrePlato = platoComprado.nombrePlato;
-        var PrecioPlato = platoComprado.PrecioPlato;
-
-        $('.nombrePlato').html("<h4>" + nombrePlato + "</h4> <p class='description'>" + descripcionPlato + "</p><p> € " + PrecioPlato + "</p>");
-        $('#botonComprar').html("<button type='button' id=" + keyPlatos + " class='btn primary comprarYa' value=" + restaurante + " >Aceptar y Comprar</button>");
+          $('#botonComprar').html("<button type='button' id=" + keyPlatos + " class='btn primary comprarYa' value=" + restaurante + " >Aceptar y Comprar</button>");
+        }
       })
+
     });
   })
 } comprarLista()
@@ -345,7 +349,6 @@ function comprar() {
       //console.log(keyPlatos, restaurante);
       firebase.database().ref('Platos/').orderByChild('restaurante').equalTo(restaurante).once('value').then(function (snap) {
         snap.forEach(snapshot => {
-
 
           var platoComprado = (snapshot.val());
           var descripcionPlato = platoComprado.descripcionPlato;
@@ -469,8 +472,8 @@ function cerrarsesion() {
   $(document).ready(function () {
     $(document.body).on('click', '.cerrarsesion', function () {
       sessionStorage.removeItem("data");
-        location.href='index.html'
-//alert("cerrado");
+      location.href = 'index.html'
+      //alert("cerrado");
     });
   });
 } cerrarsesion()
@@ -493,9 +496,9 @@ function notificaciones() {
 
         messaging.getToken().then(function (snap) {
           console.log(snap);
-          localStorage.setItem('tokenBlue',snap)
+          localStorage.setItem('tokenBlue', snap)
           messaging.onMessage(function (payload) {
-            console.log('Message received. ', payload);          
+            console.log('Message received. ', payload);
           });
         });
 

@@ -234,7 +234,7 @@ firebase.initializeApp(firebaseConfig);
 function registroPlato() {
   $(document).ready(function () {
     $('#registrarPlato').click(function (e) {
-    
+
       e.preventDefault();
       restartLoading();
       var sesion = JSON.parse(sessionStorage.getItem('data'));
@@ -256,7 +256,7 @@ function registroPlato() {
       var foto = new FileReader();
       foto.onload = function (e) {
         var file = (e.target.result);
-       // console.log(file);
+        // console.log(file);
 
         var storageRef = firebase.storage().ref();
         var mountainsRef = storageRef.child('imagen/plato' + restaurante + fotoval.files[0].name);
@@ -303,7 +303,8 @@ function registroPlato() {
 function platosRegistrados() {
   $('body').ready(function () {
     var sesion = JSON.parse(sessionStorage.getItem('data'));
-    firebase.database().ref('/Platos/').orderByChild('restaurante').equalTo(sesion.uid).once('value').then(function (snapshot) {
+    firebase.database().ref('/Platos/').orderByChild('restaurante').equalTo(sesion.uid).on('value', function (snapshot) {
+      var tarjeta = '';
       snapshot.forEach(function (childSnapshot) {
 
         var childData = childSnapshot.val();
@@ -319,7 +320,7 @@ function platosRegistrados() {
         var tipoPLato = childData.tipoPLato;
         var rutaGuardaImagen = childData.rutaGuardaImagen;
 
-        var tarjeta = $("<div class=' col-xl-3 col-md-4 col-sm-6 col-12' >" +
+        tarjeta = "<div class=' col-xl-3 col-md-4 col-sm-6 col-12' >" +
           "<div class='card'>" +
           "<div class='dropdown'>" +
           "<button class='btn dropdown-toggle' type='button' id='dropdownMenuButton1' data-toggle='dropdown' aria-haspopup='false' aria-expanded='false'>" +
@@ -339,9 +340,9 @@ function platosRegistrados() {
           "<a href='#'>" + tipoPLato + "</a>" +
           "</div>" +
           "</div>" +
-          "</div>");
+          "</div>" + tarjeta;
 
-        $('#tarjetaPlato').append(tarjeta);
+        $('#tarjetaPlato').html(tarjeta);
 
       });
     });
@@ -351,7 +352,7 @@ function platosRegistrados() {
 function registropromociones() {
   $(document).ready(function () {
     $('#registrarPromo').click(function (e) {
-     
+
       e.preventDefault();
       restartLoading()
       var sesion = JSON.parse(sessionStorage.getItem('data'));
@@ -422,7 +423,8 @@ function promoRegistrados() {
   $('body').ready(function () {
     var sesion = JSON.parse(sessionStorage.getItem('data'));
 
-    firebase.database().ref('/Promo/').orderByChild('restaurante').equalTo(sesion.uid).once('value').then(function (snapshot) {
+    firebase.database().ref('/Promo/').orderByChild('restaurante').equalTo(sesion.uid).on('value', function (snapshot) {
+      var tarjeta = '';
       snapshot.forEach(function (childSnapshot) {
 
         var childData = childSnapshot.val();
@@ -438,7 +440,7 @@ function promoRegistrados() {
         var tiempoMin = childData.tiempoMin;
         var rutaGuardaImagen = childData.rutaGuardaImagen;
 
-        var tarjeta = $("<div class=' col-xl-3 col-md-4 col-sm-6 col-12' >" +
+        tarjeta = tarjeta + ("<div class=' col-xl-3 col-md-4 col-sm-6 col-12' >" +
           "<div class='card'>" +
           "<div class='dropdown'>" +
           "<button class='btn dropdown-toggle' type='button' id='dropdownMenuButton1' data-toggle='dropdown' aria-haspopup='false' aria-expanded='false'>" +
@@ -460,7 +462,7 @@ function promoRegistrados() {
           "</div>" +
           "</div>");
 
-        $('#promocion2').append(tarjeta);
+        $('#promocion2').html(tarjeta);
 
       });
     });
