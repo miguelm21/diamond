@@ -156,7 +156,7 @@ function restauranteRegistradosClientes() {
           "<p class='card__text'>" + pais + "</p>" +
           "<div class='card__action-bar d-flex justify-content-between'>" +
           "<button class='card__button hh' id='" + keyRestaurante + "'>Detalles</button>" +
-          "<button class='card__button' data-toggle='modal' data-target='#modal-pago'>Comprar</button>" +
+          "<button class='card__button modalPagoSinPlato' data-toggle='modal' id=" + keyRestaurante + " >Comprar</button>" +
           "</div>" +
           "</div>" +
           "</div>");
@@ -301,22 +301,22 @@ function detalleRestauranteCliente() {
           var tiempoMinimo = platos.tiempoMinimo;
           var tipoPLato = platos.tipoPLato;
           //console.log(tipoPLato);   
-          
-          chupetin = chupetin + "<div class='col-12 col-sm-6 col-md-6 col-lg-4'>"+
-                                  "<div class='card card--big'>"+
-                                    "<div class='card__image'>"+
-                                      "<img src="+ rutaGuardaImagen +" class='img-fluid w-100' alt=''>"+
-                                      "<span class='category'>"+tipoPLato+"</span>"+
-                                    "</div>"+
-                                    "<h2 class='card__title'>"+nombrePlato+" </h2>"+
-                                    "<p class='card__text'>"+descripcionPlato+"</p>"+
-                                      "<div class='card__action-bar d-flex justify-content-around align-items-center'>"+
-                                      "<h6 class='m-0 p-1'>"+PrecioPlato+" €</h6>"+
-                                      "<button class='card__button comprarPlatoboton' id='" + keyPlato + "' type='submit' value='" + uidRestaurante + "'  data-toggle='modal' data-target='#modal-comprar'>Comprar</button>"+
-                                    " </div>"+
-                                  "  </div>"+
-                              " </div>";
-          
+
+          chupetin = chupetin + "<div class='col-12 col-sm-6 col-md-6 col-lg-4'>" +
+            "<div class='card card--big'>" +
+            "<div class='card__image'>" +
+            "<img src=" + rutaGuardaImagen + " class='img-fluid w-100' alt=''>" +
+            "<span class='category'>" + tipoPLato + "</span>" +
+            "</div>" +
+            "<h2 class='card__title'>" + nombrePlato + " </h2>" +
+            "<p class='card__text'>" + descripcionPlato + "</p>" +
+            "<div class='card__action-bar d-flex justify-content-around align-items-center'>" +
+            "<h6 class='m-0 p-1'>" + PrecioPlato + " €</h6>" +
+            "<button class='card__button comprarPlatoboton' id='" + keyPlato + "' type='submit' value='" + uidRestaurante + "'  data-toggle='modal' data-target='#modal-comprar'>Comprar</button>" +
+            " </div>" +
+            "  </div>" +
+            " </div>";
+
           tarjeta = tarjeta + "<tr><td>" + nombrePlato + "</td><td>" + descripcionPlato + "</td><td> €" + PrecioPlato + "</td><td>" + tipoPLato + "</td><td>" +
             porcionPlato + "</td><td> <img class='img-fluid' src='" + rutaGuardaImagen + "' > </td><td> " +
             " <button class='btn buy comprarPlatoboton' id='" + keyPlato + "' type='submit' value='" + uidRestaurante + "'  data-toggle='modal' data-target='#modal-comprar'><i class='fas fa-shopping-cart'></i></button> </td></tr>"
@@ -554,3 +554,32 @@ function enviarNotificacion(token) {
     });
   });
 }
+
+function transferisRestaurantesinPlato() {
+  $(document).ready(function () {
+    $(document.body).on('click', '.modalPagoSinPlato', function (e) {
+      var uidRestaurante = e.currentTarget.id;
+      firebase.database().ref('Restaurante/' + uidRestaurante).once('value').then(function (snapshot) {
+        var datosRestaurante = (snapshot.val());
+        var nombreRestaurante = datosRestaurante.nombreRestaurante;
+        var saldoActual = datosRestaurante.cuentas.cuanta1;
+        $('#nombreRestaurantePagar').val(nombreRestaurante);
+        $(document.body).on('click', '#pagaryya', function () {
+          var formulario = $('#recargaplaraRestaurante').serializeArray()
+          var monto = (formulario[0].value);
+          var saldoActualizar = parseFloat(saldoActual) + parseFloat(monto);
+          firebase.database().ref('Restaurante/' + uidRestaurante + "/cuentas/").update({
+            "cuanta1": saldoActualizar
+          }, function (error) {
+            swal("Error", error, "error")
+
+          })
+        });
+      })
+      $('#modalPagoSinPlato').modal('show');
+    });
+  });
+} transferisRestaurantesinPlato()
+
+
+

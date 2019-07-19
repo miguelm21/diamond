@@ -91,6 +91,11 @@ $(document).ready(function () {
     $('#show-register2').show();
   })
 
+  
+  $('#registro2').click(function () {
+    $('#show-button').hide();
+    $('#show-register').hide();
+  })
 
 });
 
@@ -528,3 +533,78 @@ function enviarNotificacion(token) {
   });
 }
 
+function ojitosSesionEmpresa() {
+  $(document).ready(function () {    
+ $('#show_password').on('mouseover',function () {   
+       $('#password').get(0).type='text';
+       $('#show_password').on('mouseout', function () { 
+        $('#password').get(0).type='password';
+      });
+  });
+  })
+}ojitosSesionEmpresa()
+
+function ojitosSesionRestaurante() {
+  $(document).ready(function () {    
+ $('#show_password3').on('mouseover',function () {   
+       $('#password3').get(0).type='text';
+       $('#show_password3').on('mouseout', function () { 
+        $('#password3').get(0).type='password';
+      });
+  });
+  })
+}ojitosSesionRestaurante()
+function ojitosSesionEmpleado() {
+  $(document).ready(function () {    
+ $('#show_password2').on('mouseover',function () {   
+       $('#password2').get(0).type='text';
+       $('#show_password2').on('mouseout', function () { 
+        $('#password2').get(0).type='password';
+      });
+  });
+  })
+}ojitosSesionEmpleado()
+
+function ojitosRegistroEmpresa() {
+  $(document).ready(function () {    
+ $('#show_password7').on('mouseover',function () {   
+       $('#password7').get(0).type='text';
+       $('#show_password7').on('mouseout', function () { 
+        $('#password7').get(0).type='password';
+      });
+  });
+  })
+}ojitosRegistroEmpresa()
+
+function ojitosRegistroEmpresa2() {
+  $(document).ready(function () {    
+ $('#show_password4').on('mouseover',function () {   
+       $('#password4').get(0).type='text';
+       $('#show_password4').on('mouseout', function () { 
+        $('#password4').get(0).type='password';
+      });
+  });
+  })
+}ojitosRegistroEmpresa2()
+
+function ojitosRegistroRestaurante() {
+  $(document).ready(function () {    
+ $('#show_password5').on('mouseover',function () {   
+       $('#password5').get(0).type='text';
+       $('#show_password5').on('mouseout', function () { 
+        $('#password5').get(0).type='password';
+      });
+  });
+  })
+}ojitosRegistroRestaurante()
+
+function ojitosRegistroRestaurante2() {
+  $(document).ready(function () {    
+ $('#show_password6').on('mouseover',function () {   
+       $('#password6').get(0).type='text';
+       $('#show_password6').on('mouseout', function () { 
+        $('#password6').get(0).type='password';
+      });
+  });
+  })
+}ojitosRegistroRestaurante2()

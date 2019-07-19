@@ -234,67 +234,71 @@ firebase.initializeApp(firebaseConfig);
 function registroPlato() {
   $(document).ready(function () {
     $('#registrarPlato').click(function (e) {
-
       e.preventDefault();
-      restartLoading();
       var sesion = JSON.parse(sessionStorage.getItem('data'));
       var restaurante = (sesion.uid);
 
       var datos = $('#registroPlato').serializeArray();
-      var nombrePlato = datos[0].value;
-      var descripcionPlato = datos[1].value;
-      var PrecioPlato = datos[2].value;
-      var TamañoPLato = datos[3].value;
-      var cantidadPlato = datos[4].value;
-      var porcionPlato = datos[5].value;
-      var tipoPLato = datos[6].value;
-      var tiempoMinimo = datos[7].value;
-      var tiempoMaximo = datos[8].value;
+      var nombrePlato = datos[0].value; if (!nombrePlato) { $('#pnombrePlato').html('Campo obligatorio'); } else { $('#pnombrePlato').html('') }
+      var descripcionPlato = datos[1].value; if (!descripcionPlato) { $('#pdescripcionPlato').html('Campo obligatorio'); } else { $('#pdescripcionPlato').html('') }
+      var PrecioPlato = datos[2].value; if (!PrecioPlato) { $('#pPrecioPlato').html('Campo obligatorio'); } else { $('#pPrecioPlato').html('') }
+      var TamañoPLato = datos[3].value; if (!TamañoPLato) { $('#pTamañoPLato').html('Campo obligatorio'); } else { $('#pTamañoPLato').html('') }
+      var cantidadPlato = datos[4].value; if (!cantidadPlato) { $('#pcantidadPlato').html('Campo obligatorio'); } else { $('#pcantidadPlato').html('') }
+      var porcionPlato = datos[5].value; if (!porcionPlato) { $('#pporcionPlato').html('Campo obligatorio'); } else { $('#pporcionPlato').html('') }
+      var tipoPLato = datos[6].value; if (!tipoPLato) { $('#ptipoPLato').html('Campo obligatorio'); } else { $('#ptipoPLato').html('') }
+      var tiempoMinimo = datos[7].value; if (!tiempoMinimo) { $('#ptiempoMinimo').html('Campo obligatorio'); } else { $('#ptiempoMinimo').html('') }
+      var tiempoMaximo = datos[8].value; if (!tiempoMaximo) { $('#ptiempoMaximo').html('Campo obligatorio'); } else { $('#ptiempoMaximo').html('') }
       // console.log(tipoPLato);
+      if (tipoPLato == 'Tipo Plato') { swal("Error", "Tipo plato esta vacio seleccione una opcion", "error") } else {
 
-      var fotoval = document.getElementById('imagenPlato');
-      var foto = new FileReader();
-      foto.onload = function (e) {
-        var file = (e.target.result);
-        // console.log(file);
+        if (nombrePlato && descripcionPlato && PrecioPlato && TamañoPLato && cantidadPlato && porcionPlato && tipoPLato && tiempoMinimo && tiempoMaximo) {
+          restartLoading();
+          var fotoval = document.getElementById('imagenPlato');
+          var foto = new FileReader();
+          foto.onload = function (e) {
+            var file = (e.target.result);
+            // console.log(file);
 
-        var storageRef = firebase.storage().ref();
-        var mountainsRef = storageRef.child('imagen/plato' + restaurante + fotoval.files[0].name);
-        var imagen = file.substring(23);
-        mountainsRef.putString(imagen, 'base64').then(function (snapshot) {
-          var rutaGuardaImagen = snapshot.metadata.fullPath;
+            var storageRef = firebase.storage().ref();
+            var mountainsRef = storageRef.child('imagen/plato' + restaurante + fotoval.files[0].name);
+            var imagen = file.substring(23);
+            mountainsRef.putString(imagen, 'base64').then(function (snapshot) {
+              var rutaGuardaImagen = snapshot.metadata.fullPath;
 
-          var storageRef = firebase.storage().ref();
-          var mountainsRef = storageRef.child("");
-          mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) {
+              var storageRef = firebase.storage().ref();
+              var mountainsRef = storageRef.child("");
+              mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) {
 
 
-            firebase.database().ref('Platos/').push().set({
+                firebase.database().ref('Platos/').push().set({
 
-              "nombrePlato": nombrePlato,
-              "descripcionPlato": descripcionPlato,
-              "PrecioPlato": PrecioPlato,
-              "TamañoPLato": TamañoPLato,
-              "cantidadPlato": cantidadPlato,
-              "porcionPlato": porcionPlato,
-              "tipoPLato": tipoPLato,
-              "tiempoMinimo": tiempoMinimo,
-              "tiempoMaximo": tiempoMaximo,
-              "rutaGuardaImagen": url,
-              "restaurante": restaurante
-            }, function (error) {
-              if (error) {
-                hideLoading()
-                swal("error!", "error!", "error")
-              } else {
-                hideLoading()
-                swal("Registro Exitoso!", "Registrado!", "success")
-
-              }
-            });
-          })
-        })
-      }, foto.readAsDataURL(fotoval.files[0]);
+                  "nombrePlato": nombrePlato,
+                  "descripcionPlato": descripcionPlato,
+                  "PrecioPlato": PrecioPlato,
+                  "TamañoPLato": TamañoPLato,
+                  "cantidadPlato": cantidadPlato,
+                  "porcionPlato": porcionPlato,
+                  "tipoPLato": tipoPLato,
+                  "tiempoMinimo": tiempoMinimo,
+                  "tiempoMaximo": tiempoMaximo,
+                  "rutaGuardaImagen": url,
+                  "restaurante": restaurante
+                }, function (error) {
+                  if (error) {
+                    hideLoading()
+                    swal("error!", "error!", "error")
+                  } else {
+                    hideLoading()
+                    swal("Registro Exitoso!", "Registrado!", "success")
+                    $("#registroPlato")[0].reset();
+                  }
+                });
+              })
+            })
+          }, foto.readAsDataURL(fotoval.files[0]);
+        } else { hideLoading(); swal("Error","Campo Vacios"," Error")
+        }
+      }
     });
   });
 
@@ -543,3 +547,15 @@ function enviarNotificacion(token) {
     });
   });
 }
+
+function saldoRestaurante() {
+  $(document).ready(function () {
+    var data = JSON.parse(sessionStorage.getItem('data'));
+    var sesion = data.uid;
+    firebase.database().ref('Restaurante/' + sesion).on('value', function (snapshot) {
+      var snap = snapshot.val();
+      // console.log(snap.cuentas.cuanta1);
+      $('#balanceRestaurante').html(snap.cuentas.cuanta1.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }));
+    })
+  });
+} saldoRestaurante()

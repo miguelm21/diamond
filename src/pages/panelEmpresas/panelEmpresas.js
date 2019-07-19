@@ -254,14 +254,14 @@ function recuperarNOmbreEmpresa() {
     var sesionjson = sessionStorage.getItem("data");
 
     var sesion = JSON.parse(sesionjson);
-    // console.log(sesion);
+   //  console.log(sesion);
 
     var nombreEmpresa = sesion.empresa.nombreEmpresa;
     var rutaImagen = sesion.empresa.rutaImagen;
     var storageRef = firebase.storage().ref();
     var mountainsRef = storageRef.child("");
     mountainsRef.child(rutaImagen).getDownloadURL().then(function (url) {
-      // console.log(url);
+     //  console.log(url);
       $('#fotoEmpresa').append("'<img src='" + url + "'</span>'");
       $('#nombreEmpresa').append("<span>" + nombreEmpresa + "</span>");
 
@@ -460,6 +460,11 @@ function configuracionEmpresa() {
         mountainsRef.putString(imagen, 'base64').then(function (snapshot) {
           var rutaGuardaImagen = snapshot.metadata.fullPath;         
 
+          var storageRef = firebase.storage().ref();
+          var mountainsRef = storageRef.child("");
+          mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) {
+
+
           //////////////prueba de imagen
           var datos = $('#editarEmpresa').serializeArray();
           var conNombreEmpresa = datos[0].value;
@@ -474,7 +479,7 @@ function configuracionEmpresa() {
           var conCedulaRepresentante = datos[9].value;
           var conTelRepresentante = datos[10].value;
           var conCorreoRepresentante = datos[11].value;
-          var rutaGuardaImagen = rutaGuardaImagen;
+          var rutaGuardaImagen = url;
           firebase.database().ref('Empresas/' + uid).update({
             "nombreEmpresa": conNombreEmpresa,
             "correo": conCorreo,
@@ -501,6 +506,9 @@ function configuracionEmpresa() {
             }
           });
         },function (error) { hideLoading();  alert(error)  });
+      }, function (params) { alert(error.message)
+        
+      })
       }, foto.readAsDataURL(fotoval.files[0]);
     });
   });
@@ -839,3 +847,15 @@ function enviarNotificacion(token) {
   });
 }
 hideLoading()
+
+function generarContraseña(){
+
+  $('#generarContraseña').on('click', function () {
+    var i;
+    var caracteres = "abcdefghijkmnpqrtuvwxyzABCDEFGHIJKLMNPQRTUVWXYZ2346789";
+    var contraseña = "";
+    for ( i=0; i<8; i++) contraseña += caracteres.charAt(Math.floor(Math.random()*caracteres.length));
+    $('.contraseñaEmpleado').val(contraseña);
+  
+});
+}generarContraseña()

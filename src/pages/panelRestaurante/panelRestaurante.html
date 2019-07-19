@@ -32,13 +32,15 @@
 </head>
 
 <body>
-    <div id="preloader">
-        <div id="status"></div>
-    </div>
+  <div id="preloader">
+    <div id="status"></div>
+  </div>
 
   <!--  Navbar -->
   <nav class="navbar navbar-expand-lg navbar-edit">
-    <a class="navbar-brand" href="index.html"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Flogo.png?alt=media&token=ff89ac3f-cb1f-4e39-820f-856908e94880" alt="" class="img-logo"></a>
+    <a class="navbar-brand" href="index.html"><img
+        src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fplay.PNG?alt=media&token=0fcd0957-74a5-4097-84a2-ccd1cc0e09d9"
+        alt="" class="img-logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-bars"></i>
@@ -46,7 +48,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
+        <!--  <li class="nav-item active">
           <a class="nav-link" href="#">¿Quienes somos?</a>
         </li>
         <li class="nav-item">
@@ -57,7 +59,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Restaurantes</a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <div class="dropdown text-right edit">
             <a class="dropdown-toggle option-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -67,11 +69,11 @@
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" href="#">Editar contraseña</a>
               <a class="dropdown-item" href="#">Cambiar imagen</a>
-              <a class="dropdown-item cerrarsesion" >Cerrar sesión</a>
+              <a class="dropdown-item cerrarsesion">Cerrar sesión</a>
             </div>
           </div>
         </li>
-    <!--  <li class="nav-item login">
+        <!--  <li class="nav-item login">
             <a class="nav-link" href="login-empresas.html">Iniciar sesión</a>
           </li> -->
       </ul>
@@ -85,14 +87,14 @@
             <h5 class="title-panel">Panel</h5>
             <div class="price-status">
               <p>Balance</p>
-              <h5>12.00</h5>
+              <h5 id="balanceRestaurante"></h5>
             </div>
             <ul class="">
               <li class="d-flex align-items-center space-between">
-                <a class="active" id="activepanel1" data-toggle="tab" href="#platos2">Restaurantes</a>
+                <a class="active" id="activepanel1" data-toggle="tab" href="#platos2">Platos</a>
                 <button class="btn" id="add-plate"><i class="fas fa-plus"></i></button>
               </li>
-<!-- 
+              <!-- 
               <li class="d-flex align-items-center space-between"><a data-toggle="tab" href="#chef2"
                   id="activepanel2">Chef</a>
                 <button class="btn" id="add-chef"><i class="fas fa-plus"></i></button>
@@ -104,7 +106,7 @@
               </li>
               <li class="d-flex align-items-center space-between">
                 <a data-toggle="tab" href="#Historial2" id="show-historial">Historial</a>
-               <!--  <button class="btn" id="add-promocion"><i class="fas fa-plus"></i></button> -->
+                <!--  <button class="btn" id="add-promocion"><i class="fas fa-plus"></i></button> -->
               </li>
             </ul>
             <br>
@@ -119,7 +121,7 @@
             <div class="row" id="tarjetaPlato">
             </div>
           </div>
-            
+
           <div class="box-panel  box-register" id="registro-platos">
             <h5 class="title">Registrar plato</h5>
             <div class="form-client">
@@ -128,27 +130,29 @@
                   <div class="col-md-6 col-12">
                     <div class="form-group">
                       <label for="file" class="form-control pointer">Agregar imagen
-                      
-                        <input id="imagenPlato" type="file" accept="image/*" class="required" required/>
+
+                        <input id="imagenPlato" type="file" accept="image/*" class="required"  />
                       </label>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="form-group">
-                      <input type="text" class="form-control required" placeholder="Nombre Plato" value=""
-                        name="nombrePlato" required/>
+                      <input type="text" class="form-control required" placeholder="Nombre Plato" value="" name="nombrePlato" required />
+                      <p id ="pnombrePlato"></p>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="form-group">
                       <input type="text" class="form-control required" placeholder="Descripción Plato" value=""
-                        name="descripcionPlato" required/>
+                        name="descripcionPlato" required />
+                        <p id ="pdescripcionPlato"></p>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="form-group">
                       <input type="number" class="form-control required" placeholder="Precio del plato" value=""
-                        name="PrecioPlato" required/>
+                        name="PrecioPlato" required />
+                        <p id ="pPrecioPlato"></p>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
@@ -164,26 +168,51 @@
                   <div class="col-md-6 col-12">
                     <div class="form-group">
                       <input type="number" class="form-control required" placeholder="Cantidad" value=""
-                        name="cantidadPlato" required/>
+                        name="cantidadPlato" required />
+                        <p id ="pcantidadPlato"></p>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="form-group">
-                      <input type="number" class="form-control required" placeholder="Porcion" value="" name="porcionPlato" required/>
+                      <input type="number" class="form-control required" placeholder="Porcion" value=""
+                        name="porcionPlato" required />
+                        <p id ="pporcionPlato"></p>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="form-group">
-                      <input type="text" class="form-control required" placeholder="Tipo de plato" value="" name="tipoPLato" required/>
+                      <select class="form-control required" id="exampleFormControlSelect1" name="tipoPlato" placeholder="Tipo Plato">
+                          <option> Tipo Plato </option>
+                        <option> Acompañamiento </option>
+                        <option> Almuerzo </option>
+                        <option> Bebidas </option>
+                        <option> Bocadillos </option>
+                        <option> CenaCena </option>
+                        <option> Desayuno </option>
+                        <option> Ensaladas </option>
+                        <option> Panes, Panecillos, y Panecillos tipo Panes, Panecillos, y Panecillos tipo "Scones"
+                        </option>
+                        <option> (Hotcakes) y sus acompañamientos </option>
+                        <option> Pizza </option>
+                        <option> Platillos Principales </option>
+                        <option> Postres </option>
+                        <option> Quesadillas y Sándwiches </option>
+                        <option> Salsas y Cremas para Untar y Aderezos </option>
+                        <option> Sopas, Guisado y Chili (Potaje) </option>
+                      </select>
                     </div>
                   </div>
                   <div class="col-md-12 col-12">
                     <div class="form-group time-to">
                       <label for="" class="mt-2">Tiempo de preparacion</label>
                       <div class="d-flex align-items-center w-25">
-                        <input type="number" class="form-control required" placeholder="min" value="" name="tiempoMinimo" required/>
+                        <input type="number" class="form-control required" placeholder="min" value=""
+                          name="tiempoMinimo" required />
+                          <p id ="ptiempoMinimo"></p>
                         <p class="ion"></p>
-                        <input type="number" class="form-control required" placeholder="max" value="" name="tiempoMaximo" required/>
+                        <input type="number" class="form-control required" placeholder="max" value=""
+                          name="tiempoMaximo" required />
+                          <p id ="ptiempoMaximo"></p>
                       </div>
                     </div>
                   </div>
@@ -295,7 +324,7 @@
           </div>
           <div class="box-panel  box-panel " style="display: none;" id="promocion22">
             <div class="row" id="promocion2">
-              
+
             </div>
           </div>
           <div class="box-panel  box-register" id="register-promocion">
@@ -309,69 +338,76 @@
                     </label>
                   </div>
                 </div>
-                <form id="registroPromo" >
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                    <input type="text" class="form-control required" placeholder="Nombre" value="" name="nombrePromo" required/>
-                  </div>
-                </div>
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                    <input type="text" class="form-control required" placeholder="Descripción" value="" name="DescripcionPromo" required/>
-                  </div>
-                </div>
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                    <input type="number" class="form-control required" placeholder="Precio" value="" name="PrecioPromo" required/>
-                  </div>
-                </div>
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                    <select class="form-control" id="exampleFormControlSelect1"  name="tamañoPromo">
-                      <option>Tamaño</option>
-                      <option>Pequeño</option>
-                      <option>Mediano</option>
-                      <option>Grande</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                    <input type="number" class="form-control required" placeholder="Cantidad" value="" name="cantidadPromo" required/>
-                  </div>
-                </div>
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                    <input type="number" class="form-control required" placeholder="Porcion" value="" name="procionPromo" required/>
-                  </div>
-                </div>
-                <div class="col-md-12 col-12">
-                  <div class="form-group time-to">
-                    <label for="" class="mt-2">Tiempo de preparacion</label>
-                    <div class="d-flex align-items-center w-25">
-                      <input type="number" class="form-control" placeholder="min" value="" name="tiempoMin"/>
-                      <p class="ion"></p>
-                      <input type="number" class="form-control" placeholder="max" value="" name="tiempoMax"/>
+                <form id="registroPromo">
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <input type="text" class="form-control required" placeholder="Nombre" value="" name="nombrePromo"
+                        required />
                     </div>
                   </div>
-                </div>
-             
-                <div class="col-12 d-flex justify-content-center mt-4 text-center">
-                  <button type="submit" onclick="backbutton()" class="btn btn-back">Volver</button>
-                  <button type="submit" class="btn btn-register" id="registrarPromo" >Crear Promociones</button>
-                </div>
-              </form>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <input type="text" class="form-control required" placeholder="Descripción" value=""
+                        name="DescripcionPromo" required />
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <input type="number" class="form-control required" placeholder="Precio" value=""
+                        name="PrecioPromo" required />
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <select class="form-control" id="exampleFormControlSelect1" name="tamañoPromo">
+                        <option>Tamaño</option>
+                        <option>Pequeño</option>
+                        <option>Mediano</option>
+                        <option>Grande</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <input type="number" class="form-control required" placeholder="Cantidad" value=""
+                        name="cantidadPromo" required />
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <input type="number" class="form-control required" placeholder="Porcion" value=""
+                        name="procionPromo" required />
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group time-to">
+                      <label for="" class="mt-2">Tiempo de preparacion</label>
+                      <div class="d-flex align-items-center w-25">
+                        <input type="number" class="form-control" placeholder="min" value="" name="tiempoMin" />
+                        <p class="ion"></p>
+                        <input type="number" class="form-control" placeholder="max" value="" name="tiempoMax" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 d-flex justify-content-center mt-4 text-center">
+                    <button type="submit" onclick="backbutton()" class="btn btn-back">Volver</button>
+                    <button type="submit" class="btn btn-register" id="registrarPromo">Crear Promociones</button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
-          <div class="box-historial"  style="display: none;" id="historial-compras">
+          <div class="box-historial" style="display: none;" id="historial-compras">
             <h2 class="title">Empleados</h2>
             <ul class="nav nav-pills nav-edit" id="myTab" role="tablist">
               <li class="nav-item">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#First" role="tab" aria-controls="first" aria-selected="true">Por atender</a>
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#First" role="tab"
+                  aria-controls="first" aria-selected="true">Por atender</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#second" role="tab" aria-controls="second" aria-selected="false">Atendidos</a>
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#second" role="tab" aria-controls="second"
+                  aria-selected="false">Atendidos</a>
               </li>
             </ul>
             <div class="tab-content">
@@ -409,7 +445,7 @@
                                 <input id="checkbox" type="checkbox">
                                 <label for="checkbox"></label>
                               </div>
-                            </div> 
+                            </div>
                           </td>
                         </tr>
                       </tbody>
@@ -419,11 +455,13 @@
                     <div class="row">
                       <div class="col-12">
                         <ul class="pagination">
-                          <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a></li>
+                          <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a>
+                          </li>
                           <li class="page-item"><a class="page-link" href="#">1</a></li>
                           <li class="page-item"><a class="page-link" href="#">2</a></li>
                           <li class="page-item"><a class="page-link" href="#">3</a></li>
-                          <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a></li>
+                          <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -459,7 +497,7 @@
                           <td>342431</td>
                           <td>Pabellon criollo</td>
                           <td>
-                              <span class="btn btn-link status green"><i class="fas fa-times"></i></span>
+                            <span class="btn btn-link status green"><i class="fas fa-times"></i></span>
                           </td>
                         </tr>
                         <tr>
@@ -468,7 +506,7 @@
                           <td>342431</td>
                           <td>Bandeja paisa</td>
                           <td>
-                              <span class="btn btn-link status red"><i class="fas fa-check"></i></span>
+                            <span class="btn btn-link status red"><i class="fas fa-check"></i></span>
                           </td>
                         </tr>
                       </tbody>
@@ -478,19 +516,21 @@
                     <div class="row">
                       <div class="col-12">
                         <ul class="pagination">
-                          <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a></li>
+                          <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a>
+                          </li>
                           <li class="page-item"><a class="page-link" href="#">1</a></li>
                           <li class="page-item"><a class="page-link" href="#">2</a></li>
                           <li class="page-item"><a class="page-link" href="#">3</a></li>
-                          <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a></li>
+                          <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                          </li>
                         </ul>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-           </div>
-        </div>
+            </div>
+          </div>
   </section>
 
 
@@ -547,28 +587,28 @@
       </div>
     </div>
   </footer>
-<div class="modal fade" id="modal-eliminar1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-base modal-sm" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Atención</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="eliminar">
-          <p>¿ Ests seguro de que atendio a este usuario ?</p>
+  <div class="modal fade" id="modal-eliminar1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-base modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Atención</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn edit" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn primary" data-dismiss="modal">Aceptar</button>
+        <div class="modal-body">
+          <div class="eliminar">
+            <p>¿ Ests seguro de que atendio a este usuario ?</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn edit" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn primary" data-dismiss="modal">Aceptar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

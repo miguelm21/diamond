@@ -39,7 +39,7 @@
 </div>
   <!--  Navbar -->
   <nav class="navbar navbar-expand-lg navbar-edit">
-    <a class="navbar-brand" href="index.html"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Flogo.png?alt=media&token=ff89ac3f-cb1f-4e39-820f-856908e94880" alt="" class="img-logo"></a>
+    <a class="navbar-brand" href="index.html"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fplay.PNG?alt=media&token=0fcd0957-74a5-4097-84a2-ccd1cc0e09d9" alt="" class="img-logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-bars"></i>
@@ -643,13 +643,13 @@
               <div class="col-6">
                 <div class="form-group">
                   <label for="">Nombre del titular</label>
-                  <input type="text" class="form-control required" name="nombreTitular" >
+                  <input type="text" class="form-control " name="nombreTitular" >
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
                     <label for="">Número de tarjeta</label>
-                    <input type="text" class="form-control required" name="NumeroTarjeta" >
+                    <input type="text" class="form-control " name="NumeroTarjeta" >
                 </div>
               </div>
               <div class="col-12">
@@ -657,7 +657,7 @@
                   <label for="">Fecha de expiración</label>
                   <div class="row">
                     <div class="col-6">
-                        <input type="date" class="form-control required" name="fechaExp" >
+                        <input type="date" class="form-control " name="fechaExp" >
                     </div>
                     <div class="col-6">
                         <input type="date" class="form-control">
@@ -739,6 +739,41 @@
            </div>
         </div>
     </div>
+/////////////////////////////////////////
+    <div class="modal fade" id="modalPagoSinPlato" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    
+    <div class="modal-dialog modal-base" role="document">
+      <div class="modal-content" >
+          <form id="recargaplaraRestaurante">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Transferir a Restaurante</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form id="recargaSaldoCliente">
+        <div class="modal-body pago">            
+        
+                <div class="form-group">
+                  <label for="">Nombre del Restaurante</label>
+                  <input type="text" class="form-control " name="nombreTitular" id="nombreRestaurantePagar"  disabled>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                    <label for="">Monto</label>
+                    <input type="number" class="form-control " name="monto" >
+                </div>
+              </div>
+        
+        <div class="modal-footer">
+          <button id="pagaryya" type="button" class="btn primary align">Pagar </button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
 
 </body>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"

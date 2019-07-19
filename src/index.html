@@ -30,7 +30,7 @@
     </div>
   <!--  Navbar -->
   <nav class="navbar navbar-expand-lg navbar-edit">
-    <a class="navbar-brand" href="#"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Flogo.png?alt=media&token=ff89ac3f-cb1f-4e39-820f-856908e94880" alt="" class="img-logo"></a>
+    <a class="navbar-brand" href="#"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fplay.PNG?alt=media&token=0fcd0957-74a5-4097-84a2-ccd1cc0e09d9" alt="" class="img-logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-bars"></i>
@@ -204,44 +204,98 @@
                 <h4 class="title-login">Registra tu empresa</h4>
                 <form id="formRegistrar" >
                   <div class="row register-form">
-
                     
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group">
 
-                          <input type="text" class="form-control  required" placeholder="Nombre Empresa" name="nombreEmpresa" required/>
+                          <input type="text" class="form-control  required" placeholder="Nombre Empresa" name="nombreEmpresa" />
                           <p id="pnombreEmpresa"></p>
                         </div>
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                          <input type="email" class="form-control required " placeholder="Email" value="" name="correo" required/>
+                          <input type="email" class="form-control required " placeholder="Email" value="" name="correo" />
                           <p id="pcorreo"></p>
                         </div>
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                           <input type="text" class="form-control required" placeholder="Pais"
-                            value="" name="pais" required/>
+                            value="España" name="pais" required/>
                              <p id="pPais"></p>
                         </div>
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                          <input type="text" class="form-control required" placeholder="Dirección" value="" name="direccion" required/>
+                          <input type="text" class="form-control required" placeholder="Dirección" value="" name="direccion" />
                           <p id="pdireccion"></p>
                         </div>
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                          <input type="text" class="form-control required" placeholder="Poblacion" value="" name="poblacion" required/>
-                          <p id="ppoblacion"></p>
+                          <div class="form-group">  
+                            <select class="form-control" placeholder="poblacion" value="Poblacion" name="poblacion">
+                                <option> Madrid </option>
+                                  <option> Barcelona </option>
+                                  <option> Valencia </option>
+                                  <option> Sevilla </option>
+                                  <option> Zaragoza </option>
+                                  <option> Málaga </option>
+                                  <option> Murcia </option>
+                                  <option> Palma </option>
+                                  <option> Las  Palmas de Gran Canaria</option>
+                                  <option> Bilbao </option>
+                                  <option> Alicante </option>
+                                  <option> Córdoba </option>
+                                  <option> Valladolid </option>
+                                  <option> Vitoria </option>
+                                  <option> La  Coruña</option>
+                                  <option> Granada </option>
+                                  <option> Oviedo </option>
+                                  <option> Santa  Cruz de Tenerife</option>
+                                  <option> Pamplona </option>
+                                  <option> Almería </option>
+                                  <option> San  Sebastián</option>
+                                  <option> Burgos </option>
+                                  <option> Albacete </option>
+                                  <option> Santander </option>
+                                  <option> Castellón  de la Plana</option>
+                                  <option> Logroño </option>
+                                  <option> Badajoz </option>
+                                  <option> Huelva </option>
+                                  <option> Salamanca </option>
+                                  <option> Lérida </option>
+                                  <option> Tarragona </option>
+                                  <option> León </option>
+                                  <option> Cádiz </option>
+                                  <option> Jaén </option>
+                                  <option> Orense </option>
+                                  <option> Gerona </option>
+                                  <option> Lugo </option>
+                                  <option> Santiago  de Compostela</option>
+                                  <option> Cáceres </option>
+                                  <option> Melilla </option>
+                                  <option> Ceuta </option>
+                                  <option> Guadalajara </option>
+                                  <option> Toledo </option>
+                                  <option> Pontevedra </option>
+                                  <option> Palencia </option>
+                                  <option> Ciudad  Real</option>
+                                  <option> Zamora </option>
+                                  <option> Mérida </option>
+                                  <option> Ávila </option>
+                                  <option> Cuenca </option>
+                                  <option> Huesca </option>
+                                  <option> Segovia </option>
+                                  <option> Soria </option>
+                                  <option> Teruel </option>
+                                  
+                            </select>
+                          </div>
                         </div>
-                      </div>
                      
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                          <input type="text" class="form-control required" placeholder="Telefono" value="" name="telefono" required/>
+                          <input type="text" class="form-control required" placeholder="Telefono" value="" name="telefono" />
                           <p id="ptelefono"></p>
                         </div>
                       </div>
@@ -265,21 +319,23 @@
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                          <input type="text" class="form-control required" placeholder="Numero de Documento" value="" name="identificacion" required/>
+                          <input type="text" class="form-control required" placeholder="Numero de Documento" value="" name="identificacion" />
                           <p id="pidentificacion"></p>
                         </div>
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group password">
-                          <button class="btn-eye"><i class="far fa-eye"></i></button>
-                          <input type="password" class="form-control required" placeholder="Contraseña" value="" name="contraseña" required/>
+                          <button  id="show_password7" type="checkbox" class="btn-eye"><i class="far fa-eye"></i></button>
+                          <input id="password7" type="password" class="form-control required" placeholder="Contraseña" value="" name="contraseña" />
+                         
                           <p id="pcontraseña"></p>
                         </div>
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group password">
-                          <button class="btn-eye"><i class="far fa-eye"></i></button>
-                          <input type="password" class="form-control required" placeholder="Confirmar Contraseña" name="contraseña2" required/>
+                          <button id="show_password4" type="checkbox" class="btn-eye"><i class="far fa-eye"></i></button>
+                          <input id="password4" type="password" class="form-control required" placeholder="Confirmar Contraseña" name="contraseña2" />
+                        
                           <p id="pcontraseña2"></p>
                         </div>
                       </div>
@@ -300,8 +356,9 @@
                   <input type="text" class="form-control" placeholder="correo electrónico " value="" name="Correo">
                 </div>
                 <div class="form-group password">
-                  <button class="btn-eye"><i class="far fa-eye"></i></button>
-                  <input type="password" class="form-control" placeholder="Contraseña" value="" name="contraseña">
+                  <button id="show_password" type="checkbox" class="btn-eye show_password"   ><i class="far fa-eye"></i> </button>
+                  <input  id="password" type="password" class="form-control password" placeholder="Contraseña" value="" name="contraseña">
+                <!-- <input id="show_password" type="checkbox" /> Mostrar contraseña   -->
                 </div>
                 <div class="form-group">
                   <button class="forget">¿Olvido su contraseña? </button>
@@ -309,6 +366,9 @@
               </form>
                 <div class="form-group">
                   <button class="btn btn-block secondary-btn login" id="iniciarSesionEmpresa" >Entrar Empresa</button>
+               
+                   
+               
                 </div>
                 <!-- <div class="form-group">
                     <button type="submit" class="btn btn-block facebook"><i class="fab fa-facebook-f mr-2"></i>Iniciar con Facebook</button>
@@ -372,8 +432,10 @@
                   <input type="text" class="form-control" placeholder="Usuario o correo electrónico " value="" name="correoCliente"/>
                 </div>
                 <div class="form-group password">
-                  <button class="btn-eye"><i class="far fa-eye"></i></button>
-                  <input type="password" class="form-control" placeholder="Contraseña" value=""  name="contraseñaCLiente"/>
+              
+                  <button   id="show_password2" type="checkbox" class="btn-eye"><i class="far fa-eye"></i></button>
+                  <input id="password2" type="password" class="form-control" placeholder="Contraseña" value=""  name="contraseñaCLiente"/>
+             <!--     <input id="show_password" type="checkbox" /> Mostrar contraseña -->
                 </div>
               </form>
                 <div class="form-group">
@@ -431,7 +493,7 @@
           <div class="d-flex flex-wrap-wrap">
             <div class="col-md-12 col-lg-8 m-md-auto" style="display: none;" id="register-form2">
               <div class="box-login register">
-                <h4 class="title-login">Registra tu restaurant</h4>
+                <h4 class="title-login">Registra tu restaurante</h4>
                 <form id="regristroRestaurante" action="" method="post">
                 <div class="row register-form">
                     <div class="col-md-6 col-sm-6 col-12">
@@ -462,7 +524,7 @@
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <input type="email" class="form-control required" placeholder="Correo" value="" name="correo" required/>
+                        <input type="email" class="form-control required" placeholder="Correo" value="" name="correo" />
                         <p id="pcorreo" class="pcorreo"></p>
                       </div>
                     </div>
@@ -475,7 +537,7 @@
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <input type="text" class="form-control required" placeholder="Dirección" value="" name="direccion" required/>
+                        <input type="text" class="form-control required" placeholder="Dirección" value="" name="direccion" />
                         <p class="pdireccion">qwqwqw</p>
                       </div>
                     </div>
@@ -489,17 +551,71 @@
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <input type="text" class="form-control required" placeholder="Pais" value="" name="pais" required/>
+                        <input type="text" class="form-control required" placeholder="Pais" value=" España" name="pais" required/>
                         <p class="ppais"></p>
                       </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
-                      <div class="form-group">
-                        <input type="text" class="form-control required" placeholder="Poblacion" value="" name="poblacion" required/>
-                        <p class="ppoblacion"></p>
+                        <div class="form-group">  
+                          <select class="form-control" placeholder="poblacion" value="Poblacion" name="poblacion">
+                              <option> Madrid </option>
+                                <option> Barcelona </option>
+                                <option> Valencia </option>
+                                <option> Sevilla </option>
+                                <option> Zaragoza </option>
+                                <option> Málaga </option>
+                                <option> Murcia </option>
+                                <option> Palma </option>
+                                <option> Las  Palmas de Gran Canaria</option>
+                                <option> Bilbao </option>
+                                <option> Alicante </option>
+                                <option> Córdoba </option>
+                                <option> Valladolid </option>
+                                <option> Vitoria </option>
+                                <option> La  Coruña</option>
+                                <option> Granada </option>
+                                <option> Oviedo </option>
+                                <option> Santa  Cruz de Tenerife</option>
+                                <option> Pamplona </option>
+                                <option> Almería </option>
+                                <option> San  Sebastián</option>
+                                <option> Burgos </option>
+                                <option> Albacete </option>
+                                <option> Santander </option>
+                                <option> Castellón  de la Plana</option>
+                                <option> Logroño </option>
+                                <option> Badajoz </option>
+                                <option> Huelva </option>
+                                <option> Salamanca </option>
+                                <option> Lérida </option>
+                                <option> Tarragona </option>
+                                <option> León </option>
+                                <option> Cádiz </option>
+                                <option> Jaén </option>
+                                <option> Orense </option>
+                                <option> Gerona </option>
+                                <option> Lugo </option>
+                                <option> Santiago  de Compostela</option>
+                                <option> Cáceres </option>
+                                <option> Melilla </option>
+                                <option> Ceuta </option>
+                                <option> Guadalajara </option>
+                                <option> Toledo </option>
+                                <option> Pontevedra </option>
+                                <option> Palencia </option>
+                                <option> Ciudad  Real</option>
+                                <option> Zamora </option>
+                                <option> Mérida </option>
+                                <option> Ávila </option>
+                                <option> Cuenca </option>
+                                <option> Huesca </option>
+                                <option> Segovia </option>
+                                <option> Soria </option>
+                                <option> Teruel </option>
+                                
+                          </select>
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group">
                         <input type="text" class="form-control required" placeholder="Direccion" value="" name="" required/>
                          <p id=""></p>
@@ -507,16 +623,17 @@
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group password">
-                        <button class="btn-eye"><i class="far fa-eye"></i></button>
-                        <input type="password" class="form-control required" placeholder="Contraseña" value="" name="contraseña" required/>
-                        <p id="pcontraseña"></p>
+                        <button  id="show_password5" class="btn-eye"><i class="far fa-eye"></i></button>
+                        <input id="password5" type="password" class="form-control required" placeholder="Contraseña" value="" name="contraseña" required/>
+                        <input  type="checkbox" /> Mostrar contraseña
+                       
                       </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group password">
-                        <button class="btn-eye"><i class="far fa-eye"></i></button>
-                        <input type="password" class="form-control required" placeholder="Confirmar contraseña" value=""
-                          name="confirmarContraseña" required/>
+                        <button id="show_password6"  class="btn-eye"><i class="far fa-eye"></i></button>
+                        <input  id="password6" type="password" class="form-control required" placeholder="Confirmar contraseña" value=""                        
+                          name="confirmarContraseña" required/>                        
                           <p id="pconfirmarContraseña"></p>
                       </div>
                     </div>
@@ -550,8 +667,9 @@
                     name="usuario" />
                 </div>
                 <div class="form-group password">
-                  <button class="btn-eye"><i class="far fa-eye"></i></button>
-                  <input type="password" class="form-control" placeholder="Contraseña" value="" name="contraseña" />
+                  <button id="show_password3" type="checkbox"  class="btn-eye  show_password "><i class="far fa-eye"></i></button>
+                  <input  id="password3" type="password" class="form-control password" placeholder="Contraseña" value="" name="contraseña" />
+                
                 </div>
               </form>
               <div class="form-group">
