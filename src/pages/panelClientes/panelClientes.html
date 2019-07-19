@@ -279,52 +279,63 @@
             </div>
             <div class='modal-body'>
               <div class='show-details'>
-                <div class='row'>
-                  <div class='col-sm-12 col-12'>
+                <div class='row border'>
+                  <div class='col-sm-5 col-md-5 col-12'>
                     <div class='detail-img'>
                        <img src='/src/assets/image/platos/plato1.jpg' >
                     </div>
                   </div>
-                 <div class='col-sm-4 col-12'>
-                    <div class='form-group'>
-                      <label >Nombre Restaurante</label>
-                     <p id="resName"></p>
+                 <div class='col-sm-7 col-md-7 col-12'>
+                    <div class='form-group d-lg-flex'>
+                      <label class="col-sm-12 col-md-12 col-lg-6">Nombre Restaurante</label>
+                     <p class="col-sm-12 col-md-12 col-lg-6" id="resName"></p>
+                    </div>
+                    <div class='form-group d-lg-flex'>
+                      <label class="col-sm-12 col-md-12 col-lg-6 col-12">Correo</label>
+                      <p class="col-sm-12 col-md-12 col-lg-6" id="direccionCorreo"></p>
+                    </div>
+                    <div class='form-group d-lg-flex'>
+                      <label class="col-sm-12 col-md-12 col-lg-6 col-12">Pais</label>
+                      <p class="col-sm-12 col-md-12 col-lg-6" id="direccionPais"></p>
+                    </div>
+                    <div class='form-group d-lg-flex'>
+                      <label class="col-sm-12 col-md-12 col-lg-6 col-12">Direccion</label>
+                      <p class="col-sm-12 col-md-12 col-lg-6" id="direccionRestaurante"></p>
+                    </div>
+                    <div class='form-group d-lg-flex'>
+                      <label class="col-sm-12 col-md-12 col-lg-6 col-12">Telefono</label>
+                      <p class="col-sm-12 col-md-12 col-lg-6" id="direccionTelefono"></p>
                     </div>
                   </div>
-                  <div class='col-sm-4 col-12'>
-                    <div class='form-group'>
-                      <label >Correo</label>
-                      <p id="direccionCorreo"></p>
-                    </div>
-                  </div>
-                  <div class='col-sm-4 col-12'>
-                    <div class='form-group'>
-                      <label >Pais</label>
-                      <p id="direccionPais"></p>
-                    </div>
-                  </div>
-                  <div class='col-sm-4 col-12'>
-                    <div class='form-group'>
-                      <label >Direccion</label>
-                      <p id="direccionRestaurante"></p>
-                    </div>
-                  </div>
-                  <div class='col-sm-4 col-12'>
-                    <div class='form-group'>
-                      <label >Telefono</label>
-                      <p id="direccionTelefono"></p>
-                    </div>
-                  </div>
-                  <div class='col-sm-12 col-12'>
+                   <!--   <div class='col-sm-12 col-12'>
                     <div class='form-group'>
                       <label>Descripción</label>
                       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum dicta accusantium aperiam cum atque quasi deserunt quo enim fugit. Voluptatibus doloribus delectus velit possimus beatae, accusamus similique tenetur quia nesciunt?</p>
                     </div>
-                  </div>
+                  </div> -->
+                </div>
+                 <div class="row">
                   <div class="col-sm-12 col-12">
                     <div class="box-table">
-                      <h2 class="title">Platos</h2>
-                      <div class="table-responsive">
+                      <div class="row d-flex align-items-center py-4">
+                        <div class="col-md-8 col-sm-6 col-6">
+                          <h2 class="title m-0">Platos</h2>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-6">
+                          <div class="form-group">
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option value="" selected disabled>Buscar..</option>
+                              <option>Cena</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="box-plates">
+                          <div class="row" id="tablaPlatos">
+                        </div>
+                      </div>
+
+                     <!--  <div class="table-responsive">
                         <table class="table">
                           <thead class="thead-blue">
                             <tr>
@@ -356,10 +367,10 @@
                             </ul>
                           </div>
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
-                </div>
+                 </div>
               </div>
             </div>
             <div class='modal-footer'>

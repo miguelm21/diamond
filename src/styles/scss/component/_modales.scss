@@ -37,20 +37,37 @@
 			/* detalles */
 			.show-details{
 
+				.border{
+					border-top: 1px solid #ececec;
+					border-bottom: 1px solid #ececec;
+					padding: 20px 0;
+					display: flex;
+					align-items: center;
+					@include respond(max-767){
+					
+					}
+				}
 				.detail-img{
-					max-width: 200px;
-					width: 100%;
-					height: 180px;
-					margin: auto;
+				    width: 100%;
+					max-width: 260px;
+					height: 220px;
+					margin: auto;	
+					@include respond(max-767){
+						height: 150px;
+						width: 150px;
+						margin: 20px auto;
+					}
 					img{
 						width: 100%;
 						height: 100%;
 						object-fit: contain;
+						border-radius: 15px;
 						object-position: center;
+						box-shadow:0 4px 6px 2px rgba(0, 0, 0, 0.14), 0 3px 5px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
 					}
 				}
 				.form-group{
-					
+					margin-bottom: 5px;
 					label{
 						margin: 0;
 						color: $primary;
@@ -68,6 +85,7 @@
 						font-size: 14px;
 						padding-left: 20px;
 						text-align: left;
+						margin-bottom: 5px;
 						@include respond(max-767){
 							padding: 0;
 						}
@@ -80,16 +98,205 @@
 			         }
 				}
 
+				.box-plates{
+					
+					.card {
+						will-change: transform;
+						margin: 8px;
+						position: relative;
+						border-radius: 2px;
+						overflow: hidden;
+						background-color: #fafafa;
+						height: 35%;
+						width: 100%;
+						max-width: 320px;
+						margin: 0 auto 25px;
+						transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+						  -webkit-box-shadow: 0 4px 17px 2px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.2);
+						box-shadow: 0 4px 17px 2px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.2);
+						border-bottom: 4px solid $primary;
+						@include respond (tablet-lg){
+							width: 100%;
+						}
+						@include respond (tablet){
+							width: 100%;
+						}
+						.category{
+							position: absolute;
+							top: 10px;
+							left: 10px;
+							padding: 4px 8px;
+							font-size: 12px;
+							background-color: $secondary;
+							border-radius: 5px;
+							color: #fff;
+						}
+					  }
+					  .card:hover {
+						cursor: pointer;
+					  }
+					  .card__image {
+						position: absolute;
+						background-size: cover;
+						background-position: center bottom;
+						background-repeat: no-repat;
+						width: 100%;
+						height: 100%;
+						overflow: hidden;
+						display: block;
+						opacity: 0;
+						transition: all 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+						  box-shadow: inset 0px -50px 85px -50px #000;
+						  img{
+							height: 100%;
+							object-fit: cover;
+						  }
+					  }
+					  .card__image:after {
+						content: "";
+						display: block;
+						position: absolute;
+						background-color: rgba(0, 0, 0, 0.1);
+						top: 0;
+						left: 0;
+						right: 0;
+						transition: all 500ms;
+						bottom: 0;
+						  box-shadow: inset 0px -50px 85px -50px #000;
+					  }	
+					  .card__title {
+						-webkit-user-select: none;
+						   -moz-user-select: none;
+							-ms-user-select: none;
+								user-select: none;
+						font-size: 18px;
+						color: #FFF;
+						margin: 0;
+						position: absolute;
+						left: 0;
+						right: 0;
+						padding: 0 16px;
+						font-weight: 400;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+						overflow: hidden;
+						transition: all 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+					  }
+					  .card__subtitle {
+						-webkit-user-select: none;
+						   -moz-user-select: none;
+							-ms-user-select: none;
+								user-select: none;
+						font-size: 14px;
+						display: block;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+						overflow: hidden;
+						color: #000;
+						left: 88px;
+						right: 0;
+						top: 45px;
+						position: absolute;
+						padding: 0 16px;
+						opacity: 0;
+						transition: all 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+					  }
+					  .card__text {
+						-webkit-user-select: none;
+						   -moz-user-select: none;
+							-ms-user-select: none;
+								user-select: none;
+						font-size: 14px;
+						display: block;
+						left: 0;
+						right: 0;
+						top: 100px;
+						padding: 16px;
+						margin: 0;
+						line-height: 1.6;
+						position: absolute;
+						color: $gray;
+						overflow: hidden;
+						display: -webkit-box;
+						-webkit-line-clamp: 3;
+						-webkit-box-orient: vertical;  
+						overflow: hidden;
+						transition: width 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+						transition: delay 0.1s;
+						max-height: 85px;
+					  }
+					  .card__action-bar {
+						-webkit-user-select: none;
+						   -moz-user-select: none;
+							-ms-user-select: none;
+								user-select: none;
+						position: absolute;
+						bottom: 0;
+						top: auto;
+						left: 0;
+						right: 0;
+						padding: 0 8px;
+						border-top: 1px solid #E0E0E0;
+						box-sizing: border-box;
+						height: 36px;
+						transition: left 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+					  }
+					  .card__button {
+						outline: none;
+						position: relative;
+						display: inline-block;
+						line-height: 36px;
+						padding: 0 16px;
+						color: $secondary;
+						font-size: 14px;
+						text-transform: uppercase;
+					  }
+					  .card--big {
+						  -webkit-box-shadow: 0 4px 17px 2px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.2);
+						box-shadow: 0 4px 17px 2px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.2);
+						height: 284px;
+						min-height: 284px;
+					  }
+					  .card--big .card__image {
+						border-radius: 1px 1px 0 0;
+						left: 0;
+						right: 0;
+						top: 0;
+						opacity: 1;
+						max-height: 146px;
+						  box-shadow: inset 0px -50px 85px -50px #000;
+					  }
+					  .card--big .card__title {
+						top: 120px;
+					  }
+					  .card--big .card__text {
+						top: 146px;
+					  }
+					  .card--big .card__action-bar {
+						left: 0;
+					  }
+					  button {
+						border: none;
+						background: transparent;
+					  }
+				  }
+				
+
 				.box-table{
 					padding: 0 15px;
-					 @include respond(max-767){
-						   padding: 0;
-						 }
 					.title{
 						margin-top: 10px;
 						color: $primary;
-						font-size: 18px;
+						font-size: 22px;
+						text-align: left;
+						@include respond(max-767){
+							margin-bottom: 10px;
+						  }
 					}
+					 @include respond(max-767){
+						   padding: 0;
+						   margin-bottom: 10px;
+						 }
 					.table-responsive{
 						 @include respond(max-767){
 						   min-height: auto;
@@ -254,8 +461,6 @@
 				background-color: #fff;
 				color: $secondary;
 				border-color: $secondary;
-				max-width: 120px;
-				width: 100%;
 				display: block;
 				margin: auto 5px;
 				float: initial;
@@ -263,8 +468,6 @@
 			button.primary{
 				background-color: $primary;
 				color: #fff;
-				max-width: 120px;
-				width: 100%;
 				display: block;
 				margin: auto 5px;
 				float: initial;	

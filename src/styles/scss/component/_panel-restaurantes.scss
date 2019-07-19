@@ -8,9 +8,30 @@
             border-bottom: 6px solid $secondary;
             .title-panel{
                 color: $secondary;
-                margin: 10px auto;
+                margin: 10px auto 15px;
                 text-align: center;
             }
+              
+              .price-status{
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                padding: 10px;
+                border-top: 1px solid #ececec;
+                border-bottom: 1px solid #ececec;
+                p{
+                  color: $gray;
+                  font-size: 14px;
+                  margin-left: -20px;
+                  margin-bottom: 0;
+                }
+                h5{
+                  color: $green;
+                  font-size: 32px;
+                  margin-bottom: 0;
+                }
+              }
+              
             ul{
                
                 list-style: none;
@@ -37,7 +58,7 @@
 
         .restaurante-section{
             .box-panel{
-              padding: 25px 40px;
+              padding: 25px;
               display: none;
               @include respond(tablet){
                 padding: 25px 15px;
@@ -450,10 +471,8 @@
         cursor: pointer;
     }
     .register-right{
-        background: #f8f9fa;
-        border-top-left-radius: 10% 50%;
-        border-bottom-left-radius: 10% 50%;
-        padding-right: 30px;
+        background: #f8f9fa;  
+        padding: 0;
         @include respond (desktop){
           min-height: 100vh;
         }

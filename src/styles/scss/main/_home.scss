@@ -1,0 +1,13 @@
+.form-group.password{
+    position: relative;
+    .btn-eye{
+        color: $gray;
+        position: absolute;
+        right: 10px;
+        border: none;
+        box-shadow: none;
+        top: 8px;
+        font-size: 18px;
+        outline: none;
+    }
+}

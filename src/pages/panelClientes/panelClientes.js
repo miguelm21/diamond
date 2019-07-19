@@ -286,6 +286,7 @@ function detalleRestauranteCliente() {
 
       firebase.database().ref('Platos/').orderByChild('restaurante').equalTo(uidRestaurante).on('value', function (snapshot) {
         var tarjeta = '';
+        var chupetin = '';
         snapshot.forEach(function (plato) {
           var platos = (plato.val());
           var keyPlato = plato.key;
@@ -299,11 +300,27 @@ function detalleRestauranteCliente() {
           var tiempoMaximo = platos.tiempoMaximo;
           var tiempoMinimo = platos.tiempoMinimo;
           var tipoPLato = platos.tipoPLato;
-          //console.log(tipoPLato);        
+          //console.log(tipoPLato);   
+          
+          chupetin = chupetin + "<div class='col-12 col-sm-6 col-md-6 col-lg-4'>"+
+                                  "<div class='card card--big'>"+
+                                    "<div class='card__image'>"+
+                                      "<img src="+ rutaGuardaImagen +" class='img-fluid w-100' alt=''>"+
+                                      "<span class='category'>"+tipoPLato+"</span>"+
+                                    "</div>"+
+                                    "<h2 class='card__title'>"+nombrePlato+" </h2>"+
+                                    "<p class='card__text'>"+descripcionPlato+"</p>"+
+                                      "<div class='card__action-bar d-flex justify-content-around align-items-center'>"+
+                                      "<h6 class='m-0 p-1'>"+PrecioPlato+" €</h6>"+
+                                      "<button class='card__button comprarPlatoboton' id='" + keyPlato + "' type='submit' value='" + uidRestaurante + "'  data-toggle='modal' data-target='#modal-comprar'>Comprar</button>"+
+                                    " </div>"+
+                                  "  </div>"+
+                              " </div>";
+          
           tarjeta = tarjeta + "<tr><td>" + nombrePlato + "</td><td>" + descripcionPlato + "</td><td> €" + PrecioPlato + "</td><td>" + tipoPLato + "</td><td>" +
             porcionPlato + "</td><td> <img class='img-fluid' src='" + rutaGuardaImagen + "' > </td><td> " +
             " <button class='btn buy comprarPlatoboton' id='" + keyPlato + "' type='submit' value='" + uidRestaurante + "'  data-toggle='modal' data-target='#modal-comprar'><i class='fas fa-shopping-cart'></i></button> </td></tr>"
-          $('#tablaPlatos').html(tarjeta);
+          $('#tablaPlatos').html(chupetin);
 
 
         }); $('#modal-detalles-plato').modal('show');
