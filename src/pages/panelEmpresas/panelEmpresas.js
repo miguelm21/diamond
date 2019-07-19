@@ -277,17 +277,17 @@ function CrearPlanes() {
       var datos = $('#registroBeneficio').serializeArray();
       var nombrePlan = datos[0].value; if (!nombrePlan) { $('#pnombrePlan').html('Campo Obligatorio'); } else { $('#pnombrePlan').html(''); }
       var montoPlan = datos[1].value; if (!montoPlan) { $('#pmontoPlan').html('Campo Obligatorio'); } else { $('#pmontoPlan').html(''); }
-      var fechaPlan = datos[2].value; if (!fechaPlan) { $('#pFechaPlan').html('Campo Obligatorio'); } else { $('#pFechaPlan').html(''); }
+     // var fechaPlan = datos[2].value; if (!fechaPlan) { $('#pFechaPlan').html('Campo Obligatorio'); } else { $('#pFechaPlan').html(''); }
       var sesionjson = sessionStorage.getItem("data");
       var sesion = JSON.parse(sesionjson);
       var uid = (sesion.uid);
 
-      if (nombrePlan && montoPlan && fechaPlan) {
+      if (nombrePlan && montoPlan /*&& fechaPlan*/) {
         restartLoading();
         firebase.database().ref('Empresas/' + uid + '/planes/').push().update({
           "nombrePlan": nombrePlan,
           "montoPlan": montoPlan,
-          "fechaPlan": fechaPlan
+        //  "fechaPlan": fechaPlan
 
         }, function (error) {
           if (error) {
@@ -382,7 +382,7 @@ function beneficionRegistrados() {
     firebase.database().ref('/Empresas/' + sesion.uid + "/planes/").on('value',function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
         var childData = childSnapshot.val();
-        var fechaPlan = childData.fechaPlan;
+       // var fechaPlan = childData.fechaPlan;
         var montoPlan = childData.montoPlan;
         var nombrePlan = childData.nombrePlan;
         var tarjeta = $("<div class='col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3'>" +
@@ -401,7 +401,7 @@ function beneficionRegistrados() {
           "<div class='info-card'>" +
           "<h5 class='name'> " + nombrePlan + "</h5>" +
           "<p class='price'> € " + montoPlan + "</p>" +
-          "<span class='date'>" + fechaPlan + "</span>" +
+         // "<span class='date'>" + fechaPlan + "</span>" +
           "</div>" +
           "</div>" +
           "</div>");
