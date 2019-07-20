@@ -532,6 +532,13 @@ function configuracionEmpresa() {
   });
 } configuracionEmpresa()
 
+// check image button
+
+$(document.body).on ('change','#conLogoEmpresa',function name(params) {
+  $('#validate-image4').addClass('d-block');
+  $('#text-file4').html('Imagen agregada con exito');
+})
+
 function seleccionPlanEmpresa() {
   $(document).ready(function () {
     var data = sessionStorage.getItem('data');

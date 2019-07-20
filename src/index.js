@@ -73,10 +73,14 @@ $(document).ready(function () {
     $('#login-empresa2').hide();
     $('#register-form2').show();
   });
+  $('#show-registro-cliente').click(function () {
+    $('#register-login').hide();
+    $('#registro-cliente').show();
+  });
 
   $('#backlogin2').click(function () {
-    $('#register-form2').hide();
-    $('#login-empresa2').show();
+    $('#register-login').hide();
+    $('#registro-registro').show();
   })
 
   /* Panel admin empresas */
@@ -189,6 +193,7 @@ function registroEmpresa() {
                 swal("Registro Exitoso!", "Empresa registrado!", "success");
                 $("#formRegistrar")[0].reset();
                 $('#first').tab('show');
+                backbutton();
               }
             })
           }, function (error) {
@@ -269,6 +274,7 @@ function registroRestaurante() {
                       hideLoading()
                       swal("Registro Exitoso!", "Restaurante registrado!", "success");
                       $("#regristroRestaurante")[0].reset();
+                      backbutton()
                     }
                   })
                 })

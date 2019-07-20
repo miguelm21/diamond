@@ -66,6 +66,12 @@
           <a class="nav-link" href="#">Restaurantes</a>
         </li> -->
         <li class="nav-item">
+          <a class="nav-link" href="#"><i class="far fa-bell"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="far fa-envelope"></i></a>
+        </li>
+        <li class="nav-item">
           <div class="dropdown text-right edit">
             <a class="dropdown-toggle option-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
               id="fotoEmpresa">
@@ -90,18 +96,10 @@
   <!-- Panel admin -->
   <section class="panel-admin">
     <div class="box-panel">
-      <div class="nav d-flex">
-        <div class="logo">
-          <button id="expand" class="hidden-button"><i class="fas fa-chevron-right" id="arrow"></i></button>
-        </div>
-        <!--   <div class="header">
-        
-        </div> -->
-      </div>
       <div class="app">
         <aside class="sidebar d-flex">
           <nav class="sidebar-nav">
-            <div class="price-status" data-toggle="modal" data-target="#modal-saldo">
+            <div class="price-status">
               <p>Balance</p>
               <h5 id="saldoEmpresa"></h5>
             </div>
@@ -281,6 +279,14 @@
                         <input class="radio required" type="radio" id="radio2" name="tarjetaCredito" value="master" />
                         <label class="radio-style" for="radio2"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fcard2.jpg?alt=media&token=84381cb3-5a85-4153-877b-d0b7ff41da70" /></label>
                       </li>
+                      <li>
+                        <input class="radio required" type="radio" id="radio3" value="master" />
+                        <label class="radio-style" for="radio3"><img src="/src/assets/image/paypal.jpg" /></label>
+                      </li>
+                      <li>
+                        <input class="radio required" type="radio" id="radio4"  value="master" />
+                        <label class="radio-style" for="radio4"><img src="/src/assets/image/skill.png" /></label>
+                      </li>
                     </ul>
                     <p id="ptarjetaCredito"></p>
                   </div>
@@ -324,6 +330,12 @@
                         <label for="">Monto</label>
                         <input type="number" class="form-control required" name="montoRecargar" >
                         <p id="pmontoRecargar"></p>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="custom-control custom-checkbox edit">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                        <label class="custom-control-label" for="customCheck1">Anexar tarjeta a mi cuenta</label>
                       </div>
                     </div>
                   </div>
@@ -458,9 +470,16 @@
                       </div>
                     </div>
                     <div class="col-md-6 col-12">
-                      <div class="form-group">
-                        <input type="file" placeholder="foto" id="conLogoEmpresa" />
+                      <div class="form-group edit">
+                        <label for="conLogoEmpresa" id="text-file4" class="form-control pointer">Agregar imagen
+                          <input id="conLogoEmpresa" class="d-none" type="file" accept="image/*" class="required" required />
+                        </label>
+                        <button class="btn" id="validate-image4"><i class="fas fa-check"></i></button>
                       </div>
+                     <!--  <div class="form-group edit">
+                        <input type="file" placeholder="foto" id="conLogoEmpresa" />
+
+                      </div> -->
                     </div>
                     <div class="col-12 d-flex justify-content-center mt-4 text-center">
                       <button type="submit" class="btn btn-register" id="guardarEmpresa">Guardar Cambios
@@ -730,38 +749,7 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="modal-saldo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-base modal-sm" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Saldos</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="row register-form">
-            <div class="col-md-12 col-12">
-              <div class="form-group cuenta">
-                <label for="exampleInputEmail1">Cuenta 1</label>
-                  <h5 class="text-cuenta">23 US</h5>
-              </div>
-            </div>
-            <div class="col-md-12 col-12">
-              <div class="form-group cuenta">
-                <label for="exampleInputEmail1">Cuenta 2</label>
-                  <h5 class="text-cuenta">23 US</h5>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn primary" data-dismiss="modal">Cerrar</button>
-        </div>
-      </div>
-    </div>
-  </div>
+ 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
   integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </body>

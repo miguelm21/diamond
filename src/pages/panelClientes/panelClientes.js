@@ -187,6 +187,9 @@ function consultaSaldoCliente() {
       var g = saldoEmpresa.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })
       document.getElementById('saldoCliente').innerHTML = "" + g;
 
+      document.getElementById('saldoCuenta1').innerHTML = "" + cuenta1.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' });
+      document.getElementById('saldoCuenta2').innerHTML = "" + cuenta2.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' });
+
     })
   });
 } consultaSaldoCliente()

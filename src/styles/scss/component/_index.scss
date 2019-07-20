@@ -243,6 +243,15 @@
               box-shadow: none;
             }
         }
+        .form-group.edit{
+          position: relative;
+          .lock{
+            position: absolute;
+            top: 5px;
+            right: 15px;
+            color: $primary;
+          }
+        }
 
         .forget{
             color: $secondary;

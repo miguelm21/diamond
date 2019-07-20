@@ -231,6 +231,22 @@ function hideLoading() {
 
 firebase.initializeApp(firebaseConfig);
 
+$(document.body).on ('change','#imagenPlato',function name(params) {
+  $('#validate-image').addClass('d-block');
+  $('#text-file').html('Imagen agregada con exito');
+})
+$(document.body).on ('change','#imagenPromo',function name(params) {
+  $('#validate-image2').addClass('d-block');
+  $('#text-file2').html('Imagen agregada con exito');
+})
+$(document.body).on ('change','#file',function name(params) {
+  $('#validate-image3').addClass('d-block');
+  $('#text-file3').html('Imagen agregada con exito');
+})
+
+
+
+
 function registroPlato() {
   $(document).ready(function () {
     $('#registrarPlato').click(function (e) {
@@ -262,6 +278,7 @@ function registroPlato() {
             var storageRef = firebase.storage().ref();
             var mountainsRef = storageRef.child('imagen/plato' + restaurante + fotoval.files[0].name);
             var imagen = file.substring(23);
+         
             mountainsRef.putString(imagen, 'base64').then(function (snapshot) {
               var rutaGuardaImagen = snapshot.metadata.fullPath;
 

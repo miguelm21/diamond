@@ -325,7 +325,7 @@
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group password">
-                          <button  id="show_password7" type="checkbox" class="btn-eye"><i class="far fa-eye"></i></button>
+                          <div  id="show_password7" class="btn-eye"><i class="far fa-eye"></i></div>
                           <input id="password7" type="password" class="form-control required" placeholder="Contraseña" value="" name="contraseña" />
                          
                           <p id="pcontraseña"></p>
@@ -333,7 +333,7 @@
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group password">
-                          <button id="show_password4" type="checkbox" class="btn-eye"><i class="far fa-eye"></i></button>
+                          <div id="show_password4" class="btn-eye"><i class="far fa-eye"></i></div>
                           <input id="password4" type="password" class="form-control required" placeholder="Confirmar Contraseña" name="contraseña2" />
                         
                           <p id="pcontraseña2"></p>
@@ -356,7 +356,7 @@
                   <input type="text" class="form-control" placeholder="correo electrónico " value="" name="Correo">
                 </div>
                 <div class="form-group password">
-                  <button id="show_password" type="checkbox" class="btn-eye show_password"   ><i class="far fa-eye"></i> </button>
+                  <div id="show_password" type="checkbox" class="btn-eye show_password"   ><i class="far fa-eye"></i> </div>
                   <input  id="password" type="password" class="form-control password" placeholder="Contraseña" value="" name="contraseña">
                 <!-- <input id="show_password" type="checkbox" /> Mostrar contraseña   -->
                 </div>
@@ -413,81 +413,158 @@
           </div>
         </div>
       </section><!-- End section -->
-    </div>
-    <!-- Cliente -->
-    <div id="third" class=" tab-pane fade empresa">
-      <section class="banner cliente">
-        <div class="banner-content ">
-          <div class="row">
-            <div class="col-md-6">
+      </div>
+      <!-- Cliente -->
+      <div id="third" class=" tab-pane fade empresa">
+        <section class="banner cliente" id="register-login">
+          <div class="banner-content ">
+            <div class="row">
+              <div class="col-md-6">
 
-            </div>
-            <div class="col-md-6">
-              
-              <div class="box-login">
-                <h4 class="title-login">Iniciar sesión</h4>
-                <form id="sesionCliente">
-                <div class="form-group">
-                   
-                  <input type="text" class="form-control" placeholder="Usuario o correo electrónico " value="" name="correoCliente"/>
-                </div>
-                <div class="form-group password">
-              
-                  <button   id="show_password2" type="checkbox" class="btn-eye"><i class="far fa-eye"></i></button>
-                  <input id="password2" type="password" class="form-control" placeholder="Contraseña" value=""  name="contraseñaCLiente"/>
-             <!--     <input id="show_password" type="checkbox" /> Mostrar contraseña -->
-                </div>
-              </form>
-                <div class="form-group">
-                  <a href="#" class="forget">¿Olvido su contraseña?</a>
-                </div>
-                <div class="form-group">
-                 <button class="btn btn-block secondary-btn login" id="iniciarcliente">Entrar Cliente</button>
-                </div>
-                <div class="form-group">
-                  <button type="submit" class="btn btn-block facebook"><i class="fab fa-facebook-f mr-2"></i>Iniciar con
-                    Facebook</button>
-                </div>
-                <div class="form-group">
-                  <button type="submit" class="btn btn-block google"><i class="fab fa-google mr-2"></i>Iniciar con
-                    Google</button>
-                </div>
               </div>
-            
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="first-section empresa">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-4 col-12">
-              <div class="item-info">
-                <img src="/assets/images/zapatos.png" alt="">
-                <h4>Agilidad</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur.</p>
-              </div>
-            </div>
-            <div class="col-md-4 col-12">
-              <div class="item-info">
-                <img src="/assets/images/escudo.png" alt="">
-                <h4>Seguridad</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur.</p>
-              </div>
-            </div>
-            <div class="col-md-4 col-12">
-              <div class="item-info">
-                <img src="/assets/images/reloj.png" alt="">
-                <h4>Acceso 24/7</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur.</p>
+              <div class="col-md-6">
+                
+                <div class="box-login">
+                  <h4 class="title-login">Iniciar sesión</h4>
+                  <form id="sesionCliente">
+                  <div class="form-group">
+                    
+                    <input type="text" class="form-control" placeholder="Usuario o correo electrónico " value="" name="correoCliente"/>
+                  </div>
+                  <div class="form-group password">
+                
+                    <div   id="show_password2" type="checkbox" class="btn-eye"><i class="far fa-eye"></i></div>
+                    <input id="password2" type="password" class="form-control" placeholder="Contraseña" value=""  name="contraseñaCLiente"/>
+            <!--     <input id="show_password" type="checkbox" /> Mostrar contraseña -->
+                  </div>
+                </form>
+                  <div class="form-group">
+                    <a href="#" class="forget">¿Olvido su contraseña?</a>
+                  </div>
+                  <div class="form-group">
+                  <button class="btn btn-block secondary-btn login" id="iniciarcliente">Entrar Cliente</button>
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-block facebook"><i class="fab fa-facebook-f mr-2"></i>Iniciar con
+                      Facebook</button>
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-block google"><i class="fab fa-google mr-2"></i>Iniciar con
+                      Google</button>
+                  </div>
+                  <div class="form-group mb-0">
+                      <p>¿No tienes cuenta? <a href="#" id="show-registro-cliente">Registrate aquí</a></p>
+                    </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section><!-- End section -->
-    </div>
-    <!-- Restaurante -->
-    <div id="fourth" class=" tab-pane fade empresa">
+        </section>
+        <section>
+       <div class="banner login">
+        <div class="d-flex flex-wrap-wrap">
+          <div class="col-md-12 col-lg-8 m-md-auto" style="display: none;" id="registro-cliente">
+            <div class="box-login register">
+              <h4 class="title-login">Registro cliente</h4>
+                <div class="form-client">
+                    <form id="RegistrarEmpleados"  >
+                      <div class="row register-form">
+                        <div class="col-md-6 col-12">
+
+                          <div class="form-group">
+                            <input type="text" class="form-control required" placeholder="Nombres" value="" name="nombre" />
+                            <p id="pnombre"></p>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="form-group">
+                            <input type="text" class="form-control required" placeholder="Apellidos" value="" name="apellido" />
+                            <p id="papellido"></p>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="form-group">
+                            <input type="date" class="form-control required" placeholder="Fecha de nacimiento" value=""
+                              name="fechaNacimiento" />
+                              <p id=""></p>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="form-group">
+                            <input type="text" class="form-control required" placeholder="Correo electrónico" value=""
+                              name="correo" />
+                              <p id="pcorreo"></p>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="form-group">
+                            <input type="text" class="form-control required" placeholder="Cargo" value="" name="cargo" />
+                            <p id="pcargo"></p>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="form-group">
+                            <input type="text" class="form-control required" placeholder="Inactivo" value="" name="Inactivo" />
+                            <p id="pInactivo"></p>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="form-group">
+                            <select class="form-control required" id="exampleFormControlSelect1" name="planBeneficio">
+                              <p id="pInactivo"></p>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="form-group edit">
+                              <a  id="generarContraseña" class="nav-link active lock" href="#"><i class="fas fa-lock"></i></a>
+                               <input type="text" class="form-control contraseñaEmpleado" placeholder="Contraseña" value="" name="contraseña"/>
+                               <p id="pcontraseña"></p>
+                          </div>
+                      
+                        </div>
+                  
+                    <div class="col-12 d-flex justify-content-center mt-4 text-center">
+                      <button onclick="backbutton()" class="btn btn-back">Volver</button>
+                      <button class="btn btn-register" id="registrarEmpleados" type="submit">Registrar Empleados</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </section>
+        <section class="first-section empresa">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4 col-12">
+                <div class="item-info">
+                  <img src="/assets/images/zapatos.png" alt="">
+                  <h4>Agilidad</h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                </div>
+              </div>
+              <div class="col-md-4 col-12">
+                <div class="item-info">
+                  <img src="/assets/images/escudo.png" alt="">
+                  <h4>Seguridad</h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                </div>
+              </div>
+              <div class="col-md-4 col-12">
+                <div class="item-info">
+                  <img src="/assets/images/reloj.png" alt="">
+                  <h4>Acceso 24/7</h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section><!-- End section -->
+      </div>
+      <!-- Restaurante -->
+      <div id="fourth" class=" tab-pane fade empresa">
       <section class="banner restaurante">
         <div class="banner-content login">
           <div class="d-flex flex-wrap-wrap">
@@ -625,14 +702,14 @@
                  
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group password">
-                        <button  id="show_password5" class="btn-eye"><i class="far fa-eye"></i></button>
+                        <div  id="show_password5" class="btn-eye"><i class="far fa-eye"></i></div>
                         <input id="password5" type="password" class="form-control required" placeholder="Contraseña" value="" name="contraseña" required/>
                         <!-- <input  type="checkbox" /> Mostrar contraseña -->
                       </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group password">
-                        <button id="show_password6"  class="btn-eye"><i class="far fa-eye"></i></button>
+                        <div id="show_password6"  class="btn-eye"><i class="far fa-eye"></i></div>
                         <input  id="password6" type="password" class="form-control required" placeholder="Confirmar contraseña" value=""                        
                           name="confirmarContraseña" required/>                        
                           <p id="pconfirmarContraseña"></p>
@@ -669,7 +746,7 @@
                     name="usuario" />
                 </div>
                 <div class="form-group password">
-                  <button id="show_password3" type="checkbox"  class="btn-eye  show_password "><i class="far fa-eye"></i></button>
+                  <div id="show_password3" type="checkbox"  class="btn-eye  show_password "><i class="far fa-eye"></i></div>
                   <input  id="password3" type="password" class="form-control password" placeholder="Contraseña" value="" name="contraseña" />
                 
                 </div>
@@ -685,8 +762,9 @@
               </div>
             </div>
           </div>
-        </div>
-    </div>
+         
+          </div>
+      </div>
     </section>
   </div>
   </div>

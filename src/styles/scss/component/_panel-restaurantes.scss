@@ -253,6 +253,17 @@
             
           .register-form{
                 padding: 15px;
+
+                .form-group.edit{
+                  position: relative;
+                  button{
+                    position: absolute;
+                    top: 4px;
+                    right: 4px;
+                    color: $green;
+                    display: none;
+                  }
+                }
                   
                .form-control{
                     background-color: transparent !important;

@@ -133,7 +133,6 @@ Sidebar Nav
     display: flex;
     justify-content: space-around;
     padding: 10px;
-    cursor: pointer;
     p{
       color: #fff;
       font-size: 12px;
@@ -568,6 +567,16 @@ Chev elements
           color: $primary;
           margin-bottom: 0;
         }
+
+
+      }
+
+      .custom-control{
+        margin-top: 35px;
+
+        label{
+          color: $gray;
+        }
       }
      
 			ul{
@@ -621,6 +630,16 @@ Chev elements
         color: $gray !important;
       }
      }
+     .form-group.edit{
+      position: relative;
+      button{
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        color: $green;
+        display: none;
+      }
+    }
     
   }
   .max-width{
