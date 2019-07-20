@@ -616,3 +616,73 @@ function ojitosRegistroRestaurante2() {
   });
   })
 }ojitosRegistroRestaurante2()
+
+function registroempleados() {
+  $(document).ready(function () {
+    $('#registrarEmpleados').click(function (e) {
+      e.preventDefault();
+
+      var datos = $('#RegistrarEmpleados').serializeArray();
+      console.log(datos);
+      
+      var nombre = datos[0].value; if (!nombre) { $('#pnombre').html('Campo Obligatorio'); } else { $('#pnombre').html(''); }
+      var apellido = datos[1].value; if (!apellido) { $('#papellido').html('Campo Obligatorio'); } else { $('#papellido').html(''); }
+      var fechaNacimiento = datos[2].value; if (!fechaNacimiento) { $('#pfechaNacimiento').html('Campo Obligatorio'); } else { $('#pfechaNacimiento').html(''); }
+      var correo = datos[3].value; if (!correo) { $('#pcorreo').html('Campo Obligatorio'); } else { $('#pcorreo').html(''); }
+      //var cargo = datos[4].value; if (!cargo) { $('#pcargo').html('Campo Obligatorio'); } else { $('#pcargo').html(''); }
+      //var Inactivo = datos[5].value; if (!Inactivo) { $('#pInactivo').html('Campo Obligatorio'); } else { $('#pInactivo').html(''); }
+     // var planBeneficio = datos[6].value; if (!'#pInactivo') { $('#pplanBeneficio').html('Campo Obligatorio'); } else { $('#pplanBeneficio').html(''); }
+      var contraseña = datos[4].value; if (!contraseña) { $('#pcontraseña').html('Campo Obligatorio'); } else { $('#pcontraseña').html(''); }
+     
+      if (datos && nombre && apellido && fechaNacimiento && correo && contraseña) {
+        restartLoading();
+        firebase.auth().createUserWithEmailAndPassword(correo, contraseña).then(function (resultado) {
+
+          var uid = resultado.user.uid;
+          firebase.database().ref('users/' + uid + "/").set({
+
+            "nombre": nombre,
+            "apellido": apellido,
+            "fechaNacimiento": fechaNacimiento,
+            "correo": correo,
+              "cargo": '',
+            "Inactivo": '',
+            "planBeneficio": '',
+            "contraseña": contraseña,            
+            "uidempleado": uid,
+            "cuentas": {
+              "cuanta1": 0,
+              "cuenta2": 0,
+              "cuentaTotal": 0
+            }
+          }, function (error) {
+            if (error) {
+              hideLoading();
+              swal("algo paso!", "error!", "error")
+            } else {
+              hideLoading();
+              //enviarCorreo(correo, nombre);
+              swal("Registro Exitoso!", "Empleado registrado!", "success");
+              $("#RegistrarEmpleados")[0].reset();
+            }
+          })
+        },function (error) {
+          hideLoading();swal("Error",error.message,"error")  });
+      } else {hideLoading();
+        swal("Error!", "Debe completar los campos Faltantes", "error");
+      }
+    })
+
+  });
+} registroempleados();
+
+function ojitosRegistroCliente() {
+  $(document).ready(function () {    
+ $('#show-passwordclie').on('mouseover',function () {   
+       $('#passwordclie').get(0).type='text';
+       $('#show-passwordclie').on('mouseout', function () { 
+        $('#passwordclie').get(0).type='password';
+      });
+  });
+  })
+}ojitosRegistroCliente()
