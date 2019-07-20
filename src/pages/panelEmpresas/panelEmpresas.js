@@ -354,7 +354,7 @@ function empleadosRegistrados() {
 
       $('.cambiarPlan').click(function () {
         var usuario = $(this).val();
-        // console.log(usuario);
+         console.log(usuario);
 
         firebase.database().ref('users/').orderByKey().equalTo(usuario).on('value',function (snapshot) {
           //   console.log(snapshot.val());
@@ -371,19 +371,22 @@ function empleadosRegistrados() {
                 var montoPlan = data.val().montoPlan;
                
 
-                var js = {'usuario':usuario,'monto':montoPlan}
-                 s = s+("<option>" + nombrePlan + " " + "€  " + montoPlan + "</option>");                
+              
+                 s = s+("<option value='" + nombrePlan + " " + "€  " + montoPlan + "'>" + nombrePlan + " " + "€  " + montoPlan + "</option>");                
+console.log(s);
 
                 $('#cambiarPlan2').append("<div class='modal fade show' id='modal-editar-beneficio' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-modal='true' style='padding-right: 17px; display: block;'>    <div class='modal-dialog modal-base modal-sm' role='document'>" +
                   "<div class='modal-content'>        <div class='modal-header'>          <h5 class='modal-title' id='exampleModalLabel'>Cambiar Plan</h5>" +
                   "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>            <span aria-hidden='true'>×</span>" +
                   "</button>        </div>        <div class='modal-body'>          <div class='row register-form'>            <div class='col-md-12 col-12'>" +
                   "<div class='form-group'>           <label  class='form-control' placeholder='Nombres' > " + nombreCOmpleto + "  </label>            </div>" +
-                  "</div>            <div class='col-md-12 col-12'> <div class='form-group'> <select class='form-control' id='exampleFormControlSelect12' >" + s + " </select>" +
+                  "</div>            <div class='col-md-12 col-12'> <div class='form-group'> <select class='form-control exampleFormControlSelect12' id='exampleFormControlSelect12' >" + s + " </select>" +
                   "</div>            </div>          </div>        </div>        <div class='modal-footer'>          <button type='button' class='btn edit' data-dismiss='modal'>salir</button>" +
-                  "<button id='"+ js +"' type='button' class='btn primary' data-dismiss='modal'>Editar</button>        </div>      </div>    </div>  </div>");
+                  "<button id='"+ usuario +"' type='button' class='btn primary cambiarPlanEmpleado' data-dismiss='modal'>Editar</button>        </div>      </div>    </div>  </div>");
 
+                  
               });
+              
             })
           });
         });
@@ -480,8 +483,6 @@ function configuracionEmpresa() {
           var storageRef = firebase.storage().ref();
           var mountainsRef = storageRef.child("");
           mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) {
-
-
           //////////////prueba de imagen
           var datos = $('#editarEmpresa').serializeArray();
           var conNombreEmpresa = datos[0].value;
@@ -694,10 +695,7 @@ function recargarSaldoClientes() {
           var uidEmpleado = datos.uidempleado;
           var montoCargarEmpleado = datos.planBeneficio;
           var saldos = montoCargarEmpleado.split('€');
-
-
           t = t + parseFloat(saldos[1].trim());
-
           // console.log(t);
           firebase.database().ref('/Empresas/' + sesion.uid + "/").once('value').then(function (snapshot) {
 
@@ -706,12 +704,8 @@ function recargarSaldoClientes() {
             var cuenta2Empresa = empresa.cuentas.cuenta2;
             var saldototalEmpresa = parseFloat(cuenta1Empresa) + cuenta2Empresa
             var saldoQuedaEmpresa = cuenta1Empresa - t;
-              console.log(saldoCliente);
-
-
+           
             if (saldoCliente <= 0) {
-console.log("entro");
-
 
               if (saldototalEmpresa < t) {
                 hideLoading();
@@ -862,8 +856,7 @@ function enviarNotificacion(token) {
       },
     });
   });
-}
-hideLoading()
+}hideLoading()
 
 function generarContraseña(){
 
@@ -876,3 +869,18 @@ function generarContraseña(){
   
 });
 }generarContraseña()
+
+function cambiarPlanEmpleado() {
+  $(document).ready(function () {
+    $(document.body).on('click','.cambiarPlanEmpleado', function (e) {
+      var usuarioUid=(e.currentTarget.id);
+     var plan= $('.exampleFormControlSelect12').val();
+     console.log(plan);
+     
+      firebase.database().ref('users/' + usuarioUid ).update( {
+        "planBeneficio":plan
+
+      })
+    });
+  });
+}cambiarPlanEmpleado()
