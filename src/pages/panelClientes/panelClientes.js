@@ -194,7 +194,6 @@ function consultaSaldoCliente() {
 function RecargarSaldoTarjeta() {
   $(document).ready(function () {
     $('#recargarSaldoCliente').click(function (e) {
-
       e.preventDefault();
       restartLoading();
       var data = sessionStorage.getItem('data');
@@ -239,6 +238,7 @@ function RecargarSaldoTarjeta() {
 
           } else {
             hideLoading();
+            $('#modal-pago').modal('hide');
             swal("Saldo Recargado", 'El monto de su recarga es de ' + sumaSaldo + '€', "success", {
               button: "ok",
             });
@@ -366,18 +366,21 @@ function comprar() {
       //console.log(keyPlatos, restaurante);
       firebase.database().ref('Platos/').orderByChild('restaurante').equalTo(restaurante).once('value').then(function (snap) {
         snap.forEach(snapshot => {
-
+          var keyPlato = snapshot.key
           var platoComprado = (snapshot.val());
           var descripcionPlato = platoComprado.descripcionPlato;
           var nombrePlato = platoComprado.nombrePlato;
           var PrecioPlato = platoComprado.PrecioPlato;
+console.log(keyPlato);
+
+if(keyPlato === keyPlatos){
           firebase.database().ref('users/' + sesion.uid + "/cuentas").once('value').then(function (snapshot) {
             var snap = snapshot.val();
             // console.log(snap.cuentaTotal);
             var saldoCuenta1 = snap.cuanta1;
             var saldoCuenta2 = snap.cuenta2;
             var saldoTotal = parseFloat(saldoCuenta1) + parseFloat(saldoCuenta2);
-            console.log('saldo' + saldoCuenta1);
+            //console.log('saldo' + saldoCuenta1);
             console.log('precio' + PrecioPlato);
 
             if (saldoTotal < PrecioPlato) {
@@ -390,7 +393,7 @@ function comprar() {
                 dangerMode: true,
               }).then(() => {
 
-                $('#modal-pago').modal('show');
+                $('#modal-comprar').modal('show');
               })
 
             } else if (saldoCuenta1 <= PrecioPlato) {
@@ -411,7 +414,7 @@ function comprar() {
                 "plato": platoComprado,
                 "fecha": firebase.database.ServerValue.TIMESTAMP
               });
-
+              $('#modal-open').modal('hide');
               swal("Good job!", "You clicked the button!", "success", {
                 button: "Aww yiss!",
               });
@@ -428,15 +431,18 @@ function comprar() {
                 "plato": platoComprado,
                 "fecha": firebase.database.ServerValue.TIMESTAMP
               });
-
+              $('#modal-pago').modal('hide');
               swal("Good job!", "You clicked the button!", "success", {
                 button: "Aww yiss!",
               });
             }
           })
+        }
         })
       })
+    
     });
+  
   });
 } comprar()
 
@@ -567,13 +573,23 @@ function transferisRestaurantesinPlato() {
         $(document.body).on('click', '#pagaryya', function () {
           var formulario = $('#recargaplaraRestaurante').serializeArray()
           var monto = (formulario[0].value);
-          var saldoActualizar = parseFloat(saldoActual) + parseFloat(monto);
-          firebase.database().ref('Restaurante/' + uidRestaurante + "/cuentas/").update({
-            "cuanta1": saldoActualizar
-          }, function (error) {
-            swal("Error", error, "error")
 
-          })
+          if (!monto) {
+            swal("El campo Monto es obligatorio")
+          } else { $('#obligadoMonto').html(''); }
+          if (monto) {
+            var saldoActualizar = parseFloat(saldoActual) + parseFloat(monto);
+            firebase.database().ref('Restaurante/' + uidRestaurante + "/cuentas/").update({
+              "cuanta1": saldoActualizar
+            }, function () {
+              $('#modalPagoSinPlato').modal('hide');
+              swal("Transferir dinero",
+                "Dinero Transferido", "success"
+              )
+
+            })
+          }
+
         });
       })
       $('#modalPagoSinPlato').modal('show');
