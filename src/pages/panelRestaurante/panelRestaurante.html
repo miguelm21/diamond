@@ -129,9 +129,8 @@
                 <div class="row register-form">
                   <div class="col-md-6 col-12">
                     <div class="form-group">
-                      <label for="file" class="form-control pointer">Agregar imagen
-
-                        <input id="imagenPlato" type="file" accept="image/*" class="required"  />
+                      <label for="imagenPlato" class="form-control pointer">Agregar imagen
+                        <input id="imagenPlato" class="d-none" type="file" accept="image/*" class="required"  />
                       </label>
                     </div>
                   </div>
@@ -329,75 +328,76 @@
           </div>
           <div class="box-panel  box-register" id="register-promocion">
             <h5 class="title">Registrar promoción</h5>
-            <div class="form-client">
-              <div class="row register-form">
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                    <label for="file" class="form-control pointer">Agregar imagen
-                      <input id="imagenPromo" type="file" accept="image/*" class="required" required />
-                    </label>
-                  </div>
-                </div>
-                <form id="registroPromo">
-                  <div class="col-md-6 col-12">
-                    <div class="form-group">
-                      <input type="text" class="form-control required" placeholder="Nombre" value="" name="nombrePromo"
-                        required />
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-12">
-                    <div class="form-group">
-                      <input type="text" class="form-control required" placeholder="Descripción" value=""
-                        name="DescripcionPromo" required />
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-12">
-                    <div class="form-group">
-                      <input type="number" class="form-control required" placeholder="Precio" value=""
-                        name="PrecioPromo" required />
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-12">
-                    <div class="form-group">
-                      <select class="form-control" id="exampleFormControlSelect1" name="tamañoPromo">
-                        <option>Tamaño</option>
-                        <option>Pequeño</option>
-                        <option>Mediano</option>
-                        <option>Grande</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-12">
-                    <div class="form-group">
-                      <input type="number" class="form-control required" placeholder="Cantidad" value=""
-                        name="cantidadPromo" required />
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-12">
-                    <div class="form-group">
-                      <input type="number" class="form-control required" placeholder="Porcion" value=""
-                        name="procionPromo" required />
-                    </div>
-                  </div>
-                  <div class="col-md-12 col-12">
-                    <div class="form-group time-to">
-                      <label for="" class="mt-2">Tiempo de preparacion</label>
-                      <div class="d-flex align-items-center w-25">
-                        <input type="number" class="form-control" placeholder="min" value="" name="tiempoMin" />
-                        <p class="ion"></p>
-                        <input type="number" class="form-control" placeholder="max" value="" name="tiempoMax" />
+              <div class="form-client">
+                <form id="registroPromo"></form>
+                  <div class="row register-form">
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <label for="imagenPromo" class="form-control pointer">Agregar imagen
+                          <input id="imagenPromo" class="d-none" type="file" accept="image/*" class="required" required />
+                        </label>
                       </div>
                     </div>
-                  </div>
+                
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <input type="text" class="form-control required" placeholder="Nombre" value="" name="nombrePromo"
+                          required />
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <input type="text" class="form-control required" placeholder="Descripción" value=""
+                          name="DescripcionPromo" required />
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <input type="number" class="form-control required" placeholder="Precio" value=""
+                          name="PrecioPromo" required />
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <select class="form-control" id="exampleFormControlSelect1" name="tamañoPromo">
+                          <option>Tamaño</option>
+                          <option>Pequeño</option>
+                          <option>Mediano</option>
+                          <option>Grande</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <input type="number" class="form-control required" placeholder="Cantidad" value=""
+                          name="cantidadPromo" required />
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <input type="number" class="form-control required" placeholder="Porcion" value=""
+                          name="procionPromo" required />
+                      </div>
+                    </div>
+                    <div class="col-md-12 col-12">
+                      <div class="form-group time-to">
+                        <label for="" class="mt-2">Tiempo de preparacion</label>
+                        <div class="d-flex align-items-center w-25">
+                          <input type="number" class="form-control" placeholder="min" value="" name="tiempoMin" />
+                          <p class="ion"></p>
+                          <input type="number" class="form-control" placeholder="max" value="" name="tiempoMax" />
+                        </div>
+                      </div>
+                    </div>
 
-                  <div class="col-12 d-flex justify-content-center mt-4 text-center">
-                    <button type="submit" onclick="backbutton()" class="btn btn-back">Volver</button>
-                    <button type="submit" class="btn btn-register" id="registrarPromo">Crear Promociones</button>
+                    <div class="col-12 d-flex justify-content-center mt-4 text-center">
+                      <button type="submit" onclick="backbutton()" class="btn btn-back">Volver</button>
+                      <button type="submit" class="btn btn-register" id="registrarPromo">Crear Promociones</button>
+                    </div>
                   </div>
                 </form>
               </div>
             </div>
-          </div>
           <div class="box-historial" style="display: none;" id="historial-compras">
             <h2 class="title">Empleados</h2>
             <ul class="nav nav-pills nav-edit" id="myTab" role="tablist">
@@ -611,7 +611,7 @@
   </div>
 
 </body>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
   integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

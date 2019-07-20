@@ -408,7 +408,22 @@
 		          margin: 15px 10px;
 		          width: 100%;
 		          max-width: 130px;
-		        } 
+				} 
+				
+				.cuenta{
+					border: 1px solid #ececec;
+					box-shadow: 3px 3px 3px #c1c1c1;
+					padding: 8px;
+					display: flex;
+					justify-content: space-around;
+					align-items: center;
+
+					.text-cuenta{
+						color: $green;
+						margin-bottom: 0;
+						font-size: 16px;
+					}
+				}
 		      } 
 			}
 

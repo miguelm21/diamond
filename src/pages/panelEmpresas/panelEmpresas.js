@@ -105,6 +105,9 @@ $(document).ready(function () {
     $('#promocion2').hide();
     $('#register-chef').hide();
     $('#register-promocion').hide();
+    $('#reportes').hide();
+    $('#configuracion').hide();
+
     $('#registro-platos').show();
   });
   $('#add-chef').click(function () {
@@ -113,6 +116,9 @@ $(document).ready(function () {
     $('#promocion2').hide();
     $('#registro-platos').hide();
     $('#register-promocion').hide();
+    $('#reportes').hide();
+    $('#configuracion').hide();
+
     $('#register-chef').show();
   });
   $('#add-promocion').click(function () {
@@ -120,6 +126,8 @@ $(document).ready(function () {
     $('#platos2').hide();
     $('#promocion2').hide();
     $('#registro-platos').hide();
+    $('#reportes').hide();
+    $('#configuracion').hide();
     $('#register-chef').hide();
     $('#register-promocion').show();
   });
@@ -130,6 +138,9 @@ $(document).ready(function () {
     $(this).addClass('active');
 
     $('#promocion2').hide();
+    $('#reportes').hide();
+    $('#configuracion').hide();
+
     $('#chef2').hide();
     $('#platos2').show();
     /* registro platos */
@@ -143,6 +154,9 @@ $(document).ready(function () {
     $(this).addClass('active');
     $('#promocion2').hide();
     $('#platos2').hide();
+    $('#reportes').hide();
+    $('#configuracion').hide();
+
     $('#chef2').show();
     /* registro platos */
     $('#registro-platos').hide();
@@ -154,6 +168,9 @@ $(document).ready(function () {
     $('#activepanel2').removeClass('active');
     $(this).addClass('active');
     $('#chef2').hide();
+    $('#reportes').hide();
+    $('#configuracion').hide();
+
     $('#platos2').hide();
     $('#promocion2').show();
     /* registro platos */
@@ -330,7 +347,7 @@ function empleadosRegistrados() {
 
        tablita = tablita + "<tr><td>" + nombre + "</td><td>" + apellido + "</td><td>" + correo + "</td><td>" + Inactivo + "</td><td>" +
         planBeneficio +
-        " <button class='cambiarPlan' id='cambiarPlan' type='submit' value='" + key + "'  >Cambiar</button> </td><td>" + cargo + "</td></tr>"
+        " <button class='cambiarPlan btn btn-change' id='cambiarPlan' type='submit' value='" + key + "'  ><i class='fas fa-exchange-alt'></i></button> </td><td>" + cargo + "</td></tr>"
 
         $('#tablaEmpleados').html(tablita);
       });

@@ -495,7 +495,7 @@
               <div class="box-login register">
                 <h4 class="title-login">Registra tu restaurante</h4>
                 <form id="regristroRestaurante" action="" method="post">
-                <div class="row register-form">
+                 <div class="row register-form">
                     <div class="col-md-6 col-sm-6 col-12">
 
                       <div class="form-group">
@@ -615,18 +615,19 @@
                                 
                           </select>
                         </div>
-                      </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group">
                         <input type="text" class="form-control required" placeholder="Direccion" value="" name="" required/>
-                         <p id=""></p>
+                        <p id=""></p>
                       </div>
                     </div>
+                 
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group password">
                         <button  id="show_password5" class="btn-eye"><i class="far fa-eye"></i></button>
                         <input id="password5" type="password" class="form-control required" placeholder="Contraseña" value="" name="contraseña" required/>
-                        <input  type="checkbox" /> Mostrar contraseña
-                       
+                        <!-- <input  type="checkbox" /> Mostrar contraseña -->
                       </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
@@ -638,18 +639,19 @@
                       </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
-                      <div class="form-group">
-                    <label for="file" class="form-control pointer">Agregar imagen
-                      <input id="imagenRestaurante" type="file" accept="image/*" />
+                      <div class="form-group pointer">
+                    <label for="imagenRestaurante" class="form-control ">Agregar imagen
+                      <input id="imagenRestaurante" class="d-none" type="file" accept="image/*" />
                       <p id="pimagenRestaurante"></p>
                     </label>
                   </div>
                 </div>
-                    <div class="col-12 d-flex justify-content-center">
-                      <button type="submit" class="btn mx-2  btnback w-auto" id="backlogin2">Volver al login</button>
-                      <button type="submit" class="btn mx-2  btnback w-auto" id="registrarRestaurante">
-                        Registrar</button>
-                    </div>
+                <div class="col-12 d-flex justify-content-center">
+                  <button type="submit" class="btn mx-2  btnback w-auto" id="backlogin2">Volver al login</button>
+                  <button type="submit" class="btn mx-2  btnback w-auto" id="registrarRestaurante">
+                    Registrar</button>
+                </div>
+              </div>
                 </div>
               </div>
             </form>
@@ -686,33 +688,6 @@
         </div>
     </div>
     </section>
-    <section class="first-section empresa">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4 col-12">
-            <div class="item-info">
-              <img src="/assets/images/zapatos.png" alt="">
-              <h4>Agilidad</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur.</p>
-            </div>
-          </div>
-          <div class="col-md-4 col-12">
-            <div class="item-info">
-              <img src="/assets/images/escudo.png" alt="">
-              <h4>Seguridad</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur.</p>
-            </div>
-          </div>
-          <div class="col-md-4 col-12">
-            <div class="item-info">
-              <img src="/assets/images/reloj.png" alt="">
-              <h4>Acceso 24/7</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section><!-- End section -->
   </div>
   </div>
   <!--   End main -->

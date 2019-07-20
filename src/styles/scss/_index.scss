@@ -219,7 +219,7 @@
 
            .box-login{
             margin: 90px auto;
-            width: 70%;
+            width: 80%;
             max-width: 380px;
             padding: 25px;
             background-color: #fff;
@@ -243,6 +243,8 @@
                   box-shadow: none;
                 }
             }
+
+           
 
             .forget{
                 color: $secondary;
@@ -281,6 +283,7 @@
                 color: #666;
             }
            .btn{
+             
               max-width: initial;
               margin: 0 auto;   
             }
@@ -403,4 +406,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.pointer{
+  cursor: pointer;
 }

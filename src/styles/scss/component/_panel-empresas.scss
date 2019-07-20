@@ -93,7 +93,7 @@ Sidebar
   height: 100%;
   top: 0;
   overflow:hidden;
-  background-color: #19222a;
+  background-color: $primary;
   -webkit-transform: translateZ(0);
   visibility: visible;
   -webkit-backface-visibility: hidden;
@@ -133,6 +133,7 @@ Sidebar Nav
     display: flex;
     justify-content: space-around;
     padding: 10px;
+    cursor: pointer;
     p{
       color: #fff;
       font-size: 12px;
@@ -311,6 +312,10 @@ Chev elements
             white-space: nowrap;
             font-size: 14px;
             vertical-align: middle;
+
+            .btn-change{
+              color: $primary;
+            }
           }
           th{
             text-align: center;
@@ -558,7 +563,7 @@ Chev elements
       }
 
       .form-group{
-        margin-bottom: 35px;
+        margin-bottom: 15px;
         label{
           color: $primary;
           margin-bottom: 0;
@@ -605,6 +610,16 @@ Chev elements
           border-color: $secondary;
           box-shadow: none;
         }
+     }
+
+     .form-group{
+        position: relative;
+      .lock{
+        position: absolute;
+        right: 5px;
+        top: 4px;
+        color: $gray !important;
+      }
      }
     
   }

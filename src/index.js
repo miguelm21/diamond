@@ -188,12 +188,14 @@ function registroEmpresa() {
                 hideLoading()
                 swal("Registro Exitoso!", "Empresa registrado!", "success");
                 $("#formRegistrar")[0].reset();
+                $('#first').tab('show');
               }
             })
           }, function (error) {
             console.log();
             hideLoading();
             swal("Error!", error.message, "error")
+          
           });
         } else {
           hideLoading();
