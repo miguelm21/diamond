@@ -1,3 +1,4 @@
+/* AIzaSyCYLRFBUVI8ZWSxUaupg70nZ9aGHbVXemY   api mapa*/ 
 import $ from 'jquery';
 import jQuery from 'jquery';
 import 'bootstrap';
@@ -221,7 +222,7 @@ $(document).ready(function () {
 function restartLoading() {
   $("#status").show();
   $("#preloader").show();
-} restartLoading()
+} 
 
 function hideLoading() {
   $("#status").fadeOut();
@@ -268,7 +269,7 @@ function registroPlato() {
       if (tipoPLato == 'Tipo Plato') { swal("Error", "Tipo plato esta vacio seleccione una opcion", "error") } else {
 
         if (nombrePlato && descripcionPlato && PrecioPlato && TamañoPLato && cantidadPlato && porcionPlato && tipoPLato && tiempoMinimo && tiempoMaximo) {
-          restartLoading();
+       
           var fotoval = document.getElementById('imagenPlato');
           var foto = new FileReader();
           foto.onload = function (e) {
@@ -375,7 +376,7 @@ function registropromociones() {
     $('#registrarPromo').click(function (e) {
 
       e.preventDefault();
-      restartLoading()
+    
       var sesion = JSON.parse(sessionStorage.getItem('data'));
       var restaurante = (sesion.uid);
       //console.log(restaurante);

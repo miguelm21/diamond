@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Blue Diamong</title>
   <meta name="description" content="Servinformación"> 
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.2.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
@@ -25,9 +26,7 @@
 </head>
 
 <body>
-    <div id="preloader">
-        <div id="status"></div>
-    </div>
+   
   <!--  Navbar -->
   <nav class="navbar navbar-expand-lg navbar-edit">
     <a class="navbar-brand" href="#"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fplay.PNG?alt=media&token=0fcd0957-74a5-4097-84a2-ccd1cc0e09d9" alt="" class="img-logo"></a>
@@ -325,7 +324,7 @@
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group password">
-                          <div  id="show_password7" class="btn-eye"><i class="far fa-eye"></i></div>
+                          <div  id="show_password7" class="btn-eye" style="cursor: pointer;"><i class="far fa-eye"></i></div>
                           <input id="password7" type="password" class="form-control required" placeholder="Contraseña" value="" name="contraseña" />
                          
                           <p id="pcontraseña"></p>
@@ -333,7 +332,7 @@
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group password">
-                          <div id="show_password4" class="btn-eye"><i class="far fa-eye"></i></div>
+                          <div id="show_password4" class="btn-eye" style="cursor: pointer;"> <i class="far fa-eye"></i></div>
                           <input id="password4" type="password" class="form-control required" placeholder="Confirmar Contraseña" name="contraseña2" />
                         
                           <p id="pcontraseña2"></p>
@@ -356,7 +355,7 @@
                   <input type="text" class="form-control" placeholder="correo electrónico " value="" name="Correo">
                 </div>
                 <div class="form-group password">
-                  <div id="show_password" type="checkbox" class="btn-eye show_password"   ><i class="far fa-eye"></i> </div>
+                  <div id="show_password" type="checkbox" style="cursor: pointer;" class="btn-eye show_password"   ><i class="far fa-eye"></i> </div>
                   <input  id="password" type="password" class="form-control password" placeholder="Contraseña" value="" name="contraseña">
                 <!-- <input id="show_password" type="checkbox" /> Mostrar contraseña   -->
                 </div>
@@ -433,7 +432,7 @@
                   </div>
                   <div class="form-group password">
                 
-                    <div   id="show_password2" type="checkbox" class="btn-eye"><i class="far fa-eye"></i></div>
+                    <div   id="show_password2" style="cursor: pointer;" type="checkbox" class="btn-eye"><i class="far fa-eye"></i></div>
                     <input id="password2" type="password" class="form-control" placeholder="Contraseña" value=""  name="contraseñaCLiente"/>
             <!--     <input id="show_password" type="checkbox" /> Mostrar contraseña -->
                   </div>
@@ -517,7 +516,7 @@
                         </div> -->
                         <div class="col-md-6 col-12">
                           <div class="form-group edit">
-                              <a  id="show-passwordclie" class="nav-link active lock" href="#"><i class="fas fa-lock"></i></a>
+                              <a style="cursor: pointer;" id="show-passwordclie" class="btn-eye" href="#"><i class="fas fa-eye"></i></a>
                                <input id="passwordclie" type="password" class="form-control contraseñaEmpleado" placeholder="Contraseña" value="" name="contraseña"/>
                                <p id="pcontraseña"></p>
                           </div>
@@ -695,21 +694,22 @@
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <input type="text" class="form-control required" placeholder="Direccion" value="" name="" required/>
+                          <div id="localizacion"  class="btn">ttttt<i class="fa-map-marker"></i></div>
+                        <input type="text" class="form-control required" placeholder="Ubicacion" value="Lat:40.429452, Long:-3.684943" name="" required/>
                         <p id=""></p>
                       </div>
                     </div>
                  
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group password">
-                        <div  id="show_password5" class="btn-eye"><i class="far fa-eye"></i></div>
+                        <div  id="show_password5" style="cursor: pointer;" class="btn-eye"><i class="far fa-eye"></i></div>
                         <input id="password5" type="password" class="form-control required" placeholder="Contraseña" value="" name="contraseña" required/>
                         <!-- <input  type="checkbox" /> Mostrar contraseña -->
                       </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group password">
-                        <div id="show_password6"  class="btn-eye"><i class="far fa-eye"></i></div>
+                        <div id="show_password6" style="cursor: pointer;"  class="btn-eye"><i class="far fa-eye"></i></div>
                         <input  id="password6" type="password" class="form-control required" placeholder="Confirmar contraseña" value=""                        
                           name="confirmarContraseña" required/>                        
                           <p id="pconfirmarContraseña"></p>
@@ -746,7 +746,7 @@
                     name="usuario" />
                 </div>
                 <div class="form-group password">
-                  <div id="show_password3" type="checkbox"  class="btn-eye  show_password "><i class="far fa-eye"></i></div>
+                  <div id="show_password3" type="checkbox" style="cursor: pointer;"  class="btn-eye  show_password "><i class="far fa-eye"></i></div>
                   <input  id="password3" type="password" class="form-control password" placeholder="Contraseña" value="" name="contraseña" />
                 
                 </div>
@@ -845,6 +845,29 @@
       </div>
     </div>
   </footer>
+
+  <div class="modal fade" id="localizacionm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-base modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Atención</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="eliminar">
+            <p>Ubica tu restaurante aquí</p>
+          </div>
+        </div>
+        <div id="map_canvas" style="width:300px; height:300px"></div>
+        <div id="preloader">
+            <div id="status"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"

@@ -115,7 +115,7 @@ function backbutton() {
 function restartLoading() {
   $("#status").show();
   $("#preloader").show();
-} restartLoading()
+} 
 
 function hideLoading() {
   $("#status").fadeOut();
@@ -198,7 +198,7 @@ function RecargarSaldoTarjeta() {
   $(document).ready(function () {
     $('#recargarSaldoCliente').click(function (e) {
       e.preventDefault();
-      restartLoading();
+     
       var data = sessionStorage.getItem('data');
       var sesion = JSON.parse(data);
       var uid = sesion.uid;

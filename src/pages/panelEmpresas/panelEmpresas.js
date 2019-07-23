@@ -191,7 +191,7 @@ function backbutton() {
 function restartLoading() {
   $("#status").show();
   $("#preloader").show();
-} restartLoading()
+}
 
 function hideLoading() {
   $("#status").fadeOut();
@@ -224,7 +224,7 @@ function registroempleados() {
       var sesionjson = sessionStorage.getItem("data");
       var json = JSON.parse(sesionjson);
       if (datos && nombre && apellido && fechaNacimiento && correo && cargo && Inactivo && planBeneficio && contraseña) {
-        restartLoading();
+     
         firebase.auth().createUserWithEmailAndPassword(correo, contraseña).then(function (resultado) {
 
           var uid = resultado.user.uid;
@@ -300,7 +300,7 @@ function CrearPlanes() {
       var uid = (sesion.uid);
 
       if (nombrePlan && montoPlan /*&& fechaPlan*/) {
-        restartLoading();
+      
         firebase.database().ref('Empresas/' + uid + '/planes/').push().update({
           "nombrePlan": nombrePlan,
           "montoPlan": montoPlan,
@@ -466,7 +466,7 @@ function configuracionEmpresa() {
     
     $('#guardarEmpresa').click(function (e) {
       e.preventDefault();   
-      restartLoading();
+     
       //////////////////////imagen         
       var fotoval = document.getElementById('conLogoEmpresa');
       var foto = new FileReader();
@@ -599,7 +599,7 @@ function RecargarSaldoEMpresa() {
         var sumaSaldo = parseFloat(montoRecargar) + parseFloat(saldoCuenta1);
         //  alert(montoRecargar);
         if (tarjetaCredito && nombreTitular && NumeroTarjeta && fechaExp && codigoSeguridad && montoRecargar && sumaSaldo) {
-          restartLoading();
+         
           firebase.database().ref('Empresas/' + uid + "/cuentas").update({
             "cuanta1": sumaSaldo
 
@@ -690,7 +690,7 @@ function recargarSaldoClientes() {
   $(document).ready(function () {
     $('.recargarSaldoCliente').on('click', function (e) {
       e.preventDefault();
-      restartLoading();
+    
 
       var data = sessionStorage.getItem('data');
       var sesion = JSON.parse(data);

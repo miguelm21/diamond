@@ -1,5 +1,4 @@
 import $ from 'jquery';
-
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/scss/main.scss';
@@ -95,7 +94,7 @@ $(document).ready(function () {
     $('#show-register2').show();
   })
 
-  
+
   $('#registro2').click(function () {
     $('#show-button').hide();
     $('#show-register').hide();
@@ -113,7 +112,7 @@ function backbutton() {
 function restartLoading() {
   $("#status").show();
   $("#preloader").show();
-} restartLoading()
+}
 function hideLoading() {
   $("#status").fadeOut();
   $("#preloader").delay(1000).fadeOut("slow");
@@ -158,7 +157,7 @@ function registroEmpresa() {
       if (nombreEmpresa && correo && pais && direccion && poblacion && telefono && codigoPostal && identificacion && contraseña && contraseña2) {
 
         if (contraseña === contraseña2) {
-          restartLoading();
+      
           firebase.auth().createUserWithEmailAndPassword(correo, contraseña).then(function (resultado) {
             var uid = resultado.user.uid;
             firebase.database().ref('Empresas/' + uid).set({
@@ -200,11 +199,11 @@ function registroEmpresa() {
             console.log();
             hideLoading();
             swal("Error!", error.message, "error")
-          
+
           });
         } else {
           hideLoading();
-          swal("Error", "Las contraseñas no son igules", "error")
+          swal("Error", "Las contraseñas no son iguales", "error")
         }
       }
     });
@@ -232,7 +231,7 @@ function registroRestaurante() {
       var fotoval = document.getElementById('imagenRestaurante'); if (!fotoval) { $('#pimagenRestaurante').html('Campo oligatorio'); } else { $('#pimagenRestaurante').html('') };
       if (nombreRestaurante && NIF && idRestauran && correo && telefono && direccion && codigoPosta && pais && poblacion && contraseña && confirmarContraseña) {
         if (contraseña === confirmarContraseña) {
-          restartLoading();
+
           firebase.auth().createUserWithEmailAndPassword(correo, contraseña).then(function (resultado) {
             var uid = resultado.user.uid;
             //////////////////////////////////////////////////////           
@@ -297,7 +296,7 @@ function iniciarSesionEMpresa() {
   $(document).ready(function () {
     $('#iniciarSesionEmpresa').click(function (e) {
       e.preventDefault();
-      restartLoading()
+    
       var datos = $('#sesionEmpresa').serializeArray();
       var correo = datos[0].value;
       var contraseña = datos[1].value;
@@ -359,7 +358,7 @@ function iniciarSesionRestaurante() {
   $(document).ready(function () {
     $('#iniciarSesionRestaurante').click(function (e) {
       e.preventDefault();
-      restartLoading()
+   
       var datos = $('#sesionRestaurante').serializeArray();
       var correo = datos[0].value;
       var contraseña = datos[1].value;
@@ -423,7 +422,7 @@ function iniciarSesioncliente() {
   $(document).ready(function () {
     $('#iniciarcliente').click(function (e) {
       e.preventDefault();
-      restartLoading();
+  
       var datos = $('#sesionCliente').serializeArray();
       var correo = datos[0].value;
       var contraseña = datos[1].value;
@@ -542,80 +541,81 @@ function enviarNotificacion(token) {
 }
 
 function ojitosSesionEmpresa() {
-  $(document).ready(function () {    
- $('#show_password').on('mouseover',function () {   
-       $('#password').get(0).type='text';
-       $('#show_password').on('mouseout', function () { 
-        $('#password').get(0).type='password';
+  $(document).ready(function () {
+    $('#show_password').on('mouseover', function () {
+      
+      $('#password').get(0).type = 'text';
+      $('#show_password').on('mouseout', function () {
+        $('#password').get(0).type = 'password';
       });
-  });
+    });
   })
-}ojitosSesionEmpresa()
+} ojitosSesionEmpresa()
 
 function ojitosSesionRestaurante() {
-  $(document).ready(function () {    
- $('#show_password3').on('mouseover',function () {   
-       $('#password3').get(0).type='text';
-       $('#show_password3').on('mouseout', function () { 
-        $('#password3').get(0).type='password';
+  $(document).ready(function () {
+    $('#show_password3').on('mouseover', function () {
+      $('#password3').get(0).type = 'text';
+      $('#show_password3').on('mouseout', function () {
+        $('#password3').get(0).type = 'password';
       });
-  });
+    });
   })
-}ojitosSesionRestaurante()
+} ojitosSesionRestaurante()
 function ojitosSesionEmpleado() {
-  $(document).ready(function () {    
- $('#show_password2').on('mouseover',function () {   
-       $('#password2').get(0).type='text';
-       $('#show_password2').on('mouseout', function () { 
-        $('#password2').get(0).type='password';
+  $(document).ready(function () {
+    $('#show_password2').on('mouseover', function () {
+      $('#password2').get(0).type = 'text';
+      $('#show_password2').on('mouseout', function () {
+        $('#password2').get(0).type = 'password';
       });
-  });
+    });
   })
-}ojitosSesionEmpleado()
+} ojitosSesionEmpleado()
 
 function ojitosRegistroEmpresa() {
-  $(document).ready(function () {    
- $('#show_password7').on('mouseover',function () {   
-       $('#password7').get(0).type='text';
-       $('#show_password7').on('mouseout', function () { 
-        $('#password7').get(0).type='password';
+  $(document).ready(function () {
+    $('#show_password7').on('mouseover', function () {
+      $('#password7').get(0).type = 'text';
+      $('#show_password7').on('mouseout', function () {
+        $('#password7').get(0).type = 'password';
       });
-  });
+    });
   })
-}ojitosRegistroEmpresa()
+} ojitosRegistroEmpresa()
 
 function ojitosRegistroEmpresa2() {
-  $(document).ready(function () {    
- $('#show_password4').on('mouseover',function () {   
-       $('#password4').get(0).type='text';
-       $('#show_password4').on('mouseout', function () { 
-        $('#password4').get(0).type='password';
+  $(document).ready(function () {
+    $('#show_password4').on('mouseover', function () {
+      $('#password4').get(0).type = 'text';
+      $('#show_password4').on('mouseout', function () {
+        $('#password4').get(0).type = 'password';
       });
-  });
+    });
   })
-}ojitosRegistroEmpresa2()
+} ojitosRegistroEmpresa2()
 
 function ojitosRegistroRestaurante() {
-  $(document).ready(function () {    
- $('#show_password5').on('mouseover',function () {   
-       $('#password5').get(0).type='text';
-       $('#show_password5').on('mouseout', function () { 
-        $('#password5').get(0).type='password';
+  $(document).ready(function () {
+    $('#show_password5').on('mouseover', function () {
+      $('#password5').get(0).type = 'text';
+      $('#show_password5').on('mouseout', function () {
+        $('#password5').get(0).type = 'password';
       });
-  });
+    });
   })
-}ojitosRegistroRestaurante()
+} ojitosRegistroRestaurante()
 
 function ojitosRegistroRestaurante2() {
-  $(document).ready(function () {    
- $('#show_password6').on('mouseover',function () {   
-       $('#password6').get(0).type='text';
-       $('#show_password6').on('mouseout', function () { 
-        $('#password6').get(0).type='password';
+  $(document).ready(function () {
+    $('#show_password6').on('mouseover', function () {
+      $('#password6').get(0).type = 'text';
+      $('#show_password6').on('mouseout', function () {
+        $('#password6').get(0).type = 'password';
       });
-  });
+    });
   })
-}ojitosRegistroRestaurante2()
+} ojitosRegistroRestaurante2()
 
 function registroempleados() {
   $(document).ready(function () {
@@ -624,18 +624,18 @@ function registroempleados() {
 
       var datos = $('#RegistrarEmpleados').serializeArray();
       console.log(datos);
-      
+
       var nombre = datos[0].value; if (!nombre) { $('#pnombre').html('Campo Obligatorio'); } else { $('#pnombre').html(''); }
       var apellido = datos[1].value; if (!apellido) { $('#papellido').html('Campo Obligatorio'); } else { $('#papellido').html(''); }
       var fechaNacimiento = datos[2].value; if (!fechaNacimiento) { $('#pfechaNacimiento').html('Campo Obligatorio'); } else { $('#pfechaNacimiento').html(''); }
       var correo = datos[3].value; if (!correo) { $('#pcorreo').html('Campo Obligatorio'); } else { $('#pcorreo').html(''); }
       //var cargo = datos[4].value; if (!cargo) { $('#pcargo').html('Campo Obligatorio'); } else { $('#pcargo').html(''); }
       //var Inactivo = datos[5].value; if (!Inactivo) { $('#pInactivo').html('Campo Obligatorio'); } else { $('#pInactivo').html(''); }
-     // var planBeneficio = datos[6].value; if (!'#pInactivo') { $('#pplanBeneficio').html('Campo Obligatorio'); } else { $('#pplanBeneficio').html(''); }
+      // var planBeneficio = datos[6].value; if (!'#pInactivo') { $('#pplanBeneficio').html('Campo Obligatorio'); } else { $('#pplanBeneficio').html(''); }
       var contraseña = datos[4].value; if (!contraseña) { $('#pcontraseña').html('Campo Obligatorio'); } else { $('#pcontraseña').html(''); }
-     
+
       if (datos && nombre && apellido && fechaNacimiento && correo && contraseña) {
-        restartLoading();
+   
         firebase.auth().createUserWithEmailAndPassword(correo, contraseña).then(function (resultado) {
 
           var uid = resultado.user.uid;
@@ -645,10 +645,10 @@ function registroempleados() {
             "apellido": apellido,
             "fechaNacimiento": fechaNacimiento,
             "correo": correo,
-              "cargo": '',
+            "cargo": '',
             "Inactivo": '',
             "planBeneficio": '',
-            "contraseña": contraseña,            
+            "contraseña": contraseña,
             "uidempleado": uid,
             "cuentas": {
               "cuanta1": 0,
@@ -666,9 +666,11 @@ function registroempleados() {
               $("#RegistrarEmpleados")[0].reset();
             }
           })
-        },function (error) {
-          hideLoading();swal("Error",error.message,"error")  });
-      } else {hideLoading();
+        }, function (error) {
+          hideLoading(); swal("Error", error.message, "error")
+        });
+      } else {
+        hideLoading();
         swal("Error!", "Debe completar los campos Faltantes", "error");
       }
     })
@@ -677,12 +679,41 @@ function registroempleados() {
 } registroempleados();
 
 function ojitosRegistroCliente() {
-  $(document).ready(function () {    
- $('#show-passwordclie').on('mouseover',function () {   
-       $('#passwordclie').get(0).type='text';
-       $('#show-passwordclie').on('mouseout', function () { 
-        $('#passwordclie').get(0).type='password';
+  $(document).ready(function () {
+    $('#show-passwordclie').on('mouseover', function () {
+      $('#passwordclie').get(0).type = 'text';
+      $('#show-passwordclie').on('mouseout', function () {
+        $('#passwordclie').get(0).type = 'password';
       });
-  });
+    });
   })
-}ojitosRegistroCliente()
+} ojitosRegistroCliente()
+
+
+
+function mapa() {
+  $(document).ready(function () {
+    $('#localizacion').click(function (e) {
+      e.preventDefault();       
+   
+      $('#localizacionm').modal('show');
+
+      var mapOptions = {
+        zoom: 8,
+        center: new google.maps.LatLng('40.429452', '-3.684943'),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      var map = new google.maps.Map(document.getElementById("map_canvas"),
+        mapOptions);
+        console.log(map);
+        
+
+    });
+  });
+} mapa()
+
+function mausepointer() {
+  $(document).ready(function () {
+    jqon
+  });
+}mausepointer()
