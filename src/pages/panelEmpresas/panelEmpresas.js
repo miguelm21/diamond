@@ -377,7 +377,7 @@ console.log(s);
 
                 $('#cambiarPlan2').append("<div class='modal fade show' id='modal-editar-beneficio' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-modal='true' style='padding-right: 17px; display: block;'>    <div class='modal-dialog modal-base modal-sm' role='document'>" +
                   "<div class='modal-content'>        <div class='modal-header'>          <h5 class='modal-title' id='exampleModalLabel'>Cambiar Plan</h5>" +
-                  "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>            <span aria-hidden='true'>×</span>" +
+                 
                   "</button>        </div>        <div class='modal-body'>          <div class='row register-form'>            <div class='col-md-12 col-12'>" +
                   "<div class='form-group'>           <label  class='form-control' placeholder='Nombres' > " + nombreCOmpleto + "  </label>            </div>" +
                   "</div>            <div class='col-md-12 col-12'> <div class='form-group'> <select class='form-control exampleFormControlSelect12' id='exampleFormControlSelect12' >" + s + " </select>" +
