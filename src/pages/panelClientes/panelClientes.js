@@ -155,8 +155,8 @@ function restauranteRegistradosClientes() {
           "<h2 class='card__title'>" + nombreRestaurante + "</h2>" +
           "<p class='card__text'>" + pais + "</p>" +
           "<div class='card__action-bar d-flex justify-content-between'>" +
-          "<button class='card__button hh' id='" + keyRestaurante + "'>Detalles</button>" +
-          "<button class='card__button modalPagoSinPlato' data-toggle='modal' id=" + keyRestaurante + " >Comprar</button>" +
+          "<button class='card__button hh' id='" + keyRestaurante + "'>Ver mas</button>" +
+          "<button class='card__button modalPagoSinPlato' data-toggle='modal' id=" + keyRestaurante + " >Enviar saldo</button>" +
           "</div>" +
           "</div>" +
           "</div>");

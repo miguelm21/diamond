@@ -12,25 +12,52 @@
                 text-align: center;
             }
               
-              .price-status{
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-                padding: 10px;
-                border-top: 1px solid #ececec;
-                border-bottom: 1px solid #ececec;
-                p{
-                  color: $gray;
-                  font-size: 14px;
-                  margin-left: -20px;
-                  margin-bottom: 0;
+            .price-status{
+              display: flex;
+              justify-content: space-around;
+              flex-direction: column;
+              padding: 10px;
+              background-color: #fff;
+              margin: 10px;
+              border-radius: 5px;
+              border: 1px solid #ececec;
+              box-shadow: 2px 2px 1px 1px lightblue;
+              position: relative;
+              min-height: 70px;
+              cursor: pointer;
+              p{
+                color: $gray;
+                font-size: 14px;
+                margin-bottom: 0;
+              }
+              h5{
+                color: $green;
+                font-size: 24px;
+                max-width: 80%;
+                @include respond (tablet-lg){
+                  font-size: 20px;
                 }
-                h5{
-                  color: $green;
-                  font-size: 32px;
-                  margin-bottom: 0;
+                @include respond (tablet){
+                  font-size: 18px;
+                }
+                @include respond (max-767){
+                  font-size: 16px;
                 }
               }
+              img{
+                position: absolute;
+                top: 15px;
+                right: 10px;
+                width: 50px;
+                object-fit: contain;
+                @include respond (table){
+                  width: 30px;
+                }
+                @include respond (max-767){
+                  width: 30px;
+                }
+              }
+            }
               
             ul{
                
