@@ -234,15 +234,15 @@ firebase.initializeApp(firebaseConfig);
 
 $(document.body).on ('change','#imagenPlato',function name(params) {
   $('#validate-image').addClass('d-block');
-  $('#text-file').html('Imagen agregada con exito');
+ // $('#imagenPlatos').html('Imagen agregada con exito');
 })
 $(document.body).on ('change','#imagenPromo',function name(params) {
   $('#validate-image2').addClass('d-block');
-  $('#text-file2').html('Imagen agregada con exito');
+ // $('#imagenPromos').html('Imagen agregada con exito');
 })
 $(document.body).on ('change','#file',function name(params) {
   $('#validate-image3').addClass('d-block');
-  $('#text-file3').html('Imagen agregada con exito');
+ // $('#files').html('Imagen agregada con exito');
 })
 
 
@@ -379,10 +379,10 @@ function registropromociones() {
     
       var sesion = JSON.parse(sessionStorage.getItem('data'));
       var restaurante = (sesion.uid);
-      //console.log(restaurante);
+      console.log(restaurante);
 
       var datos = $('#registroPromo').serializeArray();
-      //console.log(datos);
+      console.log(datos);
       var nombrePromo = datos[0].value;
       var DescripcionPromo = datos[1].value;
       var PrecioPromo = datos[2].value;
@@ -391,6 +391,8 @@ function registropromociones() {
       var procionPromo = datos[5].value;
       var tiempoMin = datos[6].value;
       var tiempoMax = datos[7].value;
+       console.log(nombrePromo);
+       
       //////////////////////imagen         
       var fotoval = document.getElementById('imagenPromo');
       var foto = new FileReader();

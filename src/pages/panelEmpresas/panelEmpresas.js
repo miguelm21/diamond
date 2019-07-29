@@ -277,11 +277,13 @@ function recuperarNOmbreEmpresa() {
     var rutaImagen = sesion.empresa.rutaImagen;
     var storageRef = firebase.storage().ref();
     var mountainsRef = storageRef.child("");
-console.log(rutaImagen);
-
+console.log('tura',rutaImagen);
+if (!rutaImagen) {$('#fotoEmpresa').append("<img src='https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fempresas.png?alt=media&token=b66894a9-8a79-46f1-9660-227e7591e3e7'></span>");
+  
+} else{$('#fotoEmpresa').append("<img src=" + rutaImagen + "</span>");}
    // mountainsRef.child(rutaImagen).getDownloadURL().then(function (url) {
      // console.log(nombreEmpresa);
-     // $('#fotoEmpresa').append("'<img src='" + url + "'</span>'");
+    //  $('#fotoEmpresa').append("<img src=" + rutaImagen + "</span>");
       $('#nombreEmpresa').append("<span>" + nombreEmpresa + "</span>");
 
     //})
@@ -375,7 +377,7 @@ function empleadosRegistrados() {
 
               
                  s = s+("<option value='" + nombrePlan + " " + "€  " + montoPlan + "'>" + nombrePlan + " " + "€  " + montoPlan + "</option>");                
-console.log(s);
+//console.log(s);
 
                 $('#cambiarPlan2').append("<div class='modal fade show' id='modal-editar-beneficio' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-modal='true' style='padding-right: 17px; display: block;'>    <div class='modal-dialog modal-base modal-sm' role='document'>" +
                   "<div class='modal-content'>        <div class='modal-header'>          <h5 class='modal-title' id='exampleModalLabel'>Cambiar Plan</h5>" +
@@ -523,7 +525,7 @@ function configuracionEmpresa() {
               swal("Error",error.message,"error")
             } else {
               hideLoading();
-             swal("Modificado con exito"," has modificado esta empresa","succes")
+             swal("Modificado con exito"," has modificado esta empresa","success")
             }
           });
         },function (error) { hideLoading();  alert(error)  });
@@ -537,10 +539,10 @@ function configuracionEmpresa() {
 
 // check image button
 
-$(document.body).on ('change','#conLogoEmpresa',function name(params) {
+/*$(document.body).on ('change','#conLogoEmpresa',function name(params) {
   $('#validate-image4').addClass('d-block');
   $('#text-file4').html('Imagen agregada con exito');
-})
+})*/
 
 function seleccionPlanEmpresa() {
   $(document).ready(function () {
@@ -894,3 +896,14 @@ function cambiarPlanEmpleado() {
     });
   });
 }cambiarPlanEmpleado()
+
+function ojitosSesionRestaurante() {
+  $(document).ready(function () {
+    $('#show_password3').on('mouseover', function () {
+      $('#password3').get(0).type = 'text';
+      $('#show_password3').on('mouseout', function () {
+        $('#password3').get(0).type = 'password';
+      });
+    });
+  })
+} ojitosSesionRestaurante()

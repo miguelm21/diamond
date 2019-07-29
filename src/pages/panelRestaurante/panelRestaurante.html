@@ -98,7 +98,7 @@
             </div>
             <ul class="">
               <li class="d-flex align-items-center space-between">
-                <a class="active" id="activepanel1" data-toggle="tab" href="#platos2">Restaurantes</a>
+                <a class="active" id="activepanel1" data-toggle="tab" href="#platos2">Platos</a>
                 <button class="btn" id="add-plate"><i class="fas fa-plus"></i></button>
               </li>
               <!-- 
@@ -137,7 +137,8 @@
                   <div class="col-md-6 col-12">
                     <div class="form-group edit">
                       <label for="imagenPlato" id="text-file" class="form-control pointer">Agregar imagen
-                        <input id="imagenPlato" class="d-none" type="file" accept="image/*" class="required"  />
+                        <input id="imagenPlato" class="d-none" type="file" accept="image/*"   />
+                        <p id="imagenPlatos" ></p>
                       </label>
                       <button class="btn" id="validate-image"><i class="fas fa-check"></i></button>
                     </div>
@@ -284,6 +285,7 @@
                   <div class="form-group edit">
                     <label for="file" id="text-file3" class="form-control pointer">Agregar imagen
                       <input type="file"  class="form-control d-none" id="file">
+                      <p id="files"></p>
                     </label>
                     <button class="btn" id="validate-image3"><i class="fas fa-check"></i></button>
                   </div>
@@ -338,12 +340,13 @@
           <div class="box-panel  box-register" id="register-promocion">
             <h5 class="title">Registrar promoción</h5>
               <div class="form-client">
-                <form id="registroPromo"></form>
+                <form id="registroPromo">
                   <div class="row register-form">
                     <div class="col-md-6 col-12">
                       <div class="form-group edit">
                         <label for="imagenPromo" id="text-file2" class="form-control pointer">Agregar imagen
                           <input id="imagenPromo" class="d-none" type="file" accept="image/*" class="required" required />
+                          <p id="imagenPromos"></p>
                         </label>
                         <button class="btn" id="validate-image2"><i class="fas fa-check"></i></button>
                       </div>

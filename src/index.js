@@ -575,6 +575,7 @@ function ojitosSesionRestaurante() {
     });
   })
 } ojitosSesionRestaurante()
+
 function ojitosSesionEmpleado() {
   $(document).ready(function () {
     $('#show_password2').on('mouseover', function () {
@@ -634,9 +635,8 @@ function registroempleados() {
   $(document).ready(function () {
     $('#registrarEmpleados').click(function (e) {
       e.preventDefault();
-
       var datos = $('#RegistrarEmpleados').serializeArray();
-      console.log(datos);
+    //  console.log(datos);
 
       var nombre = datos[0].value; if (!nombre) { $('#pnombre').html('Campo Obligatorio'); } else { $('#pnombre').html(''); }
       var apellido = datos[1].value; if (!apellido) { $('#papellido').html('Campo Obligatorio'); } else { $('#papellido').html(''); }
@@ -727,7 +727,7 @@ function mapa() {
 
 function mausepointer() {
   $(document).ready(function () {
-    jqon
+    
   });
 }mausepointer()
 
@@ -751,15 +751,10 @@ function recuperarContraseña () {
           visible: true,
           className: "enviarCorreo",
           closeModal: true,
-        },
-      
+        },      
       },
     }
-    ).then( (value)=>{swal('Hemos enviado un correo con su contraseña'),value})
-   
-      
- 
-
+    )
     });
   });
 }recuperarContraseña()
@@ -770,7 +765,8 @@ function enviarContraseña() {
     $(document.body).on('click','.enviarCorreo', function () {
    var correo= $('.swal-content__input').val();
       
-      enviarContraseña(correo,correo) ;
+   enviarCorreo(correo,correo);
+      swal('Hemos enviado un correo con su contraseña') ;
       console.log(correo);
     });
   });

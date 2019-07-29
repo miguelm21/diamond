@@ -23,6 +23,13 @@
       appId: "1:355470432906:web:54ea70b0eca95904"
     };
   </script>
+     <script type="text/javascript"
+     src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
+ <script type="text/javascript">
+ (function(){
+   emailjs.init("user_2ewX4RxxKWacMlmO529Cl");
+ })();
+ </script>
 </head>
 
 <body>
@@ -207,26 +214,26 @@
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group">
 
-                          <input type="text" class="form-control  required" placeholder="Nombre Empresa" name="nombreEmpresa" />
+                          <input type="text" class="form-control    " placeholder="Nombre Empresa" name="nombreEmpresa" />
                           <p id="pnombreEmpresa"></p>
                         </div>
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                          <input type="email" class="form-control required " placeholder="Email" value="" name="correo" />
+                          <input type="email" class="form-control    " placeholder="Email" value="" name="correo" />
                           <p id="pcorreo"></p>
                         </div>
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                          <input type="text" class="form-control required" placeholder="Pais"
-                            value="España" name="pais" required/>
+                          <input type="text" class="form-control   " placeholder="Pais"
+                            value="España" name="pais"   />
                              <p id="pPais"></p>
                         </div>
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                          <input type="text" class="form-control required" placeholder="Dirección" value="" name="direccion" />
+                          <input type="text" class="form-control   " placeholder="Dirección" value="" name="direccion" />
                           <p id="pdireccion"></p>
                         </div>
                       </div>
@@ -294,14 +301,14 @@
                      
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                          <input type="text" class="form-control required" placeholder="Telefono" value="" name="telefono" />
+                          <input type="text" class="form-control   " placeholder="Telefono" value="" name="telefono" />
                           <p id="ptelefono"></p>
                         </div>
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                          <input type="text" class="form-control required" placeholder="Código postal" value=""
-                            name="codigoPostal" required/>
+                          <input type="text" class="form-control   " placeholder="Código postal" value=""
+                            name="codigoPostal"   />
                             <p id="pcodigoPostal"></p>
                         </div>
                       </div>
@@ -318,14 +325,14 @@
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                          <input type="text" class="form-control required" placeholder="Numero de Documento" value="" name="identificacion" />
+                          <input type="text" class="form-control   " placeholder="Numero de Documento" value="" name="identificacion" />
                           <p id="pidentificacion"></p>
                         </div>
                       </div>
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group password">
                           <div  id="show_password7" class="btn-eye" style="cursor: pointer;"><i class="far fa-eye"></i></div>
-                          <input id="password7" type="password" class="form-control required" placeholder="Contraseña" value="" name="contraseña" />
+                          <input id="password7" type="password" class="form-control   " placeholder="Contraseña" value="" name="contraseña" />
                          
                           <p id="pcontraseña"></p>
                         </div>
@@ -333,7 +340,7 @@
                       <div class="col-md-6 col-sm-6 col-12">
                         <div class="form-group password">
                           <div id="show_password4" class="btn-eye" style="cursor: pointer;"> <i class="far fa-eye"></i></div>
-                          <input id="password4" type="password" class="form-control required" placeholder="Confirmar Contraseña" name="contraseña2" />
+                          <input id="password4" type="password" class="form-control   " placeholder="Confirmar Contraseña" name="contraseña2" />
                         
                           <p id="pcontraseña2"></p>
                         </div>
@@ -360,7 +367,7 @@
                 <!-- <input id="show_password" type="checkbox" /> Mostrar contraseña   -->
                 </div>
                 <div class="form-group">
-                  <button  class="forget  recuperar">¿Olvido su contraseña? </button>
+                  <label  class="forget  recuperar">¿Olvido su contraseña? </label>
                 </div>
               </form>
                 <div class="form-group">
@@ -471,45 +478,45 @@
                         <div class="col-md-6 col-12">
 
                           <div class="form-group">
-                            <input type="text" class="form-control required" placeholder="Nombres" value="" name="nombre" />
+                            <input type="text" class="form-control   " placeholder="Nombres" value="" name="nombre" />
                             <p id="pnombre"></p>
                           </div>
                         </div>
                         <div class="col-md-6 col-12">
                           <div class="form-group">
-                            <input type="text" class="form-control required" placeholder="Apellidos" value="" name="apellido" />
+                            <input type="text" class="form-control   " placeholder="Apellidos" value="" name="apellido" />
                             <p id="papellido"></p>
                           </div>
                         </div>
                         <div class="col-md-6 col-12">
                           <div class="form-group">
-                            <input type="date" class="form-control required" placeholder="Fecha de nacimiento" value=""
+                            <input type="date" class="form-control   " placeholder="Fecha de nacimiento" value=""
                               name="fechaNacimiento" />
                               <p id=""></p>
                           </div>
                         </div>
                         <div class="col-md-6 col-12">
                           <div class="form-group">
-                            <input type="text" class="form-control required" placeholder="Correo electrónico" value=""
+                            <input type="text" class="form-control   " placeholder="Correo electrónico" value=""
                               name="correo" />
                               <p id="pcorreo"></p>
                           </div>
                         </div>
                        <!-- <div class="col-md-6 col-12">
                           <div class="form-group">
-                            <input type="text" class="form-control required" placeholder="Cargo" value="" name="cargo" />
+                            <input type="text" class="form-control   " placeholder="Cargo" value="" name="cargo" />
                             <p id="pcargo"></p>
                           </div>
                         </div>
                         <div class="col-md-6 col-12">
                           <div class="form-group">
-                            <input type="text" class="form-control required" placeholder="Inactivo" value="" name="Inactivo" />
+                            <input type="text" class="form-control   " placeholder="Inactivo" value="" name="Inactivo" />
                             <p id="pInactivo"></p>
                           </div>
                         </div>
                         <div class="col-md-6 col-12">
                           <div class="form-group">
-                            <select class="form-control required" id="exampleFormControlSelect1" name="planBeneficio">
+                            <select class="form-control   " id="exampleFormControlSelect1" name="planBeneficio">
                               <p id="pInactivo"></p>
                             </select>
                           </div>
@@ -575,8 +582,8 @@
                     <div class="col-md-6 col-sm-6 col-12">
 
                       <div class="form-group">
-                        <input type="text" class="form-control required" placeholder="Nombre del Restaurante" value=""
-                          name="nombreRestaurante"  required/>
+                        <input type="text" class="form-control   " placeholder="Nombre del Restaurante" value=""
+                          name="nombreRestaurante"    />
                           <p id="pnombreRestaurante"></p>
                       </div>
                     </div>
@@ -593,41 +600,41 @@
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <input type="text" class="form-control required" placeholder="Numero de Documento" value=""
-                          name="idRestaurante" required/>
+                        <input type="text" class="form-control   " placeholder="Numero de Documento" value=""
+                          name="idRestaurante"   />
                            <p id="pidRestaurante"></p>
                       </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <input type="email" class="form-control required" placeholder="Correo" value="" name="correo" />
+                        <input type="email" class="form-control   " placeholder="Correo" value="" name="correo" />
                         <p id="pcorreo" class="pcorreo"></p>
                       </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <input type="text" maxlength="10" minlength="10" class="form-control required" placeholder="Telefono"
-                          value="" name="telefono" required/>
+                        <input type="text" maxlength="10" minlength="10" class="form-control   " placeholder="Telefono"
+                          value="" name="telefono"   />
                           <p class="ptelefono"></p>
                       </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <input type="text" class="form-control required" placeholder="Dirección" value="" name="direccion" />
+                        <input type="text" class="form-control   " placeholder="Dirección" value="" name="direccion" />
                         <p class="pdireccion"></p>
                       </div>
                     </div>
                    
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <input type="number" class="form-control required" placeholder="Código postal" value=""
-                          name="codigoPostal" required/>
+                        <input type="number" class="form-control   " placeholder="Código postal" value=""
+                          name="codigoPostal"   />
                           <p class="pcodigoPostal"></p>
                       </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <input type="text" class="form-control required" placeholder="Pais" value=" España" name="pais" required/>
+                        <input type="text" class="form-control   " placeholder="Pais" value=" España" name="pais"   />
                         <p class="ppais"></p>
                       </div>
                     </div>
@@ -696,7 +703,7 @@
                       <div class="form-group location">
                           <button id="localizacion" class="btn location"><i class="fas fa-map-marker-alt"></i></button>
                         <!--   <div   class="btn">Ubicacion<i class="fa-map-marker"></i></div> -->
-                        <input id="ellipsis" type="text" class="form-control required" placeholder="Ubicacion" value="Lat:40.429452, Long:-3.684943" name="" required readonly/>
+                        <input id="ellipsis" type="text" class="form-control   " placeholder="Ubicacion" value="Lat:40.429452, Long:-3.684943" name=""    readonly/>
                         <p id=""></p>
                       </div>
                     </div>
@@ -704,15 +711,15 @@
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group password">
                         <div  id="show_password5" style="cursor: pointer;" class="btn-eye"><i class="far fa-eye"></i></div>
-                        <input id="password5" type="password" class="form-control required" placeholder="Contraseña" value="" name="contraseña" required/>
+                        <input id="password5" type="password" class="form-control " placeholder="Contraseña" value="" name="contraseña"   />
                         <!-- <input  type="checkbox" /> Mostrar contraseña -->
                       </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
                       <div class="form-group password">
                         <div id="show_password6" style="cursor: pointer;"  class="btn-eye"><i class="far fa-eye"></i></div>
-                        <input  id="password6" type="password" class="form-control required" placeholder="Confirmar contraseña" value=""                        
-                          name="confirmarContraseña" required/>                        
+                        <input  id="password6" type="password" class="form-control " placeholder="Confirmar contraseña" value=""                        
+                          name="confirmarContraseña" />                        
                           <p id="pconfirmarContraseña"></p>
                       </div>
                     </div>
@@ -725,7 +732,8 @@
                   </div>
                 </div>
                 <div class="col-12 d-flex justify-content-center">
-                  <button type="submit" class="btn mx-2  btnback w-auto" id="backlogin2">Volver al login</button>
+                    
+                  <label type="submit" class="btn mx-2  btnback w-auto" id="">Volver al login</label>
                   <button type="submit" class="btn mx-2  btnback w-auto" id="registrarRestaurante">
                     Registrar</button>
                 </div>
