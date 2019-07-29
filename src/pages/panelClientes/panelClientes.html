@@ -1,13 +1,12 @@
 <html lang="en">
 
 <head>
-  <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
-<script type="text/javascript">
-   (function(){
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function () {
       emailjs.init("<YOUR USER ID>");
-   })();
-</script>
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,10 +35,12 @@
 <body>
   <div id="preloader">
     <div id="status"></div>
-</div>
+  </div>
   <!--  Navbar -->
   <nav class="navbar navbar-expand-lg navbar-edit">
-    <a class="navbar-brand" href="index.html"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fplay.PNG?alt=media&token=0fcd0957-74a5-4097-84a2-ccd1cc0e09d9" alt="" class="img-logo"></a>
+    <a class="navbar-brand" href="index.html"><img
+        src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fplay.PNG?alt=media&token=0fcd0957-74a5-4097-84a2-ccd1cc0e09d9"
+        alt="" class="img-logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-bars"></i>
@@ -47,7 +48,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-      <!--   <li class="nav-item active">
+        <!--   <li class="nav-item active">
           <a class="nav-link" href="#">¿Quienes somos?</a>
         </li>
         <li class="nav-item">
@@ -67,7 +68,7 @@
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="#">Editar contraseña</a>
             <a class="dropdown-item" href="#">Cambiar imagen</a>
-            <a class="dropdown-item cerrarsesion" >Cerrar sesión</a>
+            <a class="dropdown-item cerrarsesion">Cerrar sesión</a>
           </div>
         </div>
         <!-- <li class="nav-item login">
@@ -122,16 +123,17 @@
           <div class="col-lg-3 col-md-4 col-12">
             <div class="panel">
               <h5 class="title">Panel</h5>
-              <div class="price-status"  data-toggle="modal" data-target="#modal-saldo">
+              <div class="price-status" data-toggle="modal" data-target="#modal-saldo">
                 <p>Tu saldo</p>
                 <h5 id="saldoCliente"></h5>
-                <img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fbalances.png?alt=media&token=ab343f63-92f7-4924-8983-836aa74c9483" />
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fbalances.png?alt=media&token=ab343f63-92f7-4924-8983-836aa74c9483" />
               </div>
               <ul>
-                <li><a href="#" id="platos-show"><i class="fas fa-home mr-2" ></i>Restaurantes</a></li>
+                <li><a href="#" id="platos-show"><i class="fas fa-home mr-2"></i>Restaurantes</a></li>
                 <li> <a href="#" data-toggle="modal" data-target="#modal-pago">
-                  <i class="far fa-credit-card mr-2"></i>Recargar saldo <i class="fas fa-chevron-right right"></i>
-                </a>
+                    <i class="far fa-credit-card mr-2"></i>Recargar saldo <i class="fas fa-chevron-right right"></i>
+                  </a>
                   <!-- <div class="dropright">
                    
 
@@ -156,18 +158,18 @@
                     </div>
                   </div> -->
                 </li>
-                <li><a href="#"  id="historial-show"><i class="far fa-clock mr-2"></i>Historial de consumo</a></li>
-<!--                 <li><a href="#"><i class="fas fa-cog mr-2"></i>Configuración</a></li>
+                <li><a href="#" id="historial-show"><i class="far fa-clock mr-2"></i>Historial de consumo</a></li>
+                <!--                 <li><a href="#"><i class="fas fa-cog mr-2"></i>Configuración</a></li>
                 <li><a href="#"><i class="fas fa-sign-out-alt mr-2"></i>Salir</a></li> -->
               </ul>
             </div>
           </div>
           <div class="col-lg-9 col-md-8 col-12">
             <div id="div-platos">
-                <div class="row" id="tarjetaPlatoCliente" >
-                </div>
+              <div class="row" id="tarjetaPlatoCliente">
+              </div>
             </div>
-           
+
             <div id="historial_cliente" style="display: none;">
               <div class="historial-cliente">
                 <h5 class="title">Historial de consumo</h5>
@@ -184,7 +186,7 @@
                         </tr>
                       </thead>
                       <tbody id="historialClientePlatos">
-                       
+
                       </tbody>
                     </table>
                   </div>
@@ -192,11 +194,13 @@
                     <div class="row">
                       <div class="col-12">
                         <ul class="pagination">
-                          <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a></li>
+                          <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a>
+                          </li>
                           <li class="page-item"><a class="page-link" href="#">1</a></li>
                           <li class="page-item"><a class="page-link" href="#">2</a></li>
                           <li class="page-item"><a class="page-link" href="#">3</a></li>
-                          <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a></li>
+                          <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -269,74 +273,75 @@
   <!-- Modales Ver detalles -->
 
   <div id="modalRestauranteDetalle">
-    <div class='modal fade' id='modal-detalles-plato' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel'aria-hidden='true'>
-        <div class='modal-dialog modal-lg modal-base' role='document'>
-          <div class='modal-content'>
-            <div class='modal-header'>
-             <h5 class='modal-title' id='exampleModalLabel'>Detalles</h5>
-              <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                <span aria-hidden='true'>&times;</span>
-              </button>
-            </div>
-            <div class='modal-body'>
-              <div class='show-details'>
-                <div class='row border'>
-                  <div class='col-sm-5 col-md-5 col-12'>
-                    <div class='detail-img'>
-                       <img src='/src/assets/image/platos/plato1.jpg' >
-                    </div>
+    <div class='modal fade' id='modal-detalles-plato' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel'
+      aria-hidden='true'>
+      <div class='modal-dialog modal-lg modal-base' role='document'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <h5 class='modal-title' id='exampleModalLabel'>Detalles</h5>
+            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+              <span aria-hidden='true'>&times;</span>
+            </button>
+          </div>
+          <div class='modal-body'>
+            <div class='show-details'>
+              <div class='row border'>
+                <div class='col-sm-5 col-md-5 col-12'>
+                  <div class='detail-img'>
+                    <img src='/src/assets/image/platos/plato1.jpg'>
                   </div>
-                 <div class='col-sm-7 col-md-7 col-12'>
-                    <div class='form-group d-lg-flex'>
-                      <label class="col-sm-12 col-md-12 col-lg-6">Nombre Restaurante</label>
-                     <p class="col-sm-12 col-md-12 col-lg-6" id="resName"></p>
-                    </div>
-                    <div class='form-group d-lg-flex'>
-                      <label class="col-sm-12 col-md-12 col-lg-6 col-12">Correo</label>
-                      <p class="col-sm-12 col-md-12 col-lg-6" id="direccionCorreo"></p>
-                    </div>
-                    <div class='form-group d-lg-flex'>
-                      <label class="col-sm-12 col-md-12 col-lg-6 col-12">Pais</label>
-                      <p class="col-sm-12 col-md-12 col-lg-6" id="direccionPais"></p>
-                    </div>
-                    <div class='form-group d-lg-flex'>
-                      <label class="col-sm-12 col-md-12 col-lg-6 col-12">Direccion</label>
-                      <p class="col-sm-12 col-md-12 col-lg-6" id="direccionRestaurante"></p>
-                    </div>
-                    <div class='form-group d-lg-flex'>
-                      <label class="col-sm-12 col-md-12 col-lg-6 col-12">Telefono</label>
-                      <p class="col-sm-12 col-md-12 col-lg-6" id="direccionTelefono"></p>
-                    </div>
+                </div>
+                <div class='col-sm-7 col-md-7 col-12'>
+                  <div class='form-group d-lg-flex'>
+                    <label class="col-sm-12 col-md-12 col-lg-6">Nombre Restaurante</label>
+                    <p class="col-sm-12 col-md-12 col-lg-6" id="resName"></p>
                   </div>
-                   <!--   <div class='col-sm-12 col-12'>
+                  <div class='form-group d-lg-flex'>
+                    <label class="col-sm-12 col-md-12 col-lg-6 col-12">Correo</label>
+                    <p class="col-sm-12 col-md-12 col-lg-6" id="direccionCorreo"></p>
+                  </div>
+                  <div class='form-group d-lg-flex'>
+                    <label class="col-sm-12 col-md-12 col-lg-6 col-12">Pais</label>
+                    <p class="col-sm-12 col-md-12 col-lg-6" id="direccionPais"></p>
+                  </div>
+                  <div class='form-group d-lg-flex'>
+                    <label class="col-sm-12 col-md-12 col-lg-6 col-12">Direccion</label>
+                    <p class="col-sm-12 col-md-12 col-lg-6" id="direccionRestaurante"></p>
+                  </div>
+                  <div class='form-group d-lg-flex'>
+                    <label class="col-sm-12 col-md-12 col-lg-6 col-12">Telefono</label>
+                    <p class="col-sm-12 col-md-12 col-lg-6" id="direccionTelefono"></p>
+                  </div>
+                </div>
+                <!--   <div class='col-sm-12 col-12'>
                     <div class='form-group'>
                       <label>Descripción</label>
                       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum dicta accusantium aperiam cum atque quasi deserunt quo enim fugit. Voluptatibus doloribus delectus velit possimus beatae, accusamus similique tenetur quia nesciunt?</p>
                     </div>
                   </div> -->
-                </div>
-                 <div class="row">
-                  <div class="col-sm-12 col-12">
-                    <div class="box-table">
-                      <div class="row d-flex align-items-center py-4">
-                        <div class="col-md-8 col-sm-6 col-6">
-                          <h2 class="title m-0">Platos</h2>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-6">
-                          <div class="form-group">
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option value="" selected disabled>Buscar..</option>
-                              <option>Cena</option>
-                            </select>
-                          </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 col-12">
+                  <div class="box-table">
+                    <div class="row d-flex align-items-center py-4">
+                      <div class="col-md-8 col-sm-6 col-6">
+                        <h2 class="title m-0">Platos</h2>
+                      </div>
+                      <div class="col-md-4 col-sm-6 col-6">
+                        <div class="form-group">
+                          <select class="form-control" id="exampleFormControlSelect1">
+                            <option value="" selected disabled>Buscar..</option>
+                            <option>Cena</option>
+                          </select>
                         </div>
                       </div>
-                      <div class="box-plates">
-                          <div class="row" id="tablaPlatos">
-                        </div>
+                    </div>
+                    <div class="box-plates">
+                      <div class="row" id="tablaPlatos">
                       </div>
+                    </div>
 
-                     <!--  <div class="table-responsive">
+                    <!--  <div class="table-responsive">
                         <table class="table">
                           <thead class="thead-blue">
                             <tr>
@@ -369,17 +374,17 @@
                           </div>
                         </div>
                       </div> -->
-                    </div>
                   </div>
-                 </div>
+                </div>
               </div>
             </div>
-            <div class='modal-footer'>
-              <button type='button' class='btn edit' data-dismiss='modal'>Salir</button>
-            </div>
           </div>
-         </div>
+          <div class='modal-footer'>
+            <button type='button' class='btn edit' data-dismiss='modal'>Salir</button>
+          </div>
+        </div>
       </div>
+    </div>
   </div>
   <div class="modal fade" id="modal-detalles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -513,28 +518,28 @@
   </div>
   <!-- Modal comprar -->
   <div class="modal fade" id="modal-comprar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-base buy-edit" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Atención</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="eliminar" >
-          <p>¿Estas seguro que desea comprar este plato ?</p>
-          <p class="nombrePlato edit"> </p>
+    aria-hidden="true">
+    <div class="modal-dialog modal-base buy-edit" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Atención</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn edit" data-dismiss="modal">Cancelar</button>
-       <div id="botonComprar" ></div>
+        <div class="modal-body">
+          <div class="eliminar">
+            <p>¿Estas seguro que desea comprar este plato ?</p>
+            <p class="nombrePlato edit"> </p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn edit" data-dismiss="modal">Cancelar</button>
+          <div id="botonComprar"></div>
+        </div>
       </div>
     </div>
   </div>
-</div>
   <div class="modal fade" id="modal-eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-base modal-sm" role="document">
@@ -557,7 +562,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="modal fade" id="modal-editar-beneficio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-base modal-sm" role="document">
@@ -613,10 +618,10 @@
   </div>
   <div class="modal fade" id="modal-pago" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    
+
     <div class="modal-dialog modal-base md" role="document">
-      <div class="modal-content" >
-          
+      <div class="modal-content">
+
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Recarga Saldo</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -624,216 +629,220 @@
           </button>
         </div>
         <form id="recargaSaldoCliente">
-        <div class="modal-body pago">
-          <div class="box-pago register-form ">              
-          <ul class="nav justify-content-center navtab-edit">
-            <li class="nav-item">
-              <a class="nav-link active" href="#first-tab" data-toggle="tab">Tarjetas de crédito</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#second-tab" data-toggle="tab">Transferencia</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#third-tab" data-toggle="tab">Facturación mensual</a>
-            </li>
-          </ul>
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="first-tab" role="tabpanel" aria-labelledby="first-tab">
-              <div class="box-tarjetas mt-5" id="radio-style">
-                <ul>
-                  <li>Selecciona tipo de Trajeta
-                    <input class="radio required" type="radio" id="radio1" name="tarjetaCredito" value="visa" />
-                    <label class="radio-style" for="radio1"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fcard1.png?alt=media&token=443a536b-e1ee-4a77-9406-b6aae6287aae" /></label>
-                  </li>
-                  <li>
-                    <input class="radio required" type="radio" id="radio2" name="tarjetaCredito" value="master" />
-                    <label class="radio-style" for="radio2"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fcard2.jpg?alt=media&token=84381cb3-5a85-4153-877b-d0b7ff41da70" /></label>
-                  </li>
-                </ul>
-              </div>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group">
-                    <label for="">Nombre del titular</label>
-                    <input type="text" class="form-control " name="nombreTitular" >
+          <div class="modal-body pago">
+            <div class="box-pago register-form ">
+              <ul class="nav justify-content-center navtab-edit">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#first-tab" data-toggle="tab">Tarjetas crédito</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#second-tab" data-toggle="tab">Transferencia</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#third-tab" data-toggle="tab">Facturación mensual</a>
+                </li>
+              </ul>
+              <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="first-tab" role="tabpanel" aria-labelledby="first-tab">
+                  <div class="box-tarjetas mt-5" id="radio-style">
+                    seleccionar tarjeta
+                    <ul>
+                      <li>
+                        <input class="radio required" type="radio" id="radio1" name="tarjetaCredito" value="visa" />
+                        <label class="radio-style" for="radio1"><img
+                            src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fcard1.png?alt=media&token=443a536b-e1ee-4a77-9406-b6aae6287aae" /></label>
+                      </li>
+                      <li>
+                        <input class="radio required" type="radio" id="radio2" name="tarjetaCredito" value="master" />
+                        <label class="radio-style" for="radio2"><img
+                            src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fcard2.jpg?alt=media&token=84381cb3-5a85-4153-877b-d0b7ff41da70" /></label>
+                      </li>
+                    </ul>
                   </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-group">
-                      <label for="">Número de tarjeta</label>
-                      <input type="text" class="form-control " name="NumeroTarjeta" >
-                  </div>
-                </div>
-                <div class="col-12">
-                  <div class="form-group">
-                    <label for="">Fecha de expiración</label>
-                    <div class="row">
-                      <div class="col-6">
-                          <input type="date" class="form-control " name="fechaExp" >
-                      </div>
-                      <div class="col-6">
-                          <input type="date" class="form-control">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label for="">Nombre del titular</label>
+                        <input type="text" class="form-control " name="nombreTitular">
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div class="col-12">
-                  <div class="form-group">
-                    <label for="">Código de seguridad</label>
-                    <div class="row">
-                      <div class="col-4">
-                          <input type="text" class="form-control required" name="codigoSeguridad" >
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label for="">Número de tarjeta</label>
+                        <input type="text" class="form-control " name="NumeroTarjeta">
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div class="col-12">
-                  <div class="form-group">
-                    <label for="">Monto</label>
-                    <div class="row">
-                      <div class="col-4">
-                          <input type="text" class="form-control required" name="montoRecargar" required>
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label for="">Fecha de expiración</label>
+                        <div class="row">
+                          <div class="col-6">
+                            <input type="date" class="form-control " name="fechaExp">
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div class="col-12 my-3">
-                  <button id="recargarSaldoCliente" type="button" class="btn btn-aceptar align">Recargar Saldo</button>
-                </div>
-             <!--    <div class="col-12">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label for="">Código de seguridad</label>
+                        <div class="row">
+                          <div class="col-4">
+                            <input type="text" class="form-control required" name="codigoSeguridad">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label for="">Monto</label>
+                        <div class="row">
+                          <div class="col-4">
+                            <input type="text" class="form-control required" name="montoRecargar" required>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 my-3">
+                      <button id="recargarSaldoCliente" type="button" class="btn btn-aceptar align">Recargar
+                        Saldo</button>
+                    </div>
+                    <!--    <div class="col-12">
                   <p class="description-text"></p>
                 </div> -->
-              </div>
-            </div>
-            <div class="tab-pane fade" id="second-tab" role="tabpanel" aria-labelledby="profile-tab">
-              <div class="mt-5">
-                <div class="row">
-                  <div class="col-6 col-sm-6">
-                    <div class="form-group">
-                      <label for="">Banco</label>
-                      <input type="text" class="form-control " name="nombreTitular" >
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="second-tab" role="tabpanel" aria-labelledby="profile-tab">
+                  <div class="mt-5">
+                    <div class="row">
+                      <div class="col-6 col-sm-6">
+                        <div class="form-group">
+                          <label for="">Banco</label>
+                          <input type="text" class="form-control " name="nombreTitular">
+                        </div>
+                      </div>
+                      <div class="col-6 col-sm-6">
+                        <div class="form-group">
+                          <label for="">Número de Transferencia</label>
+                          <input type="number" class="form-control " name="NumeroTarjeta">
+                        </div>
+                      </div>
+                      <div class="col-6 col-sm-6">
+                        <div class="form-group">
+                          <label for="">Monto</label>
+                          <input type="number" class="form-control " name="NumeroTarjeta">
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <button class="btn btn-aceptar">Transferir</button>
+                      </div>
                     </div>
                   </div>
-                  <div class="col-6 col-sm-6">
-                    <div class="form-group">
-                        <label for="">Número de Transferencia</label>
-                        <input type="number" class="form-control " name="NumeroTarjeta" >
+                </div>
+                <div class="tab-pane fade" id="third-tab" role="tabpanel" aria-labelledby="contact-tab">
+                  <div class="mt-5">
+                    <div class="col-12">
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                        <label class="custom-control-label" for="customCheck1">¿Desea tener facturación mensual?</label>
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-6 col-sm-6">
-                    <div class="form-group">
-                        <label for="">Monto</label>
-                        <input type="number" class="form-control " name="NumeroTarjeta" >
+                    <div class="col-12">
+                      <button class="btn btn-aceptar">Aceptar</button>
                     </div>
-                  </div>
-                  <div class="col-12">
-                    <button class="btn btn-aceptar">Transferir</button>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="tab-pane fade" id="third-tab" role="tabpanel" aria-labelledby="contact-tab">
-              <div class="mt-5">
-                <div class="col-12">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                    <label class="custom-control-label" for="customCheck1">¿Desea tener facturación mensual?</label>
-                  </div>
-                </div>
-                <div class="col-12">
-                  <button class="btn btn-aceptar">Aceptar</button>
-                </div>
-              </div>
+
             </div>
           </div>
-           
-          </div>
-        </div>
-      </form>
+        </form>
       </div>
     </div>
   </div>
   <div id="modalVerificacionCompra">
-      <div class='modal fade' id='modalVerificacionCompra' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel'aria-hidden='true'>
-          <div class='modal-dialog modal-base' role='document'>
-            <div class='modal-content'>
-              <div class='modal-header'>
-               <h5 class='modal-title' id='exampleModalLabel'>Detalles</h5>
-                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                  <span aria-hidden='true'>&times;</span>
-                </button>
-              </div>
-              <div class='modal-body'>
-                <div class='show-details'>
-                  <div class='row'>
-                    <div class='col-sm-12 col-12'>
-                      <div class='detail-img'>
-                         <img src='/src/assets/image/platos/plato1.jpg' >
-                      </div>
-                    </div>
-                   <div class='col-sm-6 col-12'>
-                      <div class='form-group'>
-                        <label >Nombre Restaurante</label>
-                       <p id="resName"></p>
-                      </div>
-                    </div>                  
-                    <div class='col-sm-12 col-12'>
-                      <div class='form-group'>
-                        <label>Descripción</label>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum dicta accusantium aperiam cum atque quasi deserunt quo enim fugit. Voluptatibus doloribus delectus velit possimus beatae, accusamus similique tenetur quia nesciunt?</p>
-                      </div>
-                    </div>
-                  
+    <div class='modal fade' id='modalVerificacionCompra' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel'
+      aria-hidden='true'>
+      <div class='modal-dialog modal-base' role='document'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <h5 class='modal-title' id='exampleModalLabel'>Detalles</h5>
+            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+              <span aria-hidden='true'>&times;</span>
+            </button>
+          </div>
+          <div class='modal-body'>
+            <div class='show-details'>
+              <div class='row'>
+                <div class='col-sm-12 col-12'>
+                  <div class='detail-img'>
+                    <img src='/src/assets/image/platos/plato1.jpg'>
                   </div>
                 </div>
-              </div>
-              <div class='modal-footer'>
-                <button type='button' class='btn edit' data-dismiss='modal'>Salir</button>
+                <div class='col-sm-6 col-12'>
+                  <div class='form-group'>
+                    <label>Nombre Restaurante</label>
+                    <p id="resName"></p>
+                  </div>
+                </div>
+                <div class='col-sm-12 col-12'>
+                  <div class='form-group'>
+                    <label>Descripción</label>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum dicta accusantium aperiam cum
+                      atque quasi deserunt quo enim fugit. Voluptatibus doloribus delectus velit possimus beatae,
+                      accusamus similique tenetur quia nesciunt?</p>
+                  </div>
+                </div>
+
               </div>
             </div>
-           </div>
+          </div>
+          <div class='modal-footer'>
+            <button type='button' class='btn edit' data-dismiss='modal'>Salir</button>
+          </div>
         </div>
+      </div>
     </div>
-/////////////////////////////////////////
-    <div class="modal fade" id="modalPagoSinPlato" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  </div>
+  /////////////////////////////////////////
+  <div class="modal fade" id="modalPagoSinPlato" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    
+
     <div class="modal-dialog modal-base" role="document">
-      <div class="modal-content" >
-          <form id="recargaplaraRestaurante">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Transferir a Restaurante</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form id="recargaSaldoCliente">
-        <div class="modal-body pago">            
-        
-                <div class="form-group">
-                  <label for="">Nombre del Restaurante</label>
-                  <input type="text" class="form-control " name="nombreTitular" id="nombreRestaurantePagar"  disabled>
-                </div>
+      <div class="modal-content">
+        <form id="recargaplaraRestaurante">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Transferir a Restaurante</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form id="recargaSaldoCliente">
+            <div class="modal-body pago">
+
+              <div class="form-group">
+                <label for="">Nombre del Restaurante</label>
+                <input type="text" class="form-control " name="nombreTitular" id="nombreRestaurantePagar" disabled>
               </div>
-              <div class="col-6">
-                <div class="form-group">
-                    <label for="">Monto</label>
-                    <p id="obligadoMonto" ></p>
-                    <input type="number" class="form-control " name="monto" >
-                </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="">Monto</label>
+                <p id="obligadoMonto"></p>
+                <input type="number" class="form-control " name="monto">
               </div>
-        
-        <div class="modal-footer">
-          <button id="pagaryya" type="button" class="btn primary align">Pagar </button>
-        </div>
-      </form>
+            </div>
+
+            <div class="modal-footer">
+              <button id="pagaryya" type="button" class="btn primary align">Pagar </button>
+            </div>
+          </form>
       </div>
     </div>
   </div>
 
 </body>
 <div class="modal fade" id="modal-saldo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
+  aria-hidden="true">
   <div class="modal-dialog modal-base modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -847,13 +856,13 @@ aria-hidden="true">
           <div class="col-md-12 col-12">
             <div class="form-group cuenta">
               <label for="exampleInputEmail1">Beneficio</label>
-                <h5 class="text-cuenta" id="saldoCuenta1">23 US</h5>
+              <h5 class="text-cuenta" id="saldoCuenta1">23 US</h5>
             </div>
           </div>
           <div class="col-md-12 col-12">
             <div class="form-group cuenta">
               <label for="exampleInputEmail1">Cuenta personal</label>
-                <h5 class="text-cuenta" id="saldoCuenta2">23 US</h5>
+              <h5 class="text-cuenta" id="saldoCuenta2">23 US</h5>
             </div>
           </div>
         </div>
@@ -863,7 +872,7 @@ aria-hidden="true">
       </div>
     </div>
   </div>
-  </div>
+</div>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
   integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 

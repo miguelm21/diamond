@@ -271,18 +271,20 @@ function recuperarNOmbreEmpresa() {
     var sesionjson = sessionStorage.getItem("data");
 
     var sesion = JSON.parse(sesionjson);
-   //  console.log(sesion);
+    //console.log(sesion);
 
     var nombreEmpresa = sesion.empresa.nombreEmpresa;
     var rutaImagen = sesion.empresa.rutaImagen;
     var storageRef = firebase.storage().ref();
     var mountainsRef = storageRef.child("");
-    mountainsRef.child(rutaImagen).getDownloadURL().then(function (url) {
-     //  console.log(url);
-      $('#fotoEmpresa').append("'<img src='" + url + "'</span>'");
+console.log(rutaImagen);
+
+   // mountainsRef.child(rutaImagen).getDownloadURL().then(function (url) {
+     // console.log(nombreEmpresa);
+     // $('#fotoEmpresa').append("'<img src='" + url + "'</span>'");
       $('#nombreEmpresa').append("<span>" + nombreEmpresa + "</span>");
 
-    })
+    //})
   });
 } recuperarNOmbreEmpresa()
 
@@ -469,6 +471,7 @@ function configuracionEmpresa() {
      
       //////////////////////imagen         
       var fotoval = document.getElementById('conLogoEmpresa');
+      //console.log(fotoval.files[0]);      
       var foto = new FileReader();
       foto.onload = function (e) {
         var file = (e.target.result);
