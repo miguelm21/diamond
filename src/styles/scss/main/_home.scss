@@ -14,6 +14,32 @@
     }
 }
 
+.form-group.location{
+    position: relative;
+    
+    .location{
+        color: $gray;
+        position: absolute;
+        right: 10px;
+        border: none;
+        box-shadow: none;
+        top: 0px;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 18px;
+        outline: none;
+
+    }
+    input{
+        height: 30px;
+        padding: 0 10px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 85%;
+    }
+}
+
 .pointer{
     cursor: pointer;
   }

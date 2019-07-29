@@ -614,7 +614,7 @@
   <div class="modal fade" id="modal-pago" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     
-    <div class="modal-dialog modal-base" role="document">
+    <div class="modal-dialog modal-base md" role="document">
       <div class="modal-content" >
           
         <div class="modal-header">
@@ -625,75 +625,129 @@
         </div>
         <form id="recargaSaldoCliente">
         <div class="modal-body pago">
-          <div class="box-pago register-form">
-              <h5 class="title">Tarjetas de crédito</h5>
-                
-            <div class="box-tarjetas " id="radio-style">
-              <ul>
-                <li>
-                  <input class="radio required" type="radio" id="radio1" name="tarjetaCredito" value="visa" />
-                  <label class="radio-style" for="radio1"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fcard1.png?alt=media&token=443a536b-e1ee-4a77-9406-b6aae6287aae" /></label>
-                </li>
-                <li>
-                  <input class="radio required" type="radio" id="radio2" name="tarjetaCredito" value="master" />
-                  <label class="radio-style" for="radio2"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fcard2.jpg?alt=media&token=84381cb3-5a85-4153-877b-d0b7ff41da70" /></label>
-                </li>
-              </ul>
+          <div class="box-pago register-form ">              
+          <ul class="nav justify-content-center navtab-edit">
+            <li class="nav-item">
+              <a class="nav-link active" href="#first-tab" data-toggle="tab">Tarjetas de crédito</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#second-tab" data-toggle="tab">Transferencia</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#third-tab" data-toggle="tab">Facturación mensual</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="first-tab" role="tabpanel" aria-labelledby="first-tab">
+              <div class="box-tarjetas mt-5" id="radio-style">
+                <ul>
+                  <li>
+                    <input class="radio required" type="radio" id="radio1" name="tarjetaCredito" value="visa" />
+                    <label class="radio-style" for="radio1"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fcard1.png?alt=media&token=443a536b-e1ee-4a77-9406-b6aae6287aae" /></label>
+                  </li>
+                  <li>
+                    <input class="radio required" type="radio" id="radio2" name="tarjetaCredito" value="master" />
+                    <label class="radio-style" for="radio2"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fcard2.jpg?alt=media&token=84381cb3-5a85-4153-877b-d0b7ff41da70" /></label>
+                  </li>
+                </ul>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="">Nombre del titular</label>
+                    <input type="text" class="form-control " name="nombreTitular" >
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                      <label for="">Número de tarjeta</label>
+                      <input type="text" class="form-control " name="NumeroTarjeta" >
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="">Fecha de expiración</label>
+                    <div class="row">
+                      <div class="col-6">
+                          <input type="date" class="form-control " name="fechaExp" >
+                      </div>
+                      <div class="col-6">
+                          <input type="date" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="">Código de seguridad</label>
+                    <div class="row">
+                      <div class="col-4">
+                          <input type="text" class="form-control required" name="codigoSeguridad" >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="">Monto</label>
+                    <div class="row">
+                      <div class="col-4">
+                          <input type="text" class="form-control required" name="montoRecargar" required>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 my-3">
+                  <button id="recargarSaldoCliente" type="button" class="btn btn-aceptar align">Recargar Saldo</button>
+                </div>
+             <!--    <div class="col-12">
+                  <p class="description-text"></p>
+                </div> -->
+              </div>
             </div>
-            <div class="row">
-              <div class="col-6">
-                <div class="form-group">
-                  <label for="">Nombre del titular</label>
-                  <input type="text" class="form-control " name="nombreTitular" >
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="form-group">
-                    <label for="">Número de tarjeta</label>
-                    <input type="text" class="form-control " name="NumeroTarjeta" >
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-group">
-                  <label for="">Fecha de expiración</label>
-                  <div class="row">
-                    <div class="col-6">
-                        <input type="date" class="form-control " name="fechaExp" >
+            <div class="tab-pane fade" id="second-tab" role="tabpanel" aria-labelledby="profile-tab">
+              <div class="mt-5">
+                <div class="row">
+                  <div class="col-6 col-sm-6">
+                    <div class="form-group">
+                      <label for="">Nombre</label>
+                      <input type="text" class="form-control " name="nombreTitular" >
                     </div>
-                    <div class="col-6">
-                        <input type="date" class="form-control">
+                  </div>
+                  <div class="col-6 col-sm-6">
+                    <div class="form-group">
+                        <label for="">Número de Transferencia</label>
+                        <input type="number" class="form-control " name="NumeroTarjeta" >
                     </div>
+                  </div>
+                  <div class="col-6 col-sm-6">
+                    <div class="form-group">
+                        <label for="">Monto</label>
+                        <input type="number" class="form-control " name="NumeroTarjeta" >
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <button class="btn btn-aceptar">Transferir</button>
                   </div>
                 </div>
               </div>
-              <div class="col-12">
-                <div class="form-group">
-                  <label for="">Código de seguridad</label>
-                  <div class="row">
-                    <div class="col-4">
-                        <input type="text" class="form-control required" name="codigoSeguridad" >
-                    </div>
+            </div>
+            <div class="tab-pane fade" id="third-tab" role="tabpanel" aria-labelledby="contact-tab">
+              <div class="mt-5">
+                <div class="col-12">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                    <label class="custom-control-label" for="customCheck1">¿Desea tener facturación mensual?</label>
                   </div>
                 </div>
-              </div>
-              <div class="col-12">
-                <div class="form-group">
-                  <label for="">Monto</label>
-                  <div class="row">
-                    <div class="col-4">
-                        <input type="text" class="form-control required" name="montoRecargar" required>
-                    </div>
-                  </div>
+                <div class="col-12">
+                  <button class="btn btn-aceptar">Aceptar</button>
                 </div>
               </div>
-           <!--    <div class="col-12">
-                <p class="description-text"></p>
-              </div> -->
             </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button id="recargarSaldoCliente" type="button" class="btn primary align">Recargar Saldo</button>
+           
+          </div>
         </div>
       </form>
       </div>

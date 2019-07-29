@@ -452,6 +452,7 @@
 			}
 		}
 
+
 		label{
 			color: $gray;
 			margin-bottom: 0;
@@ -498,9 +499,19 @@
 
 	}
 
+	.btn-aceptar{
+		background-color: $primary;
+		color: #fff;
+		margin: 30px auto 0;
+		display: block;
 
+	}
 }	
 /* Modal buy */
+
+.modal-dialog.md{
+	max-width: 680px;
+}
 
 .modal-dialog.buy-edit{
 	max-width: 420px;
@@ -531,4 +542,23 @@
 		font-size: 18px;
 	}
 }
+}
+
+.navtab-edit{
+	li{
+		width: 33.3%;
+		margin-left: 0;
+		margin-right: 0;
+		padding: 5px;
+		text-align: center;	
+		a{
+			color: $gray;
+		}
+		a.active{
+			border-bottom: 1px solid $primary;
+		}
+	}
+
+
+
 }

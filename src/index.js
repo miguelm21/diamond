@@ -119,6 +119,19 @@ function hideLoading() {
   $('.modal-backdrop').remove();
 }
 
+
+/* Ellipsis input */
+// making the input editable
+$('#ellipsis').on('click', function() {
+  $(this).prop('readonly', '');
+  $(this).focus();
+})
+
+// making the input readonly
+$('#ellipsis').on('blur', function() {
+  $(this).prop('readonly', 'readonly');
+})
+
 firebase.initializeApp(firebaseConfig);
 
 function registroEmpresa() {
