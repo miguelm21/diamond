@@ -717,3 +717,54 @@ function mausepointer() {
     jqon
   });
 }mausepointer()
+
+function recuperarContraseña () {
+  $(document).ready(function () {
+    $('.recuperar').click(function () { 
+    swal("Recuperar contraseña","Escribe tu correo para recuperar tu contraseña",
+    {
+      content: "input",
+      buttons: {
+        cancel:{
+          text: "Cancelar",
+          value: true,
+          visible: true,
+          className: "cancelar",
+          closeModal: true,
+        },
+        confirm: {
+          text: "OK",
+          value: true,
+          visible: true,
+          className: "enviarCorreo",
+          closeModal: true,
+        },
+      
+      },
+    }
+    ).then( (value)=>{swal('Hemos enviado un correo con su contraseña'),value})
+   
+      
+ 
+
+    });
+  });
+}recuperarContraseña()
+
+
+function enviarContraseña() {
+  $(document).ready(function () {
+    $(document.body).on('click','.enviarCorreo', function () {
+   var correo= $('.swal-content__input').val();
+      
+      enviarContraseña(correo,correo) ;
+      console.log(correo);
+    });
+  });
+}enviarContraseña() 
+
+function enviarCorreo(correoEmpleado, nombreEmpleado) {
+  $(document).ready(function () {
+    emailjs.send('bluediamont', 'template_K6VOnQ26', { 'from_name': correoEmpleado, 'to_name': nombreEmpleado })
+  });
+}
