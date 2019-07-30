@@ -4,12 +4,13 @@
 	/* Banner */
 	
 	.banner {
-	  width: 100%;
-	  height: 300px;
-	  background-image: url("https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/banner.jpg?alt=media&token=ac4211bd-3ae4-4000-acba-2a18869f1984");
-	  background-position: center center;
-	  background-size: cover;
-	  border-bottom: 4px solid $primary;
+		
+		/* background-image: url(https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/banner.jpg?alt=media&token=ac4211bd-3ae4-4000-acba-2a18869f1984); */
+		background-position: center center;
+		background-size: cover;
+		border-bottom: 4px solid #25408F;
+		object-fit: cover;
+		object-position: center;
 	}
 
 	/* promocion section config */
