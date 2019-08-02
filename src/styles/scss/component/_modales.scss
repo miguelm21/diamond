@@ -2,6 +2,11 @@
 	padding-right: 0 !important;
 }
 
+.modal-base.md{
+	max-width: 680px;
+}
+
+
 .modal-base{
 	.modal-content{
 		border-radius: 0;
@@ -431,6 +436,7 @@
 			.title{
 				color: $gray;
 				font-size: 20px;
+				margin-bottom: 20px;
 			}
 			ul{
 				display: flex;
@@ -511,9 +517,6 @@
 }	
 /* Modal buy */
 
-.modal-dialog.md{
-	max-width: 680px;
-}
 
 .modal-dialog.buy-edit{
 	max-width: 420px;
@@ -546,6 +549,7 @@
 }
 }
 
+}
 .navtab-edit{
 	li{
 		width: 33.3%;
@@ -560,7 +564,4 @@
 			border-bottom: 1px solid $primary;
 		}
 	}
-
-
-
-}}
+}

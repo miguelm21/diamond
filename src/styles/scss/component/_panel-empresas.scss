@@ -3,13 +3,17 @@
   margin-top: 72px;
   .box-panel{
 
-    .nav{
+   /*  .nav{
       height: auto;
       padding: 5px 15px;
       border-bottom: 1px solid #ececec;
       border-top: 1px solid #ececec;
       background-color: #e9ecef;
       height: 70px;
+    } */
+
+    .nav{
+      margin-bottom: 30px;
     }
     .header{
       width: 70%;
@@ -100,9 +104,9 @@ Sidebar
   transition: .2s;
 
   @include respond(max-767){
-    position: absolute;
+    position: fixed;
     height: 100%;
-    top: 144px;
+    top: 0;
     z-index: 999;
     width: 0;
   }
@@ -620,7 +624,7 @@ Chev elements
         }
       }
      
-			ul{
+			ul.transf{
 				display: flex;
 				list-style: none;
 				li{
@@ -680,6 +684,21 @@ Chev elements
         color: $green;
         display: none;
       }
+    }
+    
+    .btn-aceptar{
+      background-color: $primary;
+      color: #fff;
+      margin: 30px auto 0;
+      display: block;
+
+    }
+
+    .show_password{
+      position: absolute;
+      top: 35px;
+      color: $gray;
+      right: 15px;
     }
     
   }
@@ -762,4 +781,24 @@ Chev elements
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.menu-re{
+  position: fixed;
+  bottom: 40px;
+  right: 10px;
+  background-color: $primary;
+  border-radius: 50%;
+  width: 60px;
+  color: #fff;
+  height: 60px;
+  display: none;
+  cursor: pointer;
+  &:hover, &:active, &:focus{
+    color: #fff;
+  }
+
+  @include respond(max-767){
+    display: block;
+  }
 }
