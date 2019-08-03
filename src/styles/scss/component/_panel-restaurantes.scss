@@ -357,8 +357,9 @@
               } 
             }
             .nav-edit{
+              justify-content: center;
               li{
-                width: 50%;
+                
                 margin-bottom: 25px;
                 a{
                   text-align: center;
@@ -369,14 +370,14 @@
                   color: $secondary;
                  &:after{
                    content: "";
-                   width: 35%;
+                   width: 50%;
                    height: 2px;
                    display: flex;
                    background-color: $secondary;
                    justify-content: center;
                    text-align: center;
                    margin: auto;
-                   margin-top: 15px;
+                   margin-top: 5px;
                  }
                 }
               }

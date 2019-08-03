@@ -52,6 +52,9 @@ $(document).ready(function () {
     $("nav li").removeClass("active");
     $(this).parent().addClass("active");
     $("nav li a").removeClass("active");
+
+    $('#show-register2').hide();
+    $('#show-register3').hide();
   });
 
   /*show and hide REGISTRO */
@@ -77,6 +80,14 @@ $(document).ready(function () {
   });
 
   /* Panel admin empresas */
+
+  $('#home-fix').click(function(){
+    $('#show-button').show();
+    $('#show-register1').hide();
+    $('#show-register2').hide();
+    $('#show-register3').hide();
+  });
+
 
   $('#registro1').click(function () {
     $('#show-button').hide();
