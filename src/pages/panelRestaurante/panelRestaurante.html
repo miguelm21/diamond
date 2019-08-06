@@ -68,7 +68,7 @@
         </li>
         <li class="nav-item">
           <div class="dropdown text-right edit">
-            <a class="dropdown-toggle option-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="dropdown-toggle option-menu d-flex align-items-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div id="restaurateCara"></div> 
               <span id="nombreRestaurante"></span>
             </a>
@@ -115,10 +115,16 @@
                 <a data-toggle="tab" href="#Historial2" id="show-historial">Historial</a>
                 <!--  <button class="btn" id="add-promocion"><i class="fas fa-plus"></i></button> -->
               </li>
+              <li class="d-flex align-items-center space-between">
+                <a data-toggle="tab" href="#" id="show-transacciones">Transacciones</a>
+              </li>
+              <li class="d-flex align-items-center space-between">
+                <a data-toggle="tab" href="#" id="show-retirar">Recibir dinero</a>
+              </li>
+              <li class="d-flex align-items-center space-between">
+                <a data-toggle="tab" href="#" id="show-config">Configuración del restaurante</a>
+              </li>
             </ul>
-            <br>
-            <br>
-            <br>
             <br>
           </div>
         </div>
@@ -277,6 +283,7 @@
               </div>
             </div>
           </div>
+
           <div class="box-panel  box-register" id="register-chef">
             <h5 class="title">Registrar Chef</h5>
             <div class="form-client">
@@ -411,6 +418,7 @@
                 </form>
               </div>
             </div>
+
           <div class="box-historial" style="display: none;" id="historial-compras">
             <h2 class="title">Historial</h2>
             <ul class="nav nav-pills nav-edit" id="myTab" role="tablist">
@@ -421,14 +429,6 @@
               <li class="nav-item">
                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#second" role="tab" aria-controls="second"
                   aria-selected="false">Atendidos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#third" role="tab" aria-controls="third"
-                  aria-selected="false">Transacciones</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#fourth" role="tab" aria-controls="fourth"
-                  aria-selected="false">Retirar dinero</a>
               </li>
             </ul>
             <div class="tab-content">
@@ -550,131 +550,215 @@
                   </div>
                 </div>
               </div>
-              <div class="tab-pane" id="third" role="tabpanel" aria-labelledby="third-tab">
-                <div class="register-form p-0">
-                    <div class="form-group w-25 ">
-                      <select name="" class="form-control" id="">
-                        <option value="">Dia</option>
-                        <option value="">Semana</option>
-                        <option value="">Mes</option>
-                      </select>
-                    </div>
-                  </div>
-                <div class="box-table">
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead class="thead-blue">
-                        <tr>
-                          <th scope="col">Nombre</th>
-                          <th scope="col">Apellido</th>
-                          <th scope="col">Cedula</th>
-                          <th scope="col">Plato</th>
-                          <th scope="col">Atendido</th>
-                        </tr>
-                      </thead>
-                      <tbody id="">
-                        <tr>
-                          <td>Jose </td>
-                          <td>Bruges</td>
-                          <td>342431</td>
-                          <td>Pabellon criollo</td>
-                          <td>
-                            <span class="btn btn-link status green"><i class="fas fa-times"></i></span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Victor </td>
-                          <td>Camargo</td>
-                          <td>342431</td>
-                          <td>Bandeja paisa</td>
-                          <td>
-                            <span class="btn btn-link status red"><i class="fas fa-check"></i></span>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="pagination-section">
-                    <div class="row">
-                      <div class="col-12">
-                        <ul class="pagination">
-                          <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a>
-                          </li>
-                          <li class="page-item"><a class="page-link" href="#">1</a></li>
-                          <li class="page-item"><a class="page-link" href="#">2</a></li>
-                          <li class="page-item"><a class="page-link" href="#">3</a></li>
-                          <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
-              <div class="tab-pane" id="fourth" role="tabpanel" aria-labelledby="fourth-tab">
-               <div class="register-form p-0">
-                  <div class="form-group w-25 ">
-                    <select name="" class="form-control" id="">
-                      <option value="">Dia</option>
-                      <option value="">Semana</option>
-                      <option value="">Mes</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="box-table">
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead class="thead-blue">
-                        <tr>
-                          <th scope="col">Nombre</th>
-                          <th scope="col">Apellido</th>
-                          <th scope="col">Cedula</th>
-                          <th scope="col">Plato</th>
-                          <th scope="col">Atendido</th>
-                        </tr>
-                      </thead>
-                      <tbody id="">
-                        <tr>
-                          <td>Jose </td>
-                          <td>Bruges</td>
-                          <td>342431</td>
-                          <td>Pabellon criollo</td>
-                          <td>
-                            <span class="btn btn-link status green"><i class="fas fa-times"></i></span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Victor </td>
-                          <td>Camargo</td>
-                          <td>342431</td>
-                          <td>Bandeja paisa</td>
-                          <td>
-                            <span class="btn btn-link status red"><i class="fas fa-check"></i></span>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="pagination-section">
-                    <div class="row">
-                      <div class="col-12">
-                        <ul class="pagination">
-                          <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a>
-                          </li>
-                          <li class="page-item"><a class="page-link" href="#">1</a></li>
-                          <li class="page-item"><a class="page-link" href="#">2</a></li>
-                          <li class="page-item"><a class="page-link" href="#">3</a></li>
-                          <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            </div>
+
+          <div class="box-historial" style="display: none" id="box-transacciones">
+            <h2 class="title">Transacciones</h2>
+            <div class="box-table">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead class="thead-blue">
+                    <tr>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Apellido</th>
+                      <th scope="col">Cedula</th>
+                      <th scope="col">Plato</th>
+                      <th scope="col">Atendido</th>
+                    </tr>
+                  </thead>
+                  <tbody id="">
+                    <tr>
+                      <td>Jose </td>
+                      <td>Bruges</td>
+                      <td>342431</td>
+                      <td>Pabellon criollo</td>
+                      <td>
+                        <span class="btn btn-link status green"><i class="fas fa-times"></i></span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Victor </td>
+                      <td>Camargo</td>
+                      <td>342431</td>
+                      <td>Bandeja paisa</td>
+                      <td>
+                        <span class="btn btn-link status red"><i class="fas fa-check"></i></span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
+              <div class="pagination-section">
+                <div class="row">
+                  <div class="col-12">
+                    <ul class="pagination">
+                      <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+          <div class="box-historial" style="display: none" id="box-retirar">
+            <h2 class="title">Retirar dinero</h2>
+            <div class="box-table">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead class="thead-blue">
+                    <tr>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Apellido</th>
+                      <th scope="col">Cedula</th>
+                      <th scope="col">Plato</th>
+                      <th scope="col">Atendido</th>
+                    </tr>
+                  </thead>
+                  <tbody id="">
+                    <tr>
+                      <td>Jose </td>
+                      <td>Bruges</td>
+                      <td>342431</td>
+                      <td>Pabellon criollo</td>
+                      <td>
+                        <span class="btn btn-link status green"><i class="fas fa-times"></i></span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Victor </td>
+                      <td>Camargo</td>
+                      <td>342431</td>
+                      <td>Bandeja paisa</td>
+                      <td>
+                        <span class="btn btn-link status red"><i class="fas fa-check"></i></span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="pagination-section">
+                <div class="row">
+                  <div class="col-12">
+                    <ul class="pagination">
+                      <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="box-historial" style="display: none" id="box-config">
+            <h2 class="title">Configuración del restaurante</h2>
+              <div class="config-section">
+                <div class="row mt-4">
+                  <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+                    <div class="shedule">
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                        <label class="custom-control-label" for="customCheck1">Lunes</label>
+                      </div>
+                      <div class="form-group">
+                        <input class="form-control" type="time">
+                        <span>-</span>
+                        <input class="form-control" type="time">
+                      </div>
+                    </div>
+                    <div class="shedule">
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck2">
+                        <label class="custom-control-label" for="customCheck2">Martes</label>
+                      </div>
+                      <div class="form-group">
+                        <input class="form-control" type="time">
+                        <span>-</span>
+                        <input class="form-control" type="time">
+                      </div>
+                    </div>
+                    <div class="shedule">
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck3">
+                        <label class="custom-control-label" for="customCheck3">Miercoles</label>
+                      </div>
+                      <div class="form-group">
+                        <input class="form-control" type="time">
+                        <span>-</span>
+                        <input class="form-control" type="time">
+                      </div>
+                    </div>
+                    <div class="shedule">
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck4">
+                        <label class="custom-control-label" for="customCheck4">Jueves</label>
+                      </div>
+                      <div class="form-group">
+                        <input class="form-control" type="time">
+                        <span>-</span>
+                        <input class="form-control" type="time">
+                      </div>
+                    </div>
+                    <div class="shedule">
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck5">
+                        <label class="custom-control-label" for="customCheck5">Viernes</label>
+                      </div>
+                      <div class="form-group">
+                        <input class="form-control" type="time">
+                        <span>-</span>
+                        <input class="form-control" type="time">
+                      </div>
+                    </div>
+                    <div class="shedule">
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck6">
+                        <label class="custom-control-label" for="customCheck6">Sabado</label>
+                      </div>
+                      <div class="form-group">
+                        <input class="form-control" type="time">
+                        <span>-</span>
+                        <input class="form-control" type="time">
+                      </div>
+                    </div>
+                    <div class="shedule">
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck6">
+                        <label class="custom-control-label" for="customCheck6">Domingo</label>
+                      </div>
+                      <div class="form-group">
+                        <input class="form-control" type="time">
+                        <span>-</span>
+                        <input class="form-control" type="time">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-5 col-md-12 col-sm-12 col-12">
+                    <div class="date">
+                      <h5>Dias no habiles</h5>
+                      <div class="form-group mt-4 d-flex">
+                        <input type="date" class="form-control">
+                        <button class="btn"><i class="fas fa-plus"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <button class="btn btn-aceptar">Guardar cambios</button>
+                  </div>
+                </div>
+                </div>
+              </div>
+          </div>
+        </div>
   </section>
 
 
@@ -703,7 +787,7 @@
         <div class="col-sm-3 col-12">
           <h6>Contacto</h6>
           <ul class="footer-links">
-            <li><a href="">Conrtatanos</a></li>
+            <li><a href="">Contactanos</a></li>
             <li><a href="">Contribuciones</a></li>
             <li><a href="">Política de privacidad</a></li>
             <li><a href="">Mapa</a></li>

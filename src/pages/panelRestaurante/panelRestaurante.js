@@ -101,10 +101,16 @@ $(document).ready(function () {
     $('#register-chef').hide();
     $('#historial-compras').hide();
     $('#register-promocion').hide();
+    $('#box-transacciones').hide();
+    $('#box-retirar').hide();
+    $('#box-config').hide();
     $('#registro-platos').show();
     $('#activepanel1').addClass('active');
     $('#activepanel3').removeClass('active');
     $('#show-historial').removeClass('active');
+    $('#show-transacciones').removeClass('active');
+    $('#show-config').removeClass('active');
+    $('#show-recibir').removeClass('active');
   });
   $('#add-chef').click(function () {
     $('#chef2').hide();
@@ -113,8 +119,12 @@ $(document).ready(function () {
     $('#registro-platos').hide();
     $('#historial-compras').hide();
     $('#register-promocion').hide();
+    $('#box-transacciones').hide();
+    $('#box-config').hide();
+    $('#box-retirar').hide();
     $('#register-chef').show();
     $('#activepanel1').removeClass('active');
+    $('#show-config').removeClass('active');
     $('#activepanel3').addClass('active');
     $('#show-historial').removeClass('active');
   });
@@ -125,9 +135,13 @@ $(document).ready(function () {
     $('#registro-platos').hide();
     $('#register-chef').hide();
     $('#historial-compras').hide();
+    $('#box-transacciones').hide();
+    $('#box-config').hide();
+    $('#box-retirar').hide();
     $('#register-promocion').show();
     $('#activepanel1').removeClass('active');
     $('#activepanel3').addClass('active');
+    $('#show-config').removeClass('active');
     $('#show-historial').removeClass('active');
   });
   $('#show-historial').click(function () {
@@ -136,10 +150,14 @@ $(document).ready(function () {
     $('#promocion22').hide();
     $('#registro-platos').hide();
     $('#register-chef').hide();
-    $('#historial-compras').show();
     $('#register-promocion').hide();
+    $('#box-transacciones').hide();
+    $('#box-config').hide();
+    $('#box-retirar').hide();
+    $('#historial-compras').show();
     $('#activepanel1').removeClass('active');
     $('#activepanel3').removeClass('active');
+    $('#show-config').removeClass('active');
     $('#show-historial').addClass('active');
   });
 
@@ -148,6 +166,9 @@ $(document).ready(function () {
     $('#activepanel2').removeClass('active');
     $('#activepanel3').removeClass('active');
     $('#show-historial').removeClass('active');
+    $('#show-transacciones').removeClass('active');
+    $('#show-retirar').removeClass('active');
+    $('#show-config').removeClass('active');
     $(this).addClass('active');
 
     $('#promocion22').hide();
@@ -158,11 +179,15 @@ $(document).ready(function () {
     $('#register-promocion').hide();
     $('#register-chef').hide();
     $('#historial-compras').hide();
+    $('#box-transacciones').hide();
+    $('#box-retirar').hide();
+    $('#box-config').hide();
   });
   $('#activepanel2').click(function () {
     $('#activepanel1').removeClass('active');
     $('#activepanel3').removeClass('active');
     $('#show-historial').removeClass('active');
+    $('#show-config').removeClass('active');
     $(this).addClass('active');
     $('#promocion22').hide();
     $('#platos2').hide();
@@ -172,11 +197,17 @@ $(document).ready(function () {
     $('#register-chef').hide();
     $('#historial-compras').hide();
     $('#register-promocion').hide();
+    $('#box-transacciones').hide();
+    $('#box-retirar').hide();
+    $('#box-config').hide();
   });
   $('#activepanel3').click(function () {
     $('#activepanel1').removeClass('active');
     $('#activepanel2').removeClass('active');
     $('#show-historial').removeClass('active');
+    $('#show-transacciones').removeClass('active');
+    $('#show-retirar').removeClass('active');
+    $('#show-config').removeClass('active');
     $(this).addClass('active');
     $('#chef2').hide();
     $('#platos2').hide();
@@ -186,10 +217,16 @@ $(document).ready(function () {
     $('#register-chef').hide();
     $('#historial-compras').hide();
     $('#register-promocion').hide();
+    $('#box-transacciones').hide();
+    $('#box-retirar').hide();
+    $('#box-config').hide();
   });
   $('#show-historial').click(function () {
     $('#activepanel1').removeClass('active');
     $('#activepanel3').removeClass('active');
+    $('#show-transacciones').removeClass('active');
+    $('#show-retirar').removeClass('active');
+    $('#show-config').removeClass('active');
     $(this).addClass('active');
     $('#chef2').hide();
     $('#platos2').hide();
@@ -198,8 +235,67 @@ $(document).ready(function () {
     $('#registro-platos').hide();
     $('#register-chef').hide();
     $('#register-promocion').hide();
+    $('#box-transacciones').hide();
+    $('#box-retirar').hide();
+    $('#box-config').hide();
   });
-
+  $('#show-transacciones').click(function () {
+    $('#activepanel1').removeClass('active');
+    $('#activepanel3').removeClass('active');
+    $('#show-retirar').removeClass('active');
+    $('#show-historial').removeClass('active');
+    $('#show-config').removeClass('active');
+    $(this).addClass('active');
+    $('#chef2').hide();
+    $('#platos2').hide();
+    $('#promocion22').hide();
+    /* registro platos */
+    $('#registro-platos').hide();
+    $('#register-chef').hide();
+    $('#register-promocion').hide();
+    $('#box-retirar').hide();
+     $('#historial-compras').hide();
+     $('#box-config').hide();
+    $('#box-transacciones').show();
+  });
+  $('#show-retirar').click(function () {
+    $('#activepanel1').removeClass('active');
+    $('#activepanel3').removeClass('active');
+    $('#show-historial').removeClass('active');
+    $('#show-transacciones').removeClass('active');
+    $('#show-config').removeClass('active');
+    $(this).addClass('active');
+    $('#chef2').hide();
+    $('#platos2').hide();
+    $('#promocion22').hide();
+    /* registro platos */
+    $('#registro-platos').hide();
+    $('#register-chef').hide();
+    $('#register-promocion').hide();
+    $('#box-transacciones').hide();
+    $('#historial-compras').hide();
+    $('#box-config').hide();
+    $('#box-retirar').show();
+  });
+  $('#show-config').click(function () {
+    $('#activepanel1').removeClass('active');
+    $('#activepanel3').removeClass('active');
+    $('#show-historial').removeClass('active');
+    $('#show-transacciones').removeClass('active');
+    $('#show-retirar').removeClass('active');
+    $(this).addClass('active');
+    $('#chef2').hide();
+    $('#platos2').hide();
+    $('#promocion22').hide();
+    /* registro platos */
+    $('#registro-platos').hide();
+    $('#register-chef').hide();
+    $('#register-promocion').hide();
+    $('#box-transacciones').hide();
+    $('#historial-compras').hide();
+    $('#box-retirar').hide();
+    $('#box-config').show();
+  });
   function backbutton() {
     $('#show-register1').hide();
     $('#show-register2').hide();

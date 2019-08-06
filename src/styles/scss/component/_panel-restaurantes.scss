@@ -313,16 +313,14 @@
                     background-color: $primary;
                     color: #fff;
                     margin: 15px 10px;
-                    width: 100%;
-                    max-width: 160px;
+                    width: auto;
                  } 
                  .btn-back{
                   background-color: #fff;
                   color: $secondary;
                   border: 1px solid $secondary;
                   margin: 15px 10px;
-                  width: 100%;
-                  max-width: 160px;
+                  width: auto;
                 } 
 
                 .time-to{
@@ -359,7 +357,7 @@
             .nav-edit{
               justify-content: center;
               li{
-                
+                width: 50%;
                 margin-bottom: 25px;
                 a{
                   text-align: center;
@@ -482,6 +480,80 @@
                     }
                   }
                 }
+              }
+            }
+            .config-section{
+                margin-top: 40px;
+
+              .shedule{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 15px;
+
+                .form-group{
+                  display: flex;
+                  align-items: center;
+                  margin-bottom: 0;
+                  span{
+                    color: $gray;
+                    margin: auto 5px;
+                  }
+                  input{
+                    border: none;
+                    border-bottom: 2px solid #c1c1c1;
+                    color: $gray;
+                    margin: auto 5px;
+                    background-color: transparent;
+                    text-align: center;
+                    width: 120px;
+                    border-radius: 0;
+
+                    @include respond(max-767){
+                      width: 70px;
+                    }
+
+                    &:focus{
+                      border-color: $primary;
+                      outline: none;
+                      box-shadow: none;
+                    }
+                  }
+                }
+              }
+              .date{
+                @include respond(tablet){
+                  margin-top: 30px;
+                }
+                @include respond(max-767){
+                  margin-top: 30px;
+                }
+                h5{
+                  color: $gray;
+                  text-align: center;
+                  font-size: 20px;
+                }
+                input{
+                  border: none;
+                  border-bottom: 2px solid #c1c1c1;
+                  color: $gray;
+                  margin: auto 5px;
+                  background-color: transparent;
+                  text-align: center;
+                  border-radius: 0;
+                  width: 100%;
+                  &:focus{
+                    border-color: $primary;
+                    outline: none;
+                    box-shadow: none;
+                  }
+                }
+              }
+              .btn-aceptar{
+                background-color: $primary;
+                color: #fff;
+                display: block;
+                margin: 50px auto;
               }
             }
           }
