@@ -497,7 +497,10 @@ function nombreRestaurante() {
   $(document).ready(function () {
     var data = sessionStorage.getItem('data');
     var sesion = JSON.parse(data);
+    console.log(sesion);
+    
     var nombreRestaurante = sesion.restaurante.nombreRestaurante;
+    $('#restaurateCara').html("<img src='"+ sesion.restaurante.rutaImagenRestaurante +"' ></img>");
     $('#nombreRestaurante').append("<span>" + nombreRestaurante + "</span>");
   });
 } nombreRestaurante()

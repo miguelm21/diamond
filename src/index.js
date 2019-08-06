@@ -162,7 +162,7 @@ function registroEmpresa() {
       if (!direccion) { $('#pdireccion').html('Campo oligatorio'); } else { $('#pdireccion').html('') };
       if (!poblacion) { $('#ppoblacion').html('Campo oligatorio'); } else { $('#ppoblacion').html('') };
       if (!telefono) { $('#ptelefono').html('Campo oligatorio'); } else { $('#ptelefono').html('') };
-      if (!codigoPostal) { $('#pcodigopostal').html('Campo oligatorio'); } else { $('#pnombreEmpcodigopostalpresa').html('') };
+      if (!codigoPostal) { $('#pcodigoPostala').html('Campo oligatorio'); } else { $('#pcodigoPostala').html('') };
       if (!identificacion) { $('#pidentificacion').html('Campo oligatorio'); } else { $('#pidentificacion').html('') };
       if (!contraseña) { $('#pcontraseña').html('Campo oligatorio'); } else { $('#pcontraseña').html('') };
       if (!contraseña2) { $('#pcontraseña2').html('Campo oligatorio'); } else { $('#pcontraseña2').html('') };
@@ -207,7 +207,14 @@ function registroEmpresa() {
                 $('#first').tab('show');
                 backbutton();
               }
-            })
+            });
+            firebase.database().ref('Empresas/' + uid + '/planes/').push().update({
+              "nombrePlan": "Plan Demo",
+              "montoPlan": 15,
+            //  "fechaPlan": fechaPlan
+    
+            });
+
           }, function (error) {
             console.log();
             hideLoading();

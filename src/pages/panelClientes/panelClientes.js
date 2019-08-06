@@ -202,53 +202,58 @@ function RecargarSaldoTarjeta() {
       var data = sessionStorage.getItem('data');
       var sesion = JSON.parse(data);
       var uid = sesion.uid;
-      firebase.database().ref('users/' + uid + "/cuentas").once('value').then(function (snapshot) {
-        var snap = snapshot.val();
-        // console.log(snap.cuentaTotal);
-        var saldoCuenta1 = snap.cuenta2;
 
-        var form = $('#recargaSaldoCliente').serializeArray();
-        console.log(form);
-        var tarjetaCredito = form[0].value;
-        var nombreTitular = form[1].value;
-        var NumeroTarjeta = form[2].value;
-        var fechaExp = form[3].value;
-        var codigoSeguridad = form[4].value;
-        var montoRecargar = form[5].value;
-        var sumaSaldo = parseFloat(montoRecargar) + parseFloat(saldoCuenta1);
+      var form = $('#recargaSaldoCliente').serializeArray();
+     console.log(form);
+      var tarjetaCredito = form[0].value; if (!tarjetaCredito) { $('#ptarjetaCredito').html('Campo Obligatorio'); } else { $('#ptarjetaCredito').html(''); }
+      var nombreTitular = form[1].value; if (!nombreTitular) { $('#pnombreTitular').html('Campo Obligatorio'); } else { $('#pnombreTitular').html(''); }
+      var NumeroTarjeta = form[2].value; if (!NumeroTarjeta) { $('#pNumeroTarjeta').html('Campo Obligatorio'); } else { $('#pNumeroTarjeta').html(''); }
+      var fechaExp = form[3].value; if (!fechaExp) { $('#fechaExp').html('Campo Obligatorio'); } else { $('#pfechaExp').html(''); }
+      var codigoSeguridad = form[4].value; if (!codigoSeguridad) { $('#pcodigoSeguridad').html('Campo Obligatorio'); } else { $('#pcodigoSeguridad').html(''); }
+      var montoRecargar = form[5].value; if (!montoRecargar) { $('#pmontoRecargar').html('Campo Obligatorio'); } else { $('#pmontoRecargar').html(''); }
+     
+     
+      if ( nombreTitular && NumeroTarjeta &&   montoRecargar) {
 
-        console.log(sumaSaldo);
+        firebase.database().ref('users/' + uid + "/cuentas").once('value').then(function (snapshot) {
+          var snap = snapshot.val();
+          var saldoCuenta1 = snap.cuenta2;
+          var sumaSaldo = parseFloat(montoRecargar) + parseFloat(saldoCuenta1);
+          console.log(sumaSaldo ,'sumasaldo');
+          console.log(snap.cuentaTotal);
+          
 
-        firebase.database().ref('users/' + uid + "/cuentas").update({
-          "cuenta2": sumaSaldo
+          firebase.database().ref('users/' + uid + "/cuentas").update({
+            "cuenta2": sumaSaldo
+          })
+          firebase.database().ref('/Recargas/users').push().set({
+            "tarjetaCredito": tarjetaCredito,
+            "nombreTitular": nombreTitular,
+            "NumeroTarjeta": NumeroTarjeta,
+            "fechaExp": fechaExp,
+            "codigoSeguridad": codigoSeguridad,
+            "montoRecargar": montoRecargar,
+            "saldoDespuesRecarga": sumaSaldo,
+            "uidempresa": uid
+          }, function (error) {
+            if (error) {
+              hideLoading();
+              swal("Error al Cargar Saldo", error, "error", {
+                button: "ok",
+              });
 
-        })
-        firebase.database().ref('/Recargas/users').push().set({
-          "tarjetaCredito": tarjetaCredito,
-          "nombreTitular": nombreTitular,
-          "NumeroTarjeta": NumeroTarjeta,
-          "fechaExp": fechaExp,
-          "codigoSeguridad": codigoSeguridad,
-          "montoRecargar": montoRecargar,
-          "saldoDespuesRecarga": sumaSaldo,
-          "uidempresa": uid
-        }, function (error) {
-          if (error) {
-            hideLoading();
-            swal("Error al Cargar Saldo", error, "error", {
-              button: "ok",
-            });
+            } else {
+              hideLoading();
+              $('#modal-pago').modal('hide');
+              swal("Saldo Recargado", 'El monto de su recarga es de ' + sumaSaldo + '€', "success", {
+                button: "ok",
+              });
 
-          } else {
-            hideLoading();
-            $('#modal-pago').modal('hide');
-            swal("Saldo Recargado", 'El monto de su recarga es de ' + sumaSaldo + '€', "success", {
-              button: "ok",
-            });
+            }
+          });
 
-          }
         });
-      });
+      }
     })
   })
 
@@ -279,8 +284,9 @@ function detalleRestauranteCliente() {
       var poblacion = restaurante.poblacion;
       var rutaImagenRestaurante = restaurante.rutaImagenRestaurante;
       var telefono = restaurante.telefono;
-
-
+      console.log(rutaImagenRestaurante);
+      
+      $('#imagenRestaurante').html("<img src='"+ rutaImagenRestaurante + "'  > </img>");
       $('#resName').text(nombreRestaurante);
       $('#direccionRestaurante').text(direccion);
       $('#direccionTelefono').text(telefono);

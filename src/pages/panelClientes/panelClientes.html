@@ -288,8 +288,8 @@
             <div class='show-details'>
               <div class='row border'>
                 <div class='col-sm-5 col-md-5 col-12'>
-                  <div class='detail-img'>
-                    <img src='/src/assets/image/platos/plato1.jpg'>
+                  <div class='detail-img' id="imagenRestaurante" >
+                 <!--   <img src='/src/assets/image/platos/plato1.jpg'> -->
                   </div>
                 </div>
                 <div class='col-sm-7 col-md-7 col-12'>
@@ -658,6 +658,7 @@
                         <label class="radio-style" for="radio2"><img
                             src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fcard2.jpg?alt=media&token=84381cb3-5a85-4153-877b-d0b7ff41da70" /></label>
                       </li>
+                      <p id="ptarjetaCredito" ></p>
                     </ul>
                   </div>
                   <div class="row">
@@ -665,12 +666,14 @@
                       <div class="form-group">
                         <label for="">Nombre del titular</label>
                         <input type="text" class="form-control " name="nombreTitular">
+                        <p id="pnombreTitular" ></p>
                       </div>
                     </div>
                     <div class="col-6">
                       <div class="form-group">
                         <label for="">Número de tarjeta</label>
                         <input type="text" class="form-control " name="NumeroTarjeta">
+                        <p id="pNumeroTarjeta" ></p>
                       </div>
                     </div>
                     <div class="col-12">
@@ -679,6 +682,7 @@
                         <div class="row">
                           <div class="col-6">
                             <input type="date" class="form-control " name="fechaExp">
+                            <p id="pfechaExp" ></p>
                           </div>
                         </div>
                       </div>
@@ -689,6 +693,7 @@
                         <div class="row">
                           <div class="col-4">
                             <input type="text" class="form-control required" name="codigoSeguridad">
+                            <p id="pcodigoSeguridad" ></p>
                           </div>
                         </div>
                       </div>
@@ -698,7 +703,8 @@
                         <label for="">Monto</label>
                         <div class="row">
                           <div class="col-4">
-                            <input type="text" class="form-control required" name="montoRecargar" required>
+                            <input type="text" class="form-control required" name="montoRecargar" >
+                            <p id="pmontoRecargar" ></p>
                           </div>
                         </div>
                       </div>
@@ -775,8 +781,8 @@
             <div class='show-details'>
               <div class='row'>
                 <div class='col-sm-12 col-12'>
-                  <div class='detail-img'>
-                    <img src='/src/assets/image/platos/plato1.jpg'>
+                  <div class='detail-img'  >
+                    <img  src='/src/assets/image/platos/plato1.jpg'> 
                   </div>
                 </div>
                 <div class='col-sm-6 col-12'>
