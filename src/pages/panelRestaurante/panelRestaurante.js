@@ -1,4 +1,4 @@
-/* AIzaSyCYLRFBUVI8ZWSxUaupg70nZ9aGHbVXemY   api mapa*/ 
+/* AIzaSyCYLRFBUVI8ZWSxUaupg70nZ9aGHbVXemY   api mapa*/
 import $ from 'jquery';
 import jQuery from 'jquery';
 import 'bootstrap';
@@ -254,8 +254,8 @@ $(document).ready(function () {
     $('#register-chef').hide();
     $('#register-promocion').hide();
     $('#box-retirar').hide();
-     $('#historial-compras').hide();
-     $('#box-config').hide();
+    $('#historial-compras').hide();
+    $('#box-config').hide();
     $('#box-transacciones').show();
   });
   $('#show-retirar').click(function () {
@@ -318,7 +318,7 @@ $(document).ready(function () {
 function restartLoading() {
   $("#status").show();
   $("#preloader").show();
-} 
+}
 
 function hideLoading() {
   $("#status").fadeOut();
@@ -328,17 +328,17 @@ function hideLoading() {
 
 firebase.initializeApp(firebaseConfig);
 
-$(document.body).on ('change','#imagenPlato',function name(params) {
+$(document.body).on('change', '#imagenPlato', function name(params) {
   $('#validate-image').addClass('d-block');
- // $('#imagenPlatos').html('Imagen agregada con exito');
+  // $('#imagenPlatos').html('Imagen agregada con exito');
 })
-$(document.body).on ('change','#imagenPromo',function name(params) {
+$(document.body).on('change', '#imagenPromo', function name(params) {
   $('#validate-image2').addClass('d-block');
- // $('#imagenPromos').html('Imagen agregada con exito');
+  // $('#imagenPromos').html('Imagen agregada con exito');
 })
-$(document.body).on ('change','#file',function name(params) {
+$(document.body).on('change', '#file', function name(params) {
   $('#validate-image3').addClass('d-block');
- // $('#files').html('Imagen agregada con exito');
+  // $('#files').html('Imagen agregada con exito');
 })
 
 
@@ -365,7 +365,7 @@ function registroPlato() {
       if (tipoPLato == 'Tipo Plato') { swal("Error", "Tipo plato esta vacio seleccione una opcion", "error") } else {
 
         if (nombrePlato && descripcionPlato && PrecioPlato && TamañoPLato && cantidadPlato && porcionPlato && tipoPLato && tiempoMinimo && tiempoMaximo) {
-       
+
           var fotoval = document.getElementById('imagenPlato');
           var foto = new FileReader();
           foto.onload = function (e) {
@@ -375,7 +375,7 @@ function registroPlato() {
             var storageRef = firebase.storage().ref();
             var mountainsRef = storageRef.child('imagen/plato' + restaurante + fotoval.files[0].name);
             var imagen = file.substring(23);
-         
+
             mountainsRef.putString(imagen, 'base64').then(function (snapshot) {
               var rutaGuardaImagen = snapshot.metadata.fullPath;
 
@@ -410,7 +410,8 @@ function registroPlato() {
               })
             })
           }, foto.readAsDataURL(fotoval.files[0]);
-        } else { hideLoading(); swal("Error","Campo Vacios"," Error")
+        } else {
+          hideLoading(); swal("Error", "Campo Vacios", " Error")
         }
       }
     });
@@ -472,13 +473,13 @@ function registropromociones() {
     $('#registrarPromo').click(function (e) {
 
       e.preventDefault();
-    
+
       var sesion = JSON.parse(sessionStorage.getItem('data'));
       var restaurante = (sesion.uid);
-      console.log(restaurante);
+      //  console.log(restaurante);
 
       var datos = $('#registroPromo').serializeArray();
-      console.log(datos);
+      // console.log(datos);
       var nombrePromo = datos[0].value;
       var DescripcionPromo = datos[1].value;
       var PrecioPromo = datos[2].value;
@@ -487,8 +488,8 @@ function registropromociones() {
       var procionPromo = datos[5].value;
       var tiempoMin = datos[6].value;
       var tiempoMax = datos[7].value;
-       console.log(nombrePromo);
-       
+      console.log(nombrePromo);
+
       //////////////////////imagen         
       var fotoval = document.getElementById('imagenPromo');
       var foto = new FileReader();
@@ -593,10 +594,10 @@ function nombreRestaurante() {
   $(document).ready(function () {
     var data = sessionStorage.getItem('data');
     var sesion = JSON.parse(data);
-    console.log(sesion);
-    
+    //  console.log(sesion);
+
     var nombreRestaurante = sesion.restaurante.nombreRestaurante;
-    $('#restaurateCara').html("<img src='"+ sesion.restaurante.rutaImagenRestaurante +"' ></img>");
+    $('#restaurateCara').html("<img src='" + sesion.restaurante.rutaImagenRestaurante + "' ></img>");
     $('#nombreRestaurante').append("<span>" + nombreRestaurante + "</span>");
   });
 } nombreRestaurante()
@@ -632,10 +633,10 @@ function notificaciones() {
         });
 
       } else {
-        console.log('Unable to get permission to notify.');
+        //  console.log('Unable to get permission to notify.');
       }
     });
-    console.log('notificaciones');
+    //console.log('notificaciones');
   });
 } notificaciones()
 
@@ -661,7 +662,7 @@ function enviarNotificacion(token) {
       },
       data: JSON.stringify(msg),
       success: function (response) {
-        console.log(response);
+        //  console.log(response);
       },
     });
   });
@@ -677,4 +678,68 @@ function saldoRestaurante() {
       $('#balanceRestaurante').html(snap.cuentas.cuanta1.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }));
     })
   });
-} saldoRestaurante()
+} saldoRestaurante();
+
+function consultaTrasacciones() {
+  $(document).ready(function () {
+    var sesion = sessionStorage.getItem('data');
+    var data = JSON.parse(sesion);
+    //console.log('zzzzzzzzzz',data.uid);
+
+
+    firebase.database().ref("Tranferencias/restaurantes/").orderByChild('uidRestaurante').equalTo(data.uid).once('value').then(function (snapshot) {
+
+      //console.log(snapshot.val());
+      snapshot.forEach(snap => {
+        var snap = (snap.val());
+        //  console.log(snap.fecha);
+
+        var fecha = darFecha(snap.fecha);
+        // console.log('fecha',fecha);
+
+        $('#tablitaa').append("<tr> <td>" + snap.dataUsuario.correo + "</td> <td>" + snap.dataUsuario.nombre + " " + snap.dataUsuario.apellido + "</td> <td>" + snap.monto + "</td> <td>" + fecha + " </td>  </tr>");
+      });
+
+    });
+  });
+} consultaTrasacciones();
+
+function darFecha(fecha) {
+
+  var date = new Date(fecha);
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  var hours = date.getHours();
+  var day = date.getDate();
+  var minutes = "0" + date.getMinutes();
+  var seconds = "0" + date.getSeconds();
+  var convdataTime = day + '-' + month + '-' + year + ' ' + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+  return convdataTime;
+
+}
+
+function transaccionRestaurante() {
+  $(document).ready(function () {
+
+    var sesion = sessionStorage.getItem('data');
+    var datos = JSON.parse(sesion);
+
+
+    firebase.database().ref('transaccion').orderByChild('restaurante').equalTo(datos.uid).once('value').then(a => {
+
+      a.forEach(e => {
+        var trans = (e.val());
+        console.log(trans);
+        console.log(trans.estatus);
+        var boton = ( "<button  class='btn' id='add-plate'><i class='fas fa-plus'></i></button>")
+        if (trans.estatus == 1) {
+       
+        $('#tablitaTrasaccion').append("<tr> <td>" + trans.usuario.correo + "</td> <td>" + trans.usuario.users.nombre+" "+trans.usuario.users.apellido +  "</td> <td>" + trans.plato.PrecioPlato + "</td> <td>" + trans.plato.nombrePlato +
+         " </td>  <td>" + boton+ " </td>  </tr>");
+     
+
+        }
+      });
+    })
+  });
+} transaccionRestaurante();

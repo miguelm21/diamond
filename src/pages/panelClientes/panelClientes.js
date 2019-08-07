@@ -421,7 +421,9 @@ function comprar() {
                   "usuario": sesion,
                   "restaurante": restaurante,
                   "plato": platoComprado,
-                  "fecha": firebase.database.ServerValue.TIMESTAMP
+                  "fecha": firebase.database.ServerValue.TIMESTAMP,
+                 
+                  "estatus":1
                 });
                 $('#modal-open').modal('hide');
                 swal("Good job!", "You clicked the button!", "success", {
@@ -439,7 +441,9 @@ function comprar() {
                   "usuario": sesion,
                   "restaurante": restaurante,
                   "plato": platoComprado,
-                  "fecha": firebase.database.ServerValue.TIMESTAMP
+                  "fecha": firebase.database.ServerValue.TIMESTAMP,
+                 
+                  "estatus":1
                 });
                 $('#modal-pago').modal('hide');
                 swal("Good job!", "You clicked the button!", "success", {
@@ -483,9 +487,6 @@ function historialCliente() {
         var seconds = "0" + date.getSeconds();
         var convdataTime = day + '-' + month + '-' + year + ' ' + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
 
-        // Day
-        var dia = date.getDate();
-        //  console.log(convdataTime);
 
         firebase.database().ref('Restaurante/').orderByKey().equalTo(restaurante).once('value').then(function (snapshot) {
           // console.log(snapshot.val());
@@ -662,7 +663,10 @@ function transferisRestaurantesinPlato() {
                     firebase.database().ref('Tranferencias/restaurantes/' + data.uid + "/").push({
                       "monto": monto,
                       "nombreRestaurante": nombreRestaurante,
-                      "fecha": firebase.database.ServerValue.TIMESTAMP
+                      "fecha": firebase.database.ServerValue.TIMESTAMP,
+                      "uidRestaurante":uidRestaurante,
+                      "uidCliente":data.uid,
+                      "dataUsuario":data.users
                     })
                     var saldoActualizar = parseFloat(saldoActual) + parseFloat(monto);
                     firebase.database().ref('Restaurante/' + uidRestaurante + "/cuentas/").update({
@@ -675,11 +679,16 @@ function transferisRestaurantesinPlato() {
                       "cuanta1": resultado,
                     })
                     $('#recargaSaldoCliente')[0].reset();
-                  } else {
-                    firebase.database().ref('Tranferencias/restaurantes/' + data.uid + "/").push({
+                  } else { 
+                  
+                    firebase.database().ref('Tranferencias/restaurantes/').push({
                       "monto": monto,
                       "nombreRestaurante": nombreRestaurante,
-                      "fecha": firebase.database.ServerValue.TIMESTAMP
+                      "fecha": firebase.database.ServerValue.TIMESTAMP,
+                      "uidRestaurante":uidRestaurante,
+                      "uidCliente":data.uid,
+                      "dataUsuario":data.users
+
                     })
                     var saldoActualizar = parseFloat(saldoActual) + parseFloat(monto);
                     firebase.database().ref('Restaurante/' + uidRestaurante + "/cuentas/").update({
