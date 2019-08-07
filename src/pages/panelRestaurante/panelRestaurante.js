@@ -723,23 +723,38 @@ function transaccionRestaurante() {
 
     var sesion = sessionStorage.getItem('data');
     var datos = JSON.parse(sesion);
-
-
-    firebase.database().ref('transaccion').orderByChild('restaurante').equalTo(datos.uid).once('value').then(a => {
+    firebase.database().ref('transaccion').orderByChild('restaurante').equalTo(datos.uid).on('value',a => {
 
       a.forEach(e => {
         var trans = (e.val());
-        console.log(trans);
+        var key = e.key;
+        console.log(key);
         console.log(trans.estatus);
-        var boton = ( "<button  class='btn' id='add-plate'><i class='fas fa-plus'></i></button>")
+        var boton = ( "<button  class='btn' ><i id='"+key+"' class='fas fa-check atendido'></i></button>")
         if (trans.estatus == 1) {
        
         $('#tablitaTrasaccion').append("<tr> <td>" + trans.usuario.correo + "</td> <td>" + trans.usuario.users.nombre+" "+trans.usuario.users.apellido +  "</td> <td>" + trans.plato.PrecioPlato + "</td> <td>" + trans.plato.nombrePlato +
          " </td>  <td>" + boton+ " </td>  </tr>");
-     
+            }
+        else{
+          $('#tablitAtendidos').append("<tr> <td>" + trans.usuario.correo + "</td> <td>" + trans.usuario.users.nombre+" "+trans.usuario.users.apellido +  "</td> <td>" + trans.plato.PrecioPlato + "</td> <td>" + trans.plato.nombrePlato +
+         " </td>  <td>" + boton+ " </td>  </tr>");
 
         }
       });
     })
   });
 } transaccionRestaurante();
+
+function atenderPedido() {
+  $(document).ready(function () {
+    $(document.body).on('click','.atendido', function (e) {
+      var trans =(e.currentTarget.id);
+      firebase.database().ref('transaccion/'+trans+"/").update({
+        "estatus":2
+      });
+      swal("Pedido","Pedido Atendido","success")
+
+    });
+  });
+}atenderPedido()
