@@ -293,10 +293,16 @@ function detalleRestauranteCliente() {
       $('#direccionPais').text(pais);
       $('#direccionCorreo').text(correo);
 
+       
+       
+        
       firebase.database().ref('Platos/').orderByChild('restaurante').equalTo(uidRestaurante).on('value', function (snapshot) {
         var tarjeta = '';
         var chupetin = '';
         snapshot.forEach(function (plato) {
+
+
+
           var platos = (plato.val());
           var keyPlato = plato.key;
           var PrecioPlato = platos.PrecioPlato;
@@ -325,15 +331,31 @@ function detalleRestauranteCliente() {
             " </div>" +
             "  </div>" +
             " </div>";
-
+           // este por default
           tarjeta = tarjeta + "<tr><td>" + nombrePlato + "</td><td>" + descripcionPlato + "</td><td> €" + PrecioPlato + "</td><td>" + tipoPLato + "</td><td>" +
             porcionPlato + "</td><td> <img class='img-fluid' src='" + rutaGuardaImagen + "' > </td><td> " +
             " <button class='btn buy comprarPlatoboton' id='" + keyPlato + "' type='submit' value='" + uidRestaurante + "'  data-toggle='modal' data-target='#modal-comprar'><i class='fas fa-shopping-cart'></i></button> </td></tr>"
           $('#tablaPlatos').html(chupetin);
+///buscar es este
+          $(document.body).on('change','#exampleFormControlSelect12',function (e) { 
+            e.preventDefault();
+
+            if(tipoPLato == e.currentTarget.value ){
+           tarjeta = tarjeta + "<tr><td>" + nombrePlato + "</td><td>" + descripcionPlato + "</td><td> €" + PrecioPlato + "</td><td>" + tipoPLato + "</td><td>" +
+            porcionPlato + "</td><td> <img class='img-fluid' src='" + rutaGuardaImagen + "' > </td><td> " +
+            " <button class='btn buy comprarPlatoboton' id='" + keyPlato + "' type='submit' value='" + uidRestaurante + "'  data-toggle='modal' data-target='#modal-comprar'><i class='fas fa-shopping-cart'></i></button> </td></tr>"
+          $('#tablaPlatos').html(chupetin);
+            }else {
+            swal("Sin coincidencias", "No encontramos este tipo de comida","error")
+            }
+          });
 
 
         }); $('#modal-detalles-plato').modal('show');
       });
+
+
+
     })
   });
 
