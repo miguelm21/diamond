@@ -725,11 +725,13 @@ function transaccionRestaurante() {
     var datos = JSON.parse(sesion);
     firebase.database().ref('transaccion').orderByChild('restaurante').equalTo(datos.uid).on('value', a => {
 
+      $('#tablitaTrasaccion').html('');
+      $('#tablitAtendidos').html('');
+
       a.forEach(e => {
         var trans = (e.val());
         var key = e.key;
-        console.log(key);
-        console.log(trans.estatus);
+    
         var boton = ("<button  class='btn' ><i id='" + key + "' class='fas fa-check atendido'></i></button>")
         if (trans.estatus == 1) {
 
