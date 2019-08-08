@@ -676,6 +676,7 @@ function saldoRestaurante() {
       var snap = snapshot.val();
       // console.log(snap.cuentas.cuanta1);
       $('#balanceRestaurante').html(snap.cuentas.cuanta1.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }));
+      $('#balanceRestaurante2').html(snap.cuentas.cuanta1.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }));
     })
   });
 } saldoRestaurante();
@@ -766,16 +767,16 @@ function retirarDinero() {
 
     var sesion = sessionStorage.getItem('data');
     var datosRecstaurante = JSON.parse(sesion);
-
-
-    firebase.database().ref('retiros/').orderByChild('restauranteUid').equalTo(datosRecstaurante.uid).once('value').then(function (a) {
-      
+    firebase.database().ref('retiros/').orderByChild('restauranteUid').equalTo(datosRecstaurante.uid).on('value',function (a) {      
+      var table ;
       a.forEach(element => {
         var retiro = (element.val());
         var fecha = darFecha(retiro.fecha);            
-        console.log(retiro.fecha);
         
-        $('#tablaRetiro').append("<tr> <td>" + new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(retiro.montoRetirado) + "</td>  <td>" + fecha + " </td>  </tr>");
+           var html =("<tr> <td>" + new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(retiro.montoRetirado) + "</td>  <td>" + fecha + " </td>  </tr>");
+        table   = table +html;
+
+        $('#tablaRetiro').html( table);
         
       });
 
@@ -809,9 +810,6 @@ function retirarDinero() {
 
         })
       }
-
-
-
     });
   });
 } retirarDinero()
