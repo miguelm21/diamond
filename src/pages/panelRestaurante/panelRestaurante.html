@@ -68,8 +68,9 @@
         </li>
         <li class="nav-item">
           <div class="dropdown text-right edit">
-            <a class="dropdown-toggle option-menu d-flex align-items-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <div id="restaurateCara"></div> 
+            <a class="dropdown-toggle option-menu d-flex align-items-center" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              <div id="restaurateCara"></div>
               <span id="nombreRestaurante"></span>
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -94,7 +95,8 @@
             <div class="price-status">
               <p>Balance</p>
               <h5 id="balanceRestaurante"></h5>
-              <img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fbalances.png?alt=media&token=ab343f63-92f7-4924-8983-836aa74c9483" />
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fbalances.png?alt=media&token=ab343f63-92f7-4924-8983-836aa74c9483" />
             </div>
             <ul class="">
               <li class="d-flex align-items-center space-between">
@@ -143,30 +145,31 @@
                   <div class="col-md-6 col-12">
                     <div class="form-group edit">
                       <label for="imagenPlato" id="text-file" class="form-control pointer">Agregar imagen
-                        <input id="imagenPlato" class="d-none" type="file" accept="image/*"   />
-                        <p id="imagenPlatos" ></p>
+                        <input id="imagenPlato" class="d-none" type="file" accept="image/*" />
+                        <p id="imagenPlatos"></p>
                       </label>
                       <button class="btn" id="validate-image"><i class="fas fa-check"></i></button>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="form-group">
-                      <input type="text" class="form-control required" placeholder="Nombre Plato" value="" name="nombrePlato" required />
-                      <p id ="pnombrePlato"></p>
+                      <input type="text" class="form-control required" placeholder="Nombre Plato" value=""
+                        name="nombrePlato" required />
+                      <p id="pnombrePlato"></p>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="form-group">
                       <input type="text" class="form-control required" placeholder="Descripción Plato" value=""
                         name="descripcionPlato" required />
-                        <p id ="pdescripcionPlato"></p>
+                      <p id="pdescripcionPlato"></p>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="form-group">
                       <input type="number" class="form-control required" placeholder="Precio del plato" value=""
                         name="PrecioPlato" required />
-                        <p id ="pPrecioPlato"></p>
+                      <p id="pPrecioPlato"></p>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
@@ -183,20 +186,21 @@
                     <div class="form-group">
                       <input type="number" class="form-control required" placeholder="Cantidad" value=""
                         name="cantidadPlato" required />
-                        <p id ="pcantidadPlato"></p>
+                      <p id="pcantidadPlato"></p>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="form-group">
                       <input type="number" class="form-control required" placeholder="Porcion" value=""
                         name="porcionPlato" required />
-                        <p id ="pporcionPlato"></p>
+                      <p id="pporcionPlato"></p>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="form-group">
-                      <select class="form-control required" id="exampleFormControlSelect1" name="tipoPlato" placeholder="Tipo Plato">
-                          <option> Tipo Plato </option>
+                      <select class="form-control required" id="exampleFormControlSelect1" name="tipoPlato"
+                        placeholder="Tipo Plato">
+                        <option> Tipo Plato </option>
                         <option> Acompañamiento </option>
                         <option> Almuerzo </option>
                         <option> Bebidas </option>
@@ -222,11 +226,11 @@
                       <div class="d-flex align-items-center w-25">
                         <input type="number" class="form-control required" placeholder="min" value=""
                           name="tiempoMinimo" required />
-                          <p id ="ptiempoMinimo"></p>
+                        <p id="ptiempoMinimo"></p>
                         <p class="ion"></p>
                         <input type="number" class="form-control required" placeholder="max" value=""
                           name="tiempoMaximo" required />
-                          <p id ="ptiempoMaximo"></p>
+                        <p id="ptiempoMaximo"></p>
                       </div>
                     </div>
                   </div>
@@ -291,7 +295,7 @@
                 <div class="col-md-6 col-12">
                   <div class="form-group edit">
                     <label for="file" id="text-file3" class="form-control pointer">Agregar imagen
-                      <input type="file"  class="form-control d-none" id="file">
+                      <input type="file" class="form-control d-none" id="file">
                       <p id="files"></p>
                     </label>
                     <button class="btn" id="validate-image3"><i class="fas fa-check"></i></button>
@@ -346,78 +350,78 @@
           </div>
           <div class="box-panel  box-register" id="register-promocion">
             <h5 class="title">Registrar promoción</h5>
-              <div class="form-client">
-                <form id="registroPromo">
-                  <div class="row register-form">
-                    <div class="col-md-6 col-12">
-                      <div class="form-group edit">
-                        <label for="imagenPromo" id="text-file2" class="form-control pointer">Agregar imagen
-                          <input id="imagenPromo" class="d-none" type="file" accept="image/*" class="required" required />
-                          <p id="imagenPromos"></p>
-                        </label>
-                        <button class="btn" id="validate-image2"><i class="fas fa-check"></i></button>
-                      </div>
-                    </div>
-                
-                    <div class="col-md-6 col-12">
-                      <div class="form-group">
-                        <input type="text" class="form-control required" placeholder="Nombre" value="" name="nombrePromo"
-                          required />
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                      <div class="form-group">
-                        <input type="text" class="form-control required" placeholder="Descripción" value=""
-                          name="DescripcionPromo" required />
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                      <div class="form-group">
-                        <input type="number" class="form-control required" placeholder="Precio" value=""
-                          name="PrecioPromo" required />
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                      <div class="form-group">
-                        <select class="form-control" id="exampleFormControlSelect1" name="tamañoPromo">
-                          <option>Tamaño</option>
-                          <option>Pequeño</option>
-                          <option>Mediano</option>
-                          <option>Grande</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                      <div class="form-group">
-                        <input type="number" class="form-control required" placeholder="Cantidad" value=""
-                          name="cantidadPromo" required />
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                      <div class="form-group">
-                        <input type="number" class="form-control required" placeholder="Porcion" value=""
-                          name="procionPromo" required />
-                      </div>
-                    </div>
-                    <div class="col-md-12 col-12">
-                      <div class="form-group time-to">
-                        <label for="" class="mt-2">Tiempo de preparacion</label>
-                        <div class="d-flex align-items-center w-25">
-                          <input type="number" class="form-control" placeholder="min" value="" name="tiempoMin" />
-                          <p class="ion"></p>
-                          <input type="number" class="form-control" placeholder="max" value="" name="tiempoMax" />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-12 d-flex justify-content-center mt-4 text-center">
-                      <button type="submit" onclick="backbutton()" class="btn btn-back">Volver</button>
-                      <button type="submit" class="btn btn-register" id="registrarPromo">Crear Promociones</button>
+            <div class="form-client">
+              <form id="registroPromo">
+                <div class="row register-form">
+                  <div class="col-md-6 col-12">
+                    <div class="form-group edit">
+                      <label for="imagenPromo" id="text-file2" class="form-control pointer">Agregar imagen
+                        <input id="imagenPromo" class="d-none" type="file" accept="image/*" class="required" required />
+                        <p id="imagenPromos"></p>
+                      </label>
+                      <button class="btn" id="validate-image2"><i class="fas fa-check"></i></button>
                     </div>
                   </div>
-                </form>
-              </div>
+
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <input type="text" class="form-control required" placeholder="Nombre" value="" name="nombrePromo"
+                        required />
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <input type="text" class="form-control required" placeholder="Descripción" value=""
+                        name="DescripcionPromo" required />
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <input type="number" class="form-control required" placeholder="Precio" value=""
+                        name="PrecioPromo" required />
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <select class="form-control" id="exampleFormControlSelect1" name="tamañoPromo">
+                        <option>Tamaño</option>
+                        <option>Pequeño</option>
+                        <option>Mediano</option>
+                        <option>Grande</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <input type="number" class="form-control required" placeholder="Cantidad" value=""
+                        name="cantidadPromo" required />
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <input type="number" class="form-control required" placeholder="Porcion" value=""
+                        name="procionPromo" required />
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                    <div class="form-group time-to">
+                      <label for="" class="mt-2">Tiempo de preparacion</label>
+                      <div class="d-flex align-items-center w-25">
+                        <input type="number" class="form-control" placeholder="min" value="" name="tiempoMin" />
+                        <p class="ion"></p>
+                        <input type="number" class="form-control" placeholder="max" value="" name="tiempoMax" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 d-flex justify-content-center mt-4 text-center">
+                    <button type="submit" onclick="backbutton()" class="btn btn-back">Volver</button>
+                    <button type="submit" class="btn btn-register" id="registrarPromo">Crear Promociones</button>
+                  </div>
+                </div>
+              </form>
             </div>
+          </div>
 
           <div class="box-historial" style="display: none;" id="historial-compras">
             <h2 class="title">Historial</h2>
@@ -455,7 +459,7 @@
                         </tr>
                       </thead>
                       <tbody id="tablitaTrasaccion">
-                       
+
                       </tbody>
                     </table>
                   </div>
@@ -499,7 +503,7 @@
                         </tr>
                       </thead>
                       <tbody id="tablitAtendidos">
-                        
+
                       </tbody>
                     </table>
                   </div>
@@ -520,8 +524,8 @@
                   </div>
                 </div>
               </div>
-              </div>
             </div>
+          </div>
 
           <div class="box-historial" style="display: none" id="box-transacciones">
             <h2 class="title">Transacciones</h2>
@@ -534,12 +538,12 @@
                       <th scope="col">Apellido</th>
                       <th scope="col">MOnto</th>
                       <th scope="col">Fecha</th>
-                    
+
                     </tr>
                   </thead>
                   <tbody id="tablitaa">
-                   
-                  
+
+
                   </tbody>
                 </table>
               </div>
@@ -563,156 +567,185 @@
           <div class="box-historial" style="display: none" id="box-retirar">
             <h2 class="title">Retirar dinero</h2>
             <div class="box-table">
+              <form id ='retirarDineroRestaurante'>
               <div class="table-responsive">
-                <table class="table">
-                  <thead class="thead-blue">
-                    <tr>
-                      <th scope="col">Nombre</th>
-                      <th scope="col">Apellido</th>
-                      <th scope="col">Cedula</th>
-                      <th scope="col">Plato</th>
-                      <th scope="col">Atendido</th>
-                    </tr>
-                  </thead>
-                  <tbody id="">
-                    <tr>
-                      <td>Jose </td>
-                      <td>Bruges</td>
-                      <td>342431</td>
-                      <td>Pabellon criollo</td>
-                      <td>
-                        <span class="btn btn-link status green"><i class="fas fa-times"></i></span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Victor </td>
-                      <td>Camargo</td>
-                      <td>342431</td>
-                      <td>Bandeja paisa</td>
-                      <td>
-                        <span class="btn btn-link status red"><i class="fas fa-check"></i></span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="pagination-section">
-                <div class="row">
-                  <div class="col-12">
-                    <ul class="pagination">
-                      <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a>
-                      </li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                      </li>
-                    </ul>
+                <div class="tab-pane" id="second" role="tabpanel" aria-labelledby="second-tab">
+                  <div class="register-form p-0">
+                    <div class="form-group w-25 ">
+                      <Label placeholder="Monto a Retirar"  class="form-control" id=""> MOnto disponible <span> 90</span> </Label>
+                    </div>
                   </div>
                 </div>
+                <div class="tab-pane" id="second" role="tabpanel" aria-labelledby="second-tab">
+                    <div class="register-form p-0">
+                      <div class="form-group w-25 ">
+                        <input placeholder="Monto a Retirar" name="saldo" class="form-control" id="" >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane" id="second" role="tabpanel" aria-labelledby="second-tab">
+                      <div class="register-form p-0">
+                        <div class="form-group w-25 ">
+                          <button type="button" placeholder="Retirar" name="" class="retirarPlataRestaurante" id="retirarPlataRestaurante"> Retirar fondo</button>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+            </form>
+            <div class="box-table">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class="thead-blue">
+                      <tr>
+                        <th scope="col">Monto</th>
+                        <th scope="col">Fecha</th>
+                        
+  
+                      </tr>
+                    </thead>
+                    <tbody id="tablaRetiro">
+  
+  
+                    </tbody>
+                  </table>
+                </div>
+                <div class="pagination-section">
+                  <div class="row">
+                    <div class="col-12">
+                      <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+            </div>
+           
+            
+          <div class="pagination-section">
+            <div class="row">
+              <div class="col-12">
+                <ul class="pagination">
+                  <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
-          <div class="box-historial" style="display: none" id="box-config">
-            <h2 class="title">Configuración del restaurante</h2>
-              <div class="config-section">
-                <div class="row mt-4">
-                  <div class="col-lg-7 col-md-12 col-sm-12 col-12">
-                    <div class="shedule">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">Lunes</label>
-                      </div>
-                      <div class="form-group">
-                        <input class="form-control" type="time">
-                        <span>-</span>
-                        <input class="form-control" type="time">
-                      </div>
-                    </div>
-                    <div class="shedule">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck2">
-                        <label class="custom-control-label" for="customCheck2">Martes</label>
-                      </div>
-                      <div class="form-group">
-                        <input class="form-control" type="time">
-                        <span>-</span>
-                        <input class="form-control" type="time">
-                      </div>
-                    </div>
-                    <div class="shedule">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck3">
-                        <label class="custom-control-label" for="customCheck3">Miercoles</label>
-                      </div>
-                      <div class="form-group">
-                        <input class="form-control" type="time">
-                        <span>-</span>
-                        <input class="form-control" type="time">
-                      </div>
-                    </div>
-                    <div class="shedule">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck4">
-                        <label class="custom-control-label" for="customCheck4">Jueves</label>
-                      </div>
-                      <div class="form-group">
-                        <input class="form-control" type="time">
-                        <span>-</span>
-                        <input class="form-control" type="time">
-                      </div>
-                    </div>
-                    <div class="shedule">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck5">
-                        <label class="custom-control-label" for="customCheck5">Viernes</label>
-                      </div>
-                      <div class="form-group">
-                        <input class="form-control" type="time">
-                        <span>-</span>
-                        <input class="form-control" type="time">
-                      </div>
-                    </div>
-                    <div class="shedule">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck6">
-                        <label class="custom-control-label" for="customCheck6">Sabado</label>
-                      </div>
-                      <div class="form-group">
-                        <input class="form-control" type="time">
-                        <span>-</span>
-                        <input class="form-control" type="time">
-                      </div>
-                    </div>
-                    <div class="shedule">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck6">
-                        <label class="custom-control-label" for="customCheck6">Domingo</label>
-                      </div>
-                      <div class="form-group">
-                        <input class="form-control" type="time">
-                        <span>-</span>
-                        <input class="form-control" type="time">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-5 col-md-12 col-sm-12 col-12">
-                    <div class="date">
-                      <h5>Dias no habiles</h5>
-                      <div class="form-group mt-4 d-flex">
-                        <input type="date" class="form-control">
-                        <button class="btn"><i class="fas fa-plus"></i></button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <button class="btn btn-aceptar">Guardar cambios</button>
-                  </div>
+        </div>
+      </div>
+      <div class="box-historial" style="display: none" id="box-config">
+        <h2 class="title">Configuración del restaurante</h2>
+        <div class="config-section">
+          <div class="row mt-4">
+            <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+              <div class="shedule">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Lunes</label>
                 </div>
+                <div class="form-group">
+                  <input class="form-control" type="time">
+                  <span>-</span>
+                  <input class="form-control" type="time">
                 </div>
               </div>
+              <div class="shedule">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck2">
+                  <label class="custom-control-label" for="customCheck2">Martes</label>
+                </div>
+                <div class="form-group">
+                  <input class="form-control" type="time">
+                  <span>-</span>
+                  <input class="form-control" type="time">
+                </div>
+              </div>
+              <div class="shedule">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck3">
+                  <label class="custom-control-label" for="customCheck3">Miercoles</label>
+                </div>
+                <div class="form-group">
+                  <input class="form-control" type="time">
+                  <span>-</span>
+                  <input class="form-control" type="time">
+                </div>
+              </div>
+              <div class="shedule">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck4">
+                  <label class="custom-control-label" for="customCheck4">Jueves</label>
+                </div>
+                <div class="form-group">
+                  <input class="form-control" type="time">
+                  <span>-</span>
+                  <input class="form-control" type="time">
+                </div>
+              </div>
+              <div class="shedule">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck5">
+                  <label class="custom-control-label" for="customCheck5">Viernes</label>
+                </div>
+                <div class="form-group">
+                  <input class="form-control" type="time">
+                  <span>-</span>
+                  <input class="form-control" type="time">
+                </div>
+              </div>
+              <div class="shedule">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck6">
+                  <label class="custom-control-label" for="customCheck6">Sabado</label>
+                </div>
+                <div class="form-group">
+                  <input class="form-control" type="time">
+                  <span>-</span>
+                  <input class="form-control" type="time">
+                </div>
+              </div>
+              <div class="shedule">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck6">
+                  <label class="custom-control-label" for="customCheck6">Domingo</label>
+                </div>
+                <div class="form-group">
+                  <input class="form-control" type="time">
+                  <span>-</span>
+                  <input class="form-control" type="time">
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-5 col-md-12 col-sm-12 col-12">
+              <div class="date">
+                <h5>Dias no habiles</h5>
+                <div class="form-group mt-4 d-flex">
+                  <input type="date" class="form-control">
+                  <button class="btn"><i class="fas fa-plus"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-aceptar">Guardar cambios</button>
+            </div>
           </div>
         </div>
+      </div>
+    </div>
+    </div>
   </section>
 
 
@@ -792,7 +825,7 @@
     </div>
   </div>
 
-  
+
 
 </body>
 

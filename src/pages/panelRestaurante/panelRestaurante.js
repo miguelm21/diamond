@@ -697,7 +697,7 @@ function consultaTrasacciones() {
         var fecha = darFecha(snap.fecha);
         // console.log('fecha',fecha);
 
-        $('#tablitaa').append("<tr> <td>" + snap.dataUsuario.correo + "</td> <td>" + snap.dataUsuario.nombre + " " + snap.dataUsuario.apellido + "</td> <td>" + snap.monto + "</td> <td>" + fecha + " </td>  </tr>");
+        $('#tablitaa').append("<tr> <td>" + snap.dataUsuario.correo + "</td> <td>" + snap.dataUsuario.nombre + " " + snap.dataUsuario.apellido + "</td> <td>" + new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(snap.monto)  + "</td> <td>" + fecha + " </td>  </tr>");
       });
 
     });
@@ -723,22 +723,22 @@ function transaccionRestaurante() {
 
     var sesion = sessionStorage.getItem('data');
     var datos = JSON.parse(sesion);
-    firebase.database().ref('transaccion').orderByChild('restaurante').equalTo(datos.uid).on('value',a => {
+    firebase.database().ref('transaccion').orderByChild('restaurante').equalTo(datos.uid).on('value', a => {
 
       a.forEach(e => {
         var trans = (e.val());
         var key = e.key;
         console.log(key);
         console.log(trans.estatus);
-        var boton = ( "<button  class='btn' ><i id='"+key+"' class='fas fa-check atendido'></i></button>")
+        var boton = ("<button  class='btn' ><i id='" + key + "' class='fas fa-check atendido'></i></button>")
         if (trans.estatus == 1) {
-       
-        $('#tablitaTrasaccion').append("<tr> <td>" + trans.usuario.correo + "</td> <td>" + trans.usuario.users.nombre+" "+trans.usuario.users.apellido +  "</td> <td>" + trans.plato.PrecioPlato + "</td> <td>" + trans.plato.nombrePlato +
-         " </td>  <td>" + boton+ " </td>  </tr>");
-            }
-        else{
-          $('#tablitAtendidos').append("<tr> <td>" + trans.usuario.correo + "</td> <td>" + trans.usuario.users.nombre+" "+trans.usuario.users.apellido +  "</td> <td>" + trans.plato.PrecioPlato + "</td> <td>" + trans.plato.nombrePlato +
-         " </td>  <td>" + boton+ " </td>  </tr>");
+
+          $('#tablitaTrasaccion').append("<tr> <td>" + trans.usuario.correo + "</td> <td>" + trans.usuario.users.nombre + " " + trans.usuario.users.apellido + "</td> <td>" + new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(trans.plato.PrecioPlato)  + "</td> <td>" + trans.plato.nombrePlato +
+            " </td>  <td>" + boton + " </td>  </tr>");
+        }
+        else {
+          $('#tablitAtendidos').append("<tr> <td>" + trans.usuario.correo + "</td> <td>" + trans.usuario.users.nombre + " " + trans.usuario.users.apellido + "</td> <td>" + new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(trans.plato.PrecioPlato) + "</td> <td>" + trans.plato.nombrePlato +
+            " </td>  <td>" + boton + " </td>  </tr>");
 
         }
       });
@@ -748,13 +748,68 @@ function transaccionRestaurante() {
 
 function atenderPedido() {
   $(document).ready(function () {
-    $(document.body).on('click','.atendido', function (e) {
-      var trans =(e.currentTarget.id);
-      firebase.database().ref('transaccion/'+trans+"/").update({
-        "estatus":2
+    $(document.body).on('click', '.atendido', function (e) {
+      var trans = (e.currentTarget.id);
+      firebase.database().ref('transaccion/' + trans + "/").update({
+        "estatus": 2
       });
-      swal("Pedido","Pedido Atendido","success")
+      swal("Pedido", "Pedido Atendido", "success")
 
     });
   });
-}atenderPedido()
+} atenderPedido()
+
+function retirarDinero() {
+  $(document).ready(function () {
+
+    var sesion = sessionStorage.getItem('data');
+    var datosRecstaurante = JSON.parse(sesion);
+
+
+    firebase.database().ref('retiros/').orderByChild('restauranteUid').equalTo(datosRecstaurante.uid).once('value').then(function (a) {
+      
+      a.forEach(element => {
+        var retiro = (element.val());
+        var fecha = darFecha(retiro.fecha);            
+        console.log(retiro.fecha);
+        
+        $('#tablaRetiro').append("<tr> <td>" + new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(retiro.montoRetirado) + "</td>  <td>" + fecha + " </td>  </tr>");
+        
+      });
+
+    })
+
+    $(document.body).on('click', '.retirarPlataRestaurante', function (e) {
+
+      var sesion = sessionStorage.getItem('data');
+      var datosRecstaurante = JSON.parse(sesion);
+      var datico = $('#retirarDineroRestaurante').serializeArray();
+      var montoCobrar = datico[0].value;
+      if (!montoCobrar) { swal("Campo Vacio", "Dejo El campo Vacio", "error") }
+      else {
+
+        firebase.database().ref('Restaurante/' + datosRecstaurante.uid + '/cuentas/').once('value').then(function (e) {
+          var cuentas = (e.val());
+          var resta = parseFloat(cuentas.cuanta1) - parseFloat(montoCobrar)
+          console.log(resta);
+
+          firebase.database().ref('Restaurante/' + datosRecstaurante.uid + '/cuentas/').update({
+            "cuanta1": resta,
+          })
+
+          firebase.database().ref('retiros/').push({
+            "montoRetirado": montoCobrar,
+            "fecha": firebase.database.ServerValue.TIMESTAMP,
+            "restaurante": datosRecstaurante,
+            "restauranteUid": datosRecstaurante.uid
+
+          })
+
+        })
+      }
+
+
+
+    });
+  });
+} retirarDinero()
