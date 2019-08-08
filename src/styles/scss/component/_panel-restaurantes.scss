@@ -450,11 +450,11 @@
                   a{
                     border: none;
                     border-radius: 50%;
-                    line-height: 55px;
+                    line-height: 35px;
                     padding: 0;
                     width: 35px;
                     height: 35px;
-                    margin: auto 10px;
+                    margin: 10px 10px;
                     text-align: center; 
                     color: $secondary;
                     &:hover, &:focus, &:active, &:active:focus{
@@ -466,7 +466,7 @@
                     i{
                       border: none;
                       border-radius: 50%;
-                      line-height: 35px;
+                      line-height: 15px;
                       padding: 0;
                       width: 35px;
                       margin: 10px auto;
