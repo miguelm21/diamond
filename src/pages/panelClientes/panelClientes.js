@@ -510,11 +510,11 @@ function historialCliente2() {
     var sesion = JSON.parse(data);
   //  console.log(sesion.uid,'sesioncliente');
 
-    firebase.database().ref('Tranferencias/restaurantes/'+ sesion.uid +'/').once('value').then(function (snapshot) {
-     
+    firebase.database().ref('Tranferencias/restaurantes/').orderByChild('uidCliente').equalTo(sesion.uid).on('value',function (snapshot) {
+     var table;
       snapshot.forEach(element => {
         var datosTransf = (element.val());
-         //  console.log(datosTransf);
+          
         var restaurante = datosTransf.nombreRestaurante;
         var monto = datosTransf.monto;
 
@@ -528,12 +528,12 @@ function historialCliente2() {
         var seconds = "0" + date.getSeconds();
         var convdataTime = day + '-' + month + '-' + year + ' ' + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
 
-        // Day
-        var dia = date.getDate();
-        //  console.log(convdataTime);
-
-      
-           $('#historialClientePlatos2').append("  <tr><td>" + restaurante + "</td> <td>€ " + monto + "</td> <td>" + convdataTime + "</td> </tr>");
+          var html =("  <tr><td>" + restaurante + "</td> <td>€ " + monto + "</td> <td>" + convdataTime + "</td> </tr>")
+          
+            table = table +html;
+        
+            
+           $('#historialClientePlatos2').html(table);
           
         })
       });
@@ -611,112 +611,113 @@ function enviarNotificacion(token) {
   });
 }
 
+var uidRestaurante ;
 function transferisRestaurantesinPlato() {
   $(document).ready(function () {
     $(document.body).on('click', '.modalPagoSinPlato', function (e) {
 
-      var uidRestaurante = e.currentTarget.id;
-      firebase.database().ref('Restaurante/' + uidRestaurante).once('value').then(function (snapshot) {
-        var datosRestaurante = (snapshot.val());
-        var nombreRestaurante = datosRestaurante.nombreRestaurante;
-        var saldoActual = datosRestaurante.cuentas.cuanta1;
-        console.log(saldoActual, 'saldoactual');
+       uidRestaurante = e.currentTarget.id;
+      firebase.database().ref('Restaurante/' + uidRestaurante).once('value').then(function (snapshot7) {
+        var datosRestaurante = (snapshot7.val());
+        var nombreRestaurant = datosRestaurante.nombreRestaurante;
+        console.log(datosRestaurante);
 
-        $('#nombreRestaurantePagar').val(nombreRestaurante);
-        $(document.body).on('click', '#pagaryya', function () {
-
-          firebase.database().ref('Restaurante/' + uidRestaurante).once('value').then(function (snapshot) {
-            var datosRestaurante = (snapshot.val());
-            var nombreRestaurante = datosRestaurante.nombreRestaurante;
-            var saldoActual = datosRestaurante.cuentas.cuanta1;
-            console.log(saldoActual, 'saldoactual');
-
-            var sesion = sessionStorage.getItem('data');
-            var data = JSON.parse(sesion);
-            //console.log(data.uid);
-            firebase.database().ref('users/' + data.uid).once('value').then(function (snapshot) {
-
-              var datos = snapshot.val();
-              var cuenta1 = datos.cuentas.cuanta1;
-              var cuenta2 = datos.cuentas.cuenta2;
-              var cuenta = parseFloat(cuenta1) + parseFloat(cuenta2);
-
-              var formulario = $('#recargaplaraRestaurante').serializeArray()
-              var monto = (formulario[0].value);
-              console.log(monto, 'monto');
-
-              var resultado = parseFloat(cuenta1) - parseFloat(monto);
-              console.log(resultado, "resultado");
-
-
-              var resta1 = parseFloat(cuenta1) - parseFloat(monto);
-              var positivo = -1 * parseFloat(resta1);
-              var resta2 = parseFloat(cuenta2) - parseFloat(positivo);
-              console.log(resta2, "resta2");
-
-              if (!monto) {
-                swal("El campo Monto es obligatorio")
-              } else { $('#obligadoMonto').html(''); }
-              if (monto) {
-                if (monto < cuenta) {
-                  if (monto < cuenta1) {
-                    firebase.database().ref('Tranferencias/restaurantes/' + data.uid + "/").push({
-                      "monto": monto,
-                      "nombreRestaurante": nombreRestaurante,
-                      "fecha": firebase.database.ServerValue.TIMESTAMP,
-                      "uidRestaurante":uidRestaurante,
-                      "uidCliente":data.uid,
-                      "dataUsuario":data.users
-                    })
-                    var saldoActualizar = parseFloat(saldoActual) + parseFloat(monto);
-                    firebase.database().ref('Restaurante/' + uidRestaurante + "/cuentas/").update({
-                      "cuanta1": saldoActualizar
-                    }, function () {
-                      $('#modalPagoSinPlato').modal('hide');
-                      swal("Transferir dinero", "Dinero Transferido", "success");
-                    })
-                    firebase.database().ref('users/' + data.uid + "/cuentas/").update({
-                      "cuanta1": resultado,
-                    })
-                    $('#recargaSaldoCliente')[0].reset();
-                  } else { 
-                  
-                    firebase.database().ref('Tranferencias/restaurantes/').push({
-                      "monto": monto,
-                      "nombreRestaurante": nombreRestaurante,
-                      "fecha": firebase.database.ServerValue.TIMESTAMP,
-                      "uidRestaurante":uidRestaurante,
-                      "uidCliente":data.uid,
-                      "dataUsuario":data.users
-
-                    })
-                    var saldoActualizar = parseFloat(saldoActual) + parseFloat(monto);
-                    firebase.database().ref('Restaurante/' + uidRestaurante + "/cuentas/").update({
-                      "cuanta1": saldoActualizar
-                    }, function () {
-                      $('#modalPagoSinPlato').modal('hide');
-                      swal("Transferir dinero", "Dinero Transferido", "success");
-                      $('#recargaplaraRestaurante')[0].reset()
-                    })
-                    firebase.database().ref('users/' + data.uid + "/cuentas/").update({
-                      "cuanta1": 0,
-                      "cuenta2": resta2
-                    });
-
-                  }
-                } else { swal("Error", "No tiene saldo suficiente", "error") }
-
-              }
-
-            });
-
-          });
-        })
+        $('#nombreRestaurantePagar').val(nombreRestaurant);
       })
+        
+        
+      
       $('#modalPagoSinPlato').modal('show');
     });
   });
 } transferisRestaurantesinPlato()
 
 
+function trasnferirYa() {
+  $(document).ready(function () {
+    $(document.body).on('click', '#pagaryya', function () {
 
+      var formulario = $('#recargaplaraRestaurante').serializeArray()
+      var monto = (formulario[0].value);
+      console.log(monto);
+      
+      var sesion = sessionStorage.getItem('data');
+      var data = JSON.parse(sesion);
+
+      firebase.database().ref('Restaurante/' + uidRestaurante).once('value').then(function (snapshot) {
+        var datosRestaurante = (snapshot.val());
+        var nombreRestaurante = datosRestaurante.nombreRestaurante;
+        var saldoActual = datosRestaurante.cuentas.cuanta1;
+       // console.log(saldoActual, 'saldoactual');
+
+      
+        //console.log(data.uid);
+        firebase.database().ref('users/' + data.uid).once('value').then(function (snapshot) {
+
+          var datos = snapshot.val();
+          var cuenta1 = datos.cuentas.cuanta1;
+          var cuenta2 = datos.cuentas.cuenta2;
+          var cuenta = parseFloat(cuenta1) + parseFloat(cuenta2);
+          var resultado = parseFloat(cuenta1) - parseFloat(monto);
+          var resta1 = parseFloat(cuenta1) - parseFloat(monto);
+          var positivo = -1 * parseFloat(resta1);
+          var resta2 = parseFloat(cuenta2) - parseFloat(positivo);
+       console.log(resta2);
+       
+          if (!monto) {
+            swal("El campo Monto es obligatorio")
+          } else { $('#obligadoMonto').html(''); }
+          if (monto) {
+            if (monto < cuenta) {
+              if (monto < cuenta1) {
+                firebase.database().ref('Tranferencias/restaurantes/' + data.uid + "/").push({
+                  "monto": monto,
+                  "nombreRestaurante": nombreRestaurante,
+                  "fecha": firebase.database.ServerValue.TIMESTAMP,
+                  "uidRestaurante":uidRestaurante,
+                  "uidCliente":data.uid,
+                  "dataUsuario":data.users
+                })
+                var saldoActualizar = parseFloat(saldoActual) + parseFloat(monto);
+                firebase.database().ref('Restaurante/' + uidRestaurante + "/cuentas/").update({
+                  "cuanta1": saldoActualizar
+                }, function () {
+                  $('#modalPagoSinPlato').modal('hide');
+                  swal("Transferir dinero", "Dinero Transferido", "success");
+                })
+                firebase.database().ref('users/' + data.uid + "/cuentas/").update({
+                  "cuanta1": resultado,
+                })
+                $('#recargaSaldoCliente')[0].reset();
+              } else {      
+            
+                             
+                firebase.database().ref('Tranferencias/restaurantes/').push({
+                  "monto": monto,
+                  "nombreRestaurante": nombreRestaurante,
+                  "fecha": firebase.database.ServerValue.TIMESTAMP,
+                  "uidRestaurante":uidRestaurante,
+                  "uidCliente":data.uid,
+                  "dataUsuario":data.users
+                })
+                var saldoActualizar = parseFloat(saldoActual) + parseFloat(monto);
+                firebase.database().ref('Restaurante/' + uidRestaurante + "/cuentas/").update({
+                  "cuanta1": saldoActualizar
+                }, function () {
+                  $('#modalPagoSinPlato').modal('hide');
+                  swal("Transferir dinero", "Dinero Transferido", "success");
+                  $('#recargaplaraRestaurante')[0].reset()
+                })
+                firebase.database().ref('users/' + data.uid + "/cuentas/").update({
+                  "cuanta1": 0,
+                  "cuenta2": resta2
+                });
+                  
+              }
+            } else { swal("Error", "No tiene saldo suficiente", "error") }
+          }
+        });
+      });
+    })
+  });
+}trasnferirYa()
