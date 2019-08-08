@@ -288,7 +288,7 @@ function recuperarNOmbreEmpresa() {
     var rutaImagen = sesion.empresa.rutaImagen;
     var storageRef = firebase.storage().ref();
     var mountainsRef = storageRef.child("");
-console.log('tura',rutaImagen);
+
 if (!rutaImagen) {$('#fotoEmpresa').append("<img src='https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fempresas.png?alt=media&token=b66894a9-8a79-46f1-9660-227e7591e3e7'></span>");
   
 } else{$('#fotoEmpresa').append("<img src=" + rutaImagen + "</span>");}
@@ -369,7 +369,7 @@ function empleadosRegistrados() {
 
       $('.cambiarPlan').click(function () {
         var usuario = $(this).val();
-         console.log(usuario);
+        
 
         firebase.database().ref('users/').orderByKey().equalTo(usuario).on('value',function (snapshot) {
           //   console.log(snapshot.val());
@@ -387,16 +387,16 @@ function empleadosRegistrados() {
                
 
               
-                 s = s+("<option value='" + nombrePlan + " " + "€  " + montoPlan + "'>" + nombrePlan + " " + "€  " + montoPlan + "</option>");                
+                 s = s+("   <option value='" + nombrePlan + " " + "€  " + montoPlan + "'>" + nombrePlan + " " + "€  " + montoPlan + "</option>");                
 //console.log(s);
 
-                $('#cambiarPlan2').append("<div class='modal fade show' id='modal-editar-beneficio' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-modal='true' style='padding-right: 17px; display: block;'>    <div class='modal-dialog modal-base modal-sm' role='document'>" +
+                $('#cambiarPlan2').html("<div class='modal fade show' id='modal-editar-beneficio' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-modal='true' style='padding-right: 17px; display: block;'>    <div class='modal-dialog modal-base modal-sm' role='document'>" +
                   "<div class='modal-content'>        <div class='modal-header'>          <h5 class='modal-title' id='exampleModalLabel'>Cambiar Plan</h5>" +
                  
                   "</button>        </div>        <div class='modal-body'>          <div class='row register-form'>            <div class='col-md-12 col-12'>" +
                   "<div class='form-group'>           <label  class='form-control' placeholder='Nombres' > " + nombreCOmpleto + "  </label>            </div>" +
-                  "</div>            <div class='col-md-12 col-12'> <div class='form-group'> <select class='form-control exampleFormControlSelect12' id='exampleFormControlSelect12' >" + s + " </select>" +
-                  "</div>            </div>          </div>        </div>        <div class='modal-footer'>          <button type='button' class='btn edit' data-dismiss='modal'>salir</button>" +
+                  "</div>            <div class='col-md-12 col-12'> <div class='form-group'> <select class='form-control exampleFormControlSelect12' id='exampleFormControlSelect12' > <option value='0' selected disable>Seleccionar Plan</option>    " + s + " </select>" +
+                  "</div>            </div>          </div>        </div>        <div class='modal-footer'>          <button type='button' id='cerrarEsto' class='btn edit cerrarEsto' data-dismiss='modal'>salir</button>" +
                   "<button id='"+ usuario +"' type='button' class='btn primary cambiarPlanEmpleado' data-dismiss='modal'>Editar</button>        </div>      </div>    </div>  </div>");
 
                   
@@ -658,7 +658,7 @@ function tablaReporteEmpresa() {////usar cuando ya se generen las compras
     var data = sessionStorage.getItem('data');
     var sesion = JSON.parse(data); var uid = sesion.uid;
     firebase.database().ref('/users/').orderByChild('empresa').equalTo(uid).once('value').then(function (snapshot) {
-      // console.log(snapshot.val());
+      console.log('aqui',snapshot.val());
       snapshot.forEach(function (param) {
         var datos = (param.val());
         var Nombre = datos.nombre;
@@ -894,17 +894,30 @@ function generarContraseña(){
 }generarContraseña()
 
 function cambiarPlanEmpleado() {
+
   $(document).ready(function () {
+    var plan = NaN ;
+    $(document.body).on('change','.exampleFormControlSelect12', function (e) {
+ 
+       plan =(e.currentTarget.value);
+      if (!plan) { swal("Campo Vacio","Debe seleccionar el nuevo plan","error")};
+    });
     $(document.body).on('click','.cambiarPlanEmpleado', function (e) {
-      var usuarioUid=(e.currentTarget.id);
-     var plan= $('.exampleFormControlSelect12').val();
-     console.log(plan);
-     
+      var usuarioUid=(e.currentTarget.id);   
+      
+    if (plan) {
+    
+      
       firebase.database().ref('users/' + usuarioUid ).update( {
         "planBeneficio":plan
+      })     
+      
+      swal("Modificar Plan","El Plan a sido modificado","success");
 
+      $('#cambiarPlan2').html('');
+    }
       })
-    });
+
   });
 }cambiarPlanEmpleado()
 
@@ -918,3 +931,12 @@ function ojitosSesionRestaurante() {
     });
   })
 } ojitosSesionRestaurante()
+
+function cerrarModalFeo() {
+
+    $(document.body).on('click','.cerrarEsto', function () {
+      $('#cambiarPlan2').html('');
+    
+    });
+
+}cerrarModalFeo()
