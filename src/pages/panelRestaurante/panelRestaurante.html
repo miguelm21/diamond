@@ -568,28 +568,18 @@
             <h2 class="title">Retirar dinero</h2>
             <div class="box-table">
               <form id ='retirarDineroRestaurante'>
-              <div class="table-responsive">
-                <div class="tab-pane" id="second" role="tabpanel" aria-labelledby="second-tab">
-                  <div class="register-form p-0">
-                    <div class="form-group w-25 ">
-                      <Label placeholder="Monto a Retirar"  class="form-control" id=""> MOnto disponible <span> 90</span> </Label>
-                    </div>
+                <div class="register-form p-0 row">
+                  <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                    <Label placeholder="Monto a Retirar"  class="form-control" id=""> Monto disponible <span> 90</span> </Label>
                   </div>
-                </div>
-                <div class="tab-pane" id="second" role="tabpanel" aria-labelledby="second-tab">
-                    <div class="register-form p-0">
-                      <div class="form-group w-25 ">
-                        <input placeholder="Monto a Retirar" name="saldo" class="form-control" id="" >
-                      </div>
-                    </div>
+
+                  <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                    <input placeholder="Monto a Retirar" name="saldo" class="form-control" id="" >
                   </div>
-                  <div class="tab-pane" id="second" role="tabpanel" aria-labelledby="second-tab">
-                      <div class="register-form p-0">
-                        <div class="form-group w-25 ">
-                          <button type="button" placeholder="Retirar" name="" class="retirarPlataRestaurante" id="retirarPlataRestaurante"> Retirar fondo</button>
-                        </div>
-                      </div>
-                    </div>
+
+                  <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                    <button type="button" placeholder="Retirar" name="" class="retirarPlataRestaurante btn btn-primary" id="retirarPlataRestaurante"> Retirar fondo</button>
+                  </div>
               </div>
             </form>
             <div class="box-table">
@@ -629,7 +619,7 @@
             </div>
            
             
-          <div class="pagination-section">
+         <!--  <div class="pagination-section">
             <div class="row">
               <div class="col-12">
                 <ul class="pagination">
@@ -643,103 +633,103 @@
                 </ul>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="box-historial" style="display: none" id="box-config">
-        <h2 class="title">Configuración del restaurante</h2>
-        <div class="config-section">
-          <div class="row mt-4">
-            <div class="col-lg-7 col-md-12 col-sm-12 col-12">
-              <div class="shedule">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck1">
-                  <label class="custom-control-label" for="customCheck1">Lunes</label>
+          </div> -->
+          <div class="box-historial" style="display: none" id="box-config">
+            <h2 class="title">Configuración del restaurante</h2>
+            <div class="config-section">
+              <div class="row mt-4">
+                <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+                  <div class="shedule">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="customCheck1">
+                      <label class="custom-control-label" for="customCheck1">Lunes</label>
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" type="time">
+                      <span>-</span>
+                      <input class="form-control" type="time">
+                    </div>
+                  </div>
+                  <div class="shedule">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="customCheck2">
+                      <label class="custom-control-label" for="customCheck2">Martes</label>
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" type="time">
+                      <span>-</span>
+                      <input class="form-control" type="time">
+                    </div>
+                  </div>
+                  <div class="shedule">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="customCheck3">
+                      <label class="custom-control-label" for="customCheck3">Miercoles</label>
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" type="time">
+                      <span>-</span>
+                      <input class="form-control" type="time">
+                    </div>
+                  </div>
+                  <div class="shedule">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="customCheck4">
+                      <label class="custom-control-label" for="customCheck4">Jueves</label>
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" type="time">
+                      <span>-</span>
+                      <input class="form-control" type="time">
+                    </div>
+                  </div>
+                  <div class="shedule">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="customCheck5">
+                      <label class="custom-control-label" for="customCheck5">Viernes</label>
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" type="time">
+                      <span>-</span>
+                      <input class="form-control" type="time">
+                    </div>
+                  </div>
+                  <div class="shedule">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="customCheck6">
+                      <label class="custom-control-label" for="customCheck6">Sabado</label>
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" type="time">
+                      <span>-</span>
+                      <input class="form-control" type="time">
+                    </div>
+                  </div>
+                  <div class="shedule">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="customCheck6">
+                      <label class="custom-control-label" for="customCheck6">Domingo</label>
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" type="time">
+                      <span>-</span>
+                      <input class="form-control" type="time">
+                    </div>
+                  </div>
                 </div>
-                <div class="form-group">
-                  <input class="form-control" type="time">
-                  <span>-</span>
-                  <input class="form-control" type="time">
+                <div class="col-lg-5 col-md-12 col-sm-12 col-12">
+                  <div class="date">
+                    <h5>Dias no habiles</h5>
+                    <div class="form-group mt-4 d-flex">
+                      <input type="date" class="form-control">
+                      <button class="btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-aceptar">Guardar cambios</button>
                 </div>
               </div>
-              <div class="shedule">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck2">
-                  <label class="custom-control-label" for="customCheck2">Martes</label>
-                </div>
-                <div class="form-group">
-                  <input class="form-control" type="time">
-                  <span>-</span>
-                  <input class="form-control" type="time">
-                </div>
-              </div>
-              <div class="shedule">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck3">
-                  <label class="custom-control-label" for="customCheck3">Miercoles</label>
-                </div>
-                <div class="form-group">
-                  <input class="form-control" type="time">
-                  <span>-</span>
-                  <input class="form-control" type="time">
-                </div>
-              </div>
-              <div class="shedule">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck4">
-                  <label class="custom-control-label" for="customCheck4">Jueves</label>
-                </div>
-                <div class="form-group">
-                  <input class="form-control" type="time">
-                  <span>-</span>
-                  <input class="form-control" type="time">
-                </div>
-              </div>
-              <div class="shedule">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck5">
-                  <label class="custom-control-label" for="customCheck5">Viernes</label>
-                </div>
-                <div class="form-group">
-                  <input class="form-control" type="time">
-                  <span>-</span>
-                  <input class="form-control" type="time">
-                </div>
-              </div>
-              <div class="shedule">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck6">
-                  <label class="custom-control-label" for="customCheck6">Sabado</label>
-                </div>
-                <div class="form-group">
-                  <input class="form-control" type="time">
-                  <span>-</span>
-                  <input class="form-control" type="time">
-                </div>
-              </div>
-              <div class="shedule">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck6">
-                  <label class="custom-control-label" for="customCheck6">Domingo</label>
-                </div>
-                <div class="form-group">
-                  <input class="form-control" type="time">
-                  <span>-</span>
-                  <input class="form-control" type="time">
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-5 col-md-12 col-sm-12 col-12">
-              <div class="date">
-                <h5>Dias no habiles</h5>
-                <div class="form-group mt-4 d-flex">
-                  <input type="date" class="form-control">
-                  <button class="btn"><i class="fas fa-plus"></i></button>
-                </div>
-              </div>
-            </div>
-            <div class="col-12">
-              <button class="btn btn-aceptar">Guardar cambios</button>
             </div>
           </div>
         </div>
