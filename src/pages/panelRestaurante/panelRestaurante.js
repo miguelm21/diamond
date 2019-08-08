@@ -698,7 +698,7 @@ function consultaTrasacciones() {
         var fecha = darFecha(snap.fecha);
         // console.log('fecha',fecha);
 
-        $('#tablitaa').append("<tr> <td>" + snap.dataUsuario.correo + "</td> <td>" + snap.dataUsuario.nombre + " " + snap.dataUsuario.apellido + "</td> <td>" + new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(snap.monto)  + "</td> <td>" + fecha + " </td>  </tr>");
+        $('#tablitaa').append("<tr> <td>" + snap.dataUsuario.correo + "</td> <td>" + snap.dataUsuario.nombre + " " + snap.dataUsuario.apellido + "</td> <td>" + new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(snap.monto) + "</td> <td>" + fecha + " </td>  </tr>");
       });
 
     });
@@ -732,15 +732,15 @@ function transaccionRestaurante() {
       a.forEach(e => {
         var trans = (e.val());
         var key = e.key;
-    
+
         var boton = ("<button  class='btn' ><i id='" + key + "' class='fas fa-check atendido'></i></button>")
         if (trans.estatus == 1) {
 
-          $('#tablitaTrasaccion').append("<tr> <td>" + trans.usuario.correo + "</td> <td>" + trans.usuario.users.nombre + " " + trans.usuario.users.apellido + "</td> <td>" + new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(trans.plato.PrecioPlato)  + "</td> <td>" + trans.plato.nombrePlato +
+          $('#tablitaTrasaccion').append("<tr> <td>" + trans.usuario.correo + "</td> <td>" + trans.usuario.users.nombre + " " + trans.usuario.users.apellido + "</td> <td>" + new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(trans.plato.PrecioPlato) + "</td> <td>" + trans.plato.nombrePlato +
             " </td>  <td>" + boton + " </td>  </tr>");
         }
         else {
-          $('#tablitAtendidos').append("<tr> <td>" + trans.usuario.correo + "</td> <td>" + trans.usuario.users.nombre + " " + trans.usuario.users.apellido + "</td> <td>" + new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(trans.plato.PrecioPlato) + "</td> <td>" + trans.plato.nombrePlato +
+          $('#tablitAtendidos').append("<tr> <td>" + trans.usuario.correo + "</td> <td>" + trans.usuario.users.nombre + " " + trans.usuario.users.apellido + "</td> <td>" + new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(trans.plato.PrecioPlato) + "</td> <td>" + trans.plato.nombrePlato +
             " </td>  <td>" + boton + " </td>  </tr>");
 
         }
@@ -767,19 +767,17 @@ function retirarDinero() {
 
     var sesion = sessionStorage.getItem('data');
     var datosRecstaurante = JSON.parse(sesion);
-    firebase.database().ref('retiros/').orderByChild('restauranteUid').equalTo(datosRecstaurante.uid).on('value',function (a) {      
-      var table ;
+    firebase.database().ref('retiros/').orderByChild('restauranteUid').equalTo(datosRecstaurante.uid).on('value', function (a) {
+      var table;
       a.forEach(element => {
         var retiro = (element.val());
-        var fecha = darFecha(retiro.fecha);            
-        
-           var html =("<tr> <td>" + new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(retiro.montoRetirado) + "</td>  <td>" + fecha + " </td>  </tr>");
-        table   = table +html;
+        var fecha = darFecha(retiro.fecha);
 
-        $('#tablaRetiro').html( table);
-        
+        var html = ("<tr> <td>" + new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(retiro.montoRetirado) + "</td>  <td>" + fecha + " </td>  </tr>");
+        table = table + html;
+
+        $('#tablaRetiro').html(table);
       });
-
     })
 
     $(document.body).on('click', '.retirarPlataRestaurante', function (e) {
