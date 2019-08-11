@@ -669,15 +669,14 @@ function tablaReporteEmpresa() {////usar cuando ya se generen las compras
     firebase.database().ref('transaccion/').once('value').then(function (snapshot) {
       
       snapshot.forEach(function (param) {
-        var datos = (param.val());
-        var Nombre = datos.nombre;
-        console.log(datos);
+        var datos = (param.val());      
+        
         var nombreCliente = datos.usuario.users.nombre;
         var precioPlato = datos.plato.PrecioPlato;
         var nombrePlato =datos.plato.nombrePlato;
         var planBeneficio = datos.usuario.users.planBeneficio;
         var fecha = darFecha(datos.fecha);
-        console.log(fecha);
+       
 
         var tabla = ("<div class='table-responsive'>" +
           "<table class='table'>" +
