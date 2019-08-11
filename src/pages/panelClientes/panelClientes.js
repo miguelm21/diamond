@@ -291,17 +291,15 @@ function detalleRestauranteCliente() {
       $('#direccionRestaurante').text(direccion);
       $('#direccionTelefono').text(telefono);
       $('#direccionPais').text(pais);
-      $('#direccionCorreo').text(correo);
-
-       
-       
+      $('#direccionCorreo').text(correo);      
+      
         
       firebase.database().ref('Platos/').orderByChild('restaurante').equalTo(uidRestaurante).on('value', function (snapshot) {
+
+       
         var tarjeta = '';
         var chupetin = '';
         snapshot.forEach(function (plato) {
-
-
 
           var platos = (plato.val());
           var keyPlato = plato.key;
@@ -349,7 +347,6 @@ function detalleRestauranteCliente() {
             swal("Sin coincidencias", "No encontramos este tipo de comida","error")
             }
           });
-
 
         }); $('#modal-detalles-plato').modal('show');
       });

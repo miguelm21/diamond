@@ -81,7 +81,7 @@ $(document).ready(function () {
 
   /* Panel admin empresas */
 
-  $('#home-fix').click(function(){
+  $('#home-fix').click(function () {
     $('#show-button').show();
     $('#show-register1').hide();
     $('#show-register2').hide();
@@ -235,7 +235,7 @@ function registroempleados() {
       var sesionjson = sessionStorage.getItem("data");
       var json = JSON.parse(sesionjson);
       if (datos && nombre && apellido && fechaNacimiento && correo && cargo && Inactivo && planBeneficio && contraseña) {
-     
+
         firebase.auth().createUserWithEmailAndPassword(correo, contraseña).then(function (resultado) {
 
           var uid = resultado.user.uid;
@@ -267,9 +267,11 @@ function registroempleados() {
               $("#RegistrarEmpleados")[0].reset();
             }
           })
-        },function (error) {
-          hideLoading();swal("Error",error.message,"error")  });
-      } else {hideLoading();
+        }, function (error) {
+          hideLoading(); swal("Error", error.message, "error")
+        });
+      } else {
+        hideLoading();
         swal("Error!", "Debe completar los campos Faltantes", "error");
       }
     })
@@ -289,13 +291,14 @@ function recuperarNOmbreEmpresa() {
     var storageRef = firebase.storage().ref();
     var mountainsRef = storageRef.child("");
 
-if (!rutaImagen) {$('#fotoEmpresa').append("<img src='https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fempresas.png?alt=media&token=b66894a9-8a79-46f1-9660-227e7591e3e7'></span>");
-  
-} else{$('#fotoEmpresa').append("<img src=" + rutaImagen + "</span>");}
-   // mountainsRef.child(rutaImagen).getDownloadURL().then(function (url) {
-     // console.log(nombreEmpresa);
+    if (!rutaImagen) {
+      $('#fotoEmpresa').append("<img src='https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fempresas.png?alt=media&token=b66894a9-8a79-46f1-9660-227e7591e3e7'></span>");
+
+    } else { $('#fotoEmpresa').append("<img src=" + rutaImagen + "</span>"); }
+    // mountainsRef.child(rutaImagen).getDownloadURL().then(function (url) {
+    // console.log(nombreEmpresa);
     //  $('#fotoEmpresa').append("<img src=" + rutaImagen + "</span>");
-      $('#nombreEmpresa').append("<span>" + nombreEmpresa + "</span>");
+    $('#nombreEmpresa').append("<span>" + nombreEmpresa + "</span>");
 
     //})
   });
@@ -309,17 +312,17 @@ function CrearPlanes() {
       var datos = $('#registroBeneficio').serializeArray();
       var nombrePlan = datos[0].value; if (!nombrePlan) { $('#pnombrePlan').html('Campo Obligatorio'); } else { $('#pnombrePlan').html(''); }
       var montoPlan = datos[1].value; if (!montoPlan) { $('#pmontoPlan').html('Campo Obligatorio'); } else { $('#pmontoPlan').html(''); }
-     // var fechaPlan = datos[2].value; if (!fechaPlan) { $('#pFechaPlan').html('Campo Obligatorio'); } else { $('#pFechaPlan').html(''); }
+      // var fechaPlan = datos[2].value; if (!fechaPlan) { $('#pFechaPlan').html('Campo Obligatorio'); } else { $('#pFechaPlan').html(''); }
       var sesionjson = sessionStorage.getItem("data");
       var sesion = JSON.parse(sesionjson);
       var uid = (sesion.uid);
 
       if (nombrePlan && montoPlan /*&& fechaPlan*/) {
-      
+
         firebase.database().ref('Empresas/' + uid + '/planes/').push().update({
           "nombrePlan": nombrePlan,
           "montoPlan": montoPlan,
-        //  "fechaPlan": fechaPlan
+          //  "fechaPlan": fechaPlan
 
         }, function (error) {
           if (error) {
@@ -343,7 +346,7 @@ function empleadosRegistrados() {
   $('body').ready(function () {
     var sesion = JSON.parse(sessionStorage.getItem('data'));
     var uid = (sesion.uid);
-    firebase.database().ref('/users/').orderByChild('empresa').equalTo(uid).on('value',function (snapshot) {
+    firebase.database().ref('/users/').orderByChild('empresa').equalTo(uid).on('value', function (snapshot) {
       //console.log(snapshot.val());
       var tablita;
       snapshot.forEach(function (childSnapshot) {
@@ -360,48 +363,48 @@ function empleadosRegistrados() {
         var nombre = childData.nombre;
         var planBeneficio = childData.planBeneficio;
 
-       tablita = tablita + "<tr><td>" + nombre + "</td><td>" + apellido + "</td><td>" + correo + "</td><td>" + Inactivo + "</td><td>" +
-        planBeneficio +
-        " <button class='cambiarPlan btn btn-change' id='cambiarPlan' type='submit' value='" + key + "'  ><i class='fas fa-exchange-alt'></i></button> </td><td>" + cargo + "</td></tr>"
+        tablita = tablita + "<tr><td>" + nombre + "</td><td>" + apellido + "</td><td>" + correo + "</td><td>" + Inactivo + "</td><td>" +
+          planBeneficio +
+          " <button class='cambiarPlan btn btn-change' id='cambiarPlan' type='submit' value='" + key + "'  ><i class='fas fa-exchange-alt'></i></button> </td><td>" + cargo + "</td></tr>"
 
         $('#tablaEmpleados').html(tablita);
       });
 
       $('.cambiarPlan').click(function () {
         var usuario = $(this).val();
-        
 
-        firebase.database().ref('users/').orderByKey().equalTo(usuario).on('value',function (snapshot) {
+
+        firebase.database().ref('users/').orderByKey().equalTo(usuario).on('value', function (snapshot) {
           //   console.log(snapshot.val());
-          var s= ''
+          var s = ''
           snapshot.forEach(function (data) {
             //  console.log(data.val());
             var nombre = data.val().nombre;
             var apellido = data.val().apellido;
             var nombreCOmpleto = nombre + "  " + apellido
             //.orderByKey().equalTo(usuario).///esto para filtrar
-            firebase.database().ref('Empresas/' + uid + "/planes/").on('value',function (snapshot) {
+            firebase.database().ref('Empresas/' + uid + "/planes/").on('value', function (snapshot) {
               snapshot.forEach(function (data) {
                 var nombrePlan = data.val().nombrePlan;
                 var montoPlan = data.val().montoPlan;
-               
 
-              
-                 s = s+("   <option value='" + nombrePlan + " " + "€  " + montoPlan + "'>" + nombrePlan + " " + "€  " + montoPlan + "</option>");                
-//console.log(s);
+
+
+                s = s + ("   <option value='" + nombrePlan + " " + "€  " + montoPlan + "'>" + nombrePlan + " " + "€  " + montoPlan + "</option>");
+                //console.log(s);
 
                 $('#cambiarPlan2').html("<div class='modal fade show' id='modal-editar-beneficio' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-modal='true' style='padding-right: 17px; display: block;'>    <div class='modal-dialog modal-base modal-sm' role='document'>" +
                   "<div class='modal-content'>        <div class='modal-header'>          <h5 class='modal-title' id='exampleModalLabel'>Cambiar Plan</h5>" +
-                 
+
                   "</button>        </div>        <div class='modal-body'>          <div class='row register-form'>            <div class='col-md-12 col-12'>" +
                   "<div class='form-group'>           <label  class='form-control' placeholder='Nombres' > " + nombreCOmpleto + "  </label>            </div>" +
                   "</div>            <div class='col-md-12 col-12'> <div class='form-group'> <select class='form-control exampleFormControlSelect12' id='exampleFormControlSelect12' > <option value='0' selected disable>Seleccionar Plan</option>    " + s + " </select>" +
                   "</div>            </div>          </div>        </div>        <div class='modal-footer'>          <button type='button' id='cerrarEsto' class='btn edit cerrarEsto' data-dismiss='modal'>salir</button>" +
-                  "<button id='"+ usuario +"' type='button' class='btn primary cambiarPlanEmpleado' data-dismiss='modal'>Editar</button>        </div>      </div>    </div>  </div>");
+                  "<button id='" + usuario + "' type='button' class='btn primary cambiarPlanEmpleado' data-dismiss='modal'>Editar</button>        </div>      </div>    </div>  </div>");
 
-                  
+
               });
-              
+
             })
           });
         });
@@ -414,37 +417,38 @@ function empleadosRegistrados() {
 function beneficionRegistrados() {
   $('body').ready(function () {
     var sesion = JSON.parse(sessionStorage.getItem('data'));
-    firebase.database().ref('/Empresas/' + sesion.uid + "/planes/").on('value',function (snapshot) {
+    firebase.database().ref('/Empresas/' + sesion.uid + "/planes/").on('value', function (snapshot) {
       var beneficio1 = '';
       snapshot.forEach(function (childSnapshot) {
         var childData = childSnapshot.val();
-       // var fechaPlan = childData.fechaPlan;
-       
+        // var fechaPlan = childData.fechaPlan;
+
         var montoPlan = childData.montoPlan;
         var nombrePlan = childData.nombrePlan;
-        var tarjeta = $("<div class='col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3'>" +
+        var tarjeta = ("<div class='col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3'>" +
           "<div class='box-card yellow'>" +
           "<!--<div class='dropdown'>" +
           "<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton'" +
           "data-toggle='dropdown' aria-haspopup='false' aria-expanded='false'>" +
           "<i class='fas fa-ellipsis-v'></i>" +
           "</button>" +
-            "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>" +
-                "<a class='dropdown-item' href='#' data-toggle='modal'" +
-                  "data-target='#modal-editar-beneficio'>Editar</a>" +
-                "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-eliminar'>Eliminar</a>" +
-            "</div>" +
+          "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>" +
+          "<a class='dropdown-item' href='#' data-toggle='modal'" +
+          "data-target='#modal-editar-beneficio'>Editar</a>" +
+          "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-eliminar'>Eliminar</a>" +
+          "</div>" +
           "</div>-->" +
           "<div class='info-card'>" +
           "<h5 class='name'> " + nombrePlan + "</h5>" +
           "<p class='price'> € " + montoPlan + "</p>" +
-         // "<span class='date'>" + fechaPlan + "</span>" +
+          // "<span class='date'>" + fechaPlan + "</span>" +
           "</div>" +
           "</div>" +
           "</div>");
 
-          beneficio1 = tarjeta + beneficio1;
-          console.log(beneficio1);
+
+        beneficio1 = tarjeta + beneficio1;
+
         $('#tarjetaBeneficio').html(beneficio1);
 
       });
@@ -465,11 +469,11 @@ function configuracionEmpresa() {
     var pais = sesion.empresa.pais;
     var poblacion = sesion.empresa.poblacion;
     var telefono = sesion.empresa.telefono;
-    var CedulaRepresentante = sesion.empresa.representante.CedulaRepresentante;  
+    var CedulaRepresentante = sesion.empresa.representante.CedulaRepresentante;
     var CorreoRepresentante = sesion.empresa.representante.CorreoRepresentante;
     var NombreRepresentante = sesion.empresa.representante.NombreRepresentante;
     var TelRepresentante = sesion.empresa.representante.TelRepresentante;
-    
+
     $('#conNombreEmpresa').val(nombreEmpresa);
     $('#conpostal').val(codigoPostal);
     $('#conDireccion').val(direccion);
@@ -481,72 +485,73 @@ function configuracionEmpresa() {
     $('#conNombreRepresentante').val(NombreRepresentante);
     $('#conCedulaRepresentante').val(CedulaRepresentante);
     $('#conTelRepresentante').val(TelRepresentante);
-    $('#conCorreoRepresentante').val(CorreoRepresentante);    
-    
+    $('#conCorreoRepresentante').val(CorreoRepresentante);
+
     $('#guardarEmpresa').click(function (e) {
-      e.preventDefault();   
-     
+      e.preventDefault();
+
       //////////////////////imagen         
       var fotoval = document.getElementById('conLogoEmpresa');
       //console.log(fotoval.files[0]);      
       var foto = new FileReader();
       foto.onload = function (e) {
         var file = (e.target.result);
-        
+
         var storageRef = firebase.storage().ref();
         var mountainsRef = storageRef.child('imagen/' + uid + fotoval.files[0].name);
-        var imagen = file.substring(23);     
+        var imagen = file.substring(23);
 
         mountainsRef.putString(imagen, 'base64').then(function (snapshot) {
-          var rutaGuardaImagen = snapshot.metadata.fullPath;         
+          var rutaGuardaImagen = snapshot.metadata.fullPath;
 
           var storageRef = firebase.storage().ref();
           var mountainsRef = storageRef.child("");
           mountainsRef.child(rutaGuardaImagen).getDownloadURL().then(function (url) {
-          //////////////prueba de imagen
-          var datos = $('#editarEmpresa').serializeArray();
-          var conNombreEmpresa = datos[0].value;
-          var conIdCompañia = datos[1].value;
-          var conCorreo = datos[2].value;
-          var conTelefono = datos[3].value;
-          var conDireccion = datos[4].value;
-          var conpostal = datos[5].value;
-          var conpais = datos[6].value;
-          var conpoblacion = datos[7].value;
-          var conNombreRepresentante = datos[8].value;
-          var conCedulaRepresentante = datos[9].value;
-          var conTelRepresentante = datos[10].value;
-          var conCorreoRepresentante = datos[11].value;
-          var rutaGuardaImagen = url;
-          firebase.database().ref('Empresas/' + uid).update({
-            "nombreEmpresa": conNombreEmpresa,
-            "correo": conCorreo,
-            "pais": conpais,
-            "direccion": conDireccion,
-            "poblacion": conpoblacion,
-            "telefono": conTelefono,
-            "codigoPostal": conpostal,
-            "rutaImagen": rutaGuardaImagen,
-            "representante": {
-              "NombreRepresentante": conNombreRepresentante,
-              "CedulaRepresentante": conCedulaRepresentante,
-              "TelRepresentante": conTelRepresentante,
-              "CorreoRepresentante": conCorreoRepresentante
-            }
+            //////////////prueba de imagen
+            var datos = $('#editarEmpresa').serializeArray();
+            var conNombreEmpresa = datos[0].value;
+            var conIdCompañia = datos[1].value;
+            var conCorreo = datos[2].value;
+            var conTelefono = datos[3].value;
+            var conDireccion = datos[4].value;
+            var conpostal = datos[5].value;
+            var conpais = datos[6].value;
+            var conpoblacion = datos[7].value;
+            var conNombreRepresentante = datos[8].value;
+            var conCedulaRepresentante = datos[9].value;
+            var conTelRepresentante = datos[10].value;
+            var conCorreoRepresentante = datos[11].value;
+            var rutaGuardaImagen = url;
+            firebase.database().ref('Empresas/' + uid).update({
+              "nombreEmpresa": conNombreEmpresa,
+              "correo": conCorreo,
+              "pais": conpais,
+              "direccion": conDireccion,
+              "poblacion": conpoblacion,
+              "telefono": conTelefono,
+              "codigoPostal": conpostal,
+              "rutaImagen": rutaGuardaImagen,
+              "representante": {
+                "NombreRepresentante": conNombreRepresentante,
+                "CedulaRepresentante": conCedulaRepresentante,
+                "TelRepresentante": conTelRepresentante,
+                "CorreoRepresentante": conCorreoRepresentante
+              }
 
-          }, function (error) {
-            if (error) {
-              hideLoading();
-              swal("Error",error.message,"error")
-            } else {
-              hideLoading();
-             swal("Modificado con exito"," has modificado esta empresa","success")
-            }
-          });
-        },function (error) { hideLoading();  alert(error)  });
-      }, function (params) { alert(error.message)
-        
-      })
+            }, function (error) {
+              if (error) {
+                hideLoading();
+                swal("Error", error.message, "error")
+              } else {
+                hideLoading();
+                swal("Modificado con exito", " has modificado esta empresa", "success")
+              }
+            });
+          }, function (error) { hideLoading(); alert(error) });
+        }, function (params) {
+          alert(error.message)
+
+        })
       }, foto.readAsDataURL(fotoval.files[0]);
     });
   });
@@ -619,7 +624,7 @@ function RecargarSaldoEMpresa() {
         var sumaSaldo = parseFloat(montoRecargar) + parseFloat(saldoCuenta1);
         //  alert(montoRecargar);
         if (tarjetaCredito && nombreTitular && NumeroTarjeta && fechaExp && codigoSeguridad && montoRecargar && sumaSaldo) {
-         
+
           firebase.database().ref('Empresas/' + uid + "/cuentas").update({
             "cuanta1": sumaSaldo
 
@@ -662,7 +667,7 @@ function tablaReporteEmpresa() {////usar cuando ya se generen las compras
     var data = sessionStorage.getItem('data');
     var sesion = JSON.parse(data); var uid = sesion.uid;
     firebase.database().ref('/users/').orderByChild('empresa').equalTo(uid).once('value').then(function (snapshot) {
-      console.log('aqui',snapshot.val());
+      console.log('aqui', snapshot.val());
       snapshot.forEach(function (param) {
         var datos = (param.val());
         var Nombre = datos.nombre;
@@ -710,7 +715,7 @@ function recargarSaldoClientes() {
   $(document).ready(function () {
     $('.recargarSaldoCliente').on('click', function (e) {
       e.preventDefault();
-    
+
 
       var data = sessionStorage.getItem('data');
       var sesion = JSON.parse(data);
@@ -731,7 +736,7 @@ function recargarSaldoClientes() {
             var cuenta2Empresa = empresa.cuentas.cuenta2;
             var saldototalEmpresa = parseFloat(cuenta1Empresa) + cuenta2Empresa
             var saldoQuedaEmpresa = cuenta1Empresa - t;
-           
+
             if (saldoCliente <= 0) {
 
               if (saldototalEmpresa < t) {
@@ -765,9 +770,9 @@ function recargarSaldoClientes() {
               }
             } else {
               hideLoading();
-              swal(          "Error",
-                 "No se puede recargar dos veces el saldo, en este momento el cliente ya tiene saldo activo",
-                 "error",
+              swal("Error",
+                "No se puede recargar dos veces el saldo, en este momento el cliente ya tiene saldo activo",
+                "error",
 
               )
             }
@@ -841,7 +846,7 @@ function notificaciones() {
         //console.log("kkk");
 
         messaging.getToken().then(function (snap) {
-        //  console.log(snap);
+          //  console.log(snap);
           localStorage.setItem('tokenBlue', snap)
           messaging.onMessage(function (payload) {
             //    console.log('Message received. ', payload);
@@ -850,7 +855,7 @@ function notificaciones() {
         });
 
       } else {
-       // console.log('Unable to get permission to notify.');
+        // console.log('Unable to get permission to notify.');
       }
     });
     //console.log('notificaciones');
@@ -883,47 +888,47 @@ function enviarNotificacion(token) {
       },
     });
   });
-}hideLoading()
+} hideLoading()
 
-function generarContraseña(){
+function generarContraseña() {
 
   $('#generarContraseña').on('click', function () {
     var i;
     var caracteres = "abcdefghijkmnpqrtuvwxyzABCDEFGHIJKLMNPQRTUVWXYZ2346789";
     var contraseña = "";
-    for ( i=0; i<8; i++) contraseña += caracteres.charAt(Math.floor(Math.random()*caracteres.length));
+    for (i = 0; i < 8; i++) contraseña += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
     $('.contraseñaEmpleado').val(contraseña);
-  
-});
-}generarContraseña()
+
+  });
+} generarContraseña()
 
 function cambiarPlanEmpleado() {
 
   $(document).ready(function () {
-    var plan = NaN ;
-    $(document.body).on('change','.exampleFormControlSelect12', function (e) {
- 
-       plan =(e.currentTarget.value);
-      if (!plan) { swal("Campo Vacio","Debe seleccionar el nuevo plan","error")};
-    });
-    $(document.body).on('click','.cambiarPlanEmpleado', function (e) {
-      var usuarioUid=(e.currentTarget.id);   
-      
-    if (plan) {
-    
-      
-      firebase.database().ref('users/' + usuarioUid ).update( {
-        "planBeneficio":plan
-      })     
-      
-      swal("Modificar Plan","El Plan a sido modificado","success");
+    var plan = NaN;
+    $(document.body).on('change', '.exampleFormControlSelect12', function (e) {
 
-      $('#cambiarPlan2').html('');
-    }
-      })
+      plan = (e.currentTarget.value);
+      if (!plan) { swal("Campo Vacio", "Debe seleccionar el nuevo plan", "error") };
+    });
+    $(document.body).on('click', '.cambiarPlanEmpleado', function (e) {
+      var usuarioUid = (e.currentTarget.id);
+
+      if (plan) {
+
+
+        firebase.database().ref('users/' + usuarioUid).update({
+          "planBeneficio": plan
+        })
+
+        swal("Modificar Plan", "El Plan a sido modificado", "success");
+
+        $('#cambiarPlan2').html('');
+      }
+    })
 
   });
-}cambiarPlanEmpleado()
+} cambiarPlanEmpleado()
 
 function ojitosSesionRestaurante() {
   $(document).ready(function () {
@@ -937,10 +942,47 @@ function ojitosSesionRestaurante() {
 } ojitosSesionRestaurante()
 
 function cerrarModalFeo() {
+  $(document.body).on('click', '.cerrarEsto', function () {
+    $('#cambiarPlan2').html('');
+  });
+} cerrarModalFeo()
 
-    $(document.body).on('click','.cerrarEsto', function () {
-      $('#cambiarPlan2').html('');
-    
+function tranferenciaBancaria() {
+  $(document).ready(function () {
+    $(document.body).on('click', '#tranfereciaActiva', function () {
+      var sesion = sessionStorage.getItem('data');
+      var sesionjson = JSON.parse(sesion);
+      var datitos = $('#transferenciBanco').serializeArray();
+      var nombreBanco = datitos[0].value
+      var NumeroTranferecia = datitos[1].value
+      var Numeromonto = datitos[2].value
+if (!nombreBanco) { 
+  swal("error", "campo Nombre Banco vacio", "error")
+} else if (!NumeroTranferecia) { 
+  swal("error", "campo Nmero Transferencia vacio", "error")
+} else if (!Numeromonto ) {
+        swal("error", "campo monto vacio", "error")
+      } else {
+        firebase.database().ref('/Empresas/' + sesionjson.uid + '/cuentas/').once('value').then(function (snapshot) {
+
+          var saldoActual = parseFloat(Numeromonto) + parseFloat(snapshot.val().cuanta1)
+
+          console.log(saldoActual);
+
+          firebase.database().ref('/Empresas/' + sesionjson.uid + '/cuentas/').update({
+            "cuanta1": saldoActual
+          })
+
+          firebase.database().ref('Tranferencias/empresa/' + sesionjson.uid + "/").push({
+            "monto":Numeromonto ,
+            "nombreEmpresa": sesionjson.empresa.nombreEmpresa,
+            "fecha": firebase.database.ServerValue.TIMESTAMP,
+            "uidEmpresa":sesionjson.uid,
+            
+          })
+          swal("Recarga exitosa","La transferencia fue realizada con con Exito y abonada, si presenta al gun problema con ella sera notificadopor nuestro departamento de administracion","success")
+        })
+      }
     });
-
-}cerrarModalFeo()
+  });
+} tranferenciaBancaria();
