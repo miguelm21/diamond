@@ -224,6 +224,7 @@
         padding: 25px;
         background-color: #fff;
         border-bottom: 6px solid $primary;
+        
 
           @include respond(max-767){
           width: 95%;
@@ -250,6 +251,13 @@
             top: 5px;
             right: 15px;
             color: $primary;
+         
+          }
+          #show-passwordclie{
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            color: $gray;
           }
         }
 
@@ -307,6 +315,31 @@
           a{
             font-weight: bold;
             color: $primary;
+          }
+        }
+        .btnRegister{
+          padding: 2px 38px;
+          font-size: 16px;
+          margin-top: 25px;
+          line-height: 2;
+            @include respond(max-767){
+              width: 100%;
+          }
+        }
+
+        .btnBack{
+          padding: 2px 38px;
+          font-size: 16px;
+          margin-top: 25px;
+          line-height: 2;
+          background-color: #fff;
+          color: $secondary;
+          border: 1px solid $secondary;
+          &:hover, &:active, &:focus{
+            background-color: transparent;
+          }
+          @include respond(max-767){
+              width: 100%;
           }
         }
     }
@@ -419,3 +452,36 @@
   transform: translate(-50%, -50%);
 }
 
+#RegistrarEmpleados{
+  .btn-register{
+    padding: 2px 38px;
+    font-size: 16px;
+    margin-top: 25px;
+    line-height: 2;
+    background-color: #fff;
+    color: $secondary;
+    border: 1px solid $secondary;
+    &:hover, &:active, &:focus{
+      background-color: transparent;
+    }
+      @include respond(max-767){
+        width: 100%;
+    }
+  }
+  
+  .btn-back{
+    padding: 2px 38px;
+    font-size: 16px;
+    margin-top: 25px;
+    line-height: 2;
+    background-color: #fff;
+    color: $secondary;
+    border: 1px solid $secondary;
+    &:hover, &:active, &:focus{
+      background-color: transparent;
+    }
+    @include respond(max-767){
+        width: 100%;
+    }
+  }
+}

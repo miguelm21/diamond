@@ -415,24 +415,26 @@ function beneficionRegistrados() {
   $('body').ready(function () {
     var sesion = JSON.parse(sessionStorage.getItem('data'));
     firebase.database().ref('/Empresas/' + sesion.uid + "/planes/").on('value',function (snapshot) {
+      var beneficio1 = '';
       snapshot.forEach(function (childSnapshot) {
         var childData = childSnapshot.val();
        // var fechaPlan = childData.fechaPlan;
+       
         var montoPlan = childData.montoPlan;
         var nombrePlan = childData.nombrePlan;
         var tarjeta = $("<div class='col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3'>" +
           "<div class='box-card yellow'>" +
-          "<div class='dropdown'>" +
+          "<!--<div class='dropdown'>" +
           "<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton'" +
           "data-toggle='dropdown' aria-haspopup='false' aria-expanded='false'>" +
           "<i class='fas fa-ellipsis-v'></i>" +
           "</button>" +
-          "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>" +
-          "<a class='dropdown-item' href='#' data-toggle='modal'" +
-          "data-target='#modal-editar-beneficio'>Editar</a>" +
-          "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-eliminar'>Eliminar</a>" +
-          "</div>" +
-          "</div>" +
+            "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>" +
+                "<a class='dropdown-item' href='#' data-toggle='modal'" +
+                  "data-target='#modal-editar-beneficio'>Editar</a>" +
+                "<a class='dropdown-item' href='#' data-toggle='modal' data-target='#modal-eliminar'>Eliminar</a>" +
+            "</div>" +
+          "</div>-->" +
           "<div class='info-card'>" +
           "<h5 class='name'> " + nombrePlan + "</h5>" +
           "<p class='price'> € " + montoPlan + "</p>" +
@@ -441,7 +443,9 @@ function beneficionRegistrados() {
           "</div>" +
           "</div>");
 
-        $('#tarjetaBeneficio').append(tarjeta);
+          beneficio1 = tarjeta + beneficio1;
+          console.log(beneficio1);
+        $('#tarjetaBeneficio').html(beneficio1);
 
       });
     });

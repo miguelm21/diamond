@@ -102,11 +102,22 @@ $(document).ready(function () {
 
 });
 
-function backbutton() {
-  $('#show-register1').hide();
-  $('#show-register2').hide();
-  $('#show-button').show();
-}
+
+function backcliente() {
+  $('#backcliente1').click(function (e) { 
+    e.preventDefault();
+    $('#registro-cliente').hide();
+    $('#register-login').show();
+  });
+}backcliente();
+
+function backRestaurante() {
+  $('#backRestaurante1').click(function (e) { 
+    e.preventDefault();
+    $('#register-form2').hide();
+    $('#login-empresa2').show();
+  });
+}backRestaurante();
 
 //*************************codigo vitico */
 function restartLoading() {
@@ -205,6 +216,8 @@ function registroEmpresa() {
                 swal("Registro Exitoso!", "Empresa registrado!", "success");
                 $("#formRegistrar")[0].reset();
                 $('#first').tab('show');
+                $('#register-form').hide();
+                $('#login-empresa').show();
                 backbutton();
               }
             });

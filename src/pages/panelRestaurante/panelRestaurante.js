@@ -791,21 +791,27 @@ function retirarDinero() {
 
         firebase.database().ref('Restaurante/' + datosRecstaurante.uid + '/cuentas/').once('value').then(function (e) {
           var cuentas = (e.val());
-          var resta = parseFloat(cuentas.cuanta1) - parseFloat(montoCobrar)
-          console.log(resta);
 
-          firebase.database().ref('Restaurante/' + datosRecstaurante.uid + '/cuentas/').update({
-            "cuanta1": resta,
-          })
+          if (cuentas.cuanta1 < montoCobrar){
+            swal('Error', 'Saldo insuficiente', 'error');
 
-          firebase.database().ref('retiros/').push({
-            "montoRetirado": montoCobrar,
-            "fecha": firebase.database.ServerValue.TIMESTAMP,
-            "restaurante": datosRecstaurante,
-            "restauranteUid": datosRecstaurante.uid
-
-          })
-
+          }else{
+            var resta = parseFloat(cuentas.cuanta1) - parseFloat(montoCobrar)
+            console.log(resta);
+  
+            firebase.database().ref('Restaurante/' + datosRecstaurante.uid + '/cuentas/').update({
+              "cuanta1": resta,
+            })
+  
+            firebase.database().ref('retiros/').push({
+              "montoRetirado": montoCobrar,
+              "fecha": firebase.database.ServerValue.TIMESTAMP,
+              "restaurante": datosRecstaurante,
+              "restauranteUid": datosRecstaurante.uid
+  
+            })
+            swal("Retiro exitoso", "Su factura detallada sera enviada a su correo electronico y su dinero sera procesado a su cuenta bancaria", "success") 
+          }
         })
       }
     });

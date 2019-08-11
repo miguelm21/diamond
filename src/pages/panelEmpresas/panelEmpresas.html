@@ -150,7 +150,7 @@
                   <button class="btn btn-add yellow recargarSaldoCliente" id="registro3"><i class="fas fa-search "></i>Recargar Saldo Empleados</button>
                 </div>
                 <div class="col-6 col-sm-4 col-md-4">
-                  <button class="btn btn-add red quitarSaldo" id="registro3"><i class="fas fa-hands"></i>Quitar saldo</button>
+                  <button class="btn btn-add red quitarSaldo" id="registro3"><i class="fas fa-hands"></i>Restringir beneficio</button>
                 </div>
               </div>
 
@@ -264,6 +264,102 @@
                     </div>
                   </div>
                 </form>
+                <h2 class="title">Configuración del restaurante</h2>
+                <div class="config-section">
+                  <div class="row mt-4">
+                    <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+                      <div class="shedule">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="customCheck1">
+                          <label class="custom-control-label" for="customCheck1">Lunes</label>
+                        </div>
+                        <div class="form-group">
+                          <input class="form-control" type="time">
+                          <span>-</span>
+                          <input class="form-control" type="time">
+                        </div>
+                      </div>
+                      <div class="shedule">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="customCheck2">
+                          <label class="custom-control-label" for="customCheck2">Martes</label>
+                        </div>
+                        <div class="form-group">
+                          <input class="form-control" type="time">
+                          <span>-</span>
+                          <input class="form-control" type="time">
+                        </div>
+                      </div>
+                      <div class="shedule">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="customCheck3">
+                          <label class="custom-control-label" for="customCheck3">Miercoles</label>
+                        </div>
+                        <div class="form-group">
+                          <input class="form-control" type="time">
+                          <span>-</span>
+                          <input class="form-control" type="time">
+                        </div>
+                      </div>
+                      <div class="shedule">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="customCheck4">
+                          <label class="custom-control-label" for="customCheck4">Jueves</label>
+                        </div>
+                        <div class="form-group">
+                          <input class="form-control" type="time">
+                          <span>-</span>
+                          <input class="form-control" type="time">
+                        </div>
+                      </div>
+                      <div class="shedule">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="customCheck5">
+                          <label class="custom-control-label" for="customCheck5">Viernes</label>
+                        </div>
+                        <div class="form-group">
+                          <input class="form-control" type="time">
+                          <span>-</span>
+                          <input class="form-control" type="time">
+                        </div>
+                      </div>
+                      <div class="shedule">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="customCheck6">
+                          <label class="custom-control-label" for="customCheck6">Sabado</label>
+                        </div>
+                        <div class="form-group">
+                          <input class="form-control" type="time">
+                          <span>-</span>
+                          <input class="form-control" type="time">
+                        </div>
+                      </div>
+                      <div class="shedule">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="customCheck6">
+                          <label class="custom-control-label" for="customCheck6">Domingo</label>
+                        </div>
+                        <div class="form-group">
+                          <input class="form-control" type="time">
+                          <span>-</span>
+                          <input class="form-control" type="time">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-5 col-md-12 col-sm-12 col-12">
+                      <div class="date">
+                        <h5>Dias no habiles</h5>
+                        <div class="form-group mt-4 d-flex">
+                          <input type="date" class="form-control">
+                          <button class="btn"><i class="fas fa-plus"></i></button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <button class="btn btn-aceptar">Guardar cambios</button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -278,13 +374,13 @@
                     <a class="nav-link" href="#second-tab" data-toggle="tab">Transferencia</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#third-tab" data-toggle="tab">Facturación mensual</a>
+                    <a class="nav-link" href="#third-tab" data-toggle="tab">Otros metodos de pagos</a>
                   </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="first-tab" role="tabpanel" aria-labelledby="first-tab">
                     
-                <form id="recargaSaldoEmpresa" >
+                  <form id="recargaSaldoEmpresa" >
                   <div class="box-pago register-form">
                     <h5 class="title">Seleccionar tarjeta</h5>
                     <div class="box-tarjetas " id="radio-style">
@@ -395,14 +491,37 @@
                       </div>
                     </div>
                     <div class="tab-pane fade" id="third-tab" role="tabpanel" aria-labelledby="contact-tab">
-                      <div class="mt-5 register-form  ">
+                      <div class="mt-5 register-form">
                         <div class="col-12">
+                          <div class="box-tarjetas " id="radio-style">
+                            <ul class="transf">
+                              <li>
+                                <input class="radio required" type="radio" id="radio3" name="tarjetaCredito" value="visa" />
+                                <label class="radio-style" for="radio3"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fpaypal.jpg?alt=media&token=a5d900e6-7f88-4009-a093-90d81c5177d8" /></label>
+                              </li>
+                              <li>
+                                <input class="radio required" type="radio" id="radio4" name="tarjetaCredito" value="master" />
+                                <label class="radio-style" for="radio4"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fskill.png?alt=media&token=44ef96bf-d92c-415f-9552-e91efcedaa37" /></label>
+                              </li>
+                              <!--<li>
+                                <input class="radio required" type="radio" id="radio3" value="master" />
+                                <label class="radio-style" for="radio3"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fpaypal.jpg?alt=media&token=a5d900e6-7f88-4009-a093-90d81c5177d8" /></label>
+                              </li>
+                              <li>
+                                <input class="radio required" type="radio" id="radio4"  value="master" />
+                                <label class="radio-style" for="radio4"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fskill.png?alt=media&token=44ef96bf-d92c-415f-9552-e91efcedaa37" /></label>
+                              </li>-->
+                            </ul>
+                            <p id="ptarjetaCredito"></p>
+                          </div>
+                        </div>
+                        <!-- <div class="col-12">
                           <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="third-checkbox">
                             <label class="custom-control-label" for="third-checkbox">¿Desea tener facturación mensual?</label>
                           </div>
-                        </div>
-                        <div class="col-12">
+                        </div> -->
+                        <div class="col-12 mt-3">
                           <button class="btn btn-aceptar">Aceptar</button>
                         </div>
                       </div>
@@ -554,9 +673,9 @@
             <div class="tab-pane fade" id="reportes">
               <div class="box-reportes">
                 <h5 class="title">Reportes</h5>
-                <div class="box">
+               <!--  <div class="box">
                   <button class="btn btn-recuperar">Recuperar beneficio</button>
-                </div>
+                </div> -->
                 <div class="box-table" id="tablaReporteEmpresa" >
 
                 </div>
