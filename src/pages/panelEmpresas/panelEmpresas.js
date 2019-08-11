@@ -666,12 +666,18 @@ function tablaReporteEmpresa() {////usar cuando ya se generen las compras
   $(document).ready(function () {
     var data = sessionStorage.getItem('data');
     var sesion = JSON.parse(data); var uid = sesion.uid;
-    firebase.database().ref('/users/').orderByChild('empresa').equalTo(uid).once('value').then(function (snapshot) {
-      console.log('aqui', snapshot.val());
+    firebase.database().ref('transaccion/').once('value').then(function (snapshot) {
+      
       snapshot.forEach(function (param) {
         var datos = (param.val());
         var Nombre = datos.nombre;
-        //console.log(Nombre);
+        console.log(datos);
+        var nombreCliente = datos.usuario.users.nombre;
+        var precioPlato = datos.plato.PrecioPlato;
+        var nombrePlato =datos.plato.nombrePlato;
+        var planBeneficio = datos.usuario.users.planBeneficio;
+        var fecha = darFecha(datos.fecha);
+        console.log(fecha);
 
         var tabla = ("<div class='table-responsive'>" +
           "<table class='table'>" +
@@ -680,24 +686,18 @@ function tablaReporteEmpresa() {////usar cuando ya se generen las compras
           "<th scope='col'>Nombre Completo</th>" +
           "<th scope='col'>Plato</th>" +
           "<th scope='col'>Fecha</th>" +
-          "<th scope='col'>Tipo</th>" +
+          
           "<th scope='col'>Beneficio</th>" +
           "<th scope='col'>Monto consumido</th>" +
           "</tr>" +
           "</thead>" +
           "<tbody id=''>" +
           "<tr>" +
-          "<td>" + Nombre + "</td>" +
-          "<td>Arepa con diablitos</td>" +
-          "<td>22/07/2019</td>" +
-          "<td>" +
-          "<select name='' id='' class='form-control'>" +
-          "<option value=''>Beneficio 1</option>" +
-          "<option value=''>Beneficio 2</option>" +
-          "</select>" +
-          "</td>" +
-          "<td>10 €</td>" +
-          "<td>15 €</td>" +
+          "<td>" + nombreCliente + "</td>" +
+          "<td>"+nombrePlato+"</td>" +
+          "<td>"+fecha+"</td>" +         
+          "<td>"+planBeneficio+"</td>" +
+          "<td>"+precioPlato+"</td>" +
           "</tr>" +
           "</th>" +
           "</tr>" +
@@ -986,3 +986,16 @@ if (!nombreBanco) {
     });
   });
 } tranferenciaBancaria();
+function darFecha(fecha) {
+
+  var date = new Date(fecha);
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  var hours = date.getHours();
+  var day = date.getDate();
+  var minutes = "0" + date.getMinutes();
+  var seconds = "0" + date.getSeconds();
+  var convdataTime = day + '-' + month + '-' + year + ' ' + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+  return convdataTime;
+
+}
