@@ -9,7 +9,9 @@ import 'owl.carousel';
 import * as AOS from 'aos/dist/aos.js';
 import swal from 'sweetalert';
 import Chart from 'chart.js';
-//import swal from 'sweetalert';
+import { async } from 'q';
+import "@babel/polyfill";
+
 
 // toggle class scroll 
 $(window).scroll(function () {
@@ -191,6 +193,19 @@ function consultaSaldoCliente() {
       document.getElementById('saldoCuenta2').innerHTML = "" + cuenta2.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' });
 
     })
+    firebase.database().ref('users/' + sesion.uid + "/millas/").on('value', function (snapshot) {
+      //var snap = snapshot.val();      
+      snapshot.forEach(snap => {
+        var milla = (snap.val().cantidadMIlla);
+        console.log(milla);
+
+        $('#millaSaldo').html(milla);
+      });
+
+
+
+
+    })
   });
 } consultaSaldoCliente()
 
@@ -291,12 +306,12 @@ function detalleRestauranteCliente() {
       $('#direccionRestaurante').text(direccion);
       $('#direccionTelefono').text(telefono);
       $('#direccionPais').text(pais);
-      $('#direccionCorreo').text(correo);      
-      
-        
+      $('#direccionCorreo').text(correo);
+
+
       firebase.database().ref('Platos/').orderByChild('restaurante').equalTo(uidRestaurante).on('value', function (snapshot) {
 
-       
+
         var tarjeta = '';
         var chupetin = '';
         snapshot.forEach(function (plato) {
@@ -329,22 +344,22 @@ function detalleRestauranteCliente() {
             " </div>" +
             "  </div>" +
             " </div>";
-           // este por default
+          // este por default
           tarjeta = tarjeta + "<tr><td>" + nombrePlato + "</td><td>" + descripcionPlato + "</td><td> €" + PrecioPlato + "</td><td>" + tipoPLato + "</td><td>" +
             porcionPlato + "</td><td> <img class='img-fluid' src='" + rutaGuardaImagen + "' > </td><td> " +
             " <button class='btn buy comprarPlatoboton' id='" + keyPlato + "' type='submit' value='" + uidRestaurante + "'  data-toggle='modal' data-target='#modal-comprar'><i class='fas fa-shopping-cart'></i></button> </td></tr>"
           $('#tablaPlatos').html(chupetin);
-///buscar es este
-          $(document.body).on('change','#exampleFormControlSelect12',function (e) { 
+          ///buscar es este
+          $(document.body).on('change', '#exampleFormControlSelect12', function (e) {
             e.preventDefault();
 
-            if(tipoPLato == e.currentTarget.value ){
-           tarjeta = tarjeta + "<tr><td>" + nombrePlato + "</td><td>" + descripcionPlato + "</td><td> €" + PrecioPlato + "</td><td>" + tipoPLato + "</td><td>" +
-            porcionPlato + "</td><td> <img class='img-fluid' src='" + rutaGuardaImagen + "' > </td><td> " +
-            " <button class='btn buy comprarPlatoboton' id='" + keyPlato + "' type='submit' value='" + uidRestaurante + "'  data-toggle='modal' data-target='#modal-comprar'><i class='fas fa-shopping-cart'></i></button> </td></tr>"
-          $('#tablaPlatos').html(chupetin);
-            }else {
-            swal("Sin coincidencias", "No encontramos este tipo de comida","error")
+            if (tipoPLato == e.currentTarget.value) {
+              tarjeta = tarjeta + "<tr><td>" + nombrePlato + "</td><td>" + descripcionPlato + "</td><td> €" + PrecioPlato + "</td><td>" + tipoPLato + "</td><td>" +
+                porcionPlato + "</td><td> <img class='img-fluid' src='" + rutaGuardaImagen + "' > </td><td> " +
+                " <button class='btn buy comprarPlatoboton' id='" + keyPlato + "' type='submit' value='" + uidRestaurante + "'  data-toggle='modal' data-target='#modal-comprar'><i class='fas fa-shopping-cart'></i></button> </td></tr>"
+              $('#tablaPlatos').html(chupetin);
+            } else {
+              swal("Sin coincidencias", "No encontramos este tipo de comida", "error")
             }
           });
 
@@ -441,8 +456,8 @@ function comprar() {
                   "restaurante": restaurante,
                   "plato": platoComprado,
                   "fecha": firebase.database.ServerValue.TIMESTAMP,
-                 
-                  "estatus":1
+
+                  "estatus": 1
                 });
                 $('#modal-open').modal('hide');
                 swal("Good job!", "You clicked the button!", "success", {
@@ -461,8 +476,8 @@ function comprar() {
                   "restaurante": restaurante,
                   "plato": platoComprado,
                   "fecha": firebase.database.ServerValue.TIMESTAMP,
-                 
-                  "estatus":1
+
+                  "estatus": 1
                 });
                 $('#modal-pago').modal('hide');
                 swal("Good job!", "You clicked the button!", "success", {
@@ -512,7 +527,7 @@ function historialCliente() {
           snapshot.forEach(element => {
             var datos = element.val();
             var restaurante = datos.nombreRestaurante;
-         //   console.log(restaurante);
+            //   console.log(restaurante);
 
             $('#historialClientePlatos').append("  <tr><td>" + restaurante + "</td> <td>" + plato + "</td> <td>€ " + PrecioPlato + "</td> <td>" + convdataTime + "</td> </tr>");
           });
@@ -524,16 +539,16 @@ function historialCliente() {
 
 function historialCliente2() {
   $(document).ready(function () {
-  
+
     var data = sessionStorage.getItem('data');
     var sesion = JSON.parse(data);
-  //  console.log(sesion.uid,'sesioncliente');
+    //  console.log(sesion.uid,'sesioncliente');
 
-    firebase.database().ref('Tranferencias/restaurantes/').orderByChild('uidCliente').equalTo(sesion.uid).on('value',function (snapshot) {
-     var table;
+    firebase.database().ref('Tranferencias/restaurantes/').orderByChild('uidCliente').equalTo(sesion.uid).on('value', function (snapshot) {
+      var table;
       snapshot.forEach(element => {
         var datosTransf = (element.val());
-          
+
         var restaurante = datosTransf.nombreRestaurante;
         var monto = datosTransf.monto;
 
@@ -547,17 +562,17 @@ function historialCliente2() {
         var seconds = "0" + date.getSeconds();
         var convdataTime = day + '-' + month + '-' + year + ' ' + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
 
-          var html =("  <tr><td>" + restaurante + "</td> <td>€ " + monto + "</td> <td>" + convdataTime + "</td> </tr>")
-          
-            table = table +html;
-        
-            
-           $('#historialClientePlatos2').html(table);
-          
-        })
-      });
-    })
-  }historialCliente2()
+        var html = ("  <tr><td>" + restaurante + "</td> <td>€ " + monto + "</td> <td>" + convdataTime + "</td> </tr>")
+
+        table = table + html;
+
+
+        $('#historialClientePlatos2').html(table);
+
+      })
+    });
+  })
+} historialCliente2()
 
 function cerrarsesion() {
   $(document).ready(function () {
@@ -630,36 +645,32 @@ function enviarNotificacion(token) {
   });
 }
 
-var uidRestaurante ;
+var uidRestaurante;
 function transferisRestaurantesinPlato() {
   $(document).ready(function () {
     $(document.body).on('click', '.modalPagoSinPlato', function (e) {
-
-       uidRestaurante = e.currentTarget.id;
+      uidRestaurante = e.currentTarget.id;
       firebase.database().ref('Restaurante/' + uidRestaurante).once('value').then(function (snapshot7) {
         var datosRestaurante = (snapshot7.val());
         var nombreRestaurant = datosRestaurante.nombreRestaurante;
-        console.log(datosRestaurante);
 
         $('#nombreRestaurantePagar').val(nombreRestaurant);
+
       })
-        
-        
-      
       $('#modalPagoSinPlato').modal('show');
     });
   });
 } transferisRestaurantesinPlato()
 
 
-function trasnferirYa() {
+async function trasnferirYa() {
   $(document).ready(function () {
     $(document.body).on('click', '#pagaryya', function () {
 
       var formulario = $('#recargaplaraRestaurante').serializeArray()
       var monto = (formulario[0].value);
-      console.log(monto);
-      
+      //console.log(monto);
+
       var sesion = sessionStorage.getItem('data');
       var data = JSON.parse(sesion);
 
@@ -667,9 +678,9 @@ function trasnferirYa() {
         var datosRestaurante = (snapshot.val());
         var nombreRestaurante = datosRestaurante.nombreRestaurante;
         var saldoActual = datosRestaurante.cuentas.cuanta1;
-       // console.log(saldoActual, 'saldoactual');
+        // console.log(saldoActual, 'saldoactual');
 
-      
+
         //console.log(data.uid);
         firebase.database().ref('users/' + data.uid).once('value').then(function (snapshot) {
 
@@ -681,8 +692,8 @@ function trasnferirYa() {
           var resta1 = parseFloat(cuenta1) - parseFloat(monto);
           var positivo = -1 * parseFloat(resta1);
           var resta2 = parseFloat(cuenta2) - parseFloat(positivo);
-       console.log(resta2);
-       
+          // console.log(resta2);
+
           if (!monto) {
             swal("El campo Monto es obligatorio")
           } else { $('#obligadoMonto').html(''); }
@@ -693,9 +704,9 @@ function trasnferirYa() {
                   "monto": monto,
                   "nombreRestaurante": nombreRestaurante,
                   "fecha": firebase.database.ServerValue.TIMESTAMP,
-                  "uidRestaurante":uidRestaurante,
-                  "uidCliente":data.uid,
-                  "dataUsuario":data.users
+                  "uidRestaurante": uidRestaurante,
+                  "uidCliente": data.uid,
+                  "dataUsuario": data.users
                 })
                 var saldoActualizar = parseFloat(saldoActual) + parseFloat(monto);
                 firebase.database().ref('Restaurante/' + uidRestaurante + "/cuentas/").update({
@@ -708,16 +719,16 @@ function trasnferirYa() {
                   "cuanta1": resultado,
                 })
                 $('#recargaSaldoCliente')[0].reset();
-              } else {      
-            
-                             
+              } else {
+
+
                 firebase.database().ref('Tranferencias/restaurantes/').push({
                   "monto": monto,
                   "nombreRestaurante": nombreRestaurante,
                   "fecha": firebase.database.ServerValue.TIMESTAMP,
-                  "uidRestaurante":uidRestaurante,
-                  "uidCliente":data.uid,
-                  "dataUsuario":data.users
+                  "uidRestaurante": uidRestaurante,
+                  "uidCliente": data.uid,
+                  "dataUsuario": data.users
                 })
                 var saldoActualizar = parseFloat(saldoActual) + parseFloat(monto);
                 firebase.database().ref('Restaurante/' + uidRestaurante + "/cuentas/").update({
@@ -731,12 +742,32 @@ function trasnferirYa() {
                   "cuanta1": 0,
                   "cuenta2": resta2
                 });
-                  
+
               }
             } else { swal("Error", "No tiene saldo suficiente", "error") }
           }
         });
+
       });
+      var millas = await mandarMillas(monto, uidRestaurante);
+      console.log(millas);
     })
   });
-}trasnferirYa()
+
+} trasnferirYa()
+
+function mandarMillas(cantidadMilla, uidRestaurante) {
+  var sesion = sessionStorage.getItem('data');
+  var datos = JSON.parse(sesion);
+  firebase.database().ref("/users/" + datos.uid + "/millas/" + uidRestaurante + "/").once('value').then(function (e) {
+    var millaAcumulada = e.val();
+    var millas = (millaAcumulada.cantidadMIlla);
+    var millaGanada = cantidadMilla / 30;
+    var cantidadMIlla = parseInt(millas) + parseInt(millaGanada);
+    firebase.database().ref("/users/" + datos.uid + "/millas/" + uidRestaurante + "/").update({
+      "cantidadMIlla": cantidadMIlla
+    });
+    return new Promise(e=>{ millaGanada.then(p=>{e(p)})
+     })
+  })
+}
