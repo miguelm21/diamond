@@ -9,7 +9,6 @@ import 'owl.carousel';
 import * as AOS from 'aos/dist/aos.js';
 import swal from 'sweetalert';
 import Chart from 'chart.js';
-import { async } from 'q';
 import "@babel/polyfill";
 
 
@@ -194,14 +193,17 @@ function consultaSaldoCliente() {
 
     })
     firebase.database().ref('users/' + sesion.uid + "/millas/").on('value', function (snapshot) {
-      //var snap = snapshot.val();      
+      //var snap = snapshot.val();    
+      var millas;
       snapshot.forEach(snap => {
-        var milla = (snap.val().cantidadMIlla);
-        console.log(milla);
-          if (!milla) {
-            $('#millaSaldo').html(0);
-          }else{
-        $('#millaSaldo').html(milla);}
+        var milla = (parseInt(snap.val().cantidadMIlla));
+
+        millas = millas + milla;
+        console.log('aqui van las milla ',millas);
+        if (millas == NaN && millas == undefined && millas == '') {
+          $('#millaSaldo').html(0);
+
+        } else { $('#millaSaldo').html(millas); }
       });
     })
   });
@@ -286,10 +288,10 @@ function detalleRestauranteCliente() {
     var uidRestaurante = e.currentTarget.id;
     var datos = sessionStorage.getItem('data');
     var sesion = JSON.parse(datos);
-    firebase.database().ref("users/"+sesion.uid+"/millas/"+uidRestaurante+"/").once('value').then(e=>{
-var data = e.val();
-//console.log(data);
-$('#millasAcumuladas').text(data.cantidadMIlla);
+    firebase.database().ref("users/" + sesion.uid + "/millas/" + uidRestaurante + "/").once('value').then(e => {
+      var data = e.val();
+      //console.log(data);
+      $('#millasAcumuladas').text(data.cantidadMIlla);
     })
 
 
@@ -306,7 +308,7 @@ $('#millasAcumuladas').text(data.cantidadMIlla);
       var poblacion = restaurante.poblacion;
       var rutaImagenRestaurante = restaurante.rutaImagenRestaurante;
       var telefono = restaurante.telefono;
-      
+
       console.log(rutaImagenRestaurante);
 
       $('#imagenRestaurante').html("<img src='" + rutaImagenRestaurante + "'  > </img>");
@@ -396,7 +398,7 @@ function comprarLista() {
           var PrecioPlato = platoComprado.PrecioPlato;
           var tarjeta = ("<h4>" + nombrePlato + "</h4> <p class='description'>" + descripcionPlato + "</p><p> € " + PrecioPlato + "</p>");
           $('.nombrePlato').html(tarjeta);
-          
+
           $('#botonComprar').html("<button type='button' id=" + keyPlatos + " class='btn primary comprarYa' value=" + restaurante + " >Aceptar y Comprar</button>");
           $('#usarMillas').html("<button type='button' id=" + keyPlatos + " class='btn primary millasYa' value=" + restaurante + " >Usar Millas</button>");
         }
@@ -406,9 +408,9 @@ function comprarLista() {
   })
 } comprarLista()
 
- function comprar() {
-  $(document).ready(  function () {
-    $(document.body).on('click', '.comprarYa',  function (e) {
+function comprar() {
+  $(document).ready(function () {
+    $(document.body).on('click', '.comprarYa', function (e) {
 
       var data = sessionStorage.getItem('data');
       var sesion = JSON.parse(data);
@@ -416,7 +418,7 @@ function comprarLista() {
       var keyPlatos = e.currentTarget.id;
       var restaurante = e.currentTarget.value;
       //console.log(keyPlatos, restaurante);
-      firebase.database().ref('Platos/').orderByChild('restaurante').equalTo(restaurante).once('value').then( function (snap) {
+      firebase.database().ref('Platos/').orderByChild('restaurante').equalTo(restaurante).once('value').then(function (snap) {
         snap.forEach(snapshot => {
           var keyPlato = snapshot.key
           var platoComprado = (snapshot.val());
@@ -492,12 +494,12 @@ function comprarLista() {
                 swal("Good job!", "You clicked the button!", "success", {
                   button: "Aww yiss!",
                 });
-                var millas = await mandarMillas(PrecioPlato,restaurante);
-     
+                var millas = await mandarMillas(PrecioPlato, restaurante);
+
                 setTimeout(() => {
-                 swal("Millas","Por tu compra has obtenido "+ parseInt( millas)+" Millas","success")
+                  swal("Millas", "Por tu compra has obtenido " + parseInt(millas) + " Millas", "success")
                 }, 2000);
-                
+
                 $('#modal-comprar').modal('hide');
               }
             })
@@ -764,49 +766,49 @@ async function trasnferirYa() {
         });
 
       });
-      var millas = await mandarMillas(monto,uidRestaurante);
-     
-       setTimeout(() => {
-        swal("Millas","Por tu compra has obtenido "+ parseInt( millas)+" Millas","success")
-       }, 3000);
-       
-   
-     
+      var millas = await mandarMillas(monto, uidRestaurante);
+
+      setTimeout(() => {
+        swal("Millas", "Por tu compra has obtenido " + parseInt(millas) + " Millas", "success")
+      }, 3000);
+
+
+
     })
   });
- 
+
 } trasnferirYa()
 
 function mandarMillas(cantidadMilla, uidRestaurante) {
   var sesion = sessionStorage.getItem('data');
   var datos = JSON.parse(sesion);
- var millaGanada;
+  var millaGanada;
   firebase.database().ref("/users/" + datos.uid + "/millas/" + uidRestaurante + "/").once('value').then(function (e) {
     var millaAcumulada = e.val();
     var millas = (millaAcumulada.cantidadMIlla);
-      millaGanada = cantidadMilla / 30;
+    millaGanada = cantidadMilla / 30;
     var cantidadMIlla = parseInt(millas) + parseInt(millaGanada);
     firebase.database().ref("/users/" + datos.uid + "/millas/" + uidRestaurante + "/").update({
       "cantidadMIlla": cantidadMIlla
-    });     
+    });
   })
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve( millaGanada);
+      resolve(millaGanada);
     }, 1000);
-  }); 
+  });
 }
 
 function usarMaillas() {
   $(document).ready(function () {
-    $(document.body).on('click','.millasYa' ,function (e) {   
+    $(document.body).on('click', '.millasYa', function (e) {
       var keyPlatos = e.currentTarget.id;
       var restaurante = e.currentTarget.value;
       var data = sessionStorage.getItem('data');
       var sesion = JSON.parse(data);
 
 
-      firebase.database().ref('Platos/').orderByChild('restaurante').equalTo(restaurante).once('value').then( function (snap) {
+      firebase.database().ref('Platos/').orderByChild('restaurante').equalTo(restaurante).once('value').then(function (snap) {
         snap.forEach(snapshot => {
           var keyPlato = snapshot.key
           var platoComprado = (snapshot.val());
@@ -816,18 +818,18 @@ function usarMaillas() {
           console.log(restaurante);
 
           if (keyPlato === keyPlatos) {
-            firebase.database().ref('users/' + sesion.uid + "/millas/"+restaurante+"/").once('value').then( function (snapshot) {
+            firebase.database().ref('users/' + sesion.uid + "/millas/" + restaurante + "/").once('value').then(function (snapshot) {
               var snap = snapshot.val();
-               console.log(snap.cantidadMIlla);
+              console.log(snap.cantidadMIlla);
               var saldoTotal = snap.cantidadMIlla;
-            
+
               if (saldoTotal < PrecioPlato) {
                 hideLoading();
                 swal({
                   title: "Pocas MIllas?",
                   text: "Aun no tienes Millas suficientes!",
                   icon: "warning",
-                 
+
                   dangerMode: true,
                 }).then(() => {
 
@@ -835,13 +837,13 @@ function usarMaillas() {
                 })
 
               } else {
-               
+
                 var resta2 = parseFloat(saldoTotal) - parseFloat(PrecioPlato);
                 //   console.log('resultado1' + resta1);
-               // console.log( resta2);
+                // console.log( resta2);
 
-                firebase.database().ref('users/' + sesion.uid + "/millas/"+restaurante +"/").update({
-                             "cantidadMIlla": resta2,
+                firebase.database().ref('users/' + sesion.uid + "/millas/" + restaurante + "/").update({
+                  "cantidadMIlla": resta2,
                 })
                 firebase.database().ref('transaccion/millas').push().update({
                   "usuario": sesion,
@@ -855,7 +857,7 @@ function usarMaillas() {
                   button: "Aww yiss!",
                 });
                 $('#modal-comprar').modal('hide');
-              } 
+              }
             })
           }
         })
@@ -863,4 +865,4 @@ function usarMaillas() {
 
     });
   });
-}usarMaillas()
+} usarMaillas()
