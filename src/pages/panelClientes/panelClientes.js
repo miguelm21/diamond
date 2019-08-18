@@ -286,6 +286,15 @@ function detalleRestauranteCliente() {
 
   $(document.body).on('click', '.hh', (e) => {
     var uidRestaurante = e.currentTarget.id;
+    var datos = sessionStorage.getItem('data');
+    var sesion = JSON.parse(datos);
+    firebase.database().ref("users/"+sesion.uid+"/millas/"+uidRestaurante+"/").once('value').then(e=>{
+var data = e.val();
+//console.log(data);
+$('#millasAcumuladas').text(data.cantidadMIlla);
+    })
+
+
     firebase.database().ref('Restaurante/' + uidRestaurante + '/').once('value').then(function (snapshot) {
       var restaurante = snapshot.val();
       //  console.log(restaurante);
@@ -299,6 +308,7 @@ function detalleRestauranteCliente() {
       var poblacion = restaurante.poblacion;
       var rutaImagenRestaurante = restaurante.rutaImagenRestaurante;
       var telefono = restaurante.telefono;
+      
       console.log(rutaImagenRestaurante);
 
       $('#imagenRestaurante').html("<img src='" + rutaImagenRestaurante + "'  > </img>");
@@ -388,8 +398,9 @@ function comprarLista() {
           var PrecioPlato = platoComprado.PrecioPlato;
           var tarjeta = ("<h4>" + nombrePlato + "</h4> <p class='description'>" + descripcionPlato + "</p><p> € " + PrecioPlato + "</p>");
           $('.nombrePlato').html(tarjeta);
-
+          
           $('#botonComprar').html("<button type='button' id=" + keyPlatos + " class='btn primary comprarYa' value=" + restaurante + " >Aceptar y Comprar</button>");
+          $('#usarMillas').html("<button type='button' id=" + keyPlatos + " class='btn primary millasYa' value=" + restaurante + " >Usar Millas</button>");
         }
       })
 
@@ -788,3 +799,70 @@ function mandarMillas(cantidadMilla, uidRestaurante) {
   }); 
 }
 
+function usarMaillas() {
+  $(document).ready(function () {
+    $(document.body).on('click','.millasYa' ,function (e) {   
+      var keyPlatos = e.currentTarget.id;
+      var restaurante = e.currentTarget.value;
+      var data = sessionStorage.getItem('data');
+      var sesion = JSON.parse(data);
+
+
+      firebase.database().ref('Platos/').orderByChild('restaurante').equalTo(restaurante).once('value').then( function (snap) {
+        snap.forEach(snapshot => {
+          var keyPlato = snapshot.key
+          var platoComprado = (snapshot.val());
+          var descripcionPlato = platoComprado.descripcionPlato;
+          var nombrePlato = platoComprado.nombrePlato;
+          var PrecioPlato = platoComprado.PrecioPlato;
+          console.log(restaurante);
+
+          if (keyPlato === keyPlatos) {
+            firebase.database().ref('users/' + sesion.uid + "/millas/"+restaurante+"/").once('value').then( function (snapshot) {
+              var snap = snapshot.val();
+               console.log(snap.cantidadMIlla);
+              var saldoTotal = snap.cantidadMIlla;
+            
+              if (saldoTotal < PrecioPlato) {
+                hideLoading();
+                swal({
+                  title: "Pocas MIllas?",
+                  text: "Aun no tienes Millas suficientes!",
+                  icon: "warning",
+                 
+                  dangerMode: true,
+                }).then(() => {
+
+                  $('#modal-comprar').modal('show');
+                })
+
+              } else {
+               
+                var resta2 = parseFloat(saldoTotal) - parseFloat(PrecioPlato);
+                //   console.log('resultado1' + resta1);
+               // console.log( resta2);
+
+                firebase.database().ref('users/' + sesion.uid + "/millas/"+restaurante +"/").update({
+                             "cantidadMIlla": resta2,
+                })
+                firebase.database().ref('transaccion/millas').push().update({
+                  "usuario": sesion,
+                  "restaurante": restaurante,
+                  "plato": platoComprado,
+                  "fecha": firebase.database.ServerValue.TIMESTAMP,
+                  "estatus": 1
+                });
+                $('#modal-open').modal('hide');
+                swal("Good job!", "You clicked the button!", "success", {
+                  button: "Aww yiss!",
+                });
+                $('#modal-comprar').modal('hide');
+              } 
+            })
+          }
+        })
+      })
+
+    });
+  });
+}usarMaillas()
