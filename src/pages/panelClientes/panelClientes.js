@@ -397,9 +397,9 @@ function comprarLista() {
   })
 } comprarLista()
 
-function comprar() {
-  $(document).ready(function () {
-    $(document.body).on('click', '.comprarYa', function (e) {
+ function comprar() {
+  $(document).ready(  function () {
+    $(document.body).on('click', '.comprarYa',  function (e) {
 
       var data = sessionStorage.getItem('data');
       var sesion = JSON.parse(data);
@@ -407,7 +407,7 @@ function comprar() {
       var keyPlatos = e.currentTarget.id;
       var restaurante = e.currentTarget.value;
       //console.log(keyPlatos, restaurante);
-      firebase.database().ref('Platos/').orderByChild('restaurante').equalTo(restaurante).once('value').then(function (snap) {
+      firebase.database().ref('Platos/').orderByChild('restaurante').equalTo(restaurante).once('value').then( function (snap) {
         snap.forEach(snapshot => {
           var keyPlato = snapshot.key
           var platoComprado = (snapshot.val());
@@ -417,7 +417,7 @@ function comprar() {
           //console.log(keyPlato);
 
           if (keyPlato === keyPlatos) {
-            firebase.database().ref('users/' + sesion.uid + "/cuentas").once('value').then(function (snapshot) {
+            firebase.database().ref('users/' + sesion.uid + "/cuentas").once('value').then(async function (snapshot) {
               var snap = snapshot.val();
               // console.log(snap.cuentaTotal);
               var saldoCuenta1 = snap.cuanta1;
@@ -483,6 +483,12 @@ function comprar() {
                 swal("Good job!", "You clicked the button!", "success", {
                   button: "Aww yiss!",
                 });
+                var millas = await mandarMillas(PrecioPlato,restaurante);
+     
+                setTimeout(() => {
+                 swal("Millas","Por tu compra has obtenido "+ parseInt( millas)+" Millas","success")
+                }, 2000);
+                
                 $('#modal-comprar').modal('hide');
               }
             })
@@ -664,8 +670,8 @@ function transferisRestaurantesinPlato() {
 
 
 async function trasnferirYa() {
-  $(document).ready(function () {
-    $(document.body).on('click', '#pagaryya', function () {
+  $(document).ready(async function () {
+    $(document.body).on('click', '#pagaryya', async function () {
 
       var formulario = $('#recargaplaraRestaurante').serializeArray()
       var monto = (formulario[0].value);
@@ -749,25 +755,36 @@ async function trasnferirYa() {
         });
 
       });
-      var millas = await mandarMillas(monto, uidRestaurante);
-      console.log(millas);
+      var millas = await mandarMillas(monto,uidRestaurante);
+     
+       setTimeout(() => {
+        swal("Millas","Por tu compra has obtenido "+ parseInt( millas)+" Millas","success")
+       }, 3000);
+       
+   
+     
     })
   });
-
+ 
 } trasnferirYa()
 
 function mandarMillas(cantidadMilla, uidRestaurante) {
   var sesion = sessionStorage.getItem('data');
   var datos = JSON.parse(sesion);
+ var millaGanada;
   firebase.database().ref("/users/" + datos.uid + "/millas/" + uidRestaurante + "/").once('value').then(function (e) {
     var millaAcumulada = e.val();
     var millas = (millaAcumulada.cantidadMIlla);
-    var millaGanada = cantidadMilla / 30;
+      millaGanada = cantidadMilla / 30;
     var cantidadMIlla = parseInt(millas) + parseInt(millaGanada);
     firebase.database().ref("/users/" + datos.uid + "/millas/" + uidRestaurante + "/").update({
       "cantidadMIlla": cantidadMIlla
-    });
-    return new Promise(e=>{ millaGanada.then(p=>{e(p)})
-     })
+    });     
   })
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve( millaGanada);
+    }, 1000);
+  }); 
 }
+
