@@ -136,7 +136,7 @@
             <div class="tab-pane active" id="home">
               <div class="row" id="show-button">
                 <div class="col-6 col-sm-4 col-md-4">
-                  <button class="btn btn-add purple" id="registro1"><i class="fas fa-plus"></i>Registrar
+                  <button class="btn btn-add purple" id="registro1"><i class="fas fa-plus"></i>Afiliar
                     empleados</button>
                 </div>
                 <div class="col-6 col-sm-4 col-md-4">
@@ -156,40 +156,48 @@
 
               <!--registro cliente-->
               <div class="register-client max-width" id="show-register1">
-                <h5>Registrar Empleado</h5>
+                <h5>Afiliar Empleado</h5>
                 <div class="form-client">
-                  <form id="RegistrarEmpleados"  >
+                    <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <input type="email" class="form-control required" placeholder="Correo electrónico" value=""
+                            name="correo" id="buscarCorreo" required />
+                           <button  id="buscarUsuario" class="btn btn-back">Buscar</button>
+                            
+                        </div>
+                      </div>
+                <!--  <form id="RegistrarEmpleados"  > -->
                     <div class="row register-form">
                       <div class="col-md-6 col-12">
 
                         <div class="form-group">
-                          <input type="text" class="form-control required" placeholder="Nombres" value="" name="nombre" />
+                          <input type="text" class="form-control " placeholder="Nombres" id="nombre" value="" name="nombre" disabled/>
                           <p id="pnombre"></p>
                         </div>
                       </div>
                       <div class="col-md-6 col-12">
                         <div class="form-group">
-                          <input type="text" class="form-control required" placeholder="Apellidos" value="" name="apellido" />
+                          <input type="text" class="form-control required"  id="apellido" placeholder="Apellidos" value="" name="apellido" disabled/>
                           <p id="papellido"></p>
                         </div>
                       </div>
                       <div class="col-md-6 col-12">
                         <div class="form-group">
-                          <input type="date" class="form-control required" placeholder="Fecha de nacimiento" value=""
-                            name="fechaNacimiento" />
+                          <input type="date" class="form-control required" id="fechaNacimiento"placeholder="Fecha de nacimiento" value=""
+                            name="fechaNacimiento" disabled/>
                             <p id=""></p>
                         </div>
                       </div>
                       <div class="col-md-6 col-12">
                         <div class="form-group">
                           <input type="text" class="form-control required" placeholder="Correo electrónico" value=""
-                            name="correo" />
+                            name="correo"  id="correo" disabled />
                             <p id="pcorreo"></p>
                         </div>
                       </div>
                       <div class="col-md-6 col-12">
                         <div class="form-group">
-                          <input type="text" class="form-control required" placeholder="Cargo" value="" name="cargo" />
+                          <input type="text" id="cargo" class="form-control required" placeholder="Cargo" value="" name="cargo" />
                           <p id="pcargo"></p>
                         </div>
                       </div>
@@ -213,8 +221,8 @@
                         <div class="form-group">
                             <a  id="generarContraseña" class="nav-link active lock" href="#"><i class="fas fa-lock"></i></a>
                            
-                          <input type="text" class="form-control contraseñaEmpleado" placeholder="Contraseña" value="" name="contraseña"/>
-                         
+                        <!--  <input type="text" class="form-control contraseñaEmpleado" placeholder="Contraseña" value="" name="contraseña"/>
+                         -->
                           <p id="pcontraseña"></p>
                          
                         </div>
@@ -223,9 +231,9 @@
                  
                   <div class="col-12 d-flex justify-content-center mt-4 text-center">
                     <button onclick="backbutton()" class="btn btn-back">Volver</button>
-                    <button class="btn btn-register" id="registrarEmpleados" type="submit">Registrar Empleados</button>
+                    <button class="btn btn-register" id="registrarEmpleados" type="submit" disabled >Afiliar Empleados</button>
                   </div>
-                </form>
+               <!-- </form> -->
                 </div>
               </div>
             </div>

@@ -217,6 +217,7 @@ function enviarCorreo(correoEmpleado, nombreEmpleado) {
 
 firebase.initializeApp(firebaseConfig);
 
+/*
 function registroempleados() {
   $(document).ready(function () {
     $('#registrarEmpleados').click(function (e) {
@@ -277,7 +278,7 @@ function registroempleados() {
     })
 
   });
-} registroempleados();
+} registroempleados();*/
 
 function recuperarNOmbreEmpresa() {
   $(document).ready(function () {
@@ -667,16 +668,16 @@ function tablaReporteEmpresa() {////usar cuando ya se generen las compras
     var data = sessionStorage.getItem('data');
     var sesion = JSON.parse(data); var uid = sesion.uid;
     firebase.database().ref('transaccion/').once('value').then(function (snapshot) {
-      
+
       snapshot.forEach(function (param) {
-        var datos = (param.val());      
-        
+        var datos = (param.val());
+
         var nombreCliente = datos.usuario.users.nombre;
         var precioPlato = datos.plato.PrecioPlato;
-        var nombrePlato =datos.plato.nombrePlato;
+        var nombrePlato = datos.plato.nombrePlato;
         var planBeneficio = datos.usuario.users.planBeneficio;
         var fecha = darFecha(datos.fecha);
-       
+
 
         var tabla = ("<div class='table-responsive'>" +
           "<table class='table'>" +
@@ -685,7 +686,7 @@ function tablaReporteEmpresa() {////usar cuando ya se generen las compras
           "<th scope='col'>Nombre Completo</th>" +
           "<th scope='col'>Plato</th>" +
           "<th scope='col'>Fecha</th>" +
-          
+
           "<th scope='col'>Beneficio</th>" +
           "<th scope='col'>Monto consumido</th>" +
           "</tr>" +
@@ -693,10 +694,10 @@ function tablaReporteEmpresa() {////usar cuando ya se generen las compras
           "<tbody id=''>" +
           "<tr>" +
           "<td>" + nombreCliente + "</td>" +
-          "<td>"+nombrePlato+"</td>" +
-          "<td>"+fecha+"</td>" +         
-          "<td>"+planBeneficio+"</td>" +
-          "<td>"+precioPlato+"</td>" +
+          "<td>" + nombrePlato + "</td>" +
+          "<td>" + fecha + "</td>" +
+          "<td>" + planBeneficio + "</td>" +
+          "<td>" + precioPlato + "</td>" +
           "</tr>" +
           "</th>" +
           "</tr>" +
@@ -955,11 +956,11 @@ function tranferenciaBancaria() {
       var nombreBanco = datitos[0].value
       var NumeroTranferecia = datitos[1].value
       var Numeromonto = datitos[2].value
-if (!nombreBanco) { 
-  swal("error", "campo Nombre Banco vacio", "error")
-} else if (!NumeroTranferecia) { 
-  swal("error", "campo Nmero Transferencia vacio", "error")
-} else if (!Numeromonto ) {
+      if (!nombreBanco) {
+        swal("error", "campo Nombre Banco vacio", "error")
+      } else if (!NumeroTranferecia) {
+        swal("error", "campo Nmero Transferencia vacio", "error")
+      } else if (!Numeromonto) {
         swal("error", "campo monto vacio", "error")
       } else {
         firebase.database().ref('/Empresas/' + sesionjson.uid + '/cuentas/').once('value').then(function (snapshot) {
@@ -973,13 +974,13 @@ if (!nombreBanco) {
           })
 
           firebase.database().ref('Tranferencias/empresa/' + sesionjson.uid + "/").push({
-            "monto":Numeromonto ,
+            "monto": Numeromonto,
             "nombreEmpresa": sesionjson.empresa.nombreEmpresa,
             "fecha": firebase.database.ServerValue.TIMESTAMP,
-            "uidEmpresa":sesionjson.uid,
-            
+            "uidEmpresa": sesionjson.uid,
+
           })
-          swal("Recarga exitosa","La transferencia fue realizada con con Exito y abonada, si presenta al gun problema con ella sera notificadopor nuestro departamento de administracion","success")
+          swal("Recarga exitosa", "La transferencia fue realizada con con Exito y abonada, si presenta al gun problema con ella sera notificadopor nuestro departamento de administracion", "success")
         })
       }
     });
@@ -998,3 +999,58 @@ function darFecha(fecha) {
   return convdataTime;
 
 }
+
+function buscarEmpleados() {
+  $(document).ready(function () {
+    $('#buscarUsuario').click(function (e) {
+      var buscar = document.getElementById('buscarCorreo').value;
+      if (!buscar) {
+        swal("Campo Vacio")
+      } else {
+
+        firebase.database().ref("/users/").orderByChild('correo').equalTo(buscar).once('value').then(e => {
+          e.forEach(element => {
+            console.log(element.val());
+            
+            $('#nombre').val(element.val().nombre);
+            $('#apellido').val(element.val().apellido);
+            $('#correo').val(element.val().correo);
+            $('#fechaNacimiento').val(element.val().fechaNacimiento);
+            $('#registrarEmpleados').val(element.val().uidempleado);
+            document.getElementById('registrarEmpleados').disabled=false;
+          });
+        });
+      }
+    });
+  });
+} buscarEmpleados()
+
+function afiliarEmpleados() {
+  $(document).ready(function () {
+var datos = sessionStorage.getItem('data');
+var sesion= JSON.parse(datos);
+
+    $('#registrarEmpleados').click(function (e) { 
+    var cargo=  document.getElementById('cargo').value; 
+    var plan= document.getElementById('exampleFormControlSelect1').value;
+    var uidEmpleado= document.getElementById('registrarEmpleados').value;
+    console.log(uidEmpleado);
+if (cargo && plan && uidEmpleado) {  
+
+    firebase.database().ref("users/"+uidEmpleado+"/").update({
+        "cargo":cargo,
+        "planBeneficio":plan,    
+        "empresa":    sesion.uid,
+      });      
+      swal( "Empleado agregado con exito");
+      $('#nombre').val('');
+            $('#apellido').val('');
+            $('#correo').val('');
+            $('#fechaNacimiento').val('');
+            $('#registrarEmpleados').val('');
+            $('#cargo').val('');
+            $('#buscarCorreo').val('');
+    }else {swal("existen campos vacios")}
+    });
+  });
+}afiliarEmpleados()
