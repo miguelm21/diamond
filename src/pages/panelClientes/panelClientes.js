@@ -180,31 +180,30 @@ function consultaSaldoCliente() {
       var snap = snapshot.val();
       var cuenta1 = snap.cuanta1;
       var cuenta2 = snap.cuenta2;
-      //console.log(snap);
-      //console.log(cuenta2);
 
       var saldoEmpresa = parseFloat(cuenta1) + parseFloat(cuenta2);
 
       var g = saldoEmpresa.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })
       document.getElementById('saldoCliente').innerHTML = "" + g;
-
       document.getElementById('saldoCuenta1').innerHTML = "" + cuenta1.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' });
       document.getElementById('saldoCuenta2').innerHTML = "" + cuenta2.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' });
 
     })
     firebase.database().ref('users/' + sesion.uid + "/millas/").on('value', function (snapshot) {
-      //var snap = snapshot.val();    
-      var millas;
-      snapshot.forEach(snap => {
-        var milla = (parseInt(snap.val().cantidadMIlla));
-
-        millas = millas + milla;
-        console.log('aqui van las milla ',millas);
-        if (millas == NaN && millas == undefined && millas == '') {
-          $('#millaSaldo').html(0);
-
-        } else { $('#millaSaldo').html(millas); }
-      });
+      var milla1 = snapshot.val();
+      var  millas = 0;
+      if (milla1 === null) {
+        $('#millaSaldo').html('0');
+      } else {
+        
+        snapshot.forEach(snap => {
+          var milla = (parseInt(snap.val().cantidadMIlla));
+            millas = parseInt( millas) + parseInt( milla);
+          //console.log(millas);
+         
+          $('#millaSaldo').html(millas);
+        });
+      }
     })
   });
 } consultaSaldoCliente()
@@ -663,6 +662,7 @@ function enviarNotificacion(token) {
 }
 
 var uidRestaurante;
+
 function transferisRestaurantesinPlato() {
   $(document).ready(function () {
     $(document.body).on('click', '.modalPagoSinPlato', function (e) {
@@ -738,7 +738,6 @@ async function trasnferirYa() {
                 $('#recargaSaldoCliente')[0].reset();
               } else {
 
-
                 firebase.database().ref('Tranferencias/restaurantes/').push({
                   "monto": monto,
                   "nombreRestaurante": nombreRestaurante,
@@ -759,7 +758,6 @@ async function trasnferirYa() {
                   "cuanta1": 0,
                   "cuenta2": resta2
                 });
-
               }
             } else { swal("Error", "No tiene saldo suficiente", "error") }
           }
@@ -771,9 +769,6 @@ async function trasnferirYa() {
       setTimeout(() => {
         swal("Millas", "Por tu compra has obtenido " + parseInt(millas) + " Millas", "success")
       }, 3000);
-
-
-
     })
   });
 
@@ -785,16 +780,26 @@ function mandarMillas(cantidadMilla, uidRestaurante) {
   var millaGanada;
   firebase.database().ref("/users/" + datos.uid + "/millas/" + uidRestaurante + "/").once('value').then(function (e) {
     var millaAcumulada = e.val();
-    var millas = (millaAcumulada.cantidadMIlla);
-    millaGanada = cantidadMilla / 30;
-    var cantidadMIlla = parseInt(millas) + parseInt(millaGanada);
-    firebase.database().ref("/users/" + datos.uid + "/millas/" + uidRestaurante + "/").update({
-      "cantidadMIlla": cantidadMIlla
-    });
+    if (millaAcumulada === null) {
+      var millas = 0;
+      millaGanada = cantidadMilla / 30;
+      var cantidadMIlla = parseInt(millas) + parseInt(millaGanada);
+      firebase.database().ref("/users/" + datos.uid + "/millas/" + uidRestaurante + "/").update({
+        "cantidadMIlla": parseInt(cantidadMIlla),
+        "restauranteUid": uidRestaurante
+      });
+    } else {
+      var millas = (millaAcumulada.cantidadMIlla);
+      millaGanada = cantidadMilla / 30;
+      var cantidadMIlla = parseInt(millas) + parseInt(millaGanada);
+      firebase.database().ref("/users/" + datos.uid + "/millas/" + uidRestaurante + "/").update({
+        "cantidadMIlla": parseInt(cantidadMIlla)
+      });
+    }
   })
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve(millaGanada);
+      resolve(parseInt(millaGanada));
     }, 1000);
   });
 }
