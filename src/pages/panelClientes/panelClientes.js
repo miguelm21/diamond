@@ -10,6 +10,7 @@ import * as AOS from 'aos/dist/aos.js';
 import swal from 'sweetalert';
 import Chart from 'chart.js';
 import "@babel/polyfill";
+import { async } from 'q';
 
 
 // toggle class scroll 
@@ -191,22 +192,44 @@ function consultaSaldoCliente() {
     })
     firebase.database().ref('users/' + sesion.uid + "/millas/").on('value', function (snapshot) {
       var milla1 = snapshot.val();
-      var  millas = 0;
+      var millas = 0;
       if (milla1 === null) {
         $('#millaSaldo').html('0');
       } else {
-        
+
         snapshot.forEach(snap => {
           var milla = (parseInt(snap.val().cantidadMIlla));
-            millas = parseInt( millas) + parseInt( milla);
+          millas = parseInt(millas) + parseInt(milla);
           //console.log(millas);
-         
+
           $('#millaSaldo').html(millas);
         });
       }
     })
   });
 } consultaSaldoCliente()
+
+function consultaMillasTablas() {
+  $(document).ready(function () {
+    var data = sessionStorage.getItem('data');
+    var sesion = JSON.parse(data);
+    firebase.database().ref('users/' + sesion.uid + "/millas/").on('value', function (snapshot) {
+      snapshot.forEach(async element => {
+        var restaurante = element.val().restauranteUid;
+        console.log(restaurante);
+
+        firebase.database().ref("/Restaurante/" + restaurante + "/nombreRestaurante/").once('value').then(e => {
+          var nombre = e.val();
+          console.log('qq',nombre);
+
+
+          var tablita = ("<tr><td>" + nombre + "</td><td>" + element.val().cantidadMIlla + "</td></tr>");
+          $('.tablaMillas').append(tablita);
+        });
+      });
+    })
+  });
+} consultaMillasTablas();
 
 function RecargarSaldoTarjeta() {
   $(document).ready(function () {
@@ -614,22 +637,22 @@ function notificaciones() {
     messaging.usePublicVapidKey("BNH9hyxKC5faMqmfutsoi2bmVm8jm3guerqNkbW0DisLS48Rd9ebtBilFQYZzfaxCaoxlISBT7aQ2gf08WHn3jU");
     Notification.requestPermission().then(function (permission) {
       if (permission === 'granted') {
-        console.log('Notification permission granted.');
-        console.log("kkk");
+        //  console.log('Notification permission granted.');
+        // console.log("kkk");
 
         messaging.getToken().then(function (snap) {
-          console.log(snap);
+          //  console.log(snap);
           localStorage.setItem('tokenBlue', snap)
           messaging.onMessage(function (payload) {
-            console.log('Message received. ', payload);
+            //     console.log('Message received. ', payload);
           });
         });
 
       } else {
-        console.log('Unable to get permission to notify.');
+        //  console.log('Unable to get permission to notify.');
       }
     });
-    console.log('notificaciones');
+    // console.log('notificaciones');
   });
 } notificaciones()
 
@@ -871,3 +894,4 @@ function usarMaillas() {
     });
   });
 } usarMaillas()
+
