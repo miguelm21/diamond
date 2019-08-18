@@ -294,6 +294,7 @@ function registroRestaurante() {
                     "contraseña": contraseña,
                     "confirmarContraseña": confirmarContraseña,
                     "rutaImagenRestaurante": url,
+                    "millas":0,
                     "cuentas": {
                       "cuanta1": 0,
                       "cuenta2": 0,

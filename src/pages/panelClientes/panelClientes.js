@@ -198,13 +198,11 @@ function consultaSaldoCliente() {
       snapshot.forEach(snap => {
         var milla = (snap.val().cantidadMIlla);
         console.log(milla);
-
-        $('#millaSaldo').html(milla);
+          if (!milla) {
+            $('#millaSaldo').html(0);
+          }else{
+        $('#millaSaldo').html(milla);}
       });
-
-
-
-
     })
   });
 } consultaSaldoCliente()
