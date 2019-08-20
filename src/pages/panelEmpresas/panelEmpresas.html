@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,25 +28,26 @@
     };
     // Initialize Firebase
   </script>
-    <script type="text/javascript"
-    src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
-<script type="text/javascript">
-(function(){
-  emailjs.init("user_2ewX4RxxKWacMlmO529Cl");
-})();
-</script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function () {
+      emailjs.init("user_2ewX4RxxKWacMlmO529Cl");
+    })();
+  </script>
 </head>
 
 <body>
-    <div id="preloader">
-        <div id="status"></div>
-    </div>
+  <div id="preloader">
+    <div id="status"></div>
+  </div>
 
 
 
   <!--  Navbar -->
   <nav class="navbar navbar-expand-lg navbar-edit">
-    <a class="navbar-brand" href="index.html"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fplay.PNG?alt=media&token=0fcd0957-74a5-4097-84a2-ccd1cc0e09d9" alt="" class="img-logo"></a>
+    <a class="navbar-brand" href="index.html"><img
+        src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fplay.PNG?alt=media&token=0fcd0957-74a5-4097-84a2-ccd1cc0e09d9"
+        alt="" class="img-logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-bars"></i>
@@ -53,7 +55,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-     <!--    <li class="nav-item active">
+        <!--    <li class="nav-item active">
           <a class="nav-link" href="#">¿Quienes somos?</a>
         </li>
         <li class="nav-item">
@@ -78,9 +80,9 @@
               <span id="nombreEmpresa"></span>
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-             <!--  <a class="dropdown-item" href="#">Editar contraseña</a>
+              <!--  <a class="dropdown-item" href="#">Editar contraseña</a>
               <a class="dropdown-item" href="#">Cambiar imagen</a> -->
-              <a class="dropdown-item cerrarsesion" >Cerrar sesión</a>
+              <a class="dropdown-item cerrarsesion">Cerrar sesión</a>
             </div>
           </div>
         </li>
@@ -102,11 +104,13 @@
             <div class="price-status">
               <p>Balance</p>
               <h5 id="saldoEmpresa"></h5>
-              <img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fbalances.png?alt=media&token=ab343f63-92f7-4924-8983-836aa74c9483" />
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fbalances.png?alt=media&token=ab343f63-92f7-4924-8983-836aa74c9483" />
             </div>
             <ul>
               <li>
-                <a data-toggle="tab" href="#home" id="home-fix"><i class="fas fa-home"></i> <span class="">Inicio</span></a>
+                <a data-toggle="tab" href="#home" id="home-fix"><i class="fas fa-home"></i> <span
+                    class="">Inicio</span></a>
               </li>
               <li>
                 <a data-toggle="tab" href="#clientes"><i class="fas fa-users"></i> <span class="">Empleados
@@ -144,13 +148,16 @@
                     benefico</button>
                 </div>
                 <div class="col-6 col-sm-4 col-md-4">
-                  <button class="btn btn-add cyan" id="registro3"><i class="fas fa-coins"></i>Recargar saldo Empresa</button>
+                  <button class="btn btn-add cyan" id="registro3"><i class="fas fa-coins"></i>Recargar saldo
+                    Empresa</button>
                 </div>
                 <div class="col-6 col-sm-4 col-md-4">
-                  <button class="btn btn-add yellow recargarSaldoCliente" id="registro3"><i class="fas fa-search "></i>Recargar Saldo Empleados</button>
+                  <button class="btn btn-add yellow recargarSaldoCliente" id="registro3"><i
+                      class="fas fa-search "></i>Recargar Saldo Empleados</button>
                 </div>
                 <div class="col-6 col-sm-4 col-md-4">
-                  <button class="btn btn-add red quitarSaldo" id="registro3"><i class="fas fa-hands"></i>Restringir beneficio</button>
+                  <button class="btn btn-add red quitarSaldo" id="registro3"><i class="fas fa-hands"></i>Restringir
+                    beneficio</button>
                 </div>
               </div>
 
@@ -158,107 +165,112 @@
               <div class="register-client max-width" id="show-register1">
                 <h5>Afiliar Empleado</h5>
                 <div class="form-client">
-                    <div class="col-md-6 col-12">
-                        <div class="form-group">
-                          <input type="email" class="form-control required" placeholder="Correo electrónico" value=""
-                            name="correo" id="buscarCorreo" required />
-                           <button  id="buscarUsuario" class="btn btn-back">Buscar</button>
-                            
-                        </div>
-                      </div>
-                <!--  <form id="RegistrarEmpleados"  > -->
-                    <div class="row register-form">
-                      <div class="col-md-6 col-12">
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <input type="email" class="form-control required" placeholder="Correo electrónico" value=""
+                        name="correo" id="buscarCorreo" required />
+                      <button id="buscarUsuario" class="btn btn-back">Buscar</button>
 
-                        <div class="form-group">
-                          <input type="text" class="form-control " placeholder="Nombres" id="nombre" value="" name="nombre" disabled/>
-                          <p id="pnombre"></p>
-                        </div>
-                      </div>
-                      <div class="col-md-6 col-12">
-                        <div class="form-group">
-                          <input type="text" class="form-control required"  id="apellido" placeholder="Apellidos" value="" name="apellido" disabled/>
-                          <p id="papellido"></p>
-                        </div>
-                      </div>
-                      <div class="col-md-6 col-12">
-                        <div class="form-group">
-                          <input type="date" class="form-control required" id="fechaNacimiento"placeholder="Fecha de nacimiento" value=""
-                            name="fechaNacimiento" disabled/>
-                            <p id=""></p>
-                        </div>
-                      </div>
-                      <div class="col-md-6 col-12">
-                        <div class="form-group">
-                          <input type="text" class="form-control required" placeholder="Correo electrónico" value=""
-                            name="correo"  id="correo" disabled />
-                            <p id="pcorreo"></p>
-                        </div>
-                      </div>
-                      <div class="col-md-6 col-12">
-                        <div class="form-group">
-                          <input type="text" id="cargo" class="form-control required" placeholder="Cargo" value="" name="cargo" />
-                          <p id="pcargo"></p>
-                        </div>
-                      </div>
-                      <div class="col-md-6 col-12">
-                        <div class="form-group">
-                          <select class="form-control required" id="" name="Inactivo">
-                            <option value="Activo">Activo</option>
-                            <option value="Inactivo">Inactivo</option>
-                            <p id="pInactivo"></p>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-md-6 col-12">
-                        <div class="form-group">
-                          <select class="form-control required" id="exampleFormControlSelect1" name="planBeneficio">
-                            <p id="pInactivo"></p>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-md-6 col-12">
-                        <div class="form-group">
-                            <a  id="generarContraseña" class="nav-link active lock" href="#"><i class="fas fa-lock"></i></a>
-                           
-                        <!--  <input type="text" class="form-control contraseñaEmpleado" placeholder="Contraseña" value="" name="contraseña"/>
-                         -->
-                          <p id="pcontraseña"></p>
-                         
-                        </div>
-                     
-                      </div>
-                 
-                  <div class="col-12 d-flex justify-content-center mt-4 text-center">
-                    <button onclick="backbutton()" class="btn btn-back">Volver</button>
-                    <button class="btn btn-register" id="registrarEmpleados" type="submit" disabled >Afiliar Empleados</button>
+                    </div>
                   </div>
-               <!-- </form> -->
-                </div>
-              </div>
-            </div>
-
-            <!-- registro Beneficios -->
-            <div class="register-client max-width" id="show-register2">
-              <h5>Registrar Beneficios</h5>
-
-              <div class="form-client">
-                <form id="registroBeneficio" class="registroBeneficio" >
+                  <!--  <form id="RegistrarEmpleados"  > -->
                   <div class="row register-form">
                     <div class="col-md-6 col-12">
+
                       <div class="form-group">
-                        <input type="text" class="form-control required" placeholder="Nombre del plan" value=""
-                          name="nombrePlan" />
-                          <p id="pnombrePlan" ></p>
+                        <input type="text" class="form-control " placeholder="Nombres" id="nombre" value=""
+                          name="nombre" disabled />
+                        <p id="pnombre"></p>
                       </div>
                     </div>
                     <div class="col-md-6 col-12">
                       <div class="form-group">
-                        <input type="tex" class="form-control required" placeholder="Monto del plan" value="" name="montoPlan" />
-                        <p id="pmontoPlan" ></p>
+                        <input type="text" class="form-control required" id="apellido" placeholder="Apellidos" value=""
+                          name="apellido" disabled />
+                        <p id="papellido"></p>
                       </div>
                     </div>
-                   <!-- <div class="col-md-6 col-12">
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <input type="date" class="form-control required" id="fechaNacimiento"
+                          placeholder="Fecha de nacimiento" value="" name="fechaNacimiento" disabled />
+                        <p id=""></p>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <input type="text" class="form-control required" placeholder="Correo electrónico" value=""
+                          name="correo" id="correo" disabled />
+                        <p id="pcorreo"></p>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <input type="text" id="cargo" class="form-control required" placeholder="Cargo" value=""
+                          name="cargo" />
+                        <p id="pcargo"></p>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <select class="form-control required" id="" name="Inactivo">
+                          <option value="Activo">Activo</option>
+                          <option value="Inactivo">Inactivo</option>
+                          <p id="pInactivo"></p>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <select class="form-control required" id="exampleFormControlSelect1" name="planBeneficio">
+                          <p id="pInactivo"></p>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <a id="generarContraseña" class="nav-link active lock" href="#"><i class="fas fa-lock"></i></a>
+
+                        <!--  <input type="text" class="form-control contraseñaEmpleado" placeholder="Contraseña" value="" name="contraseña"/>
+                         -->
+                        <p id="pcontraseña"></p>
+
+                      </div>
+
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-center mt-4 text-center">
+                      <button onclick="backbutton()" class="btn btn-back">Volver</button>
+                      <button class="btn btn-register" id="registrarEmpleados" type="submit" disabled>Afiliar
+                        Empleados</button>
+                    </div>
+                    <!-- </form> -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- registro Beneficios -->
+              <div class="register-client max-width" id="show-register2">
+                <h5>Registrar Beneficios</h5>
+
+                <div class="form-client">
+                  <form id="registroBeneficio" class="registroBeneficio">
+                    <div class="row register-form">
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <input type="text" class="form-control required" placeholder="Nombre del plan" value=""
+                            name="nombrePlan" />
+                          <p id="pnombrePlan"></p>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <input type="tex" class="form-control required" placeholder="Monto del plan" value=""
+                            name="montoPlan" />
+                          <p id="pmontoPlan"></p>
+                        </div>
+                      </div>
+                      <!-- <div class="col-md-6 col-12">
                       <div class="form-group">
                         <input type="date" class="form-control required" placeholder="Fecha de creación del plan" value=""
                           name="FechaPlan" />
@@ -266,142 +278,146 @@
                       </div>
                     </div> -->
 
-                    <div class="col-12 d-flex justify-content-center text-center">
-                      <button type="submit" onclick="backbutton()" class="btn btn-back">Volver</button>
-                      <button type="submit" class="btn btn-register" id="registrarBeneficio">Registrar</button>
-                    </div>
-                  </div>
-                </form>
-                <h2 class="title">Configuración del restaurante</h2>
-                <div class="config-section">
-                  <div class="row mt-4">
-                    <div class="col-lg-7 col-md-12 col-sm-12 col-12">
-                      <div class="shedule">
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="customCheck1">
-                          <label class="custom-control-label" for="customCheck1">Lunes</label>
-                        </div>
-                        <div class="form-group">
-                          <input class="form-control" type="time">
-                          <span>-</span>
-                          <input class="form-control" type="time">
-                        </div>
-                      </div>
-                      <div class="shedule">
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="customCheck2">
-                          <label class="custom-control-label" for="customCheck2">Martes</label>
-                        </div>
-                        <div class="form-group">
-                          <input class="form-control" type="time">
-                          <span>-</span>
-                          <input class="form-control" type="time">
-                        </div>
-                      </div>
-                      <div class="shedule">
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="customCheck3">
-                          <label class="custom-control-label" for="customCheck3">Miercoles</label>
-                        </div>
-                        <div class="form-group">
-                          <input class="form-control" type="time">
-                          <span>-</span>
-                          <input class="form-control" type="time">
-                        </div>
-                      </div>
-                      <div class="shedule">
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="customCheck4">
-                          <label class="custom-control-label" for="customCheck4">Jueves</label>
-                        </div>
-                        <div class="form-group">
-                          <input class="form-control" type="time">
-                          <span>-</span>
-                          <input class="form-control" type="time">
-                        </div>
-                      </div>
-                      <div class="shedule">
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="customCheck5">
-                          <label class="custom-control-label" for="customCheck5">Viernes</label>
-                        </div>
-                        <div class="form-group">
-                          <input class="form-control" type="time">
-                          <span>-</span>
-                          <input class="form-control" type="time">
-                        </div>
-                      </div>
-                      <div class="shedule">
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="customCheck6">
-                          <label class="custom-control-label" for="customCheck6">Sabado</label>
-                        </div>
-                        <div class="form-group">
-                          <input class="form-control" type="time">
-                          <span>-</span>
-                          <input class="form-control" type="time">
-                        </div>
-                      </div>
-                      <div class="shedule">
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="customCheck6">
-                          <label class="custom-control-label" for="customCheck6">Domingo</label>
-                        </div>
-                        <div class="form-group">
-                          <input class="form-control" type="time">
-                          <span>-</span>
-                          <input class="form-control" type="time">
-                        </div>
+                      <div class="col-12 d-flex justify-content-center text-center">
+                        <button type="submit" onclick="backbutton()" class="btn btn-back">Volver</button>
+                        <button type="submit" class="btn btn-register" id="registrarBeneficio">Registrar</button>
                       </div>
                     </div>
-                    <div class="col-lg-5 col-md-12 col-sm-12 col-12">
-                      <div class="date">
-                        <h5>Dias no habiles</h5>
-                        <div class="form-group mt-4 d-flex">
-                          <input type="date" class="form-control">
-                          <button class="btn"><i class="fas fa-plus"></i></button>
+                  </form>
+                  <h2 class="title">Configuración del restaurante</h2>
+                  <div class="config-section">
+                    <div class="row mt-4">
+                      <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+                        <div class="shedule">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">Lunes</label>
+                          </div>
+                          <div class="form-group">
+                            <input class="form-control" type="time">
+                            <span>-</span>
+                            <input class="form-control" type="time">
+                          </div>
+                        </div>
+                        <div class="shedule">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck2">
+                            <label class="custom-control-label" for="customCheck2">Martes</label>
+                          </div>
+                          <div class="form-group">
+                            <input class="form-control" type="time">
+                            <span>-</span>
+                            <input class="form-control" type="time">
+                          </div>
+                        </div>
+                        <div class="shedule">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck3">
+                            <label class="custom-control-label" for="customCheck3">Miercoles</label>
+                          </div>
+                          <div class="form-group">
+                            <input class="form-control" type="time">
+                            <span>-</span>
+                            <input class="form-control" type="time">
+                          </div>
+                        </div>
+                        <div class="shedule">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck4">
+                            <label class="custom-control-label" for="customCheck4">Jueves</label>
+                          </div>
+                          <div class="form-group">
+                            <input class="form-control" type="time">
+                            <span>-</span>
+                            <input class="form-control" type="time">
+                          </div>
+                        </div>
+                        <div class="shedule">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck5">
+                            <label class="custom-control-label" for="customCheck5">Viernes</label>
+                          </div>
+                          <div class="form-group">
+                            <input class="form-control" type="time">
+                            <span>-</span>
+                            <input class="form-control" type="time">
+                          </div>
+                        </div>
+                        <div class="shedule">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck6">
+                            <label class="custom-control-label" for="customCheck6">Sabado</label>
+                          </div>
+                          <div class="form-group">
+                            <input class="form-control" type="time">
+                            <span>-</span>
+                            <input class="form-control" type="time">
+                          </div>
+                        </div>
+                        <div class="shedule">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck6">
+                            <label class="custom-control-label" for="customCheck6">Domingo</label>
+                          </div>
+                          <div class="form-group">
+                            <input class="form-control" type="time">
+                            <span>-</span>
+                            <input class="form-control" type="time">
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="col-12">
-                      <button class="btn btn-aceptar">Guardar cambios</button>
+                      <div class="col-lg-5 col-md-12 col-sm-12 col-12">
+                        <div class="date">
+                          <h5>Dias no habiles</h5>
+                          <div class="form-group mt-4 d-flex">
+                            <input type="date" class="form-control">
+                            <button class="btn"><i class="fas fa-plus"></i></button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <button class="btn btn-aceptar">Guardar cambios</button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div class="register-client max-width" id="show-register3">
-              <div class="box-recargar-saldo">
-                <h5>Recargar saldo</h5>
-                <ul class="nav justify-content-center navtab-edit">
-                  <li class="nav-item">
-                    <a class="nav-link active" href="#first-tab" data-toggle="tab">Tarjetas crédito</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#second-tab" data-toggle="tab">Transferencia</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#third-tab" data-toggle="tab">Otros metodos de pagos</a>
-                  </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
+              <div class="register-client max-width" id="show-register3">
+                <div class="box-recargar-saldo">
+                  <h5>Recargar saldo</h5>
+                  <ul class="nav justify-content-center navtab-edit">
+                    <li class="nav-item">
+                      <a class="nav-link active" href="#first-tab" data-toggle="tab">Tarjetas crédito</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#second-tab" data-toggle="tab">Transferencia</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#third-tab" data-toggle="tab">Otros metodos de pagos</a>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="first-tab" role="tabpanel" aria-labelledby="first-tab">
-                    
-                  <form id="recargaSaldoEmpresa" >
-                  <div class="box-pago register-form">
-                    <h5 class="title">Seleccionar tarjeta</h5>
-                    <div class="box-tarjetas " id="radio-style">
-                      <ul class="transf">
-                        <li>
-                          <input class="radio required" type="radio" id="radio1" name="tarjetaCredito" value="visa" />
-                          <label class="radio-style" for="radio1"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fcard1.png?alt=media&token=443a536b-e1ee-4a77-9406-b6aae6287aae" /></label>
-                        </li>
-                        <li>
-                          <input class="radio required" type="radio" id="radio2" name="tarjetaCredito" value="master" />
-                          <label class="radio-style" for="radio2"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fcard2.jpg?alt=media&token=84381cb3-5a85-4153-877b-d0b7ff41da70" /></label>
-                        </li>
-                        <!--<li>
+
+                      <form id="recargaSaldoEmpresa">
+                        <div class="box-pago register-form">
+                          <h5 class="title">Seleccionar tarjeta</h5>
+                          <div class="box-tarjetas " id="radio-style">
+                            <ul class="transf">
+                              <li>
+                                <input class="radio required" type="radio" id="radio1" name="tarjetaCredito"
+                                  value="visa" />
+                                <label class="radio-style" for="radio1"><img
+                                    src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fcard1.png?alt=media&token=443a536b-e1ee-4a77-9406-b6aae6287aae" /></label>
+                              </li>
+                              <li>
+                                <input class="radio required" type="radio" id="radio2" name="tarjetaCredito"
+                                  value="master" />
+                                <label class="radio-style" for="radio2"><img
+                                    src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fcard2.jpg?alt=media&token=84381cb3-5a85-4153-877b-d0b7ff41da70" /></label>
+                              </li>
+                              <!--<li>
                           <input class="radio required" type="radio" id="radio3" value="master" />
                           <label class="radio-style" for="radio3"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fpaypal.jpg?alt=media&token=a5d900e6-7f88-4009-a093-90d81c5177d8" /></label>
                         </li>
@@ -409,98 +425,101 @@
                           <input class="radio required" type="radio" id="radio4"  value="master" />
                           <label class="radio-style" for="radio4"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fskill.png?alt=media&token=44ef96bf-d92c-415f-9552-e91efcedaa37" /></label>
                         </li>-->
-                      </ul>
-                      <p id="ptarjetaCredito"></p>
-                    </div>
-                    
-                    <div class="row ">
-                      <div class="col-12 col-sm-6">
-                        <div class="form-group">
-                          <label for="">Nombre del titular</label>
-                          <input type="text" class="form-control required" name="nombreTitular" >
-                          <p id="pnombreTitular"></p>
-                        </div>
-                      </div>
-                      <div class="col-12 col-sm-6">
-                        <div class="form-group">
-                          <label for="">Número de tarjeta</label>
-                          <input type="text" class="form-control required" name="NumeroTarjeta" >
-                          <p id="pNumeroTarjeta"></p>
-                        </div>
-                      </div>
-                      <div class="col-12 col-sm-6">
-                        <div class="form-group">
-                          <label for="">Fecha de expiración</label>
-                          <div class="row">
-                            <div class="col-12">
-                              <input type="date" class="form-control required" name="fechaExp" >
-                              <p id="pfechaExp"></p>
-                            </div>
-                            
+                            </ul>
+                            <p id="ptarjetaCredito"></p>
                           </div>
+
+                          <div class="row ">
+                            <div class="col-12 col-sm-6">
+                              <div class="form-group">
+                                <label for="">Nombre del titular</label>
+                                <input type="text" class="form-control required" name="nombreTitular">
+                                <p id="pnombreTitular"></p>
+                              </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                              <div class="form-group">
+                                <label for="">Número de tarjeta</label>
+                                <input type="text" class="form-control required" name="NumeroTarjeta">
+                                <p id="pNumeroTarjeta"></p>
+                              </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                              <div class="form-group">
+                                <label for="">Fecha de expiración</label>
+                                <div class="row">
+                                  <div class="col-12">
+                                    <input type="date" class="form-control required" name="fechaExp">
+                                    <p id="pfechaExp"></p>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                              <div class="form-group">
+                                <label for="">Código de seguridad</label>
+                                <div id="show_password3" type="checkbox" style="cursor: pointer;"
+                                  class="btn-eye  show_password "><i class="far fa-eye"></i></div>
+                                <input type="password" id="password3" class="form-control " name="codigoSeguridad">
+                                <p id="pcodigoSeguridad"></p>
+                              </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                              <div class="form-group">
+                                <label for="">Monto</label>
+                                <input type="number" class="form-control " name="montoRecargar">
+                                <p id="pmontoRecargar"></p>
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <div class="custom-control custom-checkbox edit">
+                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                <label class="custom-control-label" for="customCheck1">Anexar tarjeta a mi
+                                  cuenta</label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-12 d-flex justify-content-center text-center">
+                            <button type="submit" onclick="backbutton()" class="btn btn-back">Volver</button>
+                            <button type="submit" class="btn btn-register" id="recargarSaldoEmpresa">Recargar Saldo
+                              Empresa</button>
+                          </div>
+
                         </div>
-                      </div>
-                      <div class="col-12 col-sm-6">
-                        <div class="form-group">
-                          <label for="">Código de seguridad</label>
-                          <div id="show_password3" type="checkbox" style="cursor: pointer;"  class="btn-eye  show_password "><i class="far fa-eye"></i></div>
-                          <input type="password" id="password3" class="form-control " name="codigoSeguridad" >
-                          <p id="pcodigoSeguridad"></p>
-                        </div>
-                      </div>
-                      <div class="col-12 col-sm-6">
-                        <div class="form-group">
-                          <label for="">Monto</label>
-                          <input type="number" class="form-control " name="montoRecargar" >
-                          <p id="pmontoRecargar"></p>
-                        </div>
-                      </div>
-                      <div class="col-6">
-                        <div class="custom-control custom-checkbox edit">
-                          <input type="checkbox" class="custom-control-input" id="customCheck1">
-                          <label class="custom-control-label" for="customCheck1">Anexar tarjeta a mi cuenta</label>
-                        </div>
-                      </div>
-                    </div>
-                  
-                      <div class="col-12 d-flex justify-content-center text-center">
-                        <button type="submit" onclick="backbutton()" class="btn btn-back">Volver</button>
-                        <button type="submit" class="btn btn-register" id="recargarSaldoEmpresa">Recargar Saldo Empresa</button>
-                      </div>
-                    
-                      </div>
-                    </form>
+                      </form>
                     </div>
                     <div class="tab-pane fade" id="second-tab" role="tabpanel" aria-labelledby="profile-tab">
                       <div class="mt-5">
                         <form id="transferenciBanco">
-                        <div class="row register-form">
-                          <div class="col-12 col-sm-6">
-                            <div class="form-group">
-                              <label for="">Banco</label>
-                              <input type="text" class="form-control " name="nombreBanco">
+                          <div class="row register-form">
+                            <div class="col-12 col-sm-6">
+                              <div class="form-group">
+                                <label for="">Banco</label>
+                                <input type="text" class="form-control " name="nombreBanco">
+                              </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                              <div class="form-group">
+                                <label for="">Número de Transferencia</label>
+                                <input type="number" class="form-control " name="NumeroTranferecia">
+                              </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                              <div class="form-group">
+                                <label for="">Monto</label>
+                                <input type="number" class="form-control " name="Numeromonto">
+                              </div>
+                            </div>
+
+                            <div class="col-12">
+                              <button type="button" id="tranfereciaActiva" class="btn btn-aceptar">Transferir</button>
                             </div>
                           </div>
-                          <div class="col-12 col-sm-6">
-                            <div class="form-group">
-                              <label for="">Número de Transferencia</label>
-                              <input type="number" class="form-control " name="NumeroTranferecia">
-                            </div>
-                          </div>
-                          <div class="col-12 col-sm-6">
-                            <div class="form-group">
-                              <label for="">Monto</label>
-                              <input type="number" class="form-control " name="Numeromonto">
-                            </div>
-                          </div>
-                       
-                          <div class="col-12">
-                            <button type="button" id="tranfereciaActiva" class="btn btn-aceptar">Transferir</button>
-                          </div>
-                        </div>
-                      
+
                       </div>
-                    </form>
+                      </form>
                     </div>
                     <div class="tab-pane fade" id="third-tab" role="tabpanel" aria-labelledby="contact-tab">
                       <div class="mt-5 register-form">
@@ -508,12 +527,16 @@
                           <div class="box-tarjetas " id="radio-style">
                             <ul class="transf">
                               <li>
-                                <input class="radio required" type="radio" id="radio3" name="tarjetaCredito" value="visa" />
-                                <label class="radio-style" for="radio3"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fpaypal.jpg?alt=media&token=a5d900e6-7f88-4009-a093-90d81c5177d8" /></label>
+                                <input class="radio required" type="radio" id="radio3" name="tarjetaCredito"
+                                  value="visa" />
+                                <label class="radio-style" for="radio3"><img
+                                    src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fpaypal.jpg?alt=media&token=a5d900e6-7f88-4009-a093-90d81c5177d8" /></label>
                               </li>
                               <li>
-                                <input class="radio required" type="radio" id="radio4" name="tarjetaCredito" value="master" />
-                                <label class="radio-style" for="radio4"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fskill.png?alt=media&token=44ef96bf-d92c-415f-9552-e91efcedaa37" /></label>
+                                <input class="radio required" type="radio" id="radio4" name="tarjetaCredito"
+                                  value="master" />
+                                <label class="radio-style" for="radio4"><img
+                                    src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fskill.png?alt=media&token=44ef96bf-d92c-415f-9552-e91efcedaa37" /></label>
                               </li>
                               <!--<li>
                                 <input class="radio required" type="radio" id="radio3" value="master" />
@@ -539,165 +562,167 @@
                       </div>
                     </div>
                   </div>
-    
-              </div>
-              
 
-            </div>
-
-            <div class="tab-pane fade" id="clientes">
-              <div class="box-table">
-                <h2 class="title">Empleados</h2>
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead class="thead-blue">
-                      <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Apellido</th>
-                        <th scope="col">Correo</th>
-                        <th scope="col">Inactivo</th>
-                        <th scope="col">Plan beneficio</th>
-                        <th scope="col">Cargo</th>
-                      </tr>
-                    </thead>
-                    <tbody id="tablaEmpleados">
-                        
-                    </tbody>
-
-                  </table>
                 </div>
-                <div class="pagination-section">
-                  <div class="row">
-                    <div class="col-12">
-                      <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                        </li>
-                      </ul>
+
+
+              </div>
+            </div>
+              <div class="tab-pane fade" id="clientes">
+                <div class="box-table">
+                  <h2 class="title">Empleados</h2>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class="thead-blue">
+                        <tr>
+                          <th scope="col">Nombre</th>
+                          <th scope="col">Apellido</th>
+                          <th scope="col">Correo</th>
+                          <th scope="col">Inactivo</th>
+                          <th scope="col">Plan beneficio</th>
+                          <th scope="col">Cargo</th>
+                        </tr>
+                      </thead>
+                      <tbody id="tablaEmpleados">
+
+                      </tbody>
+
+                    </table>
+                  </div>
+                  <div class="pagination-section">
+                    <div class="row">
+                      <div class="col-12">
+                        <ul class="pagination">
+                          <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="tab-pane fade" id="plan-beneficios">
-              <h2 class="title">Beneficios</h2>
-              <div class="box-beneficios" id="tarjetaBeneficio">
+              <div class="tab-pane fade" id="plan-beneficios">
+                <h2 class="title">Beneficios</h2>
+                <div class="box-beneficios" id="tarjetaBeneficio">
+                </div>
               </div>
-            </div>
-            <div class="tab-pane fade" id="configuracion">
-              <div class="box-configuracion max-width">
-                <h2 class="title">Configuración</h2>
-                <form id="editarEmpresa">
-                  <div class="row register-form">
-                    <div class="col-md-6 col-12">
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nombre de la empresa" id="conNombreEmpresa"
-                          name="conNombreEmpresa" />
+              <div class="tab-pane fade" id="configuracion">
+                <div class="box-configuracion max-width">
+                  <h2 class="title">Configuración</h2>
+                  <form id="editarEmpresa">
+                    <div class="row register-form">
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Nombre de la empresa"
+                            id="conNombreEmpresa" name="conNombreEmpresa" />
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="ID de la compañia" id="conIdCompañia"
-                          name="conIdCompañia" />
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <input type="text" class="form-control" placeholder="ID de la compañia" id="conIdCompañia"
+                            name="conIdCompañia" />
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                      <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Correo" id="conCorreo" name="conCorreo" />
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <input type="email" class="form-control" placeholder="Correo" id="conCorreo"
+                            name="conCorreo" />
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                      <div class="form-group">
-                        <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Telefono"
-                          id="conTelefono" name="conTelefono" />
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Telefono"
+                            id="conTelefono" name="conTelefono" />
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Dirección" id="conDireccion"
-                          name="conDireccion" />
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Dirección" id="conDireccion"
+                            name="conDireccion" />
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Código postal" id="conpostal"
-                          name="conpostal" />
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Código postal" id="conpostal"
+                            name="conpostal" />
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Pais" id="conpais" name="conpais" />
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Pais" id="conpais" name="conpais" />
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Poblacion" id="conpoblacion"
-                          name="conpoblacion" />
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Poblacion" id="conpoblacion"
+                            name="conpoblacion" />
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nombre del representante"
-                          name="conNombreRepresentante" id="conNombreRepresentante" />
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Nombre del representante"
+                            name="conNombreRepresentante" id="conNombreRepresentante" />
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Cedula del representante"
-                          name="conCedulaRepresentante" id="conCedulaRepresentante" />
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Cedula del representante"
+                            name="conCedulaRepresentante" id="conCedulaRepresentante" />
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Telefono del representante"
-                          name="conTelRepresentante" id="conTelRepresentante" />
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Telefono del representante"
+                            name="conTelRepresentante" id="conTelRepresentante" />
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Correo del representante"
-                          name="conCorreoRepresentante" id="conCorreoRepresentante" />
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Correo del representante"
+                            name="conCorreoRepresentante" id="conCorreoRepresentante" />
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                      <div class="form-group edit">
-                        <label for="conLogoEmpresa" id="text-file4" class="form-control pointer">Agregar imagen
-                          <input id="conLogoEmpresa"  type="file" accept="image/.jpg"  />
-                        </label>
-                        <button class="btn" id="validate-image4"><i class="fas fa-check"></i></button>
-                      </div>
-                     <!--  <div class="form-group edit">
+                      <div class="col-md-6 col-12">
+                        <div class="form-group edit">
+                          <label for="conLogoEmpresa" id="text-file4" class="form-control pointer">Agregar imagen
+                            <input id="conLogoEmpresa" type="file" accept="image/.jpg" />
+                          </label>
+                          <button class="btn" id="validate-image4"><i class="fas fa-check"></i></button>
+                        </div>
+                        <!--  <div class="form-group edit">
                         <input type="file" placeholder="foto" id="conLogoEmpresa" />
 
                       </div> -->
+                      </div>
+                      <div class="col-12 d-flex justify-content-center mt-4 text-center">
+                        <button type="submit" class="btn btn-register" id="guardarEmpresa">Guardar Cambios
+                          empresa</button>
+                      </div>
                     </div>
-                    <div class="col-12 d-flex justify-content-center mt-4 text-center">
-                      <button type="submit" class="btn btn-register" id="guardarEmpresa">Guardar Cambios
-                        empresa</button>
-                    </div>
-                  </div>
-                </form>
+                  </form>
+                </div>
               </div>
-            </div>
-            <div class="tab-pane fade" id="reportes">
-              <div class="box-reportes">
-                <h5 class="title">Reportes</h5>
-               <!--  <div class="box">
+              <div class="tab-pane fade" id="reportes">
+                <div class="box-reportes">
+                  <h5 class="title">Reportes</h5>
+                  <!--  <div class="box">
                   <button class="btn btn-recuperar">Recuperar beneficio</button>
                 </div> -->
-                <div class="box-table" id="tablaReporteEmpresa" >
+                  <div class="box-table" id="tablaReporteEmpresa">
+
+                  </div>
 
                 </div>
-                
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     </div>
   </section>
   <!-- Site footer -->
@@ -815,7 +840,7 @@
                 </div>
               </div>
             </div>
-          </div> 
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn edit" data-dismiss="modal">Salir</button>
@@ -909,7 +934,7 @@
     </div>
   </div>
   <div id="cambiarPlan2">
-    
+
   </div>
   <div class="modal fade" id="modal-editar-beneficio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -917,7 +942,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <!-- <span aria-hidden="true">&times;</span> -->
           </button>
         </div>
@@ -942,9 +967,9 @@
       </div>
     </div>
   </div>
- 
+
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-  integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </body>
 
 </html>
