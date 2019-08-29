@@ -854,8 +854,8 @@ function usarMaillas() {
               if (saldoTotal < PrecioPlato) {
                 hideLoading();
                 swal({
-                  title: "Pocas MIllas?",
-                  text: "Aun no tienes Millas suficientes!",
+                  title: "Pocas Puntos Raus?",
+                  text: "Aun no tienes Puntos Raus suficientes!",
                   icon: "warning",
 
                   dangerMode: true,

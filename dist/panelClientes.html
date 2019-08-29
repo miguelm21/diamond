@@ -1,0 +1,786 @@
+<html lang="en">
+
+<head>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function () {
+      emailjs.init("<YOUR USER ID>");
+    })();
+  </script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Raus</title>
+  <meta name="description" content="Servinformación">
+  <link rel="icon" type="image/png" href="">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.2.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.2.1/firebase-messaging.js"></script>
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyBrWMTIbxjm2MRNNkM8U-S-MvjID5R3hDw",
+      authDomain: "bluediamont-75e04.firebaseapp.com",
+      databaseURL: "https://bluediamont-75e04.firebaseio.com",
+      projectId: "bluediamont-75e04",
+      storageBucket: "bluediamont-75e04.appspot.com",
+      messagingSenderId: "355470432906",
+      appId: "1:355470432906:web:54ea70b0eca95904"
+    };
+  </script>
+<link href="style.ee54102b134cfda42046.css" rel="stylesheet"></head>
+
+<body>
+  <div id="preloader">
+    <div id="status"></div>
+  </div>
+  
+  <nav class="navbar navbar-expand-lg navbar-edit">
+    <a class="navbar-brand" href="index.html"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/logo.jpeg?alt=media&token=054f990c-da5c-423b-a647-8d9d8ed6931d" alt="" class="img-logo"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="far fa-bell"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="far fa-envelope"></i></a>
+        </li>
+        <div class="dropdown text-right edit">
+          <a class="dropdown-toggle option-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/avatar.png?alt=media&token=a09ce818-9a09-4466-b46b-612581df4e2b" alt="">
+            <span id="nombreEmpresa"></span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Editar contraseña</a>
+            <a class="dropdown-item" href="#">Cambiar imagen</a>
+            <a class="dropdown-item cerrarsesion">Cerrar sesión</a>
+          </div>
+        </div>
+        
+      </ul>
+    </div>
+  </nav>
+
+  
+  <section class="panel-cliente">
+    <div class="box-banner">
+      <img class="banner" src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/banner.jpg?alt=media&token=ac4211bd-3ae4-4000-acba-2a18869f1984">
+      
+    </div>
+    <div class="promocion-box">
+      <div class="owl-carousel owl-theme" id="banner-promociones">
+        <div class="item">
+          <div class="publicidad">
+
+          </div>
+        </div>
+        <div class="item">
+          <div class="publicidad">
+
+          </div>
+        </div>
+        <div class="item">
+          <div class="publicidad">
+
+          </div>
+        </div>
+        <div class="item">
+          <div class="publicidad">
+
+          </div>
+        </div>
+        <div class="item">
+          <div class="publicidad">
+
+          </div>
+        </div>
+        <div class="item">
+          <div class="publicidad">
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="box-plates">
+      <div class="row">
+        <div class="col-lg-3 col-md-4 col-12">
+          <div class="panel">
+            <h5 class="title">Panel</h5>
+            <div class="price-status" data-toggle="modal" data-target="#modal-saldo">
+              <p>Tu saldo</p>
+              <h5 id="saldoCliente"></h5>
+              <img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fbalances.png?alt=media&token=ab343f63-92f7-4924-8983-836aa74c9483">
+              <p> Puntos Raus </p>
+              <h6 id="millaSaldo"> </h6>
+            </div>
+            <ul>
+              <li><a href="#" id="platos-show"><i class="fas fa-home mr-2"></i>Restaurantes</a></li>
+              <li> <a href="#" data-toggle="modal" data-target="#modal-pago">
+                  <i class="far fa-credit-card mr-2"></i>Recargar saldo <i class="fas fa-chevron-right right"></i>
+                </a>
+                
+              </li>
+              <li>
+                
+              </li>
+              <li><a href="#" id="historial-show"><i class="far fa-clock mr-2"></i>Historial de consumo</a></li>
+              
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-9 col-md-8 col-12">
+          <div id="div-platos">
+            <div class="row" id="tarjetaPlatoCliente">
+            </div>
+          </div>
+
+          <div id="historial_cliente" style="display: none;">
+            <div class="historial-cliente">
+              <h5 class="title">Historial de consumo</h5>
+              <div class="box-table">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class="thead-blue">
+                      <tr>
+                        <th scope="col">Restaurante</th>
+                        <th scope="col">Tipo transaccion</th>
+
+                        <th scope="col">Monto</th>
+                        <th scope="col">Fecha</th>
+                      </tr>
+                    </thead>
+                    <tbody id="historialClientePlatos">
+
+                    </tbody>
+                  </table>
+                </div>
+                
+
+                <div class="pagination-section">
+                  <div class="row">
+                    <div class="col-12">
+                      <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+    
+    
+
+  </section>
+  
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-12">
+          <h6>Conócenos</h6>
+          <p class="text-justify">Somos una empresa enfocada al Lorem ipsum dolor sit amet, consectetur adipisicing
+            elit. Saepe, quis.</p>
+        </div>
+
+        <div class="col-sm-3 col-6 d-none d-sm-block">
+          
+        </div>
+
+        <div class="col-sm-3 col-12">
+          <h6>Contacto</h6>
+          <ul class="footer-links">
+            <li><a href="#">Conrtatanos</a></li>
+            <li><a href="#">Contribuciones</a></li>
+            <li><a href="#">Política de privacidad</a></li>
+            <li><a href="#">Mapa</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2019 Todos los derechos reservados para
+            <a href="#">Raus</a>.
+          </p>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <ul class="social-icons">
+            <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a class="dribbble" href="#"><i class="fab fa-instagram"></i></a></li>
+            <li><a class="linkedin" href="#"><i class="fab fa-linkedin-in"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  
+
+  <div id="modalRestauranteDetalle">
+    <div class="modal fade" id="modal-detalles-plato" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-base" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="show-details">
+              <div class="row border">
+                <div class="col-sm-5 col-md-5 col-12">
+                  <div class="detail-img" id="imagenRestaurante">
+                    
+                  </div>
+                </div>
+                <div class="col-sm-7 col-md-7 col-12">
+                  <div class="form-group d-lg-flex">
+                    <label class="col-sm-12 col-md-12 col-lg-6">Nombre Restaurante</label>
+                    <p class="col-sm-12 col-md-12 col-lg-6" id="resName"></p>
+                  </div>
+                  <div class="form-group d-lg-flex">
+                    <label class="col-sm-12 col-md-12 col-lg-6 col-12">Correo</label>
+                    <p class="col-sm-12 col-md-12 col-lg-6" id="direccionCorreo"></p>
+                  </div>
+                  <div class="form-group d-lg-flex">
+                    <label class="col-sm-12 col-md-12 col-lg-6 col-12">Pais</label>
+                    <p class="col-sm-12 col-md-12 col-lg-6" id="direccionPais"></p>
+                  </div>
+                  <div class="form-group d-lg-flex">
+                    <label class="col-sm-12 col-md-12 col-lg-6 col-12">Direccion</label>
+                    <p class="col-sm-12 col-md-12 col-lg-6" id="direccionRestaurante"></p>
+                  </div>
+                  <div class="form-group d-lg-flex">
+                    <label class="col-sm-12 col-md-12 col-lg-6 col-12">Telefono</label>
+                    <p class="col-sm-12 col-md-12 col-lg-6" id="direccionTelefono"></p>
+                  </div>
+                  <div class="form-group d-lg-flex">
+                    <label class="col-sm-12 col-md-12 col-lg-6">Puntos Raus disponibles </label>
+                    <p class="col-sm-12 col-md-12 col-lg-6" id="millasAcumuladas"></p>
+
+                  </div>
+
+                </div>
+                
+              </div>
+              <div class="row">
+                <div class="col-sm-12 col-12">
+                  <div class="box-table">
+                    <div class="row d-flex align-items-center py-4">
+                      <div class="col-md-8 col-sm-6 col-6">
+                        <h2 class="title m-0">Productos</h2>
+                      </div>
+                      <div class="col-md-4 col-sm-6 col-6">
+                        <div class="form-group">
+                          <select class="form-control" id="exampleFormControlSelect12">
+                            <option value="" selected="selected" disabled="disabled">Buscar..</option>
+
+                            <option> Acompañamiento </option>
+                            <option> Almuerzo </option>
+                            <option> Bebidas </option>
+                            <option> Bocadillos </option>
+                            <option> CenaCena </option>
+                            <option> Desayuno </option>
+                            <option> Ensaladas </option>
+                            <option> Panes, Panecillos, y Panecillos tipo Panes, Panecillos, y Panecillos tipo "Scones"
+                            </option>
+                            <option> (Hotcakes) y sus acompañamientos </option>
+                            <option> Pizza </option>
+                            <option> Platillos Principales </option>
+                            <option> Postres </option>
+                            <option> Quesadillas y Sándwiches </option>
+                            <option> Salsas y Cremas para Untar y Aderezos </option>
+                            <option> Sopas, Guisado y Chili (Potaje) </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="box-plates">
+                      <div class="row" id="tablaPlatos" class="tablaPlatos">
+                      </div>
+                    </div>
+
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn edit" data-dismiss="modal">Salir</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modal-detalles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-base" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="show-details">
+            <div class="row">
+              <div class="col-sm-6 col-12">
+                <div class="form-group">
+                  <label>Nombre</label>
+                  <p>Juan </p>
+                </div>
+              </div>
+              <div class="col-sm-6 col-12">
+                <div class="form-group">
+                  <label>Apellido</label>
+                  <p>Gonzalez Espinoza</p>
+                </div>
+              </div>
+              <div class="col-sm-6 col-12">
+                <div class="form-group">
+                  <label>Correo</label>
+                  <p>Prueba4223141@hotmail.com</p>
+                </div>
+              </div>
+              <div class="col-sm-6 col-12">
+                <div class="form-group">
+                  <label>Dirección</label>
+                  <p>Carrera 13 entre av unda</p>
+                </div>
+              </div>
+              <div class="col-sm-6 col-12">
+                <div class="form-group">
+                  <label>Cargo</label>
+                  <p>Desarrollador</p>
+                </div>
+              </div>
+              <div class="col-sm-6 col-12">
+                <div class="form-group">
+                  <label>Inactivo</label>
+                  <p>
+                    <i class="status red fas fa-check"></i>
+                    <i class="status green fas fa-times d-none"></i>
+                  </p>
+                </div>
+              </div>
+              <div class="col-sm-6 col-12">
+                <div class="form-group">
+                  <label>Plan beneficio</label>
+                  <p>Plan mensual</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn edit" data-dismiss="modal">Salir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modal-editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-base" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar usuario</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row register-form">
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Nombres" value="">
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Apellidos" value="">
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <input type="date" onfocus="(this.type='date')" id="date" class="form-control" placeholder="Fecha de nacimiento" value="">
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Correo electrónico" value="">
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Cargo" value="">
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Inactivo" value="">
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>Plan de beneficio</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn edit" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn primary" data-dismiss="modal">Editar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade" id="modal-comprar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-base buy-edit" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Atención</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="eliminar">
+            <p>¿Estas seguro que desea comprar este plato ?</p>
+            <p class="nombrePlato edit"> </p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn edit" data-dismiss="modal">Cancelar</button>
+          <div id="usarMillas"></div>
+          <div id="botonComprar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modal-eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-base modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Atención</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="eliminar">
+            <p>Esta seguro que desea eliminar este usuario ?</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn edit" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn primary" data-dismiss="modal">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-editar-beneficio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-base modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row register-form">
+            <div class="col-md-12 col-12">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Nombres" value="">
+              </div>
+            </div>
+            <div class="col-md-12 col-12">
+              <div class="form-group">
+                <input type="number" class="form-control" placeholder="Monto" value="">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn edit" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn primary" data-dismiss="modal">Editar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modal-comprar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-base modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Atención</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="eliminar">
+            <p>¿Esta seguro que desea comprar este plato ?</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn edit" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn primary" data-toggle="modal" data-target="#modal-comprar">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modal-pago" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-base md" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Recarga Saldo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body pago">
+          <form id="recargaSaldoCliente">
+            <div class="box-pago register-form">
+              
+              
+              <div class="box-tarjetas mt-3" id="radio-style">
+                <h5 class="title">Seleccionar tarjeta</h5>
+                <ul>
+                  <li>
+                    <input class="radio required" type="radio" id="radio1" name="tarjetaCredito" value="visa">
+                    <label class="radio-style" for="radio1"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fcard1.png?alt=media&token=443a536b-e1ee-4a77-9406-b6aae6287aae"></label>
+                  </li>
+                  <li>
+                    <input class="radio required" type="radio" id="radio2" name="tarjetaCredito" value="master">
+                    <label class="radio-style" for="radio2"><img src="https://firebasestorage.googleapis.com/v0/b/bluediamont-75e04.appspot.com/o/imagen%2Fcard2.jpg?alt=media&token=84381cb3-5a85-4153-877b-d0b7ff41da70"></label>
+                  </li>
+                  <p id="ptarjetaCredito"></p>
+                </ul>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="">Nombre del titular</label>
+                    <input type="text" class="form-control" name="nombreTitular">
+                    <p id="pnombreTitular"></p>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="">Número de tarjeta</label>
+                    <input type="text" class="form-control" name="NumeroTarjeta">
+                    <p id="pNumeroTarjeta"></p>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="">Fecha de expiración</label>
+                    <div class="row">
+                      <div class="col-6">
+                        <input type="date" class="form-control" name="fechaExp">
+                        <p id="pfechaExp"></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group edit">
+                    <label for="">Código de seguridad</label>
+                    <div class="row">
+                      <div class="col-12">
+                        <input type="password" class="form-control required" name="codigoSeguridad">
+                        <p id="pcodigoSeguridad"></p>
+                        <button class="btn"><i class="far fa-eye"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="">Monto</label>
+                    <div class="row">
+                      <div class="col-12">
+                        <input type="text" class="form-control required" name="montoRecargar">
+                        <p id="pmontoRecargar"></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 my-3">
+                  <button id="recargarSaldoCliente" type="button" class="btn btn-aceptar align">Recargar
+                    Saldo</button>
+                </div>
+                
+              </div>
+            </div>
+            
+
+        </form></div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div id="modalVerificacionCompra">
+    <div class="modal fade" id="modalVerificacionCompra" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-base" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="show-details">
+              <div class="row">
+                <div class="col-sm-12 col-12">
+                  <div class="detail-img">
+                    <img src="/src/assets/image/platos/plato1.jpg">
+                  </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                  <div class="form-group">
+                    <label>Nombre Restaurante</label>
+                    <p id="resName"></p>
+                  </div>
+                </div>
+                <div class="col-sm-12 col-12">
+                  <div class="form-group">
+                    <label>Descripción</label>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum dicta accusantium aperiam cum
+                      atque quasi deserunt quo enim fugit. Voluptatibus doloribus delectus velit possimus beatae,
+                      accusamus similique tenetur quia nesciunt?</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn edit" data-dismiss="modal">Salir</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  /////////////////////////////////////////
+  <div class="modal fade" id="modalPagoSinPlato" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-base" role="document">
+      <div class="modal-content">
+        <form id="recargaplaraRestaurante">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Transferir a Restaurante</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form id="recargaSaldoCliente">
+            <div class="modal-body pago">
+
+              <div class="form-group">
+                <label for="">Nombre del Restaurante</label>
+                <input type="text" class="form-control" name="nombreTitular" id="nombreRestaurantePagar" disabled="disabled">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="">Monto</label>
+                <p id="obligadoMonto"></p>
+                <input type="number" class="form-control" name="monto">
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button id="pagaryya" type="button" class="btn primary align">Pagar </button>
+            </div>
+          </form>
+      </form></div>
+    </div>
+  </div>
+
+<script type="text/javascript" src="panelClientes.ee54102b134cfda42046.js"></script></body>
+<div class="modal fade" id="modal-saldo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-base modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Saldos</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row register-form">
+          <div class="col-md-12 col-12">
+            <div class="form-group cuenta">
+              <label for="exampleInputEmail1">Beneficio</label>
+              <h5 class="text-cuenta" id="saldoCuenta1"></h5>
+            </div>
+          </div>
+          <div class="col-md-12 col-12">
+            <div class="form-group cuenta">
+              <label for="exampleInputEmail1">Cuenta personal</label>
+              <h5 class="text-cuenta" id="saldoCuenta2"></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <table class="table">
+        <thead class="thead-blue">
+          <tr>
+            <th scope="col">Restaurante</th>
+            <th scope="col">Puntos Raus</th>
+          </tr>
+        </thead>
+        <tbody class="tablaMillas">
+
+        </tbody>
+
+      </table>
+      <div class="modal-footer">
+        <button type="button" class="btn primary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+
+
+</html>
