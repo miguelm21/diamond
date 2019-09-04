@@ -519,7 +519,7 @@ function comprar() {
                 var millas = await mandarMillas(PrecioPlato, restaurante);
 
                 setTimeout(() => {
-                  swal("Millas", "Por tu compra has obtenido " + parseInt(millas) + " Millas", "success")
+                  swal("Puntos Raus", "Por tu compra has obtenido " + parseInt(millas) + " Puntos Raus", "success")
                 }, 2000);
 
                 $('#modal-comprar').modal('hide');
@@ -790,7 +790,7 @@ async function trasnferirYa() {
       var millas = await mandarMillas(monto, uidRestaurante);
 
       setTimeout(() => {
-        swal("Millas", "Por tu compra has obtenido " + parseInt(millas) + " Millas", "success")
+        swal("Puntos Raus", "Por tu compra has obtenido " + parseInt(millas) + " Puntos Raus", "success")
       }, 3000);
     })
   });
@@ -805,7 +805,7 @@ function mandarMillas(cantidadMilla, uidRestaurante) {
     var millaAcumulada = e.val();
     if (millaAcumulada === null) {
       var millas = 0;
-      millaGanada = cantidadMilla / 30;
+      millaGanada = cantidadMilla / 8;
       var cantidadMIlla = parseInt(millas) + parseInt(millaGanada);
       firebase.database().ref("/users/" + datos.uid + "/millas/" + uidRestaurante + "/").update({
         "cantidadMIlla": parseInt(cantidadMIlla),
@@ -813,7 +813,7 @@ function mandarMillas(cantidadMilla, uidRestaurante) {
       });
     } else {
       var millas = (millaAcumulada.cantidadMIlla);
-      millaGanada = cantidadMilla / 30;
+      millaGanada = cantidadMilla / 8;
       var cantidadMIlla = parseInt(millas) + parseInt(millaGanada);
       firebase.database().ref("/users/" + datos.uid + "/millas/" + uidRestaurante + "/").update({
         "cantidadMIlla": parseInt(cantidadMIlla)
