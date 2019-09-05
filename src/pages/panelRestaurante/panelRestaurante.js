@@ -674,9 +674,9 @@ function saldoRestaurante() {
     var sesion = data.uid;
     firebase.database().ref('Restaurante/' + sesion).on('value', function (snapshot) {
       var snap = snapshot.val();
-      // console.log(snap.cuentas.cuanta1);
-      $('#balanceRestaurante').html(snap.cuentas.cuanta1.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }));
-      $('#balanceRestaurante2').html(snap.cuentas.cuanta1.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }));
+      var cuenta = parseInt(snap.cuentas.cuanta1) + parseInt(snap.cuentas.cuenta2)
+      $('#balanceRestaurante').html(cuenta.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }));
+      //$('#balanceRestaurante2').html(snap.cuentas.cuanta1.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }));
     })
   });
 } saldoRestaurante();
@@ -686,7 +686,6 @@ function consultaTrasacciones() {
     var sesion = sessionStorage.getItem('data');
     var data = JSON.parse(sesion);
     //console.log('zzzzzzzzzz',data.uid);
-
 
     firebase.database().ref("Tranferencias/restaurantes/").orderByChild('uidRestaurante').equalTo(data.uid).once('value').then(function (snapshot) {
 

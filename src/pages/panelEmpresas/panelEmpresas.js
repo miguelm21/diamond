@@ -572,14 +572,15 @@ function seleccionPlanEmpresa() {
     var uid = sesion.uid;
     // console.log(uid);
     ////filtrar .orderByChild('empresa').equalTo(uid).
-    firebase.database().ref('Empresas/' + uid + "/planes").once('value').then(function (snapshot) {
+    firebase.database().ref('Empresas/' + uid + "/planes").on('value',function (snapshot) {
       // console.log(snapshot.val());
+      var plann ='';
       snapshot.forEach(function (planes) {
         var plan = planes.val();
         var montoPlan = plan.montoPlan;
         var nombrePlan = plan.nombrePlan;
-        //     console.log(nombrePlan);
-        $('#exampleFormControlSelect1').append("<option>" + nombrePlan + " " + "€  " + montoPlan + "</option>");
+        plann = plann +"<option>" + nombrePlan + " " + "€  " + montoPlan + "</option>";
+        $('#exampleFormControlSelect1').html(plann);
       });
     });
   });
@@ -1029,12 +1030,11 @@ function afiliarEmpleados() {
   $(document).ready(function () {
 var datos = sessionStorage.getItem('data');
 var sesion= JSON.parse(datos);
-
     $('#registrarEmpleados').click(function (e) { 
     var cargo=  document.getElementById('cargo').value; 
     var plan= document.getElementById('exampleFormControlSelect1').value;
     var uidEmpleado= document.getElementById('registrarEmpleados').value;
-    console.log(uidEmpleado);
+    //console.log(uidEmpleado);
 if (cargo && plan && uidEmpleado) {  
 
     firebase.database().ref("users/"+uidEmpleado+"/").update({
